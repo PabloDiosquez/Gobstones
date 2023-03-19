@@ -1,0 +1,42 @@
+program {
+    PonerGuardaDe5Azulejos()   
+}
+
+procedure PonerGuardaDe5Azulejos(){
+    // PROPÓSITO: 
+    //          * Dibuja una guarda de 5 azulejos hacia el Este 
+    //           desde la celda actual.
+    
+    // PRECONDICIONES:
+    //          - Deben existir, desde la celda actual, al menos 4 celdas lindantes al Este. 
+    //            y éstas deben estar vacías.  
+    
+    //OBSERVACIONES: 
+    //          * Cada azulejo está conformado por 1 bolita verde, 5 negras y 9 rojas
+    
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Este)
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Este)
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Este)
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Este)
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+}
+
+procedure DibujarAzulejoDeColorVerdeNegroYRojo(){
+    // PROPÓSITO: 
+    //          * Dibuja una azulejo formado por 1 bolita verde, 5 negras y 9 rojas
+    //            en la celda actual.
+    
+    // PRECONDICIONES:
+    //          - La celda debe estar vacía.
+    Poner(Verde)
+    repeat(5){
+        Poner(Negro)
+    }
+    repeat(9){
+        Poner(Rojo)
+    }
+}

@@ -1,0 +1,63 @@
+program {
+    RegistrarElDiaDeLaMemoria()
+}
+
+procedure RegistrarElDiaDeLaMemoria() {
+    /*
+        PROPÓSITO:
+            * Representa el Día de la Memoria en el tablero, dejando el 
+            cabezal, en al celda inicial.
+        PRECONDICIONES:
+            * Debe haber, desde la celda actual, al menos dos celdas lindantes
+              al Este. 
+              Tanto la celda actual, como las mencionadas anteriormente, deben
+              estar vacías.
+        OBSERVACIONES:
+            * Se puede representar una fecha en Gobstones usando bolitas azules
+            para indicar el día, rojas para indicar el mes y verdes para el año.
+            * El Día Nacional de la Memoria por la Verdad y la Justicia es un día feriado inamovible de Argentina que se conmemora cada 24 de marzo.
+              La fecha remite al golpe de Estado del 24 de marzo de 1976.
+    */
+    PonerNBolitasDeColorAzul(24)
+    Mover(Este)
+    PonerNBolitasDeColorRojo(3)
+    Mover(Este)
+    PonerNBolitasDeColorVerde(1976)
+    
+}
+
+procedure PonerNBolitasDeColorAzul(cantidad){
+    /*
+        PROPÓSITO:
+            * Pone una cantidad arbitraria de bolitas de color Azul en la celda actual.
+        PRECONDICIONES:
+            * Ninguna.
+    */
+    repeat(cantidad){
+        Poner(Azul)
+    }
+}
+
+procedure PonerNBolitasDeColorRojo(cantidad){
+    /*
+        PROPÓSITO:
+            * Pone una cantidad arbitraria de bolitas de color Azul en la celda actual.
+        PRECONDICIONES:
+            * Ninguna.
+    */
+    repeat(cantidad){
+        Poner(Rojo)
+    }
+}
+
+procedure PonerNBolitasDeColorVerde(cantidad){
+    /*
+        PROPÓSITO:
+            * Pone una cantidad arbitraria de bolitas de color Verde en la celda actual.
+        PRECONDICIONES:
+            * Ninguna.
+    */
+    repeat(cantidad){
+        Poner(Verde)
+    }
+}

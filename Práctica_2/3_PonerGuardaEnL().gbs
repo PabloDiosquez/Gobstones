@@ -1,0 +1,69 @@
+program {
+    PonerGuardaEnL()
+}
+
+procedure PonerGuardaEnL(){
+    /*
+        PROPÓSITO:
+            * Dibuja una guarda en forma de L formada por azulejos de color Verde, Negro
+              y Rojo.
+        PRECONDICIONES:
+            * El tablero debe ser de al menos de un tamaño de de 3x3.
+            * La celda actual debe tener al menos dos celdas lindantes al Este y dos al Norte.
+            * Las celdas deben estar vacías.
+
+    */
+    PonerGuardaDe3AzulejosEnLaDireccionEste()
+    Mover(Norte)
+    PonerGuardaDe2AzulejosEnLaDireccionNorte()
+    Mover(Sur)
+}
+
+procedure PonerGuardaDe3AzulejosEnLaDireccionEste(){
+    /*
+        PROPÓSITO:
+            * Dibuja una guarda de 3 azulejos hacia el Este, dejando el
+            cabezal en la celda inicial.
+        PRECONDICIONES:
+            * Debe haber, desde la celda actual, al menos dos celdas
+              en la dirección Este. Las celdas deben estar vacías.
+    */
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Este)
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Este)
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Oeste)
+    Mover(Oeste)
+}
+
+procedure PonerGuardaDe2AzulejosEnLaDireccionNorte(){
+    /*
+        PROPÓSITO:
+            * Dibuja una guarda de 2 azulejos hacia el Norte, dejando el
+            cabezal en la celda inicial.
+        PRECONDICIONES:
+            * Debe haber, desde la celda actual, al menos una celda
+              en la dirección Norte. Las celdas deben estar vacías.
+    */
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Norte)
+    DibujarAzulejoDeColorVerdeNegroYRojo()
+    Mover(Sur)
+}
+
+
+procedure DibujarAzulejoDeColorVerdeNegroYRojo(){
+    // PROPÓSITO: 
+    //      * Dibuja una azulejo formado por 1 bolita verde, 5 negras y 9 rojas
+    //            en la celda actual.
+    // PRECONDICIONES:
+    //      * La celda debe estar vacía.
+    Poner(Verde)
+    repeat(5){
+        Poner(Negro)
+    }
+    repeat(9){
+        Poner(Rojo)
+    }
+}

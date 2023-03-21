@@ -1,0 +1,27 @@
+program {
+    DibujarRelojAnalógicoSimplificado()
+}
+
+procedure DibujarRelojAnalógicoSimplificado(){
+    /*
+    Propósito: 
+            - Dibuja un reloj analógico simplificado con el 12 arriba,
+              el 3 a la derecha, el 9 a la izquierda y el 6 abajo.
+        Precondiciones:
+            - Debe haber desde la celda actual, al menos dos celdas
+              lindantes en cada dirección. Además, las dos más cercanas
+              en cada dirección, deben estar vacías.
+    */
+    IrDosCeldasHaciaElEste()
+    DibujarElTres()
+    VolverAlCentroDesdeElEste()
+    IrDosCeldasHaciaElSur()
+    DibujarElSeis()
+    VolverAlCentroDesdeElSur()
+    IrDosCeldasHaciaElOeste()
+    DibujarElNueve()
+    VolverAlCentroDesdeElOeste()
+    IrDosCeldasHaciaElNorte()
+    DibujarElDoce()
+    VolverAlCentroDesdeElNorte()
+}

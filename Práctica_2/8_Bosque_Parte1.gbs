@@ -1,0 +1,45 @@
+procedure PonerUnaSemilla(){
+    /*
+    Propósito: 
+            - Pone una semilla en la celda actual.
+    Precondiciones:
+            - La celda actual debe estar vacía.
+    Observaciones:
+            - Una semilla se representa con una bolita roja.
+    */
+    Poner(Rojo)
+}
+
+procedure PonerUnÁrbol(){
+    /*
+    Propósito: 
+            - Pone un árbol en la celda actual.
+    Precondiciones:
+            - La celda actual debe estar vacía.
+    Observaciones:
+            - Un árbol se representa con una bolita verde.
+    */
+    Poner(Verde)
+}
+
+procedure PonerUnaBomba(){
+    /*
+    Propósito: 
+            - Pone una bomba en la celda actual.
+    Precondiciones:
+            - La celda actual debe estar vacía.
+    Observaciones:
+            - Una bolita negra representa una bomba.
+    */
+    Poner(Negro)
+}
+
+procedure SacarUnaSemilla(){
+    /*
+    Propósito: 
+            - Saca una semilla de la celda actual.
+        Precondiciones:
+            - Debe haber al menos, una semilla en la celda actual. 
+    */
+    Sacar(Rojo)
+}

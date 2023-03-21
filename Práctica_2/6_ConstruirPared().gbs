@@ -25,8 +25,9 @@ procedure ConstruirParedDeLadrillos(){
 procedure IrALaSiguienteFilaDeLadrillos(){
     /*
         Propósito: Ir a la siguiente fila vacía de ladrillos.
-        Precondiciones: debe existir al menos una celda al Norte de la posicion actual y 
-        debe estar vacía.
+        Precondiciones: 
+            -debe existir al menos una celda al Norte de la posicion actual y 
+             debe estar vacía.
     */
     Mover(Norte)
 }

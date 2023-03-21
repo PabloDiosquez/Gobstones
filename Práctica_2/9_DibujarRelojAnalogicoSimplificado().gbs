@@ -13,15 +13,181 @@ procedure DibujarRelojAnalógicoSimplificado(){
               en cada dirección, deben estar vacías.
     */
     IrDosCeldasHaciaElEste()
-    DibujarElTres()
+    DibujarElNúmeroTres()
     VolverAlCentroDesdeElEste()
     IrDosCeldasHaciaElSur()
-    DibujarElSeis()
+    DibujarElNúmeroSeis()
     VolverAlCentroDesdeElSur()
     IrDosCeldasHaciaElOeste()
-    DibujarElNueve()
+    DibujarElNúmeroNueve()
     VolverAlCentroDesdeElOeste()
     IrDosCeldasHaciaElNorte()
-    DibujarElDoce()
+    DibujarElNúmeroDoce()
     VolverAlCentroDesdeElNorte()
+}
+
+procedure IrDosCeldasHaciaElEste(){
+    /*
+    Propósito: 
+            - Mueve el cabezal dos celdas hacia el Este.
+        Precondiciones:
+            - Debe haber al menos dos celdas lindantes hacia el Este,
+              desde la celda actual.
+    */
+    Mover(Este)
+    Mover(Este)
+}
+
+procedure IrDosCeldasHaciaElSur(){
+    /*
+    Propósito: 
+            - Mueve el cabezal dos celdas hacia el Sur.
+        Precondiciones:
+            - Debe haber al menos dos celdas lindantes hacia el Sur,
+              desde la celda actual.
+    */
+    Mover(Sur)
+    Mover(Sur)
+}
+
+procedure IrDosCeldasHaciaElOeste(){
+    /*
+    Propósito: 
+            - Mueve el cabezal dos celdas hacia el Oeste.
+        Precondiciones:
+            - Debe haber al menos dos celdas lindantes hacia el Oeste,
+              desde la celda actual.
+    */
+    Mover(Oeste)
+    Mover(Oeste)
+}
+
+procedure IrDosCeldasHaciaElNorte(){
+    /*
+    Propósito: 
+            - Mueve el cabezal dos celdas hacia el Norte.
+        Precondiciones:
+            - Debe haber al menos dos celdas lindantes hacia el Norte,
+              desde la celda actual.
+    */
+    Mover(Norte)
+    Mover(Norte)
+}
+
+procedure DibujarElNúmeroTres(){
+    /*
+    Propósito: 
+            - Dibuja el número 3 en la celda actual.
+        Precondiciones:
+            - La celda actual debe estar vacía.
+        Observaciones:
+            - El número 3 está representado por tres bolitas de color Rojo.
+    */
+    PonerTresBolitasDeColorRojo()
+}
+
+procedure DibujarElNúmeroSeis(){
+    /*
+    Propósito: 
+            - Dibuja el número 6 en la celda actual.
+        Precondiciones:
+            - La celda actual debe estar vacía.
+        Observaciones:
+            - El número 6 está representado por seis bolitas de color Rojo.
+    */
+    PonerTresBolitasDeColorRojo()
+    PonerTresBolitasDeColorRojo()
+}
+
+procedure DibujarElNúmeroNueve(){
+    /*
+    Propósito: 
+            - Dibuja el número 9 en la celda actual.
+        Precondiciones:
+            - La celda actual debe estar vacía.
+        Observaciones:
+            - El número 9 está representado por nueve bolitas de color Rojo.
+    */
+    PonerTresBolitasDeColorRojo()
+    PonerTresBolitasDeColorRojo()
+    PonerTresBolitasDeColorRojo()
+}
+
+procedure DibujarElNúmeroDoce(){
+    /*
+    Propósito: 
+            - Dibuja el número 12 en la celda actual.
+        Precondiciones:
+            - La celda actual debe estar vacía.
+        Observaciones:
+            - El número 12 está representado por doce bolitas de color Rojo.
+    */
+    PonerTresBolitasDeColorRojo()
+    PonerTresBolitasDeColorRojo()
+    PonerTresBolitasDeColorRojo()
+    PonerTresBolitasDeColorRojo()
+}
+
+procedure VolverAlCentroDesdeElEste(){
+    /*
+    Propósito: 
+            - Mueve el cabezal desde la esquina Este hacia el centro del reloj.
+        Precondiciones:
+            - Debe haber, al menos dos celdas lindantes en la dirección Oeste.
+        Observaciones:
+            - Se supone el reloj como un círculo de radio 2.
+    */
+    Mover(Oeste)
+    Mover(Oeste)
+}
+
+procedure VolverAlCentroDesdeElSur(){
+    /*
+    Propósito: 
+            - Mueve el cabezal desde la esquina Sur hacia el centro del reloj.
+        Precondiciones:
+            - Debe haber, al menos dos celdas lindantes en la dirección Norte.
+        Observaciones:
+            - Se supone el reloj como un círculo de radio 2.
+    */
+    Mover(Norte)
+    Mover(Norte)
+}
+
+procedure VolverAlCentroDesdeElOeste(){
+    /*
+    Propósito: 
+            - Mueve el cabezal desde la esquina Oeste hacia el centro del reloj.
+        Precondiciones:
+            - Debe haber, al menos dos celdas lindantes en la dirección Este.
+        Observaciones:
+            - Se supone el reloj como un círculo de radio 2.
+    */
+    Mover(Este)
+    Mover(Este)
+}
+
+procedure VolverAlCentroDesdeElNorte(){
+    /*
+    Propósito: 
+            - Mueve el cabezal desde la esquina Norte hacia el centro del reloj.
+        Precondiciones:
+            - Debe haber, al menos dos celdas lindantes en la dirección Sur.
+        Observaciones:
+            - Se supone el reloj como un círculo de radio 2.
+    */
+    Mover(Sur)
+    Mover(Sur)
+}
+
+procedure PonerTresBolitasDeColorRojo(){
+    /*
+    Propósito: 
+            - Pone 3 bolitas de color Rojo en la celda actual.
+        Precondiciones:
+            - Ninguna.
+    */
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
 }

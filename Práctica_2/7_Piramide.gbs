@@ -10,21 +10,25 @@ program {
 procedure ConstruirPiramideDe5CeldasDeBaseY3DeAlto() {
     /*
         PROPÓSITO: 
-            * Construye una pirámide de 5 celdas de base y 3 celdas de alto..
+            * Construye una pirámide de 5 celdas de base y 3 celdas de alto con bolitas de 
+              color Rojo.
         PRECONDICIONES:
             * Debe haber desde la celda actual al menos 5 celdas lindantes hacia el Este
               y 3 lindantes al Norte.
-            * Al menos las celdas que conforman el tablero de 5X3 necesario, en cuyo borde     SudOeste está la celda actual, deben estar vacías.  
+            * Al menos las celdas que conforman el tablero de 5X3 necesario, en cuyo borde   SudOeste está la celda actual, deben estar vacías.  
     */
-    DibujarBase()
-    VolverAlInicioEnLaBase()
-    SubirUnNivelDesdeLaBase()
-    DibujarMedio()
-    VolverAlInicioEnElMedio()
-    SubirUnNivelDesdeElMedio()
-    DibujarPunta()
-    VolverAlInicioEnLaPunta()
-    VolverAlInicio()
+        DibujarBase()
+        VolverAlInicioEnLaBase()
+        SubirUnNivelEnLaPirámide()
+        Mover(Este)
+        DibujarMedio()
+        VolverAlInicioEnElMedio()
+        SubirUnNivelEnLaPirámide()
+        Mover(Este)
+        Mover(Este)
+        DibujarPunta()
+        VolverAlInicioEnLaPunta()
+        VolverAlInicioDeLaPiramide()
 }
 
 procedure DibujarBase(){
@@ -34,14 +38,29 @@ procedure DibujarBase(){
         PRECONDICIONES: 
         * La celda actual está vacía 
         * Hay al menos cuatro celdas al Este del cabezal y las cuatro más cercanas están vacías */
+        Poner(Rojo)
+        Mover(Este)
+        Poner(Rojo)
+        Mover(Este)
+        Poner(Rojo)
+        Mover(Este)
+        Poner(Rojo)
+        Mover(Este)
+        Poner(Rojo)
 }
 
 procedure DibujarMedio() {
     /*
         PROPÓSITO: Dibujar un sector del medio de pirámide de 3 celdas de lado a partir de la celda actual y hacia el Este.
-        PRECONDICIONES: * La celda actual está vacía * Hay al menos dos celdas al Este del cabezal y las dos más cercanas están vacías
+        PRECONDICIONES: 
+            * La celda actual está vacía 
+            * Hay al menos dos celdas al Este del cabezal y las dos más cercanas están vacías
     */
-    
+        Poner(Rojo)
+        Mover(Este)
+        Poner(Rojo)
+        Mover(Este)
+        Poner(Rojo)  
 }
 
 procedure DibujarPunta() {
@@ -49,5 +68,64 @@ procedure DibujarPunta() {
        PRECONDICIONES: 
        * La celda actual está vacía
     */
-    
+        Poner(Rojo)
+}
+
+procedure VolverAlInicioEnLaBase(){
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal desde el borde Oeste de la base de la pirámide, hasta 
+              la celda de inicio.
+        PRECONDICIONES:
+            * Debe haber, al menos 5 celdas lindantes desde la actual hacia el Oeste.
+    */
+        Mover(Oeste)
+        Mover(Oeste)
+        Mover(Oeste)
+        Mover(Oeste)
+}
+
+procedure VolverAlInicioEnElMedio(){
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal desde la celda actual hasta la celda en el borde Oeste del   sector medio de la pirámide.
+        PRECONDICIONES:
+            * Debe haber, al menos 3 celdas lindantes desde la actual hacia el Oeste.
+    */
+        Mover(Oeste)
+        Mover(Oeste)
+        Mover(Oeste)
+}
+
+procedure VolverAlInicioEnLaPunta(){
+    /*
+        PROPÓSITO: 
+            * Mueve el cabezal desde la celda actual hasta la celda en el borde Oeste de la punta de la pirámide.
+        PRECONDICIONES:
+            * Debe haber desde la celda actual dos celdas lindantes hacia el Oeste.
+    */
+        Mover(Oeste)
+        Mover(Oeste)
+}
+
+procedure SubirUnNivelEnLaPirámide() {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal un nivel hacia arriba en la pirámide desde la celda actual. 
+        PRECONDICIONES:
+            * Debe haber desde la celda actual al menos una celda lindante hacia el Norte.
+    */
+        Mover(Norte)
+}
+
+procedure VolverAlInicioDeLaPiramide() {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal desde la esquina Oeste de la punta de la pirámide hasta 
+              el borde SudOeste de la misma  
+        PRECONDICIONES:
+            * Debe haber desde la celda actual al menos 3 celdas lindante hacia el Sur.
+    */
+        Mover(Sur)
+        Mover(Sur)
 }

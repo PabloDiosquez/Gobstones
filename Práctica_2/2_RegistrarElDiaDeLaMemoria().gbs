@@ -5,11 +5,11 @@ program {
 procedure RegistrarElDiaDeLaMemoria() {
     /*
         PROPÓSITO:
-            * Representa el Día de la Memoria en el tablero, dejando el 
+            * Representa el Día de la Memoria en el tablero, dejando el
             cabezal, en al celda inicial.
         PRECONDICIONES:
             * Debe haber, desde la celda actual, al menos dos celdas lindantes
-              al Este. 
+              al Este.
               Tanto la celda actual, como las mencionadas anteriormente, deben
               estar vacías.
         OBSERVACIONES:
@@ -18,46 +18,22 @@ procedure RegistrarElDiaDeLaMemoria() {
             * El Día Nacional de la Memoria por la Verdad y la Justicia es un día feriado inamovible de Argentina que se conmemora cada 24 de marzo.
               La fecha remite al golpe de Estado del 24 de marzo de 1976.
     */
-    PonerNBolitasDeColorAzul(24)
+    Poner_BolitasDeColor_(24, Azul)
     Mover(Este)
-    PonerNBolitasDeColorRojo(3)
+    Poner_BolitasDeColor_(3, Rojo)
     Mover(Este)
-    PonerNBolitasDeColorVerde(1976)
-    
+    Poner_BolitasDeColor_(1976, Verde)
+   
 }
 
-procedure PonerNBolitasDeColorAzul(cantidad){
+procedure Poner_BolitasDeColor_(cantidad, colorBolita){
     /*
         PROPÓSITO:
-            * Pone una cantidad arbitraria de bolitas de color Azul en la celda actual.
+            * Pone una **cantidad** arbitraria de bolitas de color **colorBolita** en la celda actual.
         PRECONDICIONES:
             * Ninguna.
     */
     repeat(cantidad){
-        Poner(Azul)
-    }
-}
-
-procedure PonerNBolitasDeColorRojo(cantidad){
-    /*
-        PROPÓSITO:
-            * Pone una cantidad arbitraria de bolitas de color Azul en la celda actual.
-        PRECONDICIONES:
-            * Ninguna.
-    */
-    repeat(cantidad){
-        Poner(Rojo)
-    }
-}
-
-procedure PonerNBolitasDeColorVerde(cantidad){
-    /*
-        PROPÓSITO:
-            * Pone una cantidad arbitraria de bolitas de color Verde en la celda actual.
-        PRECONDICIONES:
-            * Ninguna.
-    */
-    repeat(cantidad){
-        Poner(Verde)
+        Poner(colorBolita)
     }
 }

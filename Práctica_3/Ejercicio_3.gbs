@@ -20,17 +20,29 @@ procedure DibujarRelojAnálogicoSimplificadoDeRadio_(radio) {
     // Mover_Hacia_(cantidadAMover, direcciónHaciaDondeMover)
     // Poner__Veces(colorAPoner, cantidadAPoner)
     Mover_Hacia_(radio, Este)
-    Poner__Veces(3, Rojo)
+    DibujarEl_(3)
     Mover_Hacia_(radio, Oeste)
     Mover_Hacia_(radio, Sur)
-    Poner__Veces(6, Rojo)
+    DibujarEl_(6)
     Mover_Hacia_(radio, Norte)
     Mover_Hacia_(radio, Oeste)
-    Poner__Veces(9, Rojo)
+    DibujarEl_(9)
     Mover_Hacia_(radio, Este)
     Mover_Hacia_(radio, Norte)
-    Poner__Veces(12, Rojo)
+    DibujarEl_(12)
     Mover_Hacia_(radio, Sur) 
+}
+
+procedure DibujarEl_Hacia_(númeroADibujar) {
+    /*
+        PROPÓSITO:
+            * Dibuja el número **númeroADibujar** en la celda actual.  
+        PARÁMETROS:
+            * númeroADibujar: Número - Es el número del reloj a dibujar.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+    */
+    Poner__Veces(númeroADibujar, Rojo)
 }
 
 procedure Poner__Veces(cantidadAPoner, colorAPoner) {

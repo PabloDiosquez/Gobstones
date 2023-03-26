@@ -12,7 +12,7 @@ procedure DibujarRelojAnálogicoSimplificadoDeRadio_(radio) {
         PROPÓSITO:
             * Dibuja un reloj análogico simplificado de radio **radio** con la celda actual como centro.
         PARÁMETROS:
-            * radio: Número - Representa el tamaño del reloj.
+            * radio: Número - Es el tamaño del reloj.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
             * Debe haber, desde la celda actual, al menos una cantidad de celdas lindantes en todas las direcciones igual al radio dado. Las celdas más cercanas a la celda actual (centro del reloj) que conforman el subtablero de tamaño 2x**radio** de largo y 2x**radio** de ancho deben estar vacías.
@@ -31,4 +31,32 @@ procedure DibujarRelojAnálogicoSimplificadoDeRadio_(radio) {
     Mover_Hacia_(radio, Norte)
     Poner__Veces(12, Rojo)
     Mover_Hacia_(radio, Sur) 
+}
+
+procedure Poner__Veces(colorAPoner, cantidadAPoner) {
+    /*
+        PROPÓSITO:
+            * Pone **cantidadAPoner** veces bolitas de color **colorAPoner** en la celda actual.
+        PARÁMETROS:
+            * cantidadAPoner: Número - La cantidad de bolitas a poner en la celda actual.
+            * colorAPoner: Color - Es el color de las bolitas a poner.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    repeat (cantidadAPoner) {
+        Poner(colorAPoner)
+    }   
+}
+
+procedure Mover_Hacia_(cantidadAMover, direcciónHaciaDondeMover) {
+    /*
+        PROPÓSITO:
+            * 
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    
 }

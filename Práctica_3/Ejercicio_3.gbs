@@ -1,0 +1,34 @@
+// Generalizar el ejercicio del reloj analógico de agujas de la práctica anterior para que se
+// pueda pasar el radio como parámetro. O sea, escribir un procedimiento:
+// DibujarRelojAnalógicoSimplificadoDeRadio_(radio)
+// que ponga los números del reloj como en el programa original, pero donde el radio
+// que recibido por parámetro indica el tamaño: mientras más grande es el radio, más
+// alejados están los números del centro.
+// Por ejemplo, el ejercicio original puede obtenerse con el comando
+// DibujarRelojAnalógicoSimplificadoDeRadio_(2)
+
+procedure DibujarRelojAnálogicoSimplificadoDeRadio_(radio) {
+    /*
+        PROPÓSITO:
+            * Dibuja un reloj análogico simplificado de radio **radio** con la celda actual como centro.
+        PARÁMETROS:
+            * radio: Número - Representa el tamaño del reloj.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+            * Debe haber, desde la celda actual, al menos una cantidad de celdas lindantes en todas las direcciones igual al radio dado. Las celdas más cercanas a la celda actual (centro del reloj) que conforman el subtablero de tamaño 2x**radio** de largo y 2x**radio** de ancho deben estar vacías.
+    */
+    // Mover_Hacia_(cantidadAMover, direcciónHaciaDondeMover)
+    // Poner__Veces(colorAPoner, cantidadAPoner)
+    Mover_Hacia_(radio, Este)
+    Poner__Veces(3, Rojo)
+    Mover_Hacia_(radio, Oeste)
+    Mover_Hacia_(radio, Sur)
+    Poner__Veces(6, Rojo)
+    Mover_Hacia_(radio, Norte)
+    Mover_Hacia_(radio, Oeste)
+    Poner__Veces(9, Rojo)
+    Mover_Hacia_(radio, Este)
+    Mover_Hacia_(radio, Norte)
+    Poner__Veces(12, Rojo)
+    Mover_Hacia_(radio, Sur) 
+}

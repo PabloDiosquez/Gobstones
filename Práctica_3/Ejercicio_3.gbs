@@ -65,8 +65,8 @@ procedure Mover_Hacia_(cantidadAMover, direcciónHaciaDondeMover) {
         PROPÓSITO:
             * Mueve el cabezal **cantidadAMover** veces en la dirección **direcciónAMover**.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+            * cantidadAMover: Número - Es la cantidad de movimientos que realiza el cabezal.
+            * direcciónAMover: Dirección - Dirección hacia donde moverse.
         PRECONDICIONES:
             * Hay al menos **cantidadAMover** celdas al **direcciónHaciaDondeMover** de la celda actual.
     */

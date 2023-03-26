@@ -1,0 +1,21 @@
+// 1. Escribir un procedimiento Mover3VecesAl_(direcciónAMover) que dada una
+// dirección direcciónAMover mueva el cabezal tres posiciones en dicha dirección.
+// Puede usarse como base el procedimiento Mover3VecesAlOeste (realizado en la
+// primera práctica). No olvidar escribir el contrato del procedimiento ANTES de realizar el
+// código (y que los parámetros son parte del mismo); también discutir la precondición
+// escrita con sus compañeros para verificar que la misma es adecuada y correcta.
+
+procedure Mover3VecesAl_(direcciónAMover) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal tres posiciones en la dirección **direcciónAMover**.
+        PARÁMETROS:
+            * direcciónAMover: Dirección - Es la dirección en la que se va a mover el cabezal.
+        PRECONDICIONES:
+            * Debe haber al menos tres celdas lindantes en la dirección **direcciónAMover**
+              desde la celda actual.
+    */
+    repeat (3) {
+        Mover(direcciónAMover)
+    }
+}

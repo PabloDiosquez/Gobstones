@@ -33,7 +33,7 @@ procedure DibujarRelojAnálogicoSimplificadoDeRadio_(radio) {
     Mover_Hacia_(radio, Sur) 
 }
 
-procedure Poner__Veces(colorAPoner, cantidadAPoner) {
+procedure Poner__Veces(cantidadAPoner, colorAPoner) {
     /*
         PROPÓSITO:
             * Pone **cantidadAPoner** veces bolitas de color **colorAPoner** en la celda actual.
@@ -51,12 +51,14 @@ procedure Poner__Veces(colorAPoner, cantidadAPoner) {
 procedure Mover_Hacia_(cantidadAMover, direcciónHaciaDondeMover) {
     /*
         PROPÓSITO:
-            * 
+            * Mueve el cabezal **cantidadAMover** veces en la dirección **direcciónAMover**.
         PARÁMETROS:
             * parámetro1: tipo - descripción.
             * parámetro2: tipo - descripción.
         PRECONDICIONES:
-            * ....
+            * Hay al menos **cantidadAMover** celdas al **direcciónHaciaDondeMover** de la celda actual.
     */
-    
+    repeat(cantidadAMover){
+        Mover(direcciónHaciaDondeMover)
+    }
 }

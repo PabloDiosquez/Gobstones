@@ -1,0 +1,17 @@
+// 10. BIBLIOTECA Escribir el procedimiento IrAEsquina_Y_(primeraDirección,
+// segundaDirección) que dadas dos direcciones posiciona el cabezal en la esquina en
+// dichas direcciones
+
+procedure IrAEsquina_Y_(primerDirección, segundaDirección) {
+    /*
+        PROPÓSITO:
+            * Posiciona el cabezal en la esquina **primeraDirección** y **segundaDirección**.
+        PARÁMETROS:
+            *primeaDirección: Dirección: Una dirección que describe hacia que esquina se mueve el cabezal en primer lugar.
+            *segundaDirección: Dirección: Una dirección que describe hacia que esquina se mueve el cabezal en segundo lugar.
+        PRECONDICIONES:
+            * **primeraDirección** y **segundaDirección** no son iguales ni opuestas.
+    */
+    IrAlBorde(primeraDirección)
+    IrAlBorde(segundaDirección)
+}

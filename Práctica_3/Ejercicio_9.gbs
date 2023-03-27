@@ -1,0 +1,56 @@
+// 9. BIBLIOTECA 
+// La combinación de parámetros con repetición es interesante.
+// a. Generalizar el procedimiento Mover3VecesAl_ para que la cantidad también
+// pueda ser indicada, haciendo Mover_VecesAl_(cantidad, dirección).
+// b. ¿Es posible hacer este procedimiento sin usar repetición simple? ¿Por qué?
+// c. Construir los procedimientos Poner_DeColor_(cantidad, color) y
+// Sacar_DeColor_(cantidad, color) que trabajen de forma similar al del
+// ítem a. ¿No olvidaste las precondiciones, no?
+
+// a) 
+procedure Mover_Al_(cantidad, dirección) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal **cantidad** de veces en la dirección **dirección**.
+        PARÁMETROS:
+            * cantidad: Número - Un número que describe la cantidad de celdas que debe moverse el cabezal.
+            * dirección: Dirección - Una dirección que describe hacia dónde se mueve el cabezal.
+        PRECONDICIONES:
+            * Debe haber al menos **cantidad** celdas lindantes a la celda actual, en la dirección **dirección**.
+    */
+    repeat (cantidad) {
+        Mover(dirección)
+    }
+}
+
+// c) 
+
+procedure Poner_DeColor_(cantidad, color) {
+    /*
+        PROPÓSITO:
+            * Pone **cantidad** bolitas de color **color** en la celda actual.
+        PARÁMETROS:
+            * cantidad: Número - Un número que describe la cantidad de bolitas a poner.
+            * color: Color - Un color que describe el color de las bolitas a poner.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    repeat(cantidad) {
+        Poner(color)
+    }
+}
+
+procedure Sacar_DeColor_(cantidad, color) {
+    /*
+        PROPÓSITO:
+            * Saca **cantidad** bolitas de color **color** de la celda actual.
+        PARÁMETROS:
+            * cantidad: Número - Un número que describe la cantidad de bolitas a sacar de la celda actual.
+            * color: Color - Un color que describe el color de las bolitas.
+        PRECONDICIONES:
+            *Debe haber al menos **cantidad** bolitas de color **color** en la celda actual.
+    */
+    repeat (cantidad) {
+        Sacar(color)
+    }
+}

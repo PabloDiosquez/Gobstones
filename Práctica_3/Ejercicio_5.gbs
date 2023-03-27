@@ -1,0 +1,5 @@
+// 5. Construir un procedimiento EscribirFecha___(día, mes, año), que permita
+// representar cualquier fecha dados el día, mes y año. La representación debe ser la
+// misma utilizada en el ejercicio 2 de la práctica 2 donde se registró el día de la Memoria.
+// Recordar que debe comenzarse por escribir el contrato; en este caso puede resultar útil
+// escribir también una observación con la representación a utilizar.

@@ -1,0 +1,28 @@
+// 7. Al continuar revisando código, encontramos otro procedimiento de Nova que carece de
+// contrato.
+// a. Escribir el contrato faltante
+// procedure Pintar3PuntosAzules() {
+// Poner(Azul)
+// Poner_ADistancia3Al_(Azul, Este)
+// Poner_ADistancia3Al_(Azul, Este)
+// Mover3VecesAl_(Oeste) Mover3VecesAl_(Oeste)
+// }
+// b. Ayudar a Nova a contestar la siguiente pregunta: ¿Hay alguna relación entre los
+// parámetros de Poner_ADistancia3Al_ y Mover3VecesAl_?
+// c. Dado que Nova no pensó en código general, basándose en el procedimiento
+// corregido recién, generalizarlo para que, dado un color colorPunto, dibuje los
+// puntos de ese color. El nuevo procedimiento debe llamarse Pintar3Puntos_
+
+procedure Pintar3PuntosAzules() {
+    /*
+        PROPÓSITO:
+            * Pinta 3 puntos azules, desde la celda actual, en la dirección Este, dejando un espacio de 2 celdas entre los mismos. El cabezal vuelve a la posición original.
+        PRECONDICIONES:
+            * Debe haber al menos 6 celdas lindantes en la dirección Este, desde la celda actual.
+    */
+    Poner(Azul)
+    Poner_ADistancia3Al_(Azul, Este)
+    Poner_ADistancia3Al_(Azul, Este)
+    Mover3VecesAl_(Oeste)
+    Mover3VecesAl_(Oeste)
+}

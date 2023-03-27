@@ -13,6 +13,7 @@
 // corregido recién, generalizarlo para que, dado un color colorPunto, dibuje los
 // puntos de ese color. El nuevo procedimiento debe llamarse Pintar3Puntos_
 
+// a) 
 procedure Pintar3PuntosAzules() {
     /*
         PROPÓSITO:
@@ -23,6 +24,52 @@ procedure Pintar3PuntosAzules() {
     Poner(Azul)
     Poner_ADistancia3Al_(Azul, Este)
     Poner_ADistancia3Al_(Azul, Este)
+    Mover3VecesAl_(Oeste)
+    Mover3VecesAl_(Oeste)
+}
+
+procedure Poner_ADistancia3Al_(color, dirección) {
+    /*
+        PROPÓSITO:
+            * Pone una bolita de color **color** a una distancia de 3 celdas, desde la celda actual en la dirección **dirección**.
+        PARÁMETROS:
+            * color: Color - Es el color de la bolita
+            * dirección: Dirección - Es la dirección en la que se mueve el cabezal.
+        PRECONDICIONES:
+            * Debe haber al menos tres celdas lindantes en la dirección dada por parámetro.
+    */
+    Mover3VecesAl_(dirección)
+    Poner(color)
+}
+
+procedure Mover3VecesAl_(direcciónAMover) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal tres celdas en la dirección **direcciónAMover**, desde la celda actual.
+        PARÁMETROS:
+            * direcciónAMover: Dirección - Es la dirección en la que se mueve el cabezal.
+        PRECONDICIONES:
+            * Debe haber al menos 3 celdas lindantes a la celda actual en la dirección **dirección**.
+    */
+    repeat(3) {
+        Mover(direcciónAMover)
+    }
+}
+
+// c)
+
+procedure Pintar3Puntos_(colorPunto) {
+    /*
+        PROPÓSITO:
+            * Pinta 3 puntos de color **colorPunto**, comenzando por la celda actual, y en dos celdas más en la dirección Este, dejando un espacio de 2 celdas entre los mismos. El cabezal vuelve a la posición original.
+        PARÁMETROS: 
+            * colorPunto: Color - Es el color de los puntos a pintar.
+        PRECONDICIONES:
+            * Debe haber al menos 6 celdas lindantes en la dirección Este, desde la celda actual.
+    */
+    Poner(colorPunto)
+    Poner_ADistancia3Al_(colorPunto, Este)
+    Poner_ADistancia3Al_(colorPunto, Este)
     Mover3VecesAl_(Oeste)
     Mover3VecesAl_(Oeste)
 }

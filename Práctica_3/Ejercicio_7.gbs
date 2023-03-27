@@ -8,12 +8,13 @@
 // Mover3VecesAl_(Oeste) Mover3VecesAl_(Oeste)
 // }
 // b. Ayudar a Nova a contestar la siguiente pregunta: ¿Hay alguna relación entre los
-// parámetros de Poner_ADistancia3Al_ y Mover3VecesAl_?
+// parámetros de Poner_ADistancia3Al_ y Mover3VecesAl_? 👉🏼 // Un parámetro puede ser argumento de otro procedimiento...
 // c. Dado que Nova no pensó en código general, basándose en el procedimiento
 // corregido recién, generalizarlo para que, dado un color colorPunto, dibuje los
 // puntos de ese color. El nuevo procedimiento debe llamarse Pintar3Puntos_
 
 // a) 
+
 procedure Pintar3PuntosAzules() {
     /*
         PROPÓSITO:

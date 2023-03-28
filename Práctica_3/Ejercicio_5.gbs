@@ -3,3 +3,68 @@
 // misma utilizada en el ejercicio 2 de la práctica 2 donde se registró el día de la Memoria.
 // Recordar que debe comenzarse por escribir el contrato; en este caso puede resultar útil
 // escribir también una observación con la representación a utilizar.
+
+procedure EscribirFecha___(día, mes, año) {
+    /*
+        PROPÓSITO:
+            * Registra el día **día**, el mes **mes** y el año **año**.
+        PARÁMETROS:
+            * día: Es un número - Un número que describe el día de la fecha a escribir.
+            * mes: Es un número - Un número que describe el mes de la fecha a escribir.
+            * año: Es un número - Un número que describe el año de la fecha a escribir.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+            * Deben existir al menos dos celdas vacías al Este de la celda actual.
+            * El valor de mes sólo puede ir del 1 al 12.
+            * Si mes es igual a 4, 6, 9 u 11, los valores para día  pueden encontrarse      únicamente entre 1 y 30.
+            * Si mes es igual a 1, 3, 5, 7, 8, 10 o 12, los valores para día pueden encontrarse únicamente entre 1 y 31.
+            *Si mes es igual a 2, los valores para  día pueden encontrarse únicamente entre 1 y 29 sólo si año es divisible por 4. Sino los valores para día pueden encontrarse únicamente entre 1 y 28.
+    */
+    EscribirDía_(día)
+    Mover(Este)
+    EscribirMes_(mes)
+    Mover(Este)
+    EscribirAño_(año)
+}
+
+procedure EscribirDía_(día) {
+    /*
+        PROPÓSITO:
+            * Escribe el día de la fecha dado.
+        PARÁMETROS:
+            * día: Es un Número - Un número que describe el día de la fecha a registrar.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+    */
+    repeat(dia) {
+        Poner(Azul)
+    }
+}
+
+procedure EscribirMes_(mes) {
+    /*
+        PROPÓSITO:
+            * Escribe el mes de la fecha dado.
+        PARÁMETROS:
+            * mes: Es un Número - Un número que describe el mes de la fecha a registrar.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+    */
+    repeat(mes) {
+        Poner(Rojo)
+    }
+}
+
+procedure EscribirMes_(año) {
+    /*
+        PROPÓSITO:
+            * Escribe el año de la fecha dado.
+        PARÁMETROS:
+            * año: Es un Número - Un número que describe el año de la fecha a registrar.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+    */
+    repeat(año) {
+        Poner(Verde)
+    }
+}

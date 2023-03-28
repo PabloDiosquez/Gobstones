@@ -11,10 +11,10 @@
 procedure Mover_Al_(cantidad, dirección) {
     /*
         PROPÓSITO:
-            * Mueve el cabezal **cantidad** de veces en la dirección **dirección**.
+            * Mueve el cabezal **cantidad** veces en la dirección **dirección**.
         PARÁMETROS:
-            * cantidad: Número - Un número que describe la cantidad de celdas que debe moverse el cabezal.
-            * dirección: Dirección - Una dirección que describe hacia dónde se mueve el cabezal.
+            * cantidad: Es un Número - Un número que describe la cantidad de celdas que debe moverse el cabezal.
+            * dirección: Es una Dirección - Una dirección que describe hacia dónde se mueve el cabezal.
         PRECONDICIONES:
             * Debe haber al menos **cantidad** celdas lindantes a la celda actual, en la dirección **dirección**.
     */
@@ -45,8 +45,8 @@ procedure Sacar_DeColor_(cantidad, color) {
         PROPÓSITO:
             * Saca **cantidad** bolitas de color **color** de la celda actual.
         PARÁMETROS:
-            * cantidad: Número - Un número que describe la cantidad de bolitas a sacar de la celda actual.
-            * color: Color - Un color que describe el color de las bolitas.
+            * cantidad: Es un Número - Un número que describe la cantidad de bolitas a sacar de la celda actual.
+            * color: Es un Color - Un color que describe el color de las bolitas a sacar de la celda actual.
         PRECONDICIONES:
             *Debe haber al menos **cantidad** bolitas de color **color** en la celda actual.
     */

@@ -1,0 +1,5 @@
+/*Escribir un procedimiento PonerDominó__(númeroIzquierdo, númeroDerecho) que ponga un dominó horizontal en la celda actual.¡No olvidar escribir su contrato!
+Representación: 
+1️⃣ Una bolita azul indica que hay un dominó horizontal.
+2️⃣ Las bolitas rojas indican el número de la izquierda.
+3️⃣ Las bolitas verdes indican el número de la derecha.

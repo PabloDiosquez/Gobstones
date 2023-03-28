@@ -14,9 +14,53 @@ procedure PonerDominó__(númeroIzquierdo, númeroDerecho) {
             * númeroDerecho: Es un Número - Un número que describe el número derecho de la ficha de dominó.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
+            * Los números **númeroIzquierdo** y **númeroDerecho** deben estar comprendidos entre 0 y 6.
     */
     DibujarFichaDeDominó()
-    DibujarNúmeroIzquierdo_(númeroIzquierdo)
-    DibujarNúmeroDerecho_(númeroDerecho)
+    DibujarElNúmero_DelLadoIzquierdo(númeroIzquierdo)
+    DibujarElNúmero_DelLadoDerecho(númeroDerecho)
 }
 
+procedure DibujarFichaDeDominó() {
+    /*
+        PROPÓSITO:
+            * Dibuja una ficha de dominó horizontal en la celda actual.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+        OBSERVACIONES:
+            * Una ficha de dominó horizontal está representada por una bolita azul.
+    */
+    Poner(Azul)
+}
+
+procedure DibujarElNúmero_DelLadoIzquierdo(númeroIzquierdo) {
+    /*
+        PROPÓSITO:
+            * Dibuja el número **númeroIzquierdo** del lado izquierdo de la ficha de dominó.
+        PARÁMETROS:
+            * númeroIzquierdo: Es un Número - Un número que describe el valor de la izquierda del dominó. 
+        PRECONDICIONES:
+            * La celda actual debe contener una ficha de dominó.
+        OBSERVACIONES:
+            * El número de la izquierda se representa con bolitas de color rojo.
+    */
+    repeat (númeroIzquierdo) {
+        Poner(Rojo)
+    }
+}
+
+procedure DibujarElNúmero_DelLadoDerecho(númeroDerecho) {
+    /*
+        PROPÓSITO:
+            * Dibuja el número **númeroDerecho** del lado derecho de la ficha de dominó.
+        PARÁMETROS:
+            * númeroDerecho: Es un Número - Un número que describe el valor de la derecha del dominó. 
+        PRECONDICIONES:
+            * La celda actual debe contener una ficha de dominó.
+        OBSERVACIONES:
+            * El número de la derecha se representa con bolitas de color verde.
+    */
+    repeat (númeroDerecho) {
+        Poner(Verde)
+    }
+}

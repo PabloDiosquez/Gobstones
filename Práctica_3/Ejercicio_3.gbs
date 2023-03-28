@@ -23,7 +23,7 @@ procedure DibujarRelojAnálogicoSimplificadoDeRadio_(radio) {
     DibujarEl_(3)
     Mover_Hacia_(radio, Oeste)
     Mover_Hacia_(radio, Sur)
-    DibujarEl_(6)
+    DibujarEl_(6) // DibujarLaHora_EnElRelojDeTamaño_Hacia_(horaDelReloj, radio, dirección)
     Mover_Hacia_(radio, Norte)
     Mover_Hacia_(radio, Oeste)
     DibujarEl_(9)

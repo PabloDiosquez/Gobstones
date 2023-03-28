@@ -19,30 +19,27 @@ procedure DibujarRelojAnálogicoSimplificadoDeRadio_(radio) {
     */
     // Mover_Hacia_(cantidadAMover, direcciónHaciaDondeMover)
     // Poner__Veces(colorAPoner, cantidadAPoner)
-    Mover_Hacia_(radio, Este)
-    DibujarEl_(3)
-    Mover_Hacia_(radio, Oeste)
-    Mover_Hacia_(radio, Sur)
-    DibujarEl_(6) // DibujarLaHora_EnElRelojDeTamaño_Hacia_(horaDelReloj, radio, dirección)
-    Mover_Hacia_(radio, Norte)
-    Mover_Hacia_(radio, Oeste)
-    DibujarEl_(9)
-    Mover_Hacia_(radio, Este)
-    Mover_Hacia_(radio, Norte)
-    DibujarEl_(12)
-    Mover_Hacia_(radio, Sur) 
+    DibujarLaHora_EnElRelojDeTamaño_Hacia_(3, 2, Este) 
+    DibujarLaHora_EnElRelojDeTamaño_Hacia_(6, 2, Sur) 
+    DibujarLaHora_EnElRelojDeTamaño_Hacia_(9, 2, Oeste) 
+    DibujarLaHora_EnElRelojDeTamaño_Hacia_(12, 2, Norte) 
 }
 
-procedure DibujarEl_Hacia_(númeroADibujar) {
+procedure DibujarLaHora_EnElRelojDeTamaño_Hacia_(horaDelReloj, radio, dirección) {
     /*
         PROPÓSITO:
-            * Dibuja el número **númeroADibujar** en la celda actual.  
+            * Dibuja la hora **horaDelReloj** en el reloj de tamaño **radio** en la dirección **dirección**.
         PARÁMETROS:
-            * númeroADibujar: Número - Es el número del reloj a dibujar.
+            * horaDelReloj: Es un Número - Un número que describe la hora del reloj.
+            * radio: Es un Número - Un número que describe el tamaño del reloj.
+            * dirección: Es una Dirección - Una dirección que describe hacia dónde debe moverse el cabezal para dibujar la hora elegida.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
+            * Debe haber al menos **radio** celdas lindantes a la actual en la dirección **dirección**. Éstas deben estar vacías.
     */
-    Poner__Veces(númeroADibujar, Rojo)
+    Mover_Hacia_(radio, dirección)
+    Poner__Veces(horaDelReloj, Rojo)
+    Mover_Hacia_(radio, opuesto(dirección))
 }
 
 procedure Poner__Veces(cantidadAPoner, colorAPoner) {

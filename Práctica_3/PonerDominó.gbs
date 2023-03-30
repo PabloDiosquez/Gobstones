@@ -16,15 +16,15 @@ procedure PonerDominó__(númeroIzquierdo, númeroDerecho) {
             * La celda actual debe estar vacía.
             * Los números **númeroIzquierdo** y **númeroDerecho** deben estar comprendidos entre 0 y 6.
     */
-    DibujarFichaDeDominó()
-    DibujarElNúmero_DelLadoIzquierdo(númeroIzquierdo)
-    DibujarElNúmero_DelLadoDerecho(númeroDerecho)
+    ColocarIndicaciónDeDeDominóHorizontal()
+    ColocarParteIzquierdaDelDominó(númeroIzquierdo)
+    ColocarParteDerechaDelDominó(númeroDerecho)
 }
 
-procedure DibujarFichaDeDominó() {
+procedure ColocarIndicaciónDeDeDominóHorizontal() {
     /*
         PROPÓSITO:
-            * Dibuja una ficha de dominó horizontal en la celda actual.
+            * Pone una indicación de que el dominó a representar es horizontal.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
         OBSERVACIONES:
@@ -33,23 +33,21 @@ procedure DibujarFichaDeDominó() {
     Poner(Azul)
 }
 
-procedure DibujarElNúmero_DelLadoIzquierdo(númeroIzquierdo) {
+procedure ColocarParteIzquierdaDelDominó(númeroIzquierdo){
     /*
         PROPÓSITO:
-            * Dibuja el número **númeroIzquierdo** del lado izquierdo de la ficha de dominó.
+            * Pone el número **númeroIzquierdo** del lado izquierdo de la ficha de dominó.
         PARÁMETROS:
-            * númeroIzquierdo: Es un Número - Un número que describe el valor de la izquierda del dominó. 
+            * númeroIzquierdo: Número - Un número que describe el valor de la izquierda del dominó. 
         PRECONDICIONES:
             * La celda actual debe contener una ficha de dominó.
         OBSERVACIONES:
             * El número de la izquierda se representa con bolitas de color rojo.
     */
-    repeat (númeroIzquierdo) {
-        Poner(Rojo)
-    }
+    Poner__Veces(Rojo, númeroIzquierdo)
 }
 
-procedure DibujarElNúmero_DelLadoDerecho(númeroDerecho) {
+procedure ColocarParteDerechaDelDominó(númeroDerecho) {
     /*
         PROPÓSITO:
             * Dibuja el número **númeroDerecho** del lado derecho de la ficha de dominó.
@@ -60,7 +58,20 @@ procedure DibujarElNúmero_DelLadoDerecho(númeroDerecho) {
         OBSERVACIONES:
             * El número de la derecha se representa con bolitas de color verde.
     */
-    repeat (númeroDerecho) {
-        Poner(Verde)
+    Poner__Veces(Verde, númeroDerecho)
+}
+
+procedure Poner__Veces(colorAPoner, cantidad) {
+    /*
+        PROPÓSITO:
+            * Pone **cantidad** bolitas de color **colorAPoner** en la celda actual.
+        PARÁMETROS:
+            * color: Color - Un color que describe el color de las bolitas a poner.
+            * cantidad: Número - Un número que describe la cantidad de bolitas a poner.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    repeat(cantidad) {
+        Poner(color)
     }
 }

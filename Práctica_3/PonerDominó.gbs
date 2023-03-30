@@ -61,17 +61,4 @@ procedure ColocarParteDerechaDelDominó(númeroDerecho) {
     Poner__Veces(Verde, númeroDerecho)
 }
 
-procedure Poner__Veces(colorAPoner, cantidad) {
-    /*
-        PROPÓSITO:
-            * Pone **cantidad** bolitas de color **colorAPoner** en la celda actual.
-        PARÁMETROS:
-            * color: Color - Un color que describe el color de las bolitas a poner.
-            * cantidad: Número - Un número que describe la cantidad de bolitas a poner.
-        PRECONDICIONES:
-            * No tiene.
-    */
-    repeat(cantidad) {
-        Poner(color)
-    }
-}
+procedure Poner__Veces(c, n) {repeat(n) { Poner(c)} }

@@ -8,10 +8,10 @@ Representación:
 procedure PonerDominó__(númeroIzquierdo, númeroDerecho) {
     /*
         PROPÓSITO:
-            * Pone una ficha de dominó horizontal en la celda actual cuyos números izquierdo y derecho son **númeroIzquierdo** es **númeroDerecho** respectivamente.
+            * Pone el dominó dado por los números izquierdo y derecho en forma horizontal.
         PARÁMETROS:
-            * númeroIzquierdo: Es un Número - Un número que describe el número izquierdo de la ficha de dominó.
-            * númeroDerecho: Es un Número - Un número que describe el número derecho de la ficha de dominó.
+            * númeroIzquierdo: Número - Un número que indica el lado izquierdo de la ficha de dominó a colocar.
+            * númeroDerecho: Número - Un número que indica el lado derecho de la ficha de dominó a colocar.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
             * Los números **númeroIzquierdo** y **númeroDerecho** deben estar comprendidos entre 0 y 6.

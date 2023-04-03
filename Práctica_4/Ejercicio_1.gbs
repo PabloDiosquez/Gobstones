@@ -11,14 +11,15 @@ procedure DibujarBanda_EnDiagonalNEDe_x_(color, alto, largo) {
             * alto: Número - Es un número que describe el ancho de la banda.
             * largo: Número - Es un número que describe el largo de la diagonal.
         PRECONDICIONES:
-            * Debe haber al menos **largo** celdas lindantes a la actual en la dirección Este, y (**alto** + **largo**) - 1 celdas en la dirección Norte.
+            * Debe haber al menos **largo** celdas lindantes a la actual en la
+              dirección Este, y (**alto** + **largo**) - 1 celdas en la dirección Norte.
     */
         repeat(largo-1){
             DibujarLínea_De_Alto(color, alto)
             SubirEnLaDiagonal()
         }
         DibujarLínea_De_Alto(color, alto)
-        IrAlInicioDeLaDiagonal(largo)
+        IrAlSudoeste_Veces(largo-1)
 }
 
 procedure DibujarLínea_De_Alto(color, alto) {
@@ -43,7 +44,7 @@ procedure DibujarLínea_De_Alto(color, alto) {
     }
 }
 
-procedure SubirEnLaDiagonal() {
+procedure SubirEnLaDiagonalNorEste() {
     /*
         PROPÓSITO:
             * Mueve el cabezal a la celda lindante a la actual en la dirección NorEste.
@@ -54,18 +55,18 @@ procedure SubirEnLaDiagonal() {
     Mover(Norte)
 }
 
-procedure IrAlInicioDeLaDiagonal(largo) {
+procedure IrAlSudoeste_Veces(numero) {
     /*
         PROPÓSITO:
             * Mueve el cabezal a la celda de inicio de la diagonal.
         PARÁMETROS:
             * largo: Número - Un número que describe el largo de la diagonal. 
         PRECONDICIONES:
-            * Desde la celda actual debe haber al menos **largo-1** celdas lindantes al Sur, y
-              **largo** celdas lindantes al Oeste.
+            * Desde la celda actual debe haber al menos **largo** celdas lindantes al Sur, y
+              **numeero** celdas lindantes al Oeste.
     */
-    Mover_Al_(largo-1,Sur)
-    Mover_Al_(largo-1,Oeste)
+    Mover_Al_(numero,Sur)
+    Mover_Al_(numero,Oeste)
 }
 
 procedure Mover_Al_(cantidad, dirección) {

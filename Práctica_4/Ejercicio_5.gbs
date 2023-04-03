@@ -24,7 +24,7 @@ procedure PasarPalabraActualAMayúsculas() {
     */
     repeat (nroBolitas(Rojo)) {
         Mover(Este)
-        PasarLetraAMayúscula(letra)
+        PasarLetraAMayúscula(nroBolitas(Negro))
     }
 }
 

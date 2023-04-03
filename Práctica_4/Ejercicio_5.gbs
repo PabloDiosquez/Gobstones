@@ -12,3 +12,37 @@
 // minúsculas se representa con el número 97 y la ‘A’ mayúsculas, con el 65).
 // - El cabezal se encuentra en la celda más al Oeste de una fila donde hay una
 // palabra representada.
+
+procedure PasarPalabraActualAMayúsculas() {
+    /*
+        PROPÓSITO:
+            * Pone la palabra codificada en la fila actual, en mayúsculas en la fila Norte.
+        PRECONDICIONES:
+            * Debe haber una palabra codificada en la fila actual.
+        OBSERVACIONES:
+            * El número de bolitas de color Rojo en la celda inicial, determina la longitud de la palabra.  
+    */
+    repeat (nroBolitas(Rojo)) {
+        Mover(Este)
+        PasarLetraAMayúscula(letra)
+    }
+}
+
+procedure PasarLetraAMayúscula(códigoLetra) {
+    /*
+        PROPÓSITO:
+            * Pone la letra codificada en la celda actual en mayúscula en la celda lindante en la dirección Norte. 
+        PARÁMETROS:
+            * códigoLetra: Número - Código ASCII de la letra en la celda actual.
+        PRECONDICIONES:
+            * Debe haber una letra en la celda actual.
+        OBSERVACIONES:
+            * Cada letra se representa con una cantidad diferente de bolitas negras, según
+              un código numérico llamado ASCII.
+    */
+    repeat (nroBolitas(Negro)-32) {
+        Mover(Norte)
+        Poner(Negro)
+        Mover(Sur)
+    }
+}

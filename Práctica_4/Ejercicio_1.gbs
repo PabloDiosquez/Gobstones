@@ -5,20 +5,20 @@ procedure DibujarBanda_EnDiagonalNEDe_x_(color, alto, largo) {
     /*
         PROPÓSITO:
             * Dibuja una banda de color **color** en diagonal Noreste de **alto** de alto
-            por **larog** de largo.
+            por **largo** de largo.
         PARÁMETROS:
-            * color: Color
-            * alto: Número
-            * largo: Número
+            * color: Color - Es el color de las bolitas de la diagonal.
+            * alto: Número - Es un número que describe el ancho de la banda.
+            * largo: Número - Es un número que describe el largo de la diagonal.
         PRECONDICIONES:
-            * Debe haber al menos **largo** celdas lindantes a la actual en la dirección Este, y (**alto** + **largo**) - 1 en la dirección Norte.
+            * Debe haber al menos **largo** celdas lindantes a la actual en la dirección Este, y (**alto** + **largo**) - 1 celdas en la dirección Norte.
     */
         repeat(largo-1){
             DibujarLínea_De_Alto(color, alto)
             SubirEnLaDiagonal()
         }
         DibujarLínea_De_Alto(color, alto)
-        IrAlInicio()
+        IrAlInicioDeLaDiagonal(largo)
 }
 
 procedure DibujarLínea_De_Alto(color, alto) {
@@ -27,10 +27,10 @@ procedure DibujarLínea_De_Alto(color, alto) {
             * Dibuja una línea de color **color** de **alto** celdas de alto.
               Deja el cabezal en la celda inicial.
         PARÁMETROS:
-            * color: Color
-            * alto: Número
+            * color: Color - Describe el color de la línea.
+            * alto: Número - Un número que describe el alto de la línea.
         PRECONDICIONES:
-            * Debe haber desde la celda actual, al menos **alto** - 1 celdas hacia el    Norte.
+            * Debe haber desde la celda actual, al menos **alto** - 1 celdas hacia el Norte.
     */
     repeat(alto-1){
         Poner(color)
@@ -45,26 +45,40 @@ procedure DibujarLínea_De_Alto(color, alto) {
 
 procedure SubirEnLaDiagonal() {
     /*
-        PROPÓSITO:  ....
-        PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+        PROPÓSITO:
+            * Mueve el cabezal a la celda lindante a la actual en la dirección NorEste.
         PRECONDICIONES:
-            * ....
+            * Debe haber al menos una celda lindante al Norte y otra al Este.
     */
     Mover(Este)
     Mover(Norte)
 }
 
-procedure IrAlInicio() {
+procedure IrAlInicioDeLaDiagonal(largo) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Mueve el cabezal a la celda de inicio de la diagonal.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+            * largo: Número - Un número que describe el largo de la diagonal. 
         PRECONDICIONES:
-            * ....
+            * Desde la celda actual debe haber al menos **largo-1** celdas lindantes al Sur, y
+              **largo** celdas lindantes al Oeste.
     */
-    IrAlBorde(Sur)
-    IrAlBorde(Oeste)
+    Mover_Al_(largo-1,Sur)
+    Mover_Al_(largo-1,Oeste)
+}
+
+procedure Mover_Al_(cantidad, dirección) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal **cantidad** veces en la dirección **dirección**.
+        PARÁMETROS:
+            * cantidad: Es un Número - Un número que describe la cantidad de celdas que debe moverse el cabezal.
+            * dirección: Es una Dirección - Una dirección que describe hacia dónde se mueve el cabezal.
+        PRECONDICIONES:
+            * Debe haber al menos **cantidad** celdas lindantes a la celda actual, en la dirección **dirección**.
+    */
+    repeat (cantidad) {
+        Mover(dirección)
+    }
 }

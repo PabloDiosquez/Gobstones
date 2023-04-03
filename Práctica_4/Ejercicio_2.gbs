@@ -1,4 +1,6 @@
-// Ejercicio 2
+// Escribir el procedimiento Mover_SegúnColor_(dirección,color), que mueve
+// el cabezal en la dirección dada tantas celdas como bolitas de color dado hay en la
+// celda actual.
 
 procedure Mover_SegúnColor_(dirección, color) {
     /*
@@ -6,7 +8,7 @@ procedure Mover_SegúnColor_(dirección, color) {
             * Mueve el cabezal en la dirección **dirección** tantas celdas como bolitas de color **color** haya en la celda actual.
         PARÁMETROS:
             * dirección: Dirección
-            * color:     Color
+            * color: Color
         PRECONDICIONES:
             * Debe haber al menos tantas celdas lindantes en la dirección dada, como bolitas de color **color** haya en la celda actual.
     */

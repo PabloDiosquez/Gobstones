@@ -1,0 +1,29 @@
+// Ejercicio 2
+
+procedure Mover_SegúnColor_(dirección, color) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal en la dirección **dirección** tantas celdas como bolitas de color **color** haya en la celda actual.
+        PARÁMETROS:
+            * dirección: Dirección
+            * color:     Color
+        PRECONDICIONES:
+            * Debe haber al menos tantas celdas lindantes en la dirección dada, como bolitas de color **color** haya en la celda actual.
+    */
+    Mover__Veces(dirección, nroBolitas(color))
+}
+
+procedure Mover__Veces(dirección, cantidad) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal **cantidad** celdas en la dirección **dirección**.
+        PARÁMETROS:
+            * dirección: Dirección
+            * cantidad:  Número
+        PRECONDICIONES:
+            * Debe haber al menos **cantidad** celdas lindantes a la actual en la dirección **dirección**. 
+    */
+    repeat (cantidad) {
+        Mover(dirección)
+    }
+}

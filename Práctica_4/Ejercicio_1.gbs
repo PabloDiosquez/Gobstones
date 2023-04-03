@@ -1,0 +1,70 @@
+// 1. Escribir DibujarBanda_EnDiagonalNEDe_x_(color, alto, largo) que
+// dibuja una banda diagonal ancha.
+
+procedure DibujarBanda_EnDiagonalNEDe_x_(color, alto, largo) {
+    /*
+        PROPÓSITO:
+            * Dibuja una banda de color **color** en diagonal Noreste de **alto** de alto
+            por **larog** de largo.
+        PARÁMETROS:
+            * color: Color
+            * alto: Número
+            * largo: Número
+        PRECONDICIONES:
+            * Debe haber al menos **largo** celdas lindantes a la actual en la dirección Este, y (**alto** + **largo**) - 1 en la dirección Norte.
+    */
+        repeat(largo-1){
+            DibujarLínea_De_Alto(color, alto)
+            SubirEnLaDiagonal()
+        }
+        DibujarLínea_De_Alto(color, alto)
+        IrAlInicio()
+}
+
+procedure DibujarLínea_De_Alto(color, alto) {
+    /*
+        PROPÓSITO:
+            * Dibuja una línea de color **color** de **alto** celdas de alto.
+              Deja el cabezal en la celda inicial.
+        PARÁMETROS:
+            * color: Color
+            * alto: Número
+        PRECONDICIONES:
+            * Debe haber desde la celda actual, al menos **alto** - 1 celdas hacia el    Norte.
+    */
+    repeat(alto-1){
+        Poner(color)
+        Mover(Norte)
+    }
+    Poner(color)
+    
+    repeat(alto-1){
+        Mover(Sur)
+    }
+}
+
+procedure SubirEnLaDiagonal() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    Mover(Este)
+    Mover(Norte)
+}
+
+procedure IrAlInicio() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    IrAlBorde(Sur)
+    IrAlBorde(Oeste)
+}

@@ -1,11 +1,14 @@
-// Ejercicio 6
+// BIBLIOTECA
+// Escribir un procedimiento SacarTodasLasDeColor_(colorASacar), que quite de la celda actual todas las bolitas del color indicado por el parámetro.
+// Ayuda: considerar utilizar el procedimiento Sacar_DeColor_, definido en la
+// práctica anterior. ¿Qué argumentos se le deberían pasar?
 
 procedure SacarTodasLasDeColor_(colorASacar) {
     /*
         PROPÓSITO:
             * Saca todas las bolitas de color **colorASacar** de la celda actual.
         PARÁMETROS:
-            * colorASacar: Color - Color de las bolitas a sacar.
+            * colorASacar: Color - Es el color de las bolitas a sacar.
         PRECONDICIONES:
             * No tiene.
     */
@@ -14,12 +17,13 @@ procedure SacarTodasLasDeColor_(colorASacar) {
 
 procedure Sacar_DeColor_(cantidad, color) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Saca **cantidad** bolitas de la celda actual.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+            * cantidad: Número - Es la cantidad de bolitas a sacar.
+            * color: Color - Es el color de las bolitas a sacar.
         PRECONDICIONES:
-            * ....
+            * Debe haber, al menos **cantidad** de bolitas de color **color** en la celda actual.
     */
     repeat (cantidad) {
         Sacar(color)

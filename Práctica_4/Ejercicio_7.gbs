@@ -1,3 +1,7 @@
+// BIBLIOTECA
+// Escribir un procedimiento VaciarCelda() que quite de la celda actual
+// todas las bolitas de todos los colores, dejando la celda vacía.
+
 procedure VaciarCelda() {
     /*
         PROPÓSITO:

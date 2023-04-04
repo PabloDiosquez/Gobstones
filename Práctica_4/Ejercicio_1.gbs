@@ -7,19 +7,19 @@ procedure DibujarBanda_EnDiagonalNEDe_x_(color, alto, largo) {
             * Dibuja una banda de color **color** en diagonal Noreste de **alto** de alto
             por **largo** de largo.
         PARÁMETROS:
-            * color: Color - Es el color de las bolitas de la diagonal.
-            * alto: Número - Es un número que describe el ancho de la banda.
+            * color: Color - Es el color de la diagonal.
+            * alto: Número - Es un número que describe el alto de la banda.
             * largo: Número - Es un número que describe el largo de la diagonal.
         PRECONDICIONES:
             * Debe haber al menos **largo** celdas lindantes a la actual en la
-              dirección Este, y (**alto** + **largo**) - 1 celdas en la dirección Norte.
+              dirección Este, y (**alto** + **largo**) - 1 celdas lindantes en la dirección Norte.
     */
         repeat(largo-1){
             DibujarLínea_De_Alto(color, alto)
-            SubirEnLaDiagonal()
+            IrALaDirección__VecesYALaDirección__Veces(Este,1,Norte,1)
         }
         DibujarLínea_De_Alto(color, alto)
-        IrAlSudoeste_Veces(largo-1)
+        IrALaDirección__VecesYALaDirección__Veces(Sur,largo-1,Este,largo-1)
 }
 
 procedure DibujarLínea_De_Alto(color, alto) {
@@ -38,35 +38,23 @@ procedure DibujarLínea_De_Alto(color, alto) {
         Mover(Norte)
     }
     Poner(color)
-    
-    repeat(alto-1){
-        Mover(Sur)
-    }
+    Mover_Al_(alto-1, Sur)
 }
 
-procedure SubirEnLaDiagonalNorEste() {
+procedure IrALaDirección__VecesYALaDirección__Veces(primerDirección, primerCantidad,segundaDirección, segundaCantidad) {
     /*
         PROPÓSITO:
-            * Mueve el cabezal a la celda lindante a la actual en la dirección NorEste.
-        PRECONDICIONES:
-            * Debe haber al menos una celda lindante al Norte y otra al Este.
-    */
-    Mover(Este)
-    Mover(Norte)
-}
-
-procedure IrAlSudoeste_Veces(numero) {
-    /*
-        PROPÓSITO:
-            * Mueve el cabezal a la celda de inicio de la diagonal.
+            * Mueve el cabezal hacia la celda que está a **primerCantidad** celdas en la dirección **primerDirección** y a **segundaCantidad** celdas en la dirección **segundaDirección**.
         PARÁMETROS:
-            * largo: Número - Un número que describe el largo de la diagonal. 
+            * primerDirección: Dirección 
+            * primerCantidad: Número 
+            * segundaDirección: Dirección 
+            * segundaCantidad: Número 
         PRECONDICIONES:
-            * Desde la celda actual debe haber al menos **largo** celdas lindantes al Sur, y
-              **numeero** celdas lindantes al Oeste.
+            * Desde la celda actual debe haber al menos **primerCantidad** de celdas lindantes en la dirección **primerDirección** y **segundaCantidad** de celdas lindantes en la dirección **segundaDirección**.
     */
-    Mover_Al_(numero,Sur)
-    Mover_Al_(numero,Oeste)
+    Mover_Al_(primerCantidad, primerDirección)
+    Mover_Al_(segundaCantidad, segundaDirección)
 }
 
 procedure Mover_Al_(cantidad, dirección) {

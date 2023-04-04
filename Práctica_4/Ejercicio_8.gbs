@@ -12,8 +12,8 @@
 // y 15 soldados aliados.
 // Ayuda: ¿qué cuenta hay que hacer para saber cuántos soldados aliados
 // morirán?
-// Ayuda 2: para la división en Gobstones se usa el operador div.
 
+// a. 
 procedure EnviarAliadosParaDuplicarEnemigos() {
     /*
         PROPÓSITO:
@@ -51,4 +51,38 @@ procedure Poner_DeColor_(cantidad, color) {
     repeat(cantidad) {
         Poner(color)
     }
+}
+
+// ###################################################################################### //
+// b.
+
+procedure PelearLaBatalla() {
+    /*
+        PROPÓSITO:
+            * Simula una batalla, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla. Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
+        PRECONDICIONES:
+            * En la celda actual deben existir una cantidad suficiente de soldados aliados como para ganar la batalla.
+            * Debe existir al menos dos soldados enemigos en la celda actual.
+    */
+    // DejarSobrevivientes(nroBolitas(Negro), nroBolitas(Rojo))
+    EliminarSoldadosEnemigosYSacrificarSoldadosAliados(nroBolitas(Rojo))
+}
+
+procedure EliminarSoldadosEnemigosYSacrificarSoldadosAliados(enemigos) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    Sacar_DeColor_(enemigos div 2 * 3,Negro)
+    Sacar_DeColor_(enemigos, Rojo)
+}
+
+procedure Sacar_DeColor_(cantidad, color) {
+    /*
+    */
+    repeat(cantidad) {Sacar(color)}
 }

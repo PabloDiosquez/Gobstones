@@ -1,0 +1,54 @@
+// Suponiendo que se está programando un juego donde en las celdas del tablero se
+// representan Soldados (los aliados con una bolita de color Negro y los enemigos con
+// una bolita de color Rojo por cada soldado), escribir los siguientes procedimientos:
+// a. EnviarAliadosParaDuplicarEnemigos(), que agrega soldados aliados
+// en la celda actual en cantidad suficiente para que haya el doble de aliados
+// que de soldados enemigos.
+// b. PelearLaBatalla(), que simula una batalla, suponiendo que hay
+// suficiente cantidad de soldados aliados como para ganar la batalla. Durante
+// una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos
+// mueren. Por ejemplo, si hay 6 enemigos y 10 aliados, mueren los 6 enemigos
+// y 9 de los aliados; si hay 11 enemigos y 21 aliados, mueren los 11 enemigos
+// y 15 soldados aliados.
+// Ayuda: ¿qué cuenta hay que hacer para saber cuántos soldados aliados
+// morirán?
+// Ayuda 2: para la división en Gobstones se usa el operador div.
+
+procedure EnviarAliadosParaDuplicarEnemigos() {
+    /*
+        PROPÓSITO:
+            * Agrega soldados aliados en la celda actual en cantidad suficiente para que haya el doble de aliados que de soldados enemigos.
+        PRECONDICIONES:
+            * La cantidad de soldados aliados debe ser menor que el doble de la cantidad de soldados enemigos de lo contrario ya hay suficientes soldados aliados para duplicar a los enemigos.
+    */
+    AgregarSoldadosAliados(2*nroBolitas(Rojo) - nroBolitas(Negro))
+}
+
+procedure AgregarSoldadosAliados(cantidad) {
+    /*
+        PROPÓSITO:
+            * Agrega en la celda actual **cantidad** de soldados aliados.
+        PARÁMETROS:
+            * cantidad: Número - Un número que describe la cantidad de soldados aliados a agregar.
+        PRECONDICIONES:
+            * La cantidad dada debe ser un número mayor o igual a cero.
+        OBSERVACIONES:
+            * Los soldados aliados se representan con una bolita de color Negro.
+    */
+    Poner_DeColor_(cantidad, Negro)
+}
+
+procedure Poner_DeColor_(cantidad, color) {
+    /*
+        PROPÓSITO:
+            * Pone **cantidad** bolitas de color **color** en la celda actual.
+        PARÁMETROS:
+            * cantidad: Número - Un número que describe la cantidad de bolitas a poner.
+            * color: Color - Un color que describe el color de las bolitas a poner.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    repeat(cantidad) {
+        Poner(color)
+    }
+}

@@ -27,11 +27,26 @@ procedure PasarPalabraActualAMayúsculas() {
         OBSERVACIONES:
             * Los caracteres están representados con bolitas negras en código ASCII.
     */
+    PasarPalabraDe_CaracteresAMayúscula(nroBolitas(Rojo))
+}
+
+procedure PasarPalabraDe_CaracteresAMayúscula(númeroDeCaracteres) {
+    /*
+        PROPÓSITO:
+            * Pone la palabra codificada en la fila actual, en mayúsculas en la fila al Norte.
+        PRECONDICIONES:
+            * El cabezal inicia en el borde Oeste de la palabra.
+            * Debe existir **númeroDeCaracteres** de celdas al Este.
+            * Debe existir al menos una celda al Norte de la celda actual.
+            * La celda al Norte de cada caracter debe estar vacía. 
+            * La palabra codificada a convertir debe estar en minúscula.
+    */
     repeat (nroBolitas(Rojo)) {
         Mover(Este)
         PasarLetraActualAMayúsculaAlNorte(nroBolitas(Negro))
     }
-    IrAlBorde(Oeste)
+    Mover_Veces_Al(nroBolitas(Rojo), Oeste)
+    
 }
 
 procedure PasarLetraAMayúscula(códigoLetra) {

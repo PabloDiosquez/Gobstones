@@ -62,23 +62,46 @@ procedure PelearLaBatalla() {
             * Simula una batalla, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla. Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
         PRECONDICIONES:
             * En la celda actual deben existir una cantidad suficiente de soldados aliados como para ganar la batalla.
-            * Debe existir al menos dos soldados enemigos en la celda actual.
+            * Deben existir al menos dos soldados enemigos en la celda actual.
     */
-    // DejarSobrevivientes(nroBolitas(Negro), nroBolitas(Rojo))
-    EliminarSoldadosEnemigosYSacrificarSoldadosAliados(nroBolitas(Rojo))
+    SacrificarAliadosParaEliminar_DeEnemigos(nroBolitas(Rojo))
+    EliminarEnemigos()
 }
 
-procedure EliminarSoldadosEnemigosYSacrificarSoldadosAliados(enemigos) {
+procedure SacrificarAliadosParaEliminar_DeEnemigos (cantidad) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Sacrifica la cantidad necesaria de soldados aliados para eliminar los soldados enemigos de la celda actual.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+            * cantidad: Número - Un número que describe la cantidad de soldados enemigos en la celda actual.
         PRECONDICIONES:
-            * ....
+            * La cantidad dada debe ser un número mayor o igual a cero.
     */
-    Sacar_DeColor_(enemigos div 2 * 3,Negro)
-    Sacar_DeColor_(enemigos, Rojo)
+    Sacar_DeColor_(cantidad div 2 * 3,Negro)
+}
+
+procedure EliminarEnemigos() {
+    /*
+        PROPÓSITO:
+            * Elimina todos los soldados enemigos de la celda actual.
+        PRECONDICIONES:
+            * Debe haber al menos un soldado enemigo en la celda actual.
+        OBSERVACIONES:
+            * Los soldados enemigos se representan con bolitas de color Rojo. Una bolita por cada soldado.
+    */
+    SacarTodasLasDeColor_(Rojo)
+}
+
+procedure SacarTodasLasDeColor_(color) {
+    /*
+        PROPÓSITO:
+            * Saca todas las bolitas de color **color** de la celda actual.
+        PARÁMETROS:
+            * color: Color - Un color que describe las bolitas a sacar de la celda actual.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    Sacar_DeColor_(nroBolitas(color), color)
 }
 
 procedure Sacar_DeColor_(cantidad, color) {

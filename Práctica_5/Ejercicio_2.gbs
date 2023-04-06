@@ -72,3 +72,14 @@ function noHayDeTodosLosColores() {
     */
     return (not hayDeTodosLosColores())
 }
+ 
+function noHayDeTodosLosColoresII() {
+    /*
+        PROPÓSITO:
+            * Indica si en la celda actual faltan bolitas de al menos un color.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Ninguna (es una función total).
+    */
+    return (not hayBolitas(Azul) || not hayBolitas(Negro) || not hayBolitas(Rojo) || not hayBolitas(Verde))
+}

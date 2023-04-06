@@ -1,0 +1,25 @@
+// Definir funciones totales que sean verdaderas (describan al valor de verdad
+// Verdadero) para cada uno de los siguientes casos. Recordar que es conveniente
+// utilizar funciones para expresar subtareas, de forma que las expresiones utilizadas
+// no queden imposibles de entender. Recordar también que antes de escribir el código
+// de una operación, debe escribirse el contrato de la misma (nombre, parámetros,
+// propósito y precondiciones).
+// a. Cuando la celda actual tiene más de 5 bolitas en total.
+// b. Cuando la celda actual tiene al menos 5 bolitas en total.
+// c. Cuando la celda actual tiene al menos 5 bolitas en total y el borde se
+// encuentra justo al Este de la misma.
+// d. Cuando la celda actual tiene una celda lindante al Norte o al Este.
+// e. Cuando la celda actual tiene bolitas de todos los colores.
+// f. Cuando en la celda actual faltan bolitas de al menos un color (dar una
+// solución sin usar la función del ı́tem anterior y otra usándola).
+
+function hayMásDe5Bolitas() {
+    /*
+        PROPÓSITO:
+            * Indica si hay más de 5 bolitas en la celda actual.
+        TIPO: Bool
+        PRECONDICIONES:
+            * No tiene.
+    */ 
+    return (nroBolitas(Azul) + nroBolitas(Negro) + nroBolitas(Rojo) + nroBolitas(Verde) > 5)
+}

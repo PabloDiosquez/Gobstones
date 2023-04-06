@@ -20,7 +20,7 @@ function hayMásDe5BolitasEnTotalEnLaCeldaActual() {
             * Indica si hay más de 5 bolitas en la celda actual.
         TIPO: Booleano.
         PRECONDICIONES:
-            * No tiene.
+            * Ninguna (es una función total).
     */ 
     return (nroBolitas(Azul) + nroBolitas(Negro) + nroBolitas(Rojo) + nroBolitas(Verde) > 5)
 }
@@ -32,7 +32,7 @@ function hayAlMenosDe5BolitasEnLaCeldaActual() {
             * Indica si hay al menos 5 bolitas en total en la celda actual..
         TIPO: Booleano.
         PRECONDICIONES:
-            * No tiene.
+            *Ninguna (es una función total).
     */
     return (nroBolitas(Azul) + nroBolitas(Negro) + nroBolitas(Rojo) + nroBolitas(Verde) >= 5)
 }
@@ -44,7 +44,7 @@ function hayUnaCeldaAlNorteOAlEste() {
             * Indica si la celda actual tiene una celda lindante al Norte o una al Este.
         TIPO: Booleano.
         PRECONDICIONES:
-            * No tiene.
+            * Ninguna (es una función total).
     */
     return (puedeMover(Norte) || puedeMover(Este))
 }
@@ -56,7 +56,19 @@ function hayDeTodosLosColores() {
             * Indica si en la celda actual hay bolitas de todos los colores.
         TIPO: Booleano.
         PRECONDICIONES:
-            * No tiene.
+            * Ninguna (es una función total).
     */
     return (hayBolitas(Azul) && hayBolitas(Negro) && hayBolitas(Rojo) && hayBolitas(Verde))
+}
+
+// f.
+function noHayDeTodosLosColores() {
+    /*
+        PROPÓSITO:
+            * Indica si en la celda actual faltan bolitas de al menos un color.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Ninguna (es una función total).
+    */
+    return (not hayDeTodosLosColores())
 }

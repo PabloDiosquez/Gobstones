@@ -13,7 +13,8 @@
 // f. Cuando en la celda actual faltan bolitas de al menos un color (dar una
 // solución sin usar la función del ı́tem anterior y otra usándola).
 
-function hayMásDe5Bolitas() {
+// a.
+function hayMásDe5BolitasEnTotalEnLaCeldaActual() {
     /*
         PROPÓSITO:
             * Indica si hay más de 5 bolitas en la celda actual.
@@ -22,4 +23,40 @@ function hayMásDe5Bolitas() {
             * No tiene.
     */ 
     return (nroBolitas(Azul) + nroBolitas(Negro) + nroBolitas(Rojo) + nroBolitas(Verde) > 5)
+}
+
+// b.
+function hayAlMenosDe5BolitasEnLaCeldaActual() {
+    /*
+        PROPÓSITO:
+            * Indica si hay al menos 5 bolitas en total en la celda actual..
+        TIPO: Bool
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (nroBolitas(Azul) + nroBolitas(Negro) + nroBolitas(Rojo) + nroBolitas(Verde) >= 5)
+}
+
+// d.
+function hayUnaCeldaAlNorteOAlEste() {
+    /*
+        PROPÓSITO:
+            * Indica si la celda actual tiene una celda lindante al Norte o una al Este.
+        TIPO: Bool
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (puedeMover(Norte) || puedeMover(Este))
+}
+
+// e.
+function hayDeTodosLosColores() {
+    /*
+        PROPÓSITO:
+            * Indica si en la celda actual hay bolitas de todos los colores.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (hayBolitas(Azul) && hayBolitas(Negro) && hayBolitas(Rojo) && hayBolitas(Verde))
 }

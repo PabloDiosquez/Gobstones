@@ -14,7 +14,7 @@
 // solución sin usar la función del ı́tem anterior y otra usándola).
 
 // a.
-function hayMásDe5BolitasEnTotalEnLaCeldaActual() {
+function hayMásDe5BolitasEnTotal() {
     /*
         PROPÓSITO:
             * Indica si hay más de 5 bolitas en la celda actual.
@@ -26,15 +26,28 @@ function hayMásDe5BolitasEnTotalEnLaCeldaActual() {
 }
 
 // b.
-function hayAlMenosDe5BolitasEnLaCeldaActual() {
+function hayAlMenosDe5BolitasEnTotal() {
     /*
         PROPÓSITO:
             * Indica si hay al menos 5 bolitas en total en la celda actual..
         TIPO: Booleano.
         PRECONDICIONES:
-            *Ninguna (es una función total).
+            * Ninguna (es una función total).
     */
     return (nroBolitas(Azul) + nroBolitas(Negro) + nroBolitas(Rojo) + nroBolitas(Verde) >= 5)
+}
+
+// c.
+function hayAlMenosDe5BolitasEnTotalYElBordeEstáJustoAlEste() {
+    /*
+        PROPÓSITO:
+            * Indica si la celda actual tiene al menos 5 bolitas en total y el borde se
+              encuentra justo al Este de la misma.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Ninguna (es una función total).
+    */
+    return (hayAlMenosDe5BolitasEnTotal() && not (puedeMover(Este)))
 }
 
 // d.

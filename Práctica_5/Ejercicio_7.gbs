@@ -1,0 +1,42 @@
+// BIBLIOTECA Escribir las siguientes funciones, para agregarlas a la biblioteca.
+// a. esCeldaVacía(), que indica si la celda actual se encuentra vacía.
+// b. hayAlMenosUnaDeCada(), que indica si en la celda actual hay al menos
+// una bolita de cada color.
+// c. esCeldaConBolitas(), que indica si la celda actual tiene al menos una
+// bolita, de cualquier color.
+
+// a.
+function esCeldaVacía() {
+    /*
+        PROPÓSITO:
+            * Indica si la celda actual está vacía.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Ninguna (es una función total)
+    */
+    return (not hayBolitas(Azul) && not hayBolitas(Negro) && not hayBolitas(Rojo) && not hayBolitas(Verde))
+}
+
+// b.
+function hayAlMenosUnaDeCada() {
+    /*
+        PROPÓSITO:
+            * Indica si en la celda actual hay al menos una bolita de cada color.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (hayBolitas(Azul) && hayBolitas(Negro) && hayBolitas(Rojo) && hayBolitas(Verde))
+}
+
+function esCeldaConBolitas() {
+    /*
+        PROPÓSITO:
+            * Indica si la celda actual tiene al menos una bolita, de cualquier color.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (not esCeldaVacía())
+}

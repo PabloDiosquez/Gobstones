@@ -1,0 +1,68 @@
+// BIBLIOTECA La combinación de parámetros y expresiones booleanas es interesante.
+// a. Escribir un procedimiento Poner_Si_(color, condición) que dado un
+// color y un valor de verdad llamado condición, ponga en la celda actual
+// una bolita del color dado si el valor de verdad de la condición es verdadero,
+// y no lo ponga si no.
+// EJEMPLO: Poner_Si_(Rojo, nroBolitas(Rojo)==0) solamente pone
+// una bolita roja cuando no hay ninguna roja en la celda actual.
+// b. Escribir los procedimientos Sacar_Si_(color, condición) y
+// Mover_Si_(dirección, condición) que actúan de forma similar a
+// Poner_Si_.
+// c. Reescribir el procedimiento DesempatarParaElLocal__. hecho antes,
+// pero utilizando el procedimento Poner_Si_.
+// d. ¿Puede reescribirse el procedimiento Reemplazar_Y_Por_ hecho antes,
+// pero reutilizando únicamente los procedimientos Poner_Si_ y
+// Sacar_Si_? Si la respuesta es afirmativa, dar el código correspondiente. Si
+// no, justificar por qué no sería posible.
+// e. ¿Que beneficios trae tener los procedimientos Sacar_Si_ y Poner_Si_
+// contra utilizar if en cada caso?
+
+// a.
+procedure Poner_Si_(color, condición) {
+    /*
+        PROPÓSITO:
+            * Pone en la celda actual una bolita de color **color** si el valor de verdad de la condición dada es verdadero.
+        PARÁMETROS:
+            * color: Color - El color de la bolita a poner.
+            * condición: Booleano - Un valor de verdad que describe la condición a cumplirse. 
+        PRECONDICIONES:
+            * No tiene.
+    */
+    if(condición)
+    then {
+        Poner(color)
+    }
+}
+
+// b.
+procedure Sacar_Si_(color, condición) {
+    /*
+        PROPÓSITO:
+            * Saca una bolita de color **color** de la celda actual si el valor de verdad de la condición dada es verdadero.
+        PARÁMETROS:
+            * color: Color - El color de la bolita a poner.
+            * condición: Booleano - Un valor de verdad que describe la condición a cumplirse.
+        PRECONDICIONES:
+            * Debe haber al menos una bolita de color **color** en la celda actual.
+    */
+    if (condición)
+    then {
+        Sacar(color)
+    }
+}
+
+procedure Mover_Si_(dirección, condición) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal en la dirección **dirección** si el valor de verdad de la condición dada es verdadero.
+        PARÁMETROS:
+            * dirección: Dirección - Una dirección que describe hacia dónde debe moverse el cabezal.
+            * condición: Booleano - Un valor de verdad que describe la condición a cumplirse.
+        PRECONDICIONES:
+            * Debe haber al menos una celda lindante a la actual en la dirección **dirección**.
+    */
+    if (condición)
+    then {
+        Mover(dirección)
+    }
+}

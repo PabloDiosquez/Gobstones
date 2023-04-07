@@ -1,0 +1,267 @@
+// Escribir los siguientes procedimientos, recordando no mezclar niveles de abstracción
+// del problema, para lo cual puede ser necesario definir otros procedimientos y/o
+// funciones.
+// a. SacarUnaFicha_SiSePuede(colorDeLaFicha) que, dado el
+// colorDeLaFicha que debe sacarse, saque una ficha siempre y cuando la
+// misma esté en la celda. Si no hubiera fichas del color dado, el procedimiento
+// no hace nada. Si hubiera varias fichas, solo debe sacar una.
+// OBSERVACIÓN: cada ficha se representa con una bolita del color
+// correspondiente.
+// b. DesempatarParaElLocal_Contra_(colorDelLocal,colorDelVisit
+// ante) que, dados los colores de dos jugadores, ponga una bolita del
+// colorDelLocal solamente en el caso en que la celda actual contiene la
+// misma cantidad de bolitas de ambos colores.
+// c. ExpandirBacteriaDeLaColonia(), que siempre que en la celda actual
+// haya un cultivo de bacterias y haya suficientes nutrientes, agregue
+// exactamente una bacteria más y consuma nutrientes, a razón de dos
+// nutrientes por bacteria expandida; si no hay bacterias o no hay suficientes
+// nutrientes, no hace nada. Las bacterias se representan con bolitas Verdes y
+// los nutrientes con bolitas Rojas.
+// d. PonerFlecha_AlNorteSiCorresponde(colorDeLaFlecha), que dado
+// un color para representar flechas, ponga una flecha al Norte si existe espacio
+// para moverse en esa dirección. Las flechas al Norte serán representadas con
+// una bolita del color dado.
+
+// a.
+procedure SacarUnaFicha_SiSePuede(colorDeLaFicha) {
+    /*
+        PROPÓSITO:
+            * Saca una ficha de color **colorDeLaFicha** siempre y cuando la misma esté en la  celda. Si no hay fichas del color dado, el procedimiento
+            no hace nada. Si hay varias fichas, solo saca una.
+        PARÁMETROS:
+            * colorDeLaFicha: Color - Un color que describe el color de la ficha a sacar.
+        PRECONDICIONES:
+            * Ninguna.
+    */
+    if (hayFichasDeColor_(colorDeLaFicha))
+    then {
+        SacarUnaFichaDeColor_(colorDeLaFicha)
+    }
+}
+
+function hayFichasDeColor_(color) {
+    /*
+        PROPÓSITO:
+            * Indica si hay al menos una ficha de color **color** en la celda actual.
+        PARÁMETROS:
+            * color: Color.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Ninguna (es una función total).
+        OBSERVACIONES:
+            * Cada ficha se representa con una bolita del color correspondiente.
+    */
+    return (hayBolitas(color))
+}
+
+procedure SacarUnaFichaDeColor_(color) {
+    /*
+        PROPÓSITO:
+            * Saca una ficha de color **color** de la celda actual.
+        PARÁMETROS:
+            * color: Color - Describe el color de la ficha a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos una ficha de color **color** en la celda actual.
+    */
+    Sacar(color)
+}
+
+// #################################################################################
+// b.
+// DesempatarParaElLocal_Contra_(colorDelLocal,colorDelVisit
+// ante) que, dados los colores de dos jugadores, ponga una bolita del
+// colorDelLocal solamente en el caso en que la celda actual contiene la
+// misma cantidad de bolitas de ambos colores.
+
+procedure DesempatarParaElLocal_Contra_(colorDelLocal, colorDelVisit) {
+    /*
+        PROPÓSITO:
+            * Desempata el partido para el local.
+        PARÁMETROS:
+            * colorDelLocal:     Color - Un color que describe al equipo local.
+            * colorDelVisitante: Color - Un color que describe al equipo visitante.
+        PRECONDICIONES:
+            * ...
+    */
+    if (hayEmpate(colorDelLocal, colorDelVisit))
+    then {
+        SumarUnoParaElLocal(colorDelLocal)
+    }
+}
+
+function hayEmpate(colorDelLocal, colorDelVisit) {
+    /*
+        PROPÓSITO:
+            * Indica si hay un empate entre el equipo local y el equipo visitante.
+        PARÁMETROS:
+            * colorDelLocal:     Color.
+            * colorDelVisitante: Color.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene.
+        OBSERVACIONES:
+            * Un empate se presente solamente en el caso en que la celda actual contenga la misma cantidad de bolitas de los dos colores dados.
+    */
+    return (nroBolitas(colorDelLocal) == nroBolitas(colorDelVisit))
+}
+
+procedure SumarUnoParaElLocal(colorDelLocal) {
+    /*
+        PROPÓSITO:
+            * Suma una bolita de color **colorDelLocal** para el local.
+        PARÁMETROS:
+            * colorDelLocal: Color
+        PRECONDICIONES:
+            * No tiene.
+    */
+    Poner(colorDelLocal)
+}
+
+// #################################################################################
+// c.
+// ExpandirBacteriasDeLaColonia(), que siempre que en la celda actual
+// haya un cultivo de bacterias y haya suficientes nutrientes, agregue
+// exactamente una bacteria más y consuma nutrientes, a razón de dos
+// nutrientes por bacteria expandida; si no hay bacterias o no hay suficientes
+// nutrientes, no hace nada. Las bacterias se representan con bolitas Verdes y
+// los nutrientes con bolitas Rojas.
+
+procedure ExpandirBacteriasDeLaColonia() {
+    /*
+        PROPÓSITO:
+            * Agrega una bacteria más y consume nutrientes en el cultivo actual.
+        PRECONDICIONES:
+            * En la celda actual debe haber un cultivo de bacterias.
+        OBSERVACIONES:
+            * Las bacterias se representan con bolitas verdes y los nutrientes con bolitas rojas.
+    */
+    if (hayBacteriasEnElCultivo() && haySuficientesNutrientes())
+    then {
+        AgregarBacteriaAlCultivo()
+        ConsumirNutrientes()
+    }
+}
+
+function hayBacteriasEnElCultivo() {
+    /*
+        PROPÓSITO:
+            * Indica si hay al menos una bacteria en el cultivo.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (nroBacterias() > 0)
+}
+
+function nroBacterias() {
+    /*
+        PROPÓSITO:
+            * Indica el número actual de bacterias del cultivo.
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (nroBolitas(Verde))
+}
+
+function haySuficientesNutrientes() {
+    /*
+        PROPÓSITO:
+            * Indica si en el cultivo actual hay suficientes nutrientes.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (nroNutrientes() >= 2)
+}
+
+function nroNutrientes() {
+    /*
+        PROPÓSITO:
+            * Indica el número de nutrientes de la celda actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (nroBolitas(Rojo))
+}
+
+procedure AgregarBacteriaAlCultivo() {
+    /*
+        PROPÓSITO:
+            * Agrega una bacteria al cultivo actual.
+        PRECONDICIONES:
+            * No tiene.
+        OBSERVACIONES:
+            * Las bacterias se representan con bolitas de color Verde.
+    */
+    Poner(Verde)
+}
+
+procedure ConsumirNutrientes() {
+    /*
+        PROPÓSITO:
+            * Consume dos nutrientes en la celda actual.
+        PRECONDICIONES:
+            * Debe haber al menos dos nutrientes en la celda actual.
+        OBSERVACIONES:
+            * Los nutrientes se represetan con bolitas de color Rojo.
+    */
+    Sacar_DeColor_(2,Rojo)
+}
+
+procedure Sacar_DeColor_(cantidad, color) {
+    /*
+    */
+    repeat (cantidad) {
+        Sacar(color)
+    }
+}
+
+// #################################################################################
+// d.
+// PonerFlecha_AlNorteSiCorresponde(colorDeLaFlecha), que dado
+// un color para representar flechas, ponga una flecha al Norte si existe espacio
+// para moverse en esa dirección. Las flechas al Norte serán representadas con
+// una bolita del color dado.
+
+procedure PonerFlecha_AlNorteSiCorresponde(colorDeLaFlecha) {
+    /*
+        PROPÓSITO: 
+            * Pone una flecha al Norte de la celda actual si existe espacio para moverse en esa dirección.
+        PARÁMETROS:
+            * colorDeLaFlecha: Color - Un color que describe el color de la flecha al Norte a poner.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    if (hayEspacioAl_(Norte)) {
+        PonerFlecha_AlNorte(colorDeLaFlecha)
+    }
+}
+
+function hayEspacioAl_(dirección) {
+    /*
+        PROPÓSITO:
+            * Indica si hay espacio para poner una flecha en la dirección **dirección**.
+        PARÁMETROS:
+            * dirección: Dirección 
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (puedeMover(dirección))
+}
+
+procedure PonerFlecha_AlNorte(colorDeLaFlecha) {
+    /*
+        PROPÓSITO:
+            * Pone una flecha al Norte de color **colorDeLaFlecha** en la celda actual.
+        PARÁMETROS:
+            * colorDeLaFlecha: Color
+        PRECONDICIONES:
+            * No tiene.
+        OBSERVACIONES:
+            * Las flechas al Norte se representan con una bolita de color **colorDeLaFlecha**. 
+    */
+    Poner(colorDeLaFlecha)
+}

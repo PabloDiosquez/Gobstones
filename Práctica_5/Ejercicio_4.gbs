@@ -57,6 +57,18 @@ procedure PudrirHasta_Manzanas(cantidadAPudrir) {
         PRECONDICIONES:
             * **cantidadAPudrir** debe ser un número mayor cero.
     */
+    repeat (cantidadAPudrir) {
+        PudrirSiEsPosible()   
+    }
+}
+
+procedure PudrirSiEsPosible() {
+    /*
+        PROPÓSITO:
+            * Indica si en la celda actual hay al menos una manzana en buen estado y al menos un gusano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
     if (hayManzanaEnBuenEstado() && hayGusano())
     then {
         PudrirManzana()
@@ -65,14 +77,22 @@ procedure PudrirHasta_Manzanas(cantidadAPudrir) {
 
 function hayManzanaEnBuenEstado() {
     /*
-        PROPÓSITO:  ....
-        PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+        PROPÓSITO:
+            * Indica si en la celda actual hay al menos una manzana en buen estado
+        TIPO: Booleano.
         PRECONDICIONES:
-            * ....
+            * No tiene (es una función total).
     */
-    
-    return ()
+    return (hayBolitas(Rojo))
+}
+
+function hayGusano() {
+    /*
+        PROPÓSITO:
+            * Indica si en la celda actual hay al menos un gusano.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (hayBolitas(Verde))
 }

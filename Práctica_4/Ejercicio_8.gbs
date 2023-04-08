@@ -80,6 +80,7 @@ procedure SacrificarAliadosNecesariosParaEliminar_DeEnemigos (cantidad) {
             * La cantidad dada debe ser un número mayor o igual a cero.
     */
     Sacar_DeColor_(cantidad div 2 * 3,Negro)
+    EliminarEnemigos()
 }
 
 procedure EliminarEnemigos() {

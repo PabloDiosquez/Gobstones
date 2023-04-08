@@ -47,7 +47,6 @@ procedure IniciarSecuenciaDe_Enfrentamientos() {
         SacrificarAliadosNecesarios()
         EliminarEnemigos()
     }
-    EliminarEnemigos()
 }
 
 procedure SacrificarAliadosNecesarios() {
@@ -67,7 +66,7 @@ procedure EliminarEnemigos() {
         PRECONDICIONES:
             * No tiene.
     */
-    if (cantidadDeEnemigos() >= 2 && cantidadDeEnemigos() mod 2 == 0) {
+    if (cantidadDeEnemigos() >= 2) {
         Sacar_DeColor_(2, Rojo)
     }
     else{

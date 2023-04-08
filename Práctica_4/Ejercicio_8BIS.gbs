@@ -20,7 +20,6 @@ procedure PelearLaBatalla() {
             * Simula una batalla, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla. Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
         PRECONDICIONES:
             * En la celda actual debe existir una cantidad suficiente de soldados aliados como para ganar la batalla.
-            * Deben existir al menos dos soldados enemigos en la celda actual.
     */
     IniciarSecuenciaDe_Enfrentamientos()
 }
@@ -36,18 +35,19 @@ procedure IniciarSecuenciaDe_Enfrentamientos() {
             * La cantidad de enfrentamientos dada debe ser un número mayor o igual a cero.
         OBSERVACIONES:
             * Cantidad de enfrentamientos: 2 enemigos y 3 aliados 👉🏼 1 enfrentamiento
-            * Cantidad de enfrentamientos: 3 enemigos y (3 div 2) * 3 aliados 👉🏼 2 enfrentamientos
-            * Cantidad de enfrentamientos: 4 enemigos y (4 div 2) * 3 aliados 👉🏼 2 enfrentamientos
-            * Cantidad de enfrentamientos: 5 enemigos y (5 div 2) * 3 aliados 👉🏼 3 enfrentamientos
-            * Cantidad de enfrentamientos: 6 enemigos y (6 div 2) * 3 aliados 👉🏼 3 enfrentamientos
-            * Cantidad de enfrentamientos: 9 enemigos y (9 div 2) * 3 aliados 👉🏼 5 enfrentamientos
-            * Cantidad de enfrentamientos: 11 enemigos y (9 div 2) * 3 aliados 👉🏼 6 enfrentamientos
-            * Cantidad de enfrentamientos: x enemigos y (x div 2) * 3 aliados 👉🏼 x div 2 + x mod 2 enfrentamientos
+            * Cantidad de enfrentamientos: 3 enemigos y al menos (3 div 2) * 3 aliados 👉🏼 2 enfrentamientos
+            * Cantidad de enfrentamientos: 4 enemigos y al menos (4 div 2) * 3 aliados 👉🏼 2 enfrentamientos
+            * Cantidad de enfrentamientos: 5 enemigos y al menos (5 div 2) * 3 aliados 👉🏼 3 enfrentamientos
+            * Cantidad de enfrentamientos: 6 enemigos y al menos (6 div 2) * 3 aliados 👉🏼 3 enfrentamientos
+            * Cantidad de enfrentamientos: 9 enemigos y al menos (9 div 2) * 3 aliados 👉🏼 5 enfrentamientos
+            * Cantidad de enfrentamientos: 11 enemigos y al menos (9 div 2) * 3 aliados 👉🏼 6 enfrentamientos
+            * Cantidad de enfrentamientos: x enemigos y al menos (x div 2) * 3 aliados 👉🏼 x div 2 + x mod 2 enfrentamientos
     */
     repeat (cantidadDeEnfrentamientos()) {
         SacrificarAliadosNecesarios()
         EliminarEnemigos()
     }
+    EliminarEnemigos()
 }
 
 procedure SacrificarAliadosNecesarios() {

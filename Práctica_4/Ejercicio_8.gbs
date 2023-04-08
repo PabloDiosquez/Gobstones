@@ -52,8 +52,11 @@ procedure Poner_DeColor_(cantidad, color) {
         Poner(color)
     }
 }
-
 // ###################################################################################### //
+// Hay dos formas de pensar este ejercicio:
+// 1) Calcular cuántos aliados y cuántos enemigos deben morir. Para esto te recomiendo buscar el patrón armando varios casos. Por ejemplo, si hay dos enemigos, ¿cuántos aliados deben morir? ¿Y si en lugar de dos hay cuatro? ¿Y si hay seis?
+
+// 2) Pensar a la batalla como una secuencia de enfrentamientos, donde cada enfrentamiento mata dos enemigos y tres aliados. ¿Cuántos enfrentamientos se pueden realizar? ¿Qué pasa en cada enfrentamiento?
 // b.
 
 procedure PelearLaBatalla() {
@@ -61,17 +64,16 @@ procedure PelearLaBatalla() {
         PROPÓSITO:
             * Simula una batalla, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla. Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
         PRECONDICIONES:
-            * En la celda actual deben existir una cantidad suficiente de soldados aliados como para ganar la batalla.
+            * En la celda actual debe existir una cantidad suficiente de soldados aliados como para ganar la batalla.
             * Deben existir al menos dos soldados enemigos en la celda actual.
     */
-    SacrificarAliadosParaEliminar_DeEnemigos(nroBolitas(Rojo))
-    EliminarEnemigos()
+    SacrificarAliadosNecesariosParaEliminar_DeEnemigos(nroBolitas(Rojo))
 }
 
-procedure SacrificarAliadosParaEliminar_DeEnemigos (cantidad) {
+procedure SacrificarAliadosNecesariosParaEliminar_DeEnemigos (cantidad) {
     /*
         PROPÓSITO:
-            * Sacrifica la cantidad necesaria de soldados aliados para eliminar los soldados enemigos de la celda actual.
+            * Sacrifica la cantidad necesaria de soldados aliados para eliminar todos los soldados enemigos de la celda actual.
         PARÁMETROS:
             * cantidad: Número - Un número que describe la cantidad de soldados enemigos en la celda actual.
         PRECONDICIONES:

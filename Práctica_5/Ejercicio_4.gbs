@@ -16,6 +16,7 @@
 // manzanas si no se dan las condiciones necesarias (no hay suficientes
 // manzanas en buen estado, o suficientes gusanos, por ejemplo).
 
+// a.
 procedure PudrirManzana() {
     /*
         PROPÓSITO:
@@ -25,9 +26,10 @@ procedure PudrirManzana() {
         OBSERVACIONES: 
             * Las manzanas en buen estado se representan con bolitas de color Rojo, las manzanas podridas con bolitas de color Negro, y los gusanos con bolitas de color Verde. 
     */
-    
+    Reemplazar_Y_Por_(Rojo, Verde, Negro)
 }
 
+// b.
 procedure Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, colorAAgregar) {
     /*
         PROPÓSITO:
@@ -39,5 +41,38 @@ procedure Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, col
         PRECONDICIONES:
             * Debe haber al menos una bolita de color **primerColorAReemplazar** y al menos una de **segundoColorAReemplazar** en la celda actual.
     */
+    Sacar(primerColorAReemplazar)
+    Sacar(segundoColorAReemplazar)
+    Poner(colorAAgregar)
+}
+
+// c.
+
+procedure PudrirHasta_Manzanas(cantidadAPudrir) {
+    /*
+        PROPÓSITO:
+            * Pudre hasta un máximo de manzanas dada por la cantidad. Puede que se pudran menos manzanas si no se dan las condiciones necesarias
+        PARÁMETROS:
+            * cantidadAPudrir: Número - Describe la cantidad máxima de manzanas a pudrir.
+        PRECONDICIONES:
+            * **cantidadAPudrir** debe ser un número mayor cero.
+    */
+    if (hayManzanaEnBuenEstado() && hayGusano())
+    then {
+        PudrirManzana()
+    }
+}
+
+function hayManzanaEnBuenEstado() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
     
+    return ()
 }

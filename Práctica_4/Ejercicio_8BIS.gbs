@@ -17,9 +17,84 @@
 procedure PelearLaBatalla() {
     /*
         PROPÓSITO:
-            * Agrega soldados aliados en la celda actual en cantidad suficiente para que haya el doble de aliados que de soldados enemigos.
+            * Simula una batalla, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla. Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
         PRECONDICIONES:
-            * La cantidad de soldados aliados debe ser menor que el doble de la cantidad de soldados enemigos de lo contrario ya hay suficientes soldados aliados para duplicar a los enemigos.
+            * En la celda actual debe existir una cantidad suficiente de soldados aliados como para ganar la batalla.
+            * Deben existir al menos dos soldados enemigos en la celda actual.
     */
-    
+    IniciarSecuenciaDe_Enfrentamientos()
 }
+
+procedure IniciarSecuenciaDe_Enfrentamientos() {
+    /*
+        PROPÓSITO:
+            * Inicia una secuencia de **cantidadDeEnfrentamientos** que simulan una batalla entre soldados aliados y enemigos.
+        PARÁMETROS:
+            * cantidadDeEnfrentamientos: Número - Un número que describe la cantidad de enfrentamientos que ocurren durante la batalla.
+        PRECONDICIONES:
+            * Debem existir en la celda actual la cantidad suficiente de soldados aliados como para eliminar a todos los soldados enemigos.
+            * La cantidad de enfrentamientos dada debe ser un número mayor o igual a cero.
+        OBSERVACIONES:
+            * Cantidad de enfrentamientos: 2 enemigos y 3 aliados 👉🏼 1 enfrentamiento
+            * Cantidad de enfrentamientos: 3 enemigos y (3 div 2) * 3 aliados 👉🏼 2 enfrentamientos
+            * Cantidad de enfrentamientos: 4 enemigos y (4 div 2) * 3 aliados 👉🏼 2 enfrentamientos
+            * Cantidad de enfrentamientos: 5 enemigos y (5 div 2) * 3 aliados 👉🏼 3 enfrentamientos
+            * Cantidad de enfrentamientos: 6 enemigos y (6 div 2) * 3 aliados 👉🏼 3 enfrentamientos
+            * Cantidad de enfrentamientos: 9 enemigos y (9 div 2) * 3 aliados 👉🏼 5 enfrentamientos
+            * Cantidad de enfrentamientos: 11 enemigos y (9 div 2) * 3 aliados 👉🏼 6 enfrentamientos
+            * Cantidad de enfrentamientos: x enemigos y (x div 2) * 3 aliados 👉🏼 x div 2 + x mod 2 enfrentamientos
+    */
+    repeat (cantidadDeEnfrentamientos()) {
+        SacrificarAliadosNecesarios()
+        EliminarEnemigos()
+    }
+}
+
+procedure SacrificarAliadosNecesarios() {
+    /*
+        PROPÓSITO:
+            * Sacrifica a los soldados aliados necesarios para eliminar soldados enemigos en cada enfrentamiento.
+        PRECONDICIONES:
+            * Debe haber al menos 3 soldados aliados en la celda actual.
+    */
+    Sacar_DeColor_(3, Negro)
+}
+
+procedure EliminarEnemigos() {
+    /*
+        PROPÓSITO:
+            * Elimina a los soldados enemigos de la celda actual.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    if (cantidadDeEnemigos() >= 2 && cantidadDeEnemigos() mod 2 == 0) {
+        Sacar_DeColor_(2, Rojo)
+    }
+    else{
+        Sacar(Rojo)
+    }
+}
+
+function cantidadDeEnemigos() {
+    /*
+        PROPÓSITO:
+            * Indica la cantidad de soldados enemigos en la celda actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (nroBolitas(Rojo))
+}
+
+function cantidadDeEnfrentamientos() {
+    /*
+        PROPÓSITO:
+            * Indica la cantidad de enfrentamientos de cada batalla.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (cantidadDeEnemigos() div 2 + cantidadDeEnemigos() mod 2)
+}
+
+procedure Sacar_DeColor_(cantidad, color) {repeat(cantidad) {Sacar(color)}}

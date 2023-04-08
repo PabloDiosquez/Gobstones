@@ -1,0 +1,86 @@
+// Escribir las siguientes funciones para el juego ¡A la batalla! de la práctica anterior,
+// donde en las celdas del tablero se representan Soldados (los aliados con una bolita
+// de color Negro y los enemigos con una bolita de color Rojo por cada soldado).
+// a. colorAliado() y colorEnemigo() que describen el color de los aliados
+// y los enemigos, respectivamente.
+// b. cantidadDeSoldadosDel_(colorDelEjército), que describe la
+// cantidad de soldados de la celda actual del ejército dado.
+// c. esCeldaIndefensa() que describe verdadero cuando no hay soldados
+// aliados en la celda actual.
+// d. estadoDeEmergencia() que describe verdadero solamente si existen más
+// de 100 soldados enemigos, y además la celda está indefensa.
+// e. haySuficientesAliadosARazónDe_PorCada_(cantidadDefensa,
+// cantidadAtaque) que describe verdadero si hay por lo menos
+// cantidadDefensa soldados aliados por cada cantidadAtaque soldados
+// enemigos en la celda actual.
+// Pista: Piense en aplicar regla de tres simple donde:
+// cantidadDefensa de aliados --- cantidadAtaque de enemigos
+// X cantidad de aliados --- Y cantidad en celda enemigos
+// f. aliadosNecesariosParaDefensaEficaz() que describe el número de
+// soldados aliados que faltan para defender la celda actual. Tener en cuenta
+// que en la celda actual puede ser que haya soldados, pero que es precondición de esta función que no hay suficientes aliados. Recordemos
+// que 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
+
+// a.
+function colorAliado() {
+    /*
+        PROPÓSITO:
+            * Describe el color de los aliados.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Negro) 
+}
+
+function colorEnemigo() {
+    /*
+        PROPÓSITO:
+            * Describe el color de los enemigos.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Rojo) 
+}
+
+// b.
+
+function cantidadDeSoldadosDel_(colorDelEjército) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de soldados de la celda actual del ejército dado
+        PARÁMETROS:
+            * colorDelEjército: Color - Describe el color de los soldados a contar. 
+        TIPO: Número.
+        PRECONDICIONES:
+            * **colorDelEjército** debe ser un color válido.
+    */
+    return (nroBolitas(colorDelEjército))
+}
+
+// c.
+
+function haySoldadosAliados() {
+    /*
+        PROPÓSITO:
+            * Indica si hay soldados aliados en la celda actual.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (hayBolitas(colorAliado()))
+}
+
+function esCeldaIndefensa() {
+    /*
+        PROPÓSITO:
+            * Indica si no hay soldados aliados en la celda actual.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */ 
+    return (not haySoldadosAliados())
+}
+
+// d.

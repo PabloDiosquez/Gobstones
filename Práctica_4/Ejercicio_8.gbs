@@ -52,7 +52,7 @@ procedure Poner_DeColor_(cantidad, color) {
         Poner(color)
     }
 }
-// ###################################################################################### //
+// Parte II
 // Hay dos formas de pensar este ejercicio:
 // 1) Calcular cuántos aliados y cuántos enemigos deben morir. Para esto te recomiendo buscar el patrón armando varios casos. Por ejemplo, si hay dos enemigos, ¿cuántos aliados deben morir? ¿Y si en lugar de dos hay cuatro? ¿Y si hay seis?
 

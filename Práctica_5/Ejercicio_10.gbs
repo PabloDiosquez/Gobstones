@@ -84,3 +84,14 @@ function esCeldaIndefensa() {
 }
 
 // d.
+
+function estadoDeEmergencia() {
+    /*
+        PROPÓSITO:
+            * Indica si existen más de 100 soldados enemigos, y además la celda está indefensa.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (cantidadDeSoldadosDel_(colorEnemigo()) > 100 && esCeldaIndefensa())
+}

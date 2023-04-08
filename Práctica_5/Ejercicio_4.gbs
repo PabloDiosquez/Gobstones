@@ -1,0 +1,29 @@
+// Escribir los siguientes procedimientos:
+// a. PudrirManzana(), que en el caso de que en la celda actual haya al menos
+// una manzana en buen estado y un gusano, pudre una manzana retirando un
+// gusano
+// OBSERVACIONES: las manzanas en buen estado se representan con bolitas
+// de color Rojo, las manzanas podridas con bolitas de color Negro, y los
+// gusanos con bolitas de color Verde.
+// SUGERENCIA: primero dar el contrato de la siguiente subtarea y utilizarlo en
+// la resolución.
+// Reemplazar_Y_Por_(primerColorAReemplazar
+// , segundoColorAReemplazar
+// , colorAAgregar)
+// b. Completar el código de Reemplazar_Y_Por_.
+// c. PudrirHasta_Manzanas(cantidadAPudrir), que pudre hasta un
+// máximo de manzanas dada por la cantidad. Puede que se pudran menos
+// manzanas si no se dan las condiciones necesarias (no hay suficientes
+// manzanas en buen estado, o suficientes gusanos, por ejemplo).
+
+procedure PudrirManzana(parámetro1, parámetro2) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    
+}

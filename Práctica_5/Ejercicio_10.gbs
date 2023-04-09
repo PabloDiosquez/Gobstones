@@ -22,6 +22,7 @@
 // que 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
 
 // a.
+
 function colorAliado() {
     /*
         PROPÓSITO:
@@ -94,4 +95,40 @@ function estadoDeEmergencia() {
             * No tiene (es una función total).
     */
     return (cantidadDeSoldadosDel_(colorEnemigo()) > 100 && esCeldaIndefensa())
+}
+
+// e.
+
+function haySuficientesAliadosARazónDe_PorCada_(cantidadDefensa, cantidadAtaque) {
+    /*
+        PROPÓSITO:
+            * Indica si hay por lo menos **cantidadDefensa** soldados por cada **cantidadAtaque** soldados enemigos en la celda actual.
+        PARÁMETROS:
+            * cantidadDefensa: Número - Describe la cantidad de soldados aliados que defienden la celda.
+            * cantidadAtaque: Número - Describe la cantidad de soldados enemigos que atacan la celda.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (cantidadDeSoldadosDel_(colorAliado()) >= (cantidadDeSoldadosDel_(colorEnemigo())*cantidadDefensa) div cantidadAtaque)
+}
+
+// f.
+
+// aliadosNecesariosParaDefensaEficaz() que describe el número de
+// soldados aliados que faltan para defender la celda actual. Tener en cuenta
+// que en la celda actual puede ser que haya soldados, pero que es precondición de esta función que no hay suficientes aliados. Recordemos
+// que 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
+
+function aliadosNecesariosParaDefensaEficaz() {
+    /*
+        PROPÓSITO:
+            * Describe el número de soldados aliados que faltan para defender la celda actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No hay suficientes soldados aliados para defender la celda actual.
+            2 enemigos -- 3 aliados
+            e enemigos -- a aliados
+    */
+    return ((cantidadDeSoldadosDel_(colorEnemigo()) div 2) * 3 - cantidadDeSoldadosDel_(colorAliado()))
 }

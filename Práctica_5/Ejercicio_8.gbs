@@ -1,0 +1,48 @@
+// Como Nova sigue confundido con las buenas prácticas de programación, nos
+// consultó sobre cuál de las siguientes dos soluciones que se le ocurrieron es
+// la correcta. El problema es sacar exactamente 8 bolitas de color Azul y la
+// precondición, como es de esperar, es que haya al menos 8 bolitas azules en
+// la celda actual. Explicarle a Nova cuál es la correcta, y por qué la otra no es
+// una buena opción.
+
+// La correcta es la opción A.
+
+procedure SacarExactamente8BolitasAzulesOpciónA() {
+    /* 
+    PROPÓSITO:
+        * sacar exactamente 8 bolitas de color Azul
+    PRECONDCIONES:
+        * hay al menos 8 bolitas de color azul
+    */
+    repeat (8) { Sacar(Azul) }
+}
+
+procedure SacarExactamente8BolitasAzulesOpciónB() {
+  Ejercicio 8
+
+  /* 
+    PROPÓSITO:
+        * sacar exactamente 8 bolitas de color Azul
+    PRECONDCIONES:
+        * hay al menos 8 bolitas de color azul
+*/
+    repeat (8) { Sacar_Si_(Azul, hayBolitas(Azul)) }
+}
+
+// b. Ayudar a Nova a generalizar este procedimiento, escribiendo
+// SacarExactamente_Bolitas_(cantidadASacar, colorASacar)
+
+procedure SacarExactamente_Bolitas_(cantidadASacar, colorASacar) {
+    /*
+        PROPÓSITO:
+            * Saca exactamente **cantidadASacar** bolitas de color **colorASacar** de la celda actual.
+        PARÁMETROS:
+            * cantidadASacar: Número - Describe la cantidad de bolitas a sacar de la celda actual.
+            * colorASacar: Color - Describe el color de las bolitas a sacar.
+        PRECONDICIONES:
+            * Debe haber al menos **cantidadASacar** bolitas de color **colorASacar** en la celda actual.
+    */
+    repeat (cantidadASacar) {
+        Sacar(colorASacar)
+    }
+}

@@ -1,0 +1,81 @@
+// A continuación se dan una serie de funciones que se consideran
+// primitivas, es decir, que puede asumir realizadas y no debe implementarlas de
+// ninguna forma.
+
+// hayUnPlanetaA_Hacia_(distancia, dirección)
+/*
+    PROPÓSITO: 
+        * Indica si hay un planeta a **distancia** celdas hacia
+          **dirección**.  
+    PARÁMETROS:
+        * distancia: Número - La cantidad de celdas a la cual se
+          desea buscar un planeta.
+        * dirección: Dirección - La dirección hacia la cual mirar el planeta.
+    PRECONDICIONES:
+        * Hay al menos **distancia** celdas en dirección **dirección**.
+        * El cabezal está sobre la nave.
+    TIPO: Booleano
+*/
+
+// combustibleRestante()
+/*
+    PROPÓSITO: 
+        * Indica la cantidad de combustible que le queda a la nave.
+    PRECONDICIONES:
+        * El cabezal está sobre la nave.
+    TIPO: Número
+*/
+
+// Utilizando dichas funciones, se pide que se definan las siguientes, sin hacer
+// suposiciones sobre la representación.
+// a. sePuedeAterrizarA_Hacia_(distanciaAPlaneta,
+// direcciónAPlaneta), que asumiendo que el cabezal se encuentra sobre la
+// nave y hay al menos distanciaAPlanera celdas en dirección
+// direcciónAPlaneta, indica si hay un planeta a distanciaAPlaneta en la
+// dirección direcciónAPlaneta y sí el combustible es suficiente para llegar al
+// mismo.
+// La nave consume una única unidad de combustibe por cada celda que deba
+// moverse.
+// b. Sabiendo que el cabezal se encuentra sobre la nave y a exactamente 3 celdas
+// de distancia de todos los bordes, se pide que escriba la función
+// hayUnPlanetaRecto(), que indica que existe un planeta en cualquiera de
+// las direcciones, a cualquier distancia desde la nave.
+
+function sePuedeAterrizarA_Hacia_(distanciaAPlaneta, direcciónAPlaneta) {
+    /*
+        PROPÓSITO:
+            * Indica si hay un planeta a **distanciaAPlaneta** en la dirección **direcciónAPlaneta** y si el combustible es suficiente para llegar al mismo.
+        PARÁMETROS:
+            * distanciaAPlaneta: Número - La cantidad de celdas a la cual se
+              desea buscar un planeta.
+            * direcciónAPlaneta: Dirección - La dirección hacia la cual mirar el planeta.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Hay al menos **distanciaAPlaneta** celdas en dirección **direcciónAPlaneta**.
+    */
+    return (hayUnPlanetaA_Hacia_(distanciaAPlaneta, direcciónAPlaneta) && combustibleRestante() >= distanciaAPlaneta)
+}
+
+function hayUnPlanetaRecto() {
+    /*
+        PROPÓSITO:
+            * Indica que existe un planeta en cualquiera de las direcciones, a cualquier   distancia desde la nave.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber al menos 3 celdas lindantes a la actual en todas las direcciones.
+    */
+    return (hayUnPlanetaRectoA_(1) || hayUnPlanetaRectoA_(2) || hayUnPlanetaRectoA_(3))
+}
+
+function hayUnPlanetaRectoA_(distancia) {
+    /*
+        PROPÓSITO:
+            * Indica si hay un planeta a **distancia** celdas de distancia en cualquier dirección.
+        PARÁMETROS:
+            * distancia: Número - La cantidad de celdas a la cual se desea buscar un planeta
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber al menos **distancia** celdas en todas las direcciones donde buscar.
+    */
+    return (hayUnPlanetaA_Hacia_(distancia, Norte) || hayUnPlanetaA_Hacia_(distancia, Este) || hayUnPlanetaA_Hacia_(distancia, Sur) || hayUnPlanetaA_Hacia_(distancia, Oeste))
+}

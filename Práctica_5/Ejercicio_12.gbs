@@ -1,0 +1,128 @@
+// Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda),
+// que dada una cantidad de dinero a depositar y un color que representa la
+// moneda en la que está representado ese monto, agrega a la cuenta la
+// cantidad de pesos equivalente a lo indicado para depositar. En este
+// procedimiento hay que aplicar la conversión indicada para el precio de venta.
+
+procedure Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda) {
+    /*
+        PROPÓSITO:
+            * Agrega a la cuenta actual la cantidad de pesos equivalente a la cantidad a depositar dada.
+        PARÁMETROS:
+            * cantidadADepositar: Número.
+            * moneda: Color.
+        PRECONDICIONES:
+            * **cantidadADepositar** debe ser un número mayor a cero.
+    */
+    if (esDolar(moneda))
+    then {
+        AgregarALaCuenta_Pesos(cantidadEnPesosEquivalenteA_Dólares(cantidadADepositar))
+    }
+    else if (esEuro(moneda))
+    then {
+        AgregarALaCuenta_Pesos(cantidadEnPesosEquivalenteA_Euros(cantidadADepositar))
+    }
+    else if (esYuan(moneda))
+    then {
+        AgregarALaCuenta_Pesos(cantidadEnPesosEquivalenteA_Yuanes(cantidadADepositar))
+    }
+}
+
+procedure AgregarALaCuenta_Pesos(cantidad) {
+    /*
+        PROPÓSITO:
+            * Agrega a la cuenta actual **cantidad** pesos.
+        PARÁMETROS:
+            * cantidad: Número.
+        PRECONDICIONES:
+            * **cantidad** debe ser mayor a cero.
+    */
+    Poner_DeColor_(cantidad, Negro)
+}
+
+function cantidadEnPesosEquivalenteA_Dólares(cantidadAConvertir) {
+    /*
+        PROPÓSITO:
+            * Determina la cantidad de pesos equivalente a **cantidadAConvertir** dólares. 
+        PARÁMETROS:
+            * cantidadAConvertir: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (cantidadAConvertir*80)
+}
+
+function cantidadEnPesosEquivalenteA_Euros(cantidadAConvertir) {
+    /*
+        PROPÓSITO:
+            * Determina la cantidad de pesos equivalente a **cantidadAConvertir** euros. 
+        PARÁMETROS:
+            * cantidadAConvertir: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (cantidadAConvertir*90)
+}
+
+function cantidadEnPesosEquivalenteA_Yuanes(cantidadAConvertir) {
+    /*
+        PROPÓSITO:
+            * Determina la cantidad de pesos equivalente a **cantidadAConvertir** yuanes. 
+        PARÁMETROS:
+            * cantidadAConvertir: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (cantidadAConvertir*12)
+}
+
+function esDolar(moneda) {
+    /*
+        PROPÓSITO:
+            * Indica si la moneda **moneda** es el dólar.
+        PARÁMETROS:
+            * moneda: Color
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (moneda == Verde)
+}
+
+function esEuro(moneda) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */  
+    return (moneda == Azul)
+}
+
+function esYuan(moneda) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */  
+    return (moneda == Rojo)
+}
+
+procedure Poner_DeColor_(n,c) {
+    repeat(n) {Poner(c)}
+}
+
+// ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda), que dada
+// una cantidad de dinero a extraer y un color que representa la moneda en la
+// que se va a extraer, remueve de la cuenta la cantidad que se indica. Si no
+// hubiera tanto dinero como el solicitado, se extrae todo lo que haya.

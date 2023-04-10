@@ -68,6 +68,7 @@ procedure PelearLaBatalla() {
             * Deben existir al menos dos soldados enemigos en la celda actual.
     */
     SacrificarAliadosNecesariosParaEliminar_DeEnemigos(nroBolitas(Rojo))
+    EliminarEnemigos()
 }
 
 procedure SacrificarAliadosNecesariosParaEliminar_DeEnemigos (cantidad) {
@@ -80,7 +81,6 @@ procedure SacrificarAliadosNecesariosParaEliminar_DeEnemigos (cantidad) {
             * La cantidad dada debe ser un número mayor o igual a cero.
     */
     Sacar_DeColor_(cantidad div 2 * 3,Negro)
-    EliminarEnemigos()
 }
 
 procedure EliminarEnemigos() {

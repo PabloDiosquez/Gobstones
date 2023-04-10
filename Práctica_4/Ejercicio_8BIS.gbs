@@ -27,21 +27,9 @@ procedure PelearLaBatalla() {
 procedure IniciarSecuenciaDe_Enfrentamientos() {
     /*
         PROPÓSITO:
-            * Inicia una secuencia de **cantidadDeEnfrentamientos** que simulan una batalla entre soldados aliados y enemigos.
-        PARÁMETROS:
-            * cantidadDeEnfrentamientos: Número - Un número que describe la cantidad de enfrentamientos que ocurren durante la batalla.
+            * Inicia una secuencia de enfrentamientos que simulan una batalla entre soldados aliados y enemigos.
         PRECONDICIONES:
-            * Debem existir en la celda actual la cantidad suficiente de soldados aliados como para eliminar a todos los soldados enemigos.
-            * La cantidad de enfrentamientos dada debe ser un número mayor o igual a cero.
-        OBSERVACIONES:
-            * Cantidad de enfrentamientos: 2 enemigos y 3 aliados 👉🏼 1 enfrentamiento
-            * Cantidad de enfrentamientos: 3 enemigos y al menos (3 div 2) * 3 aliados 👉🏼 2 enfrentamientos
-            * Cantidad de enfrentamientos: 4 enemigos y al menos (4 div 2) * 3 aliados 👉🏼 2 enfrentamientos
-            * Cantidad de enfrentamientos: 5 enemigos y al menos (5 div 2) * 3 aliados 👉🏼 3 enfrentamientos
-            * Cantidad de enfrentamientos: 6 enemigos y al menos (6 div 2) * 3 aliados 👉🏼 3 enfrentamientos
-            * Cantidad de enfrentamientos: 9 enemigos y al menos (9 div 2) * 3 aliados 👉🏼 5 enfrentamientos
-            * Cantidad de enfrentamientos: 11 enemigos y al menos (9 div 2) * 3 aliados 👉🏼 6 enfrentamientos
-            * Cantidad de enfrentamientos: x enemigos y al menos (x div 2) * 3 aliados 👉🏼 x div 2 + x mod 2 enfrentamientos
+            * Deben existir en la celda actual la cantidad suficiente de soldados aliados como para eliminar a todos los soldados enemigos.
     */
     repeat (cantidadDeEnfrentamientos()) {
         SacrificarAliadosNecesarios()
@@ -52,7 +40,7 @@ procedure IniciarSecuenciaDe_Enfrentamientos() {
 procedure SacrificarAliadosNecesarios() {
     /*
         PROPÓSITO:
-            * Sacrifica a los soldados aliados necesarios para eliminar soldados enemigos en cada enfrentamiento.
+            * Sacrifica a los soldados aliados necesarios para eliminar 2 soldados enemigos en cada enfrentamiento.
         PRECONDICIONES:
             * Debe haber al menos 3 soldados aliados en la celda actual.
     */
@@ -92,6 +80,15 @@ function cantidadDeEnfrentamientos() {
         TIPO: Número.
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * Cantidad de enfrentamientos: 2 enemigos y 3 aliados 👉🏼 1 enfrentamiento
+            * Cantidad de enfrentamientos: 3 enemigos y al menos (3 div 2) * 3 aliados 👉🏼 2 enfrentamientos
+            * Cantidad de enfrentamientos: 4 enemigos y al menos (4 div 2) * 3 aliados 👉🏼 2 enfrentamientos
+            * Cantidad de enfrentamientos: 5 enemigos y al menos (5 div 2) * 3 aliados 👉🏼 3 enfrentamientos
+            * Cantidad de enfrentamientos: 6 enemigos y al menos (6 div 2) * 3 aliados 👉🏼 3 enfrentamientos
+            * Cantidad de enfrentamientos: 9 enemigos y al menos (9 div 2) * 3 aliados 👉🏼 5 enfrentamientos
+            * Cantidad de enfrentamientos: 11 enemigos y al menos (9 div 2) * 3 aliados 👉🏼 6 enfrentamientos
+            * Cantidad de enfrentamientos: x enemigos y al menos (x div 2) * 3 aliados 👉🏼 x div 2 + x mod 2 enfrentamientos
     */
     return (cantidadDeEnemigos() div 2 + cantidadDeEnemigos() mod 2)
 }

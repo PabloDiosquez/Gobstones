@@ -19,7 +19,7 @@ procedure EnviarAliadosParaDuplicarEnemigos() {
         PROPÓSITO:
             * Agrega soldados aliados en la celda actual en cantidad suficiente para que haya el doble de aliados que de soldados enemigos.
         PRECONDICIONES:
-            * La cantidad de soldados aliados debe ser menor que el doble de la cantidad de soldados enemigos de lo contrario ya hay suficientes soldados aliados para duplicar a los enemigos.
+            * La cantidad de soldados aliados debe ser menor que el doble de la cantidad de soldados enemigos. De lo contrario ya hay suficientes soldados aliados para duplicar a los enemigos.
     */
     AgregarSoldadosAliados(2*nroBolitas(Rojo) - nroBolitas(Negro))
 }

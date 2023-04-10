@@ -76,7 +76,7 @@ procedure SacarUnaFichaDeColor_(color) {
 procedure DesempatarParaElLocal_Contra_(colorDelLocal, colorDelVisit) {
     /*
         PROPÓSITO:
-            * Desempata el partido para el local.
+            * Desempata el partido para el local si están empatados.
         PARÁMETROS:
             * colorDelLocal:     Color - Un color que describe al equipo local.
             * colorDelVisitante: Color - Un color que describe al equipo visitante.
@@ -85,7 +85,7 @@ procedure DesempatarParaElLocal_Contra_(colorDelLocal, colorDelVisit) {
     */
     if (hayEmpate(colorDelLocal, colorDelVisit))
     then {
-        SumarUnoParaElLocal(colorDelLocal)
+        SumarUnoDelColor_(colorDelLocal)
     }
 }
 
@@ -129,9 +129,9 @@ procedure SumarUnoParaElLocal(colorDelLocal) {
 procedure ExpandirBacteriasDeLaColonia() {
     /*
         PROPÓSITO:
-            * Agrega una bacteria más y consume nutrientes siempre que en la celda actual haya un cultivo de bacterias y haya suficientes nutrientes
+            * Agrega una bacteria más y consume nutrientes siempre que en la celda actual haya un cultivo de bacterias y haya suficientes nutrientes. Sino no hace nada.
         PRECONDICIONES:
-            * En la celda actual debe haber un cultivo de bacterias.
+            * No tiene.
         OBSERVACIONES:
             * Las bacterias se representan con bolitas verdes y los nutrientes con bolitas rojas.
     */

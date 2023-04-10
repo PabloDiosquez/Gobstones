@@ -81,7 +81,7 @@ procedure DesempatarParaElLocal_Contra_(colorDelLocal, colorDelVisit) {
             * colorDelLocal:     Color - Un color que describe al equipo local.
             * colorDelVisitante: Color - Un color que describe al equipo visitante.
         PRECONDICIONES:
-            * ...
+            * No tiene.
     */
     if (hayEmpate(colorDelLocal, colorDelVisit))
     then {
@@ -129,7 +129,7 @@ procedure SumarUnoParaElLocal(colorDelLocal) {
 procedure ExpandirBacteriasDeLaColonia() {
     /*
         PROPÓSITO:
-            * Agrega una bacteria más y consume nutrientes en el cultivo actual.
+            * Agrega una bacteria más y consume nutrientes siempre que en la celda actual haya un cultivo de bacterias y haya suficientes nutrientes
         PRECONDICIONES:
             * En la celda actual debe haber un cultivo de bacterias.
         OBSERVACIONES:

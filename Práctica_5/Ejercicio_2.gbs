@@ -26,10 +26,10 @@ function hayMásDe5BolitasEnTotal() {
 }
 
 // b.
-function hayAlMenosDe5BolitasEnTotal() {
+function hayAlMenos5BolitasEnTotal() {
     /*
         PROPÓSITO:
-            * Indica si hay al menos 5 bolitas en total en la celda actual..
+            * Indica si hay al menos 5 bolitas en total en la celda actual.
         TIPO: Booleano.
         PRECONDICIONES:
             * Ninguna (es una función total).

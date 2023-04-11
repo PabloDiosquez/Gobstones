@@ -27,22 +27,22 @@ procedure PelearLaBatalla() {
         PRECONDICIONES:
             * En la celda actual debe existir una cantidad suficiente de soldados aliados como para ganar la batalla.
         OBSERVACIONES: 
-            * Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren. 
+            * Durante una batalla, dos soldados enemigos pelean contra tres soldados aliados y todos mueren. 
     */
     repeat (cantidadDeEnfrentamientos()) {
-        Sacrificar3SoldadosAliados()
+        EnviarAPelearATresSoldadosAliados()
         EliminarEnemigos()
     }
 }
 
-procedure Sacrificar3SoldadosAliados() {
+procedure EnviarAPelearATresSoldadosAliados() {
     /*
         PROPÓSITO:
-            * Sacrifica a 3 soldados aliados para eliminar 2 soldados enemigos en cada enfrentamiento.
+            * Sacrifica a tres soldados aliados para eliminar dos soldados enemigos en cada enfrentamiento.
         PRECONDICIONES:
-            * Debe haber al menos 3 soldados aliados en la celda actual.
+            * Debe haber al menos tres soldados aliados en la celda actual.
         OBSERVACIONES: 
-            * Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
+            * Durante una batalla, dos soldados enemigos pelean contra tres soldados aliados y todos mueren.
     */
     Sacar_DeColor_(3, Negro)
 }
@@ -50,7 +50,7 @@ procedure Sacrificar3SoldadosAliados() {
 procedure EliminarEnemigos() {
     /*
         PROPÓSITO:
-            * Elimina a 2 soldados enemigos de la celda actual, en caso de que la cantidad de enemigos sea mayor o igual a 2. En caso contrario, sólo elimina a 1 soldado enemigo.
+            * Elimina a dos soldados enemigos de la celda actual, en caso de que la cantidad de enemigos sea mayor o igual a dos. En caso contrario, sólo elimina a un soldado enemigo.
         PRECONDICIONES:
             * Debe haber al menos un soldado enemigo en la celda actual.
     */

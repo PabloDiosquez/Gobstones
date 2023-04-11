@@ -20,11 +20,26 @@
 procedure PudrirManzana() {
     /*
         PROPÓSITO:
-            * Pudre una manzana retirando un gusano.
+            * Pudre una manzana retirando un gusano, en el caso de que en la celda actual haya al menos una manzana en buen estado y un gusano. Sino, no hace nada.
         PRECONDICIONES:
-            * En la celda actual debe haber al menos una manzana en buen estado y un gusano.
+            * No tiene.
         OBSERVACIONES: 
             * Las manzanas en buen estado se representan con bolitas de color Rojo, las manzanas podridas con bolitas de color Negro, y los gusanos con bolitas de color Verde. 
+    */
+    if(hayManzanaEnBuenEstado() && hayGusano())
+    then {
+        PudrirManzanaRetirandoUnGusano()
+    }
+}
+
+procedure PudrirManzanaRetirandoUnGusano() {
+    /*
+        PROPÓSITO:
+            * Pudre una manzana en buen estado, retirando un gusano.
+        PRECONDICIONES:
+            * Debe haber, en la celda actual, al menos una manzana en buen estado y al menos un gusano.
+        OBSERVACIONES:
+            * Las manzanas en buen estado se representan con bolitas de color Rojo y los    gusanos con bolitas de color Verde.
     */
     Reemplazar_Y_Por_(Rojo, Verde, Negro)
 }
@@ -33,13 +48,13 @@ procedure PudrirManzana() {
 procedure Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, colorAAgregar) {
     /*
         PROPÓSITO:
-            * Reemplaza **primerColorAReemplazar** y **segundoColorAReemplazar** por **colorAAgregar**
+            * Reemplaza el color **primerColorAReemplazar** y el color **segundoColorAReemplazar** por el color **colorAAgregar**.
         PARÁMETROS:
             * primerColorAReemplazar: Color - Describe el primer color a reemplazar. 
             * segundoColorAReemplazar: Color - Describe el segundo color a reemplazar.
             * colorAAgregar: Color - Describe el color a agregar.
         PRECONDICIONES:
-            * Debe haber al menos una bolita de color **primerColorAReemplazar** y al menos una de **segundoColorAReemplazar** en la celda actual.
+            * Debe haber al menos una bolita de color **primerColorAReemplazar** y al menos una de color **segundoColorAReemplazar** en la celda actual.
     */
     Sacar(primerColorAReemplazar)
     Sacar(segundoColorAReemplazar)
@@ -51,27 +66,14 @@ procedure Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, col
 procedure PudrirHasta_Manzanas(cantidadAPudrir) {
     /*
         PROPÓSITO:
-            * Pudre hasta un máximo de manzanas dada por la cantidad. Puede que se pudran menos manzanas si no se dan las condiciones necesarias
+            * Pudre **cantidadAPudrir** manzanas en buen estado como máximo. Pudre menos manzanas en caso de que no haya suficientes de éstas o no haya sufientes gusanos.
         PARÁMETROS:
             * cantidadAPudrir: Número - Describe la cantidad máxima de manzanas a pudrir.
         PRECONDICIONES:
             * **cantidadAPudrir** debe ser un número mayor cero.
     */
     repeat (cantidadAPudrir) {
-        PudrirSiEsPosible()   
-    }
-}
-
-procedure PudrirSiEsPosible() {
-    /*
-        PROPÓSITO:
-            * Indica si en la celda actual hay al menos una manzana en buen estado y al menos un gusano.
-        PRECONDICIONES:
-            * No tiene (es una función total).
-    */
-    if (hayManzanaEnBuenEstado() && hayGusano())
-    then {
-        PudrirManzana()
+        PudrirManzana()   
     }
 }
 

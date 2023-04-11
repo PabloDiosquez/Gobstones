@@ -3,46 +3,46 @@
 // una bolita de color Rojo por cada soldado), escribir los siguientes procedimientos:
 // a. EnviarAliadosParaDuplicarEnemigos(), que agrega soldados aliados
 // en la celda actual en cantidad suficiente para que haya el doble de aliados
-// que de soldados enemigos.
+// que de soldados enemigos. 👉🏼 Hecho con anterioridad.
 // b. PelearLaBatalla(), que simula una batalla, suponiendo que hay
 // suficiente cantidad de soldados aliados como para ganar la batalla. Durante
 // una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos
 // mueren. Por ejemplo, si hay 6 enemigos y 10 aliados, mueren los 6 enemigos
 // y 9 de los aliados; si hay 11 enemigos y 21 aliados, mueren los 11 enemigos
-// y 15 soldados aliados.
+// y 15 soldados aliados. 👉🏼 Cambio de estrategia.
 // Ayuda: ¿qué cuenta hay que hacer para saber cuántos soldados aliados
 // morirán?
+
+// Parte II
+// Hay dos formas de pensar este ejercicio:
+// 1) Calcular cuántos aliados y cuántos enemigos deben morir. Para esto te recomiendo buscar el patrón armando varios casos. Por ejemplo, si hay dos enemigos, ¿cuántos aliados deben morir? ¿Y si en lugar de dos hay cuatro? ¿Y si hay seis?
+
+// 2) Pensar a la batalla como una secuencia de enfrentamientos, donde cada enfrentamiento mata dos enemigos y tres aliados. ¿Cuántos enfrentamientos se pueden realizar? ¿Qué pasa en cada enfrentamiento?
 
 // b.
 procedure PelearLaBatalla() {
     /*
         PROPÓSITO:
-            * Simula una batalla, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla. Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
+            * Simula una batalla, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla. 
         PRECONDICIONES:
             * En la celda actual debe existir una cantidad suficiente de soldados aliados como para ganar la batalla.
-    */
-    IniciarSecuenciaDe_Enfrentamientos()
-}
-
-procedure IniciarSecuenciaDe_Enfrentamientos() {
-    /*
-        PROPÓSITO:
-            * Inicia una secuencia de enfrentamientos que simulan una batalla entre soldados aliados y enemigos.
-        PRECONDICIONES:
-            * Deben existir en la celda actual la cantidad suficiente de soldados aliados como para eliminar a todos los soldados enemigos.
+        OBSERVACIONES: 
+            * Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren. 
     */
     repeat (cantidadDeEnfrentamientos()) {
-        SacrificarAliadosNecesarios()
+        Sacrificar3SoldadosAliados()
         EliminarEnemigos()
     }
 }
 
-procedure SacrificarAliadosNecesarios() {
+procedure Sacrificar3SoldadosAliados() {
     /*
         PROPÓSITO:
-            * Sacrifica a los soldados aliados necesarios para eliminar 2 soldados enemigos en cada enfrentamiento.
+            * Sacrifica a 3 soldados aliados para eliminar 2 soldados enemigos en cada enfrentamiento.
         PRECONDICIONES:
             * Debe haber al menos 3 soldados aliados en la celda actual.
+        OBSERVACIONES: 
+            * Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
     */
     Sacar_DeColor_(3, Negro)
 }
@@ -50,9 +50,9 @@ procedure SacrificarAliadosNecesarios() {
 procedure EliminarEnemigos() {
     /*
         PROPÓSITO:
-            * Elimina a los soldados enemigos de la celda actual.
+            * Elimina a 2 soldados enemigos de la celda actual, en caso de que la cantidad de enemigos sea mayor o igual a 2. En caso contrario, sólo elimina a 1 soldado enemigo.
         PRECONDICIONES:
-            * No tiene.
+            * Debe haber al menos un soldado enemigo en la celda actual.
     */
     if (cantidadDeEnemigos() >= 2) {
         Sacar_DeColor_(2, Rojo)
@@ -93,4 +93,8 @@ function cantidadDeEnfrentamientos() {
     return (cantidadDeEnemigos() div 2 + cantidadDeEnemigos() mod 2)
 }
 
-procedure Sacar_DeColor_(cantidad, color) {repeat(cantidad) {Sacar(color)}}
+procedure Sacar_DeColor_(cantidad, color) {
+    repeat(cantidad) {
+        Sacar(color)
+    }
+}

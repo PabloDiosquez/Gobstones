@@ -19,21 +19,21 @@ procedure EnviarAliadosParaDuplicarEnemigos() {
         PROPÓSITO:
             * Agrega soldados aliados en la celda actual en cantidad suficiente para que haya el doble de aliados que de soldados enemigos.
         PRECONDICIONES:
-            * La cantidad de soldados aliados debe ser menor que el doble de la cantidad de soldados enemigos. De lo contrario ya hay suficientes soldados aliados para duplicar a los enemigos.
+            * La cantidad de soldados aliados debe ser menor que el doble de la cantidad de soldados enemigos. De lo contrario, ya hay suficientes soldados aliados para duplicar a los enemigos.
     */
-    AgregarSoldadosAliados(2*nroBolitas(Rojo) - nroBolitas(Negro))
+    Agregar_SoldadosAliados(2*nroBolitas(Rojo) - nroBolitas(Negro))
 }
 
-procedure AgregarSoldadosAliados(cantidad) {
+procedure Agregar_SoldadosAliados(númeroDeSoldadosAliados) {
     /*
         PROPÓSITO:
-            * Agrega en la celda actual **cantidad** de soldados aliados.
+            * Agrega en la celda actual **númeroDeSoldadosAliados** soldados aliados.
         PARÁMETROS:
-            * cantidad: Número - Un número que describe la cantidad de soldados aliados a agregar.
+            * númeroDeSoldadosAliados: Número - Describe la cantidad de soldados aliados a agregar.
         PRECONDICIONES:
             * La cantidad dada debe ser un número mayor o igual a cero.
         OBSERVACIONES:
-            * Los soldados aliados se representan con una bolita de color Negro.
+            * Un soldado aliado se representa con una bolita de color Negro.
     */
     Poner_DeColor_(cantidad, Negro)
 }
@@ -43,8 +43,8 @@ procedure Poner_DeColor_(cantidad, color) {
         PROPÓSITO:
             * Pone **cantidad** bolitas de color **color** en la celda actual.
         PARÁMETROS:
-            * cantidad: Número - Un número que describe la cantidad de bolitas a poner.
-            * color: Color - Un color que describe el color de las bolitas a poner.
+            * cantidad: Número - Describe la cantidad de bolitas a poner.
+            * color: Color - Describe el color de las bolitas a poner.
         PRECONDICIONES:
             * No tiene.
     */
@@ -52,31 +52,29 @@ procedure Poner_DeColor_(cantidad, color) {
         Poner(color)
     }
 }
-// Parte II
-// Hay dos formas de pensar este ejercicio:
-// 1) Calcular cuántos aliados y cuántos enemigos deben morir. Para esto te recomiendo buscar el patrón armando varios casos. Por ejemplo, si hay dos enemigos, ¿cuántos aliados deben morir? ¿Y si en lugar de dos hay cuatro? ¿Y si hay seis?
 
-// 2) Pensar a la batalla como una secuencia de enfrentamientos, donde cada enfrentamiento mata dos enemigos y tres aliados. ¿Cuántos enfrentamientos se pueden realizar? ¿Qué pasa en cada enfrentamiento?
 // b.
 
 procedure PelearLaBatalla() {
     /*
         PROPÓSITO:
-            * Simula una batalla, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla. Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
+            * Simula una batalla en la celda actual, suponiendo que hay suficiente cantidad de soldados aliados como para ganarla.
         PRECONDICIONES:
             * En la celda actual debe existir una cantidad suficiente de soldados aliados como para ganar la batalla.
             * Deben existir al menos dos soldados enemigos en la celda actual.
+        OBSERVACIONES:
+            * Durante una batalla, 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren. 
     */
-    SacrificarAliadosNecesariosParaEliminar_DeEnemigos(nroBolitas(Rojo))
+    SacrificarAliadosNecesariosParaEliminar_Enemigos(nroBolitas(Rojo))
     EliminarEnemigos()
 }
 
-procedure SacrificarAliadosNecesariosParaEliminar_DeEnemigos (cantidad) {
+procedure SacrificarAliadosNecesariosParaEliminar_Enemigos (cantidad) {
     /*
         PROPÓSITO:
             * Sacrifica la cantidad necesaria de soldados aliados para eliminar todos los soldados enemigos de la celda actual.
         PARÁMETROS:
-            * cantidad: Número - Un número que describe la cantidad de soldados enemigos en la celda actual.
+            * cantidad: Número - Describe la cantidad de soldados enemigos a eliminar.
         PRECONDICIONES:
             * La cantidad dada debe ser un número mayor o igual a cero.
     */
@@ -88,7 +86,7 @@ procedure EliminarEnemigos() {
         PROPÓSITO:
             * Elimina todos los soldados enemigos de la celda actual.
         PRECONDICIONES:
-            * Debe haber al menos un soldado enemigo en la celda actual.
+            * No tiene.
         OBSERVACIONES:
             * Los soldados enemigos se representan con bolitas de color Rojo. Una bolita por cada soldado.
     */
@@ -100,7 +98,7 @@ procedure SacarTodasLasDeColor_(color) {
         PROPÓSITO:
             * Saca todas las bolitas de color **color** de la celda actual.
         PARÁMETROS:
-            * color: Color - Un color que describe las bolitas a sacar de la celda actual.
+            * color: Color - Describe las bolitas a sacar de la celda actual.
         PRECONDICIONES:
             * No tiene.
     */
@@ -110,5 +108,7 @@ procedure SacarTodasLasDeColor_(color) {
 procedure Sacar_DeColor_(cantidad, color) {
     /*
     */
-    repeat(cantidad) {Sacar(color)}
+    repeat(cantidad) {
+        Sacar(color)
+    }
 }

@@ -29,7 +29,7 @@ procedure SacarUnaFicha_SiSePuede(colorDeLaFicha) {
             * Saca una ficha de color **colorDeLaFicha** siempre y cuando la misma esté en la  celda. Si no hay fichas del color dado, el procedimiento
             no hace nada. Si hay varias fichas, solo saca una.
         PARÁMETROS:
-            * colorDeLaFicha: Color - Un color que describe el color de la ficha a sacar.
+            * colorDeLaFicha: Color - Describe el color de la ficha a sacar.
         PRECONDICIONES:
             * Ninguna.
     */
@@ -66,26 +66,26 @@ procedure SacarUnaFichaDeColor_(color) {
     Sacar(color)
 }
 
-// #################################################################################
+// ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪
 // b.
 // DesempatarParaElLocal_Contra_(colorDelLocal,colorDelVisit
 // ante) que, dados los colores de dos jugadores, ponga una bolita del
 // colorDelLocal solamente en el caso en que la celda actual contiene la
 // misma cantidad de bolitas de ambos colores.
 
-procedure DesempatarParaElLocal_Contra_(colorDelLocal, colorDelVisit) {
+procedure DesempatarParaElLocal_Contra_(colorDelLocal, colorDelVisitante) {
     /*
         PROPÓSITO:
-            * Desempata el partido para el local si es que están empatados.
+            * Desempata el partido para el local en caso que estén empatados.
         PARÁMETROS:
-            * colorDelLocal:     Color - Un color que describe al equipo local.
-            * colorDelVisitante: Color - Un color que describe al equipo visitante.
+            * colorDelLocal:     Color - Describe el color del equipo local.
+            * colorDelVisitante: Color - Describe el color del equipo visitante.
         PRECONDICIONES:
             * No tiene.
     */
-    if (hayEmpate(colorDelLocal, colorDelVisit))
+    if (hayEmpate(colorDelLocal, colorDelVisitante))
     then {
-        SumarUnoDelColor_(colorDelLocal)
+        SumarUnoParaElColor_(colorDelLocal)
     }
 }
 
@@ -94,30 +94,30 @@ function hayEmpate(colorDelLocal, colorDelVisit) {
         PROPÓSITO:
             * Indica si hay un empate entre el equipo local y el equipo visitante.
         PARÁMETROS:
-            * colorDelLocal:     Color.
-            * colorDelVisitante: Color.
+            * colorDelLocal:     Color - Describe el color del equipo local.
+            * colorDelVisitante: Color - Describe el color del equipo visitante.
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene.
         OBSERVACIONES:
-            * Un empate se presente solamente en el caso en que la celda actual contenga la misma cantidad de bolitas de los dos colores dados.
+            * Un empate se presenta solamente en el caso en que la celda actual contenga la misma cantidad de bolitas de los dos colores dados.
     */
-    return (nroBolitas(colorDelLocal) == nroBolitas(colorDelVisit))
+    return (nroBolitas(colorDelLocal) == nroBolitas(colorDelVisitante))
 }
 
-procedure SumarUnoParaElLocal(colorDelLocal) {
+procedure SumarUnoParaElColor_(color) {
     /*
         PROPÓSITO:
-            * Suma una bolita de color **colorDelLocal** para el local.
+            * Suma una bolita para el equipo de color **color**.
         PARÁMETROS:
-            * colorDelLocal: Color
+            * color: Color - Describe el color del equipo al que se le va a sumar una bolita.
         PRECONDICIONES:
             * No tiene.
     */
-    Poner(colorDelLocal)
+    Poner(color)
 }
 
-// #################################################################################
+// ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪
 // c.
 // ExpandirBacteriasDeLaColonia(), que siempre que en la celda actual
 // haya un cultivo de bacterias y haya suficientes nutrientes, agregue
@@ -129,7 +129,7 @@ procedure SumarUnoParaElLocal(colorDelLocal) {
 procedure ExpandirBacteriasDeLaColonia() {
     /*
         PROPÓSITO:
-            * Agrega una bacteria más y consume nutrientes siempre que en la celda actual haya un cultivo de bacterias y haya suficientes nutrientes. Sino no hace nada.
+            * Agrega una bacteria más y consume nutrientes siempre que en la celda actual haya un cultivo de bacterias y haya suficientes nutrientes. Sino, no hace nada.
         PRECONDICIONES:
             * No tiene.
         OBSERVACIONES:
@@ -145,7 +145,7 @@ procedure ExpandirBacteriasDeLaColonia() {
 function hayBacteriasEnElCultivo() {
     /*
         PROPÓSITO:
-            * Indica si hay al menos una bacteria en el cultivo.
+            * Indica si hay al menos una bacteria en el cultivo de la celda actual.
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene.
@@ -167,7 +167,7 @@ function nroBacterias() {
 function haySuficientesNutrientes() {
     /*
         PROPÓSITO:
-            * Indica si en el cultivo actual hay suficientes nutrientes.
+            * Indica si en el cultivo actual hay suficientes nutrientes como para agregar una bacteria.
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene.
@@ -201,11 +201,11 @@ procedure AgregarBacteriaAlCultivo() {
 procedure ConsumirNutrientes() {
     /*
         PROPÓSITO:
-            * Consume dos nutrientes en la celda actual.
+            * Consume dos nutrientes en el cultivo actual.
         PRECONDICIONES:
             * Debe haber al menos dos nutrientes en la celda actual.
         OBSERVACIONES:
-            * Los nutrientes se represetan con bolitas de color Rojo.
+            * Los nutrientes se representan con bolitas de color Rojo.
     */
     Sacar_DeColor_(2,Rojo)
 }
@@ -218,7 +218,7 @@ procedure Sacar_DeColor_(cantidad, color) {
     }
 }
 
-// #################################################################################
+// ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪
 // d.
 // PonerFlecha_AlNorteSiCorresponde(colorDeLaFlecha), que dado
 // un color para representar flechas, ponga una flecha al Norte si existe espacio
@@ -228,9 +228,9 @@ procedure Sacar_DeColor_(cantidad, color) {
 procedure PonerFlecha_AlNorteSiCorresponde(colorDeLaFlecha) {
     /*
         PROPÓSITO: 
-            * Pone una flecha al Norte de la celda actual si existe espacio para moverse en esa dirección.
+            * Pone una flecha al Norte de la celda actual, si existe espacio para moverse en esa dirección. Sino, no hace nada.
         PARÁMETROS:
-            * colorDeLaFlecha: Color - Un color que describe el color de la flecha al Norte a poner.
+            * colorDeLaFlecha: Color - Describe el color de la flecha al Norte a poner.
         PRECONDICIONES:
             * No tiene.
     */
@@ -264,76 +264,4 @@ procedure PonerFlecha_AlNorte(colorDeLaFlecha) {
             * Las flechas al Norte se representan con una bolita de color **colorDeLaFlecha**. 
     */
     Poner(colorDeLaFlecha)
-}
-
-procedure MoverElevador_PisosHaciaArriba(cantidad) {
-    /*
-        PROPÓSITO:
-            * Mueve el elevador **cantidad** pisos hacia arriba.
-        PARÁMETROS:
-            * cantidad: Número - Es un número que describe la cantidad de pisos que debe moverse el elevador.
-        PRECONDICIONES:
-            * **cantidad** debe ser un número mayor a cero.
-    */
-    repeat (cantidad) {
-        SubirElevadorUnPiso()
-    }
-}
-
-procedure MoverElevador_PisosHaciaAbajo(cantidad) {
-    /*
-        PROPÓSITO:
-            * Mueve el elevador **cantidad** pisos hacia abajo.
-        PARÁMETROS:
-            * cantidad: Número - Es un número que describe la cantidad de pisos que debe moverse el elevador.
-        PRECONDICIONES:
-            * **cantidad** debe ser un número mayor a cero.
-    */
-    repeat (cantidad) {
-        BajarElevadorUnPiso()
-    }
-}
-
-procedure MoverElevador_PisosHacia_(cantidad, dirección) {
-    /*
-        PROPÓSITO:
-            * Mueve el elevador **cantidad** pisos hacia la dirección **dirección**.
-        PARÁMETROS:
-            * cantidad: Número - Es un número que describe la cantidad de pisos que debe moverse el elevador.
-            dirección: Dirección - Describe hacia dónde debe moverse el ascensor.
-        PRECONDICIONES:
-            * **cantidad** debe ser un número mayor a cero.
-            * **dirección** debe ser Norte o Sur.
-    */
-    repeat (cantidad) {
-        
-    }
-}
-
-function elPisoAMoverEstáPorEncimaDelPisoActual(piso) {
-    /*
-        PROPÓSITO:
-            * Indica si el piso a mover está por encima del piso actual del ascensor.
-        PARÁMETROS:
-            * piso: Número - Un número que describe el piso del edificio a 
-                   mover el elevador.
-        TIPO: Booleano
-        PRECONDICIONES:
-            * No tiene.
-    */
-    return (piso > pisoActual())
-}
-
-function elPisoAMoverEstáPorDebajoDelPisoActual(piso) {
-    /*
-        PROPÓSITO:
-            * Indica si el piso a mover está por encima del piso actual del ascensor.
-        PARÁMETROS:
-            * piso: Número - Un número que describe el piso del edificio a 
-                   mover el elevador.
-        TIPO: Booleano
-        PRECONDICIONES:
-            * No tiene.
-    */
-    return (piso < pisoActual())
 }

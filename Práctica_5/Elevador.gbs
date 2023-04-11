@@ -1,0 +1,71 @@
+procedure MoverElevador_PisosHaciaArriba(cantidad) {
+    /*
+        PROPÓSITO:
+            * Mueve el elevador **cantidad** pisos hacia arriba.
+        PARÁMETROS:
+            * cantidad: Número - Es un número que describe la cantidad de pisos que debe moverse el elevador.
+        PRECONDICIONES:
+            * **cantidad** debe ser un número mayor a cero.
+    */
+    repeat (cantidad) {
+        SubirElevadorUnPiso()
+    }
+}
+
+procedure MoverElevador_PisosHaciaAbajo(cantidad) {
+    /*
+        PROPÓSITO:
+            * Mueve el elevador **cantidad** pisos hacia abajo.
+        PARÁMETROS:
+            * cantidad: Número - Es un número que describe la cantidad de pisos que debe moverse el elevador.
+        PRECONDICIONES:
+            * **cantidad** debe ser un número mayor a cero.
+    */
+    repeat (cantidad) {
+        BajarElevadorUnPiso()
+    }
+}
+
+procedure MoverElevador_PisosHacia_(cantidad, dirección) {
+    /*
+        PROPÓSITO:
+            * Mueve el elevador **cantidad** pisos hacia la dirección **dirección**.
+        PARÁMETROS:
+            * cantidad: Número - Es un número que describe la cantidad de pisos que debe moverse el elevador.
+            dirección: Dirección - Describe hacia dónde debe moverse el ascensor.
+        PRECONDICIONES:
+            * **cantidad** debe ser un número mayor a cero.
+            * **dirección** debe ser Norte o Sur.
+    */
+    repeat (cantidad) {
+        
+    }
+}
+
+function elPisoAMoverEstáPorEncimaDelPisoActual(piso) {
+    /*
+        PROPÓSITO:
+            * Indica si el piso a mover está por encima del piso actual del ascensor.
+        PARÁMETROS:
+            * piso: Número - Un número que describe el piso del edificio a 
+                   mover el elevador.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (piso > pisoActual())
+}
+
+function elPisoAMoverEstáPorDebajoDelPisoActual(piso) {
+    /*
+        PROPÓSITO:
+            * Indica si el piso a mover está por encima del piso actual del ascensor.
+        PARÁMETROS:
+            * piso: Número - Un número que describe el piso del edificio a 
+                   mover el elevador.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (piso < pisoActual())
+}

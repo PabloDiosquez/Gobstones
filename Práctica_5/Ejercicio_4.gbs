@@ -66,7 +66,7 @@ procedure Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, col
 procedure PudrirHasta_Manzanas(cantidadAPudrir) {
     /*
         PROPÓSITO:
-            * Pudre **cantidadAPudrir** manzanas en buen estado como máximo. Pudre menos manzanas en caso de que no haya suficientes de éstas o no haya sufientes gusanos.
+            * Pudre **cantidadAPudrir** manzanas en buen estado como máximo. Pudre menos manzanas en buen estado, en caso de que no haya suficientes de éstas o no haya suficientes gusanos.
         PARÁMETROS:
             * cantidadAPudrir: Número - Describe la cantidad máxima de manzanas a pudrir.
         PRECONDICIONES:

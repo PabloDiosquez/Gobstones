@@ -50,7 +50,7 @@ function colorEnemigo() {
 function cantidadDeSoldadosDel_(colorDelEjército) {
     /*
         PROPÓSITO:
-            * Describe la cantidad de soldados de la celda actual del ejército dado
+            * Describe la cantidad de soldados en la celda actual del ejército dado.
         PARÁMETROS:
             * colorDelEjército: Color - Describe el color de los soldados a contar. 
         TIPO: Número.
@@ -102,7 +102,7 @@ function estadoDeEmergencia() {
 function haySuficientesAliadosARazónDe_PorCada_(cantidadDefensa, cantidadAtaque) {
     /*
         PROPÓSITO:
-            * Indica si hay por lo menos **cantidadDefensa** soldados por cada **cantidadAtaque** soldados enemigos en la celda actual.
+            * Indica si hay por lo menos **cantidadDefensa** soldados aliados por cada **cantidadAtaque** soldados enemigos en la celda actual.
         PARÁMETROS:
             * cantidadDefensa: Número - Describe la cantidad de soldados aliados que defienden la celda.
             * cantidadAtaque: Número - Describe la cantidad de soldados enemigos que atacan la celda.
@@ -115,11 +115,6 @@ function haySuficientesAliadosARazónDe_PorCada_(cantidadDefensa, cantidadAtaque
 
 // f.
 
-// aliadosNecesariosParaDefensaEficaz() que describe el número de
-// soldados aliados que faltan para defender la celda actual. Tener en cuenta
-// que en la celda actual puede ser que haya soldados, pero que es precondición de esta función que no hay suficientes aliados. Recordemos
-// que 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
-
 function aliadosNecesariosParaDefensaEficaz() {
     /*
         PROPÓSITO:
@@ -127,8 +122,10 @@ function aliadosNecesariosParaDefensaEficaz() {
         TIPO: Número.
         PRECONDICIONES:
             * No hay suficientes soldados aliados para defender la celda actual.
-            2 enemigos -- 3 aliados
-            e enemigos -- a aliados
+        OBSERVACIONES:
+            * Recordemos que:
+                2 enemigos -- 3 aliados
+                e enemigos -- a aliados
     */
     return ((cantidadDeSoldadosDel_(colorEnemigo()) div 2) * 3 - cantidadDeSoldadosDel_(colorAliado()))
 }

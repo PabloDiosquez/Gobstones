@@ -30,7 +30,7 @@
 // suposiciones sobre la representación.
 // a. sePuedeAterrizarA_Hacia_(distanciaAPlaneta,
 // direcciónAPlaneta), que asumiendo que el cabezal se encuentra sobre la
-// nave y hay al menos distanciaAPlanera celdas en dirección
+// nave y hay al menos distanciaAPlaneta celdas en dirección
 // direcciónAPlaneta, indica si hay un planeta a distanciaAPlaneta en la
 // dirección direcciónAPlaneta y sí el combustible es suficiente para llegar al
 // mismo.
@@ -44,7 +44,7 @@
 function sePuedeAterrizarA_Hacia_(distanciaAPlaneta, direcciónAPlaneta) {
     /*
         PROPÓSITO:
-            * Indica si hay un planeta a **distanciaAPlaneta** en la dirección **direcciónAPlaneta** y si el combustible es suficiente para llegar al mismo.
+            * Indica si hay un planeta a **distanciaAPlaneta** celdas de distancia en la dirección **direcciónAPlaneta** y si el combustible es suficiente para llegar al mismo.
         PARÁMETROS:
             * distanciaAPlaneta: Número - La cantidad de celdas a la cual se
               desea buscar un planeta.
@@ -59,15 +59,15 @@ function sePuedeAterrizarA_Hacia_(distanciaAPlaneta, direcciónAPlaneta) {
 function hayUnPlanetaRecto() {
     /*
         PROPÓSITO:
-            * Indica que existe un planeta en cualquiera de las direcciones, a cualquier   distancia desde la nave.
+            * Indica si existe un planeta en cualquiera de las direcciones, a cualquier   distancia desde la nave.
         TIPO: Booleano.
         PRECONDICIONES:
             * Debe haber al menos 3 celdas lindantes a la actual en todas las direcciones.
     */
-    return (hayUnPlanetaRectoA_(1) || hayUnPlanetaRectoA_(2) || hayUnPlanetaRectoA_(3))
+    return (hayUnPlanetaRectoA_DeDistancia(1) || hayUnPlanetaRectoA_DeDistancia(2) || hayUnPlanetaRectoA_DeDistancia(3))
 }
 
-function hayUnPlanetaRectoA_(distancia) {
+function hayUnPlanetaRectoA_DeDistancia(distancia) {
     /*
         PROPÓSITO:
             * Indica si hay un planeta a **distancia** celdas de distancia en cualquier dirección.
@@ -75,6 +75,7 @@ function hayUnPlanetaRectoA_(distancia) {
             * distancia: Número - La cantidad de celdas a la cual se desea buscar un planeta
         TIPO: Booleano.
         PRECONDICIONES:
+            * El cabezal se encuentra sobre la nave.
             * Debe haber al menos **distancia** celdas en todas las direcciones donde buscar.
     */
     return (hayUnPlanetaA_Hacia_(distancia, Norte) || hayUnPlanetaA_Hacia_(distancia, Este) || hayUnPlanetaA_Hacia_(distancia, Sur) || hayUnPlanetaA_Hacia_(distancia, Oeste))

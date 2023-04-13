@@ -10,21 +10,19 @@
 procedure SacarExactamente8BolitasAzulesOpciónA() {
     /* 
     PROPÓSITO:
-        * sacar exactamente 8 bolitas de color Azul
+        * Sacar exactamente 8 bolitas de color Azul.
     PRECONDCIONES:
-        * hay al menos 8 bolitas de color azul
+        * Hay al menos 8 bolitas de color Azul.
     */
     repeat (8) { Sacar(Azul) }
 }
 
 procedure SacarExactamente8BolitasAzulesOpciónB() {
-  Ejercicio 8
-
   /* 
     PROPÓSITO:
-        * sacar exactamente 8 bolitas de color Azul
+        * Saca exactamente 8 bolitas de color Azul.
     PRECONDCIONES:
-        * hay al menos 8 bolitas de color azul
+        * hay al menos 8 bolitas de color Azul.
 */
     repeat (8) { Sacar_Si_(Azul, hayBolitas(Azul)) }
 }

@@ -85,7 +85,7 @@ function hayManzanaEnBuenEstado() {
         PRECONDICIONES:
             * No tiene (es una función total).
     */
-    return (hayBolitas(Rojo))
+    return (hayBolitas(ColorManzana()))
 }
 
 function hayGusano() {
@@ -96,5 +96,31 @@ function hayGusano() {
         PRECONDICIONES:
             * No tiene (es una función total).
     */
-    return (hayBolitas(Verde))
+    return (hayBolitas(ColorGusano()))
+}
+
+function ColorManzana() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (Rojo)
+}
+
+function ColorGusano() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (Verde)
 }

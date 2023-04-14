@@ -1,0 +1,86 @@
+procedure AvanzarYAtacarConEspadaAEnemigo(){
+    /*
+        PROPÓSITO:
+            * Avanza a Blink en la dirección en la que éste mira hasta alcanzar a un enemigo 
+              y elimina al enemigo atacándolo con la espada.
+        PRECONDICIONES:
+            * Blink debe estar en la posición actual.
+            * Debe haber al menos un enemigo en la dirección que mira Blink.
+    */
+    
+    AvanzarBlinkHaciaEl_HastaTenerEnemigoLindante(direcciónDeBlink())
+    EliminarEnemigoEn_(direcciónDeBlink())
+}
+
+procedure AvanzarBlinkHaciaEl_HastaTenerEnemigoLindante(dirección){
+    /*
+        PROPÓSITO:
+            * Avanza a Blink hacia el **dirección** hasta tener a un enemigo lindante.
+        PRECONDICIONES:
+            * Blink debe estar en la celda actual.
+            * Debe haber al menos un enemigo en la dirección **dirección**.
+    */
+    while(not hayEnemigoEn_(direcciónDeBlink())){
+        AvanzarBlinkEn_(direcciónDeBlink())
+    }
+}
+
+procedure AtacarEnemigoConArcoYFlecha(){
+    /*
+        PROPÓSITO:
+            * Blink dispara una flecha en la dirección en la que mira, eliminando un enemigo,
+              sin moverse.
+        PRECONDICIONES:
+            * Blink debe estar en la posición actual.
+            * Debe haber al menos un enemigo en la dirección en la que mira.
+    */
+    LanzarFlechaAlEnemigoEnDirección_(direcciónDeBlink())
+
+    
+}
+
+procedure LanzarFlechaAlEnemigoEnDirección_(dirección){
+    /*
+        PROPÓSITO:
+            * Blink dispara una flecha en la dirección **dirección**, eliminando un enemigo,
+              sin moverse.
+        PRECONDICIONES:
+            * Blink debe estar en la posición actual.
+            * Debe haber al menos un enemigo hacia **dirección**
+    */
+    while (not hayEnemigoEn_(dirección)){
+        Mover(dirección)
+    }
+    EliminarEnemigoEn_(dirección)
+}
+
+
+
+procedure IrASiguienteEnemigo(){
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal hasta encontrar un enemigo en el tablero.
+        PRECONDICIONES:
+            * Debe haber al menos un enemigo en el tablero.
+    */
+    IrAlInicioDelRecorrido()
+    while (not hayEnemigo()){
+        IrALaSiguienteCeldaDelRecorrido()
+    }
+    
+}
+
+procedure IrAlInicioDelRecorrido(){
+    IrAlBorde(Oeste)
+    IrAlBorde(Sur)
+}
+
+procedure  IrALaSiguienteCeldaDelRecorrido(){
+    if (puedeMover(Este)){
+        Mover(Este)
+    }
+    else {
+        Mover(Norte)
+        IrAlBorde(Oeste)
+    }
+}

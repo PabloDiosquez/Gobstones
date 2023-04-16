@@ -1,0 +1,28 @@
+// En cada uno de los casos siguientes, definir de la forma indicada el procedimiento
+// VaciarTableroDe_(color), que quite todas las bolitas del color dado por el
+// parámetro color de cada una de las celdas del tablero. El cabezal puede empezar
+// en cualquier celda del tablero, y también puede terminar en cualquier celda del
+// tablero (ya sea la celda inicial o cualquier otra).
+// a. Estructurar el procedimiento como un recorrido sobre las filas . ¿Qué
+// subtareas van a precisarse en este caso? ¿Es necesario volver a definirlas o
+// se pueden encontrar en esta práctica?
+// b. Estructurar el procedimiento como un recorrido sobre las celdas del tablero.
+// Las subtareas necesarias serán diferentes, y puede ser que sea necesario
+// definir alguna que aún no está disponible en esta práctica.
+// c. Reflexionar sobre las diferencias de los recorridos dados en los puntos a. y b.
+// ¿Qué subtareas son más complejas en cada caso? ¿Podrían considerarse
+// otros recorridos que no fueran sobre celdas o filas?
+
+procedure VaciarTableroDe_(color) {
+    /*
+        PROPÓSITO:
+            * Quita todas las bolitas de color **color** del tablero.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a quitar del tablero.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    
+    
+}
+

@@ -1,0 +1,29 @@
+// Considerar el procedimiento VaciarFilaDe_(color), que debe quitar todas las
+// bolitas del color dado por el parámetro color de cada una de las celdas de la fila
+// actual . El cabezal puede empezar en cualquier celda de la fila, y también puede
+// terminar en cualquier celda de la fila (ya sea celda inicial o cualquier otra).
+// a. Definir el procedimiento, como siempre, comenzando por establecer el
+// contrato, y luego recién el código. ✅
+// b. ¿La solución dada funciona si el cabezal se encuentra en medio de una fila? ✅
+// Si no es así, corregir el programa para que funcione en este caso también.
+// c. Al recorrer la fila, ¿en qué dirección se movió el cabezal? ¿Podría haberse
+// movido en la dirección opuesta? Sí, podría haberse movido en dirección opuesta.
+// d. A partir de la respuesta anterior, ¿de cuántas formas posibles se puede
+// realizar el recorrido de una fila?
+
+procedure VaciarFilaDe_(color) {
+    /*
+        PROPÓSITO:
+            * Quita todas las bolitas de color **color** de la fila actual.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a quitar de la fila actual.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    IrAlBorde_(Oeste)
+    while (puedeMover(Este)){
+        SacarTodasLasDeColor_(color)
+        Mover(Este)
+    }
+    SacarTodasLasDeColor_(color)
+}

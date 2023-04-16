@@ -13,16 +13,38 @@
 // ¿Qué subtareas son más complejas en cada caso? ¿Podrían considerarse
 // otros recorridos que no fueran sobre celdas o filas?
 
+// a.
 procedure VaciarTableroDe_(color) {
     /*
         PROPÓSITO:
-            * Quita todas las bolitas de color **color** del tablero.
+            * Quita todas las bolitas de color **color** del tablero dejando el cabezal en la esquina Noroeste .
         PARÁMETROS:
             * color: Color - Describe el color de las bolitas a quitar del tablero.
         PRECONDICIONES:
             * No tiene.
     */
-    
-    
+    IrAlBorde_(Sur)
+    while (puedeMover(Norte)){
+        VaciarFilaDe_(color)
+        Mover(Norte)
+    }
+    VaciarFilaDe_(color)
+}
+
+procedure VaciarFilaDe_(color) {
+    /*
+        PROPÓSITO:
+            * Quita todas las bolitas de color **color** de la fila actual.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a quitar de la fila actual.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    IrAlBorde_(Oeste)
+    while (puedeMover(Este)){
+        SacarTodasLasDeColor_(color)
+        Mover(Este)
+    }
+    SacarTodasLasDeColor_(color)
 }
 

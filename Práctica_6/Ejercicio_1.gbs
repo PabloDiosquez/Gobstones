@@ -1,0 +1,19 @@
+// Definir el procedimiento IrAlBorde_(dirección), que lleva al cabezal al borde
+// dado por el parámetro dirección, SIN utilizar el comando primitivo IrAlBorde.
+// Dado que el único otro comando primitivo que permite mover el cabezal es Mover,
+// debe repetirse su uso hasta que se haya cumplido el propósito. ¿Cuál es la
+// condición que indica que el propósito se cumplió?
+
+procedure IrAlBorde_(dirección) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal al borde **dirección**.
+        PARÁMETROS:
+            * dirección: Dirección - Describe la dirección hacia donde debe moverse el cabezal. 
+        PRECONDICIONES:
+            * No tiene.
+    */
+    while(puedeMover(dirección)){
+        Mover(dirección)
+    }
+}

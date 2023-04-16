@@ -48,3 +48,51 @@ procedure VaciarFilaDe_(color) {
     SacarTodasLasDeColor_(color)
 }
 
+// ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ //
+// b.
+
+procedure VaciarTableroDe_(color) {
+    /*
+        PROPÓSITO:
+            * Quita todas las bolitas de color **color** del tablero dejando el cabezal en la esquina Noroeste .
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a quitar del tablero.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    IrAlBorde_(Sur)
+    IrAlBorde_(Oeste)
+    while (puedeMover(Este) || puedeMover(Norte)){
+        VaciarCeldaDe_(color)
+        PasarALaCeldaSiguiente()
+    }
+    VaciarCeldaDe_(color)
+}
+
+procedure VaciarCeldaDe_(color) {
+    /*
+        PROPÓSITO:
+            * Quita todas las bolitas de color **color** de la celda actual.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a sacar de la celda actual.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    SacarTodasLasDeColor_(color)
+}
+
+procedure PasarALaCeldaSiguiente() {
+    /*
+        PROPÓSITO: 
+            * Ubica el cabezal en la celda siguiente a la actual en un recorrido por celdas en dirección Este y Norte.
+        PRECONDICIONES:
+            * La celda actual no es la esquina Noroeste.
+    */
+    if (puedeMover(Este)){
+        Mover(Este)
+    }
+    else{
+        IrAlBorde_(Oeste)
+        Mover(Norte)
+    }
+}

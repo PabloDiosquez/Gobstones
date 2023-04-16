@@ -20,11 +20,9 @@
 procedure PudrirManzana() {
     /*
         PROPÓSITO:
-            * Pudre una manzana retirando un gusano, en el caso de que en la celda actual haya al menos una manzana en buen estado y un gusano. Sino, no hace nada.
+            * Pudre una manzana retirando un gusano, en el caso de que en la celda actual haya al menos una manzana en buen estado y un gusano.
         PRECONDICIONES:
-            * No tiene.
-        OBSERVACIONES: 
-            * Las manzanas en buen estado se representan con bolitas de color Rojo, las manzanas podridas con bolitas de color Negro, y los gusanos con bolitas de color Verde. 
+            * No tiene. 
     */
     if(hayManzanaEnBuenEstado() && hayGusano())
     then {
@@ -35,11 +33,11 @@ procedure PudrirManzana() {
 procedure PudrirManzanaRetirandoUnGusano() {
     /*
         PROPÓSITO:
-            * Pudre una manzana en buen estado, retirando un gusano.
+            * Pudre una manzana en buen estado, retirando un gusano en la celda actual.
         PRECONDICIONES:
             * Debe haber, en la celda actual, al menos una manzana en buen estado y al menos un gusano.
         OBSERVACIONES:
-            * Las manzanas en buen estado se representan con bolitas de color Rojo y los    gusanos con bolitas de color Verde.
+            * Las manzanas en buen estado se representan con bolitas de color Rojo y los    gusanos con bolitas de color Verde. Las manzanas podridas se representan con bolitas de color Negro.
     */
     Reemplazar_Y_Por_(Rojo, Verde, Negro)
 }
@@ -66,7 +64,7 @@ procedure Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, col
 procedure PudrirHasta_Manzanas(cantidadAPudrir) {
     /*
         PROPÓSITO:
-            * Pudre **cantidadAPudrir** manzanas en buen estado como máximo. Pudre menos manzanas en buen estado, en caso de que no haya suficientes de éstas o no haya suficientes gusanos.
+            * Pudre a lo sumo **cantidadAPudrir** manzanas en buen estado en la celda actual. Si la cantidad dada es mayor que el número de manzanas en buen estado o el número de gusanos en la celda actual, pudre una cantidad igual al mínimo entre el total de manzanas en buen estado y el total de gusanos. 
         PARÁMETROS:
             * cantidadAPudrir: Número - Describe la cantidad máxima de manzanas a pudrir.
         PRECONDICIONES:
@@ -101,26 +99,22 @@ function hayGusano() {
 
 function ColorManzana() {
     /*
-        PROPÓSITO:  ....
-        PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+        PROPÓSITO: 
+            * Describe el color de las bolitas usadas para representar a las manzanas.
+        TIPO: Color.
         PRECONDICIONES:
-            * ....
+            * No tiene (es una función total).
     */
     return (Rojo)
 }
 
 function ColorGusano() {
     /*
-        PROPÓSITO:  ....
-        PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+        PROPÓSITO:
+            * Describe el color de las bolitas usadas para representar a los gusanos.
+        TIPO: Color.
         PRECONDICIONES:
-            * ....
+            * No tiene (es una función total).
     */
     return (Verde)
 }

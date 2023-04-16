@@ -26,7 +26,7 @@
 function colorAliado() {
     /*
         PROPÓSITO:
-            * Describe el color de los aliados.
+            * Describe el color de las bolitas usadas para representar a los soldados aliados.
         TIPO: Color.
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -37,7 +37,7 @@ function colorAliado() {
 function colorEnemigo() {
     /*
         PROPÓSITO:
-            * Describe el color de los enemigos.
+            * Describe el color de las bolitas usadas para representar a los soldados enemigos.
         TIPO: Color.
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -52,7 +52,7 @@ function cantidadDeSoldadosDel_(colorDelEjército) {
         PROPÓSITO:
             * Describe la cantidad de soldados en la celda actual del ejército dado.
         PARÁMETROS:
-            * colorDelEjército: Color - Describe el color de los soldados a contar. 
+            * colorDelEjército: Color - Describe cuántos soldados del color dado hay en la celda actual. 
         TIPO: Número.
         PRECONDICIONES:
             * **colorDelEjército** debe ser un color válido.

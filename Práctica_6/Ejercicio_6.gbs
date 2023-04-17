@@ -1,0 +1,63 @@
+// Escribir el procedimiento VaciarFilaDe_HaciaEl_(color, dirección), que
+// generalice el recorrido de la fila, recibiendo la dirección de movimiento como
+// parámetro. ¿Cuáles son los valores posibles para el parámetro dirección? ¿Por
+// qué no puede ser cualquiera, si lo que se desea es recorrer una fila?
+
+procedure VaciarFilaDe_HaciaEl_(color, dirección) {
+    /*
+        PROPÓSITO:
+            * Quita las bolitas de color **color** de la fila actual.
+              Deja el cabezal en el borde **dirección**.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a quitar de la fila.
+            * dirección: Dirección - Describe la dirección del movimiento del cabezal.
+        PRECONDICIONES:
+            * La dirección dada debe ser o bien Este o bien Oeste.
+    */
+    IrAlBorde_(opuesto(dirección))
+    while (puedeMover(dirección)){
+        VaciarCeldaDe_(color)
+        Mover(dirección)
+    }
+    VaciarCeldaDe_(color)
+}
+
+procedure VaciarCeldaDe_(color) {
+    /*
+        PROPÓSITO:
+            * Quita todas las bolitas de color **color** de la celda actual.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a quitar.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    SacarTodasLasDeColor_(color)
+}
+
+procedure SacarTodasLasDeColor_(colorASacar) {
+    /*
+        PROPÓSITO:
+            * Quita todas las bolitas de color **colorASacar** de la celda actual.
+        PARÁMETROS:
+            * colorASacar: Color - Describe el color de las bolitas a sacar.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    while (hayBolitas(colorASacar)) {
+        Sacar(colorASacar)
+    }
+}
+
+procedure IrAlBorde_(dirección) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal al borde **dirección**.
+        PARÁMETROS:
+            * dirección: Dirección - Describe la dirección hacia donde debe moverse el cabezal. 
+        PRECONDICIONES:
+            * No tiene.
+    */
+    while(puedeMover(dirección)){
+        Mover(dirección)
+    }
+}

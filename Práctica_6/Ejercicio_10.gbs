@@ -1,0 +1,43 @@
+// El casino, parte 1
+// En este ejercicio el tablero tiene información sobre las apuestas de diferentes
+// jugadores en un casino, para un juego de extracción de números. En la mesa del
+// juego hay una cantidad de jugadores, cada uno identificado por un número. Cada
+// celda del tablero representa una apuesta, de la siguiente forma.
+// ● Bolitas rojas: el número de jugador.
+// ● Bolitas azules: el número apostado.
+// ● Bolitas verdes: el monto apostado, donde cada bolita verde es un peso.
+// Puede haber varias apuestas del mismo apostador, a distintos números.
+// A modo de ejemplo, se muestra uno de los posibles tableros que modela la siguiente
+// situación:
+// ● El jugador 1 apostó 19 pesos al 48.
+// ● El jugador 2 apostó 22 pesos al 7 y 13 pesos al 13.
+// ● El jugador 3 apostó 5 pesos al 15.
+// ● Queda espacio para registrar dos apuestas más.
+
+// Escribir las siguientes operaciones. En cada caso, recordar escribir primero el
+// contrato, y expresar la estrategia usando subtareas (preferentemente con la
+// metodología top-down).
+// a. AgregarApuestaDe_Al_Para_(monto, nroApostado, nroJugador)
+// que agrega la apuesta indicada en alguna celda vacía, la cual debe existir.
+// b. PagarYCobrarAl_(nroQueSalió), que pague las apuestas que
+// acertaron, y retire el total del dinero de las que no acertaron (solamente el
+// dinero). Se paga 5 veces el monto de la apuesta; por ejemplo, para una
+// apuesta de 3 pesos se pagan 15, quedando 18 pesos en la celda.
+// c. RecogerPropinas(), que extrae un peso de cada celda donde haya al
+// menos 15 pesos.
+// d. SeVaElJugador_(nroJugador), que borra todas las celdas que registran
+// una apuesta del jugador indicado.
+// e. DuplicarApuestasAl_(nroApostado), que duplica el monto de las
+// apuestas al número indicado.
+// f. DuplicarApuestasDelJugador_(nroJugador), que duplica el monto
+// de las apuestas que hizo el jugador indicado.
+// g. CambiarNroApostadoDel_Al_(nroAnterior, nroNuevo), que
+// cambia todas las apuestas de nroAnterior para que pasen a apostar a
+// nroNuevo.
+// h. AumentarEn_LaApuestaDelJugador_Al_(monto, nroJugador,
+// nroApostado), que agrega el monto indicado a la apuesta de este jugador
+// al número dado.
+// i. BuscarApuestaDelJugador_Al_(nroJugador, nroApostado), que
+// posiciona el cabezal en una celda que sea el registro de una apuesta del
+// jugador y número apostado indicados. Si no se ha registrado una apuesta
+// con estas características, el cabezal debe ubicarse en el extremo noreste.

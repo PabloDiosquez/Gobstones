@@ -1,0 +1,9 @@
+// BIBLIOTECA Escribir los procedimientos necesarios para generalizar la noción de
+// recorrido por celdas de un tablero, para que las direcciones de recorrido no estén
+// fijas. En particular, definir (como siempre, comenzando por los contratos):
+// a. IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria)
+// b. haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria)
+// c. IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria)
+// Al escribir las precondiciones, tener en cuenta que las direcciones no pueden ser
+// cualesquiera, sino que deben estar relacionadas… ¿Cuál es esa relación? ¿Cómo
+// expresarla?

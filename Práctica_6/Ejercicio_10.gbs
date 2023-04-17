@@ -19,6 +19,36 @@
 // metodología top-down).
 // a. AgregarApuestaDe_Al_Para_(monto, nroApostado, nroJugador)
 // que agrega la apuesta indicada en alguna celda vacía, la cual debe existir.
+
+procedure AgregarApuestaDe_Al_Para_(monto, nroApostado, nroJugador) {
+    /*
+        PROPÓSITO:
+            * Agrega la apuesta indicada en alguna celda vacía.
+        PARÁMETROS:
+            * monto: Número - Describe el monto de la apuesta.
+            * nroApostado: Número - Describe el número que apuesta el jugador.
+            * nroJugador: Número - Describe el número del jugador que hizo la apuesta.
+        PRECONDICIONES:
+            * Debe haber al menos una celda vacía.
+    */
+    IrAUnaCeldaVacia()
+    AgregarApuestaDe_Al_Para_EnLaCeldaActual(monto, nroApostado, nroJugador) 
+}
+
+procedure IrAUnaCeldaVacia() {
+    /*
+        PROPÓSITO: 
+            * Ubica el cabezal en una celda vacía.
+        PRECONDICIONES:
+            * Debe haber al menos una celda vacía en el tablero.
+        OBSERVACIONES:
+            * Recorrido de búsqueda por celdas en el tablero.
+    */
+    
+}
+
+
+
 // b. PagarYCobrarAl_(nroQueSalió), que pague las apuestas que
 // acertaron, y retire el total del dinero de las que no acertaron (solamente el
 // dinero). Se paga 5 veces el monto de la apuesta; por ejemplo, para una

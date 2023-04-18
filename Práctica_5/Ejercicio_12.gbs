@@ -329,3 +329,34 @@ function cantidadEnYuanesEquivalenteA_Pesos(cantidadEnPesos) {
     */
     return (cantidadEnPesos div 17)
 }
+
+// RealizarCorridaCambiaria(), que dado un tablero de 1 única fila y 10
+// columnas, donde cada celda representa una cuenta bancaria, se realiza una
+// corrida cambiaria, donde en cada cuenta se cambia la totalidad de los pesos
+// a dólares.
+
+procedure RealizarCorridaCambiaria() {
+    /*
+        PROPÓSITO:
+            * Realiza una corrida bancaria cambiando la totalidad de los pesos de cada cuenta a dólares, en un tablero de 1 única fila y 10 columnas.
+        PRECONDICIONES:
+            * Deben existir desde la celda actual, al menos 10 celdas lindantes a la misma en dirección Este.
+    */
+    repeat (9) {
+        CambiarDólaresAPesosEnLaCuentaActual()
+        ExtraerTodoEnMoneda_(Verde)
+        Mover(Este)
+    }
+    CambiarDólaresAPesosEnLaCuentaActual()
+    ExtraerTodoEnMoneda_(Verde)
+}
+
+procedure CambiarDólaresAPesosEnLaCuentaActual() {
+    /*
+        PROPÓSITO:
+            * Cambia el total de dólares de la celda actual a su equivalente en pesos.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    DepositarEnLaCuenta_Pesos(cantidadEnPesosEquivalenteA_Dólares(cantidadEnMoneda_EnLaCuentaActual(Verde)))
+}

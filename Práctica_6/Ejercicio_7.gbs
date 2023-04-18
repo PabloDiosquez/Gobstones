@@ -22,3 +22,18 @@ procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
     IrAlBorde(opuesto(dirPrincipal))
     IrAlBorde(opuesto(dirSecundaria))
 }
+
+// b.
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */  
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}

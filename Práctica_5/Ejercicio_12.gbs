@@ -237,3 +237,16 @@ procedure Sacar_DeColor_(n, c) {
 // cual se quiere convertir, remueve los pesos de la cuenta y agrega la moneda
 // solicitada. Si en la cuenta hubiera menos pesos de lo solicitado, se convierte
 // todo lo que haya.
+
+procedure ConvertirHasta_PesosA_(pesosAConvertir, moneda) {
+    /*
+        PROPÓSITO:
+            * Remueve **pesosAConvertir** pesos de la cuenta y agrega la cantidad equivalente de pesos en la moneda solicitada. Si en la cuenta hubiera menos pesos de lo solicitado, se convierte todo lo que haya.
+        PARÁMETROS:
+            * pesosAConvertir: Número
+            * moneda: Color
+        PRECONDICIONES:
+            * **pesosAConvertir** debe ser un número mayor a cero.
+    */
+    
+}

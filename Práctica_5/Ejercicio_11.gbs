@@ -64,6 +64,30 @@ function hayUnPlanetaRecto() {
         PRECONDICIONES:
             * Debe haber al menos 3 celdas lindantes a la actual en todas las direcciones.
     */
+    return (hayUnPlanetaHasta3DHacia_(Norte) || hayUnPlanetaHasta3DHacia_(Este) || hayUnPlanetaHasta3DHacia_(Sur) || hayUnPlanetaHasta3DHacia_(Oeste))
+}
+
+function hayUnPlanetaHasta3DHacia_(dirección) {
+    /*
+        PROPÓSITO:
+            * Indica si existe un planeta en la dirección **dirección** a una distancia menor o igual a 3 celdas.
+        PARÁMETROS:
+            * dirección: Dirección - La dirección hacia la cual mirar el planeta.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber al menos 3 celdas lindantes a la actual en la dirección dada.
+    */
+    return (hayUnPlanetaA_Hacia_(1, dirección) || hayUnPlanetaA_Hacia_(2, dirección) || hayUnPlanetaA_Hacia_(3, dirección))
+}
+
+function hayUnPlanetaRecto() {
+    /*
+        PROPÓSITO:
+            * Indica si existe un planeta en cualquiera de las direcciones, a cualquier   distancia desde la nave.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber al menos 3 celdas lindantes a la actual en todas las direcciones.
+    */
     return (hayUnPlanetaRectoA_DeDistancia(1) || hayUnPlanetaRectoA_DeDistancia(2) || hayUnPlanetaRectoA_DeDistancia(3))
 }
 

@@ -117,4 +117,3 @@ function ColorGusano() {
             * No tiene (es una función total).
     */
     return (Verde)
-}

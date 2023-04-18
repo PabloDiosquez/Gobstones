@@ -491,11 +491,52 @@ function cuántosDólaresSePuedenComprarCon_Pesos(cantidadDePesos) {
 // i. cuantosPesosSiVendo_Dólares(cantidadDeMonedaExtranjera)
 // que indica la cantidad de pesos a obtener si se venden (depositan) la
 // cantidad de dólares dada.
+
+function cuántosPesosSiVendo_Dólares(cantidadDeMonedaExtranjera) {
+    /*
+        PROPÓSITO:
+            * Indica la cantidad de pesos a obtener si se venden **cantidadDeMonedaExtranjera** dólares.
+        PARÁMETROS:
+            * cantidadDeMonedaExtranjera: Número
+        TIPO: Número.
+        PRECONDICIONES:
+            * **cantidadDeMonedaExtranjera** debe ser un número mayor o igual a cero.
+    */
+    return (cantidadDeMonedaExtranjera*80)
+}
 // j. cuantosPesosSiVendo_Euros(cantidadDeMonedaExtranjera) que
 // indica la cantidad de pesos a obtener si se venden (depositan) la cantidad de
 // euros dada.
+
+function cuántosPesosSiVendo_Euros(cantidadDeMonedaExtranjera) {
+    /*
+        PROPÓSITO:
+            * Indica la cantidad de pesos a obtener si se venden **cantidadDeMonedaExtranjera** euros.
+        PARÁMETROS:
+            * cantidadDeMonedaExtranjera: Número
+        TIPO: Número.
+        PRECONDICIONES:
+            * **cantidadDeMonedaExtranjera** debe ser un número mayor o igual a cero.
+    */
+    return (cantidadDeMonedaExtranjera*90)
+}
+
 // k. cuantosPesosSiVendo_Yuanes(cantidadDeMonedaExtranjera) que
 // indica la cantidad de pesos a obtener si se venden (depositan) la cantidad de
 // yuanes dada.
+
+function cuántosPesosSiVendo_Yuanes(cantidadDeMonedaExtranjera) {
+    /*
+        PROPÓSITO:
+            * Indica la cantidad de pesos a obtener si se venden **cantidadDeMonedaExtranjera** yuanes.
+        PARÁMETROS:
+            * cantidadDeMonedaExtranjera: Número
+        TIPO: Número.
+        PRECONDICIONES:
+            * **cantidadDeMonedaExtranjera** debe ser un número mayor o igual a cero.
+    */
+    return (cantidadDeMonedaExtranjera*12)
+}
+
 // l. Vuelva a realizar los procedimientos de la práctica anterior, ahora utilizando
 // las funciones realizadas en los puntos anteriores.

@@ -360,3 +360,86 @@ procedure CambiarDólaresAPesosEnLaCuentaActual() {
     */
     DepositarEnLaCuenta_Pesos(cantidadEnPesosEquivalenteA_Dólares(cantidadEnMoneda_EnLaCuentaActual(Verde)))
 }
+
+// ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪
+// Continuaremos utilizando el mismo dominio del banco de la práctica anterior. Esta
+// vez, vamos a realizar funciones que nos permitan abstraernos de la representación
+// subyacente, así como simplificar cálculos en nuestras operaciones.
+// Se pide entonces que realice las siguientes funciones:
+// a. pesos() que describe el color con el que se representan los pesos en el
+// tablero, Negro.
+
+function pesos() {
+    /*
+        PROPÓSITO:
+            * Describe el color con el que se representan los pesos en el tablero.
+        TIPO: Color
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Negro)
+}
+
+// b. dólares() que describe el color con el que se representan los dólares en el
+// tablero, Verde.
+
+function dolares() {
+    /*
+        PROPÓSITO:
+            * Describe el color con el que se representan los dólares en el tablero.
+        TIPO: Color
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Verde)
+}
+
+// c. euros() que describe el color con el que se representan los euros en el
+// tablero, Azul.
+
+function euros() {
+    /*
+        PROPÓSITO:
+            * Describe el color con el que se representan los euros en el tablero.
+        TIPO: Color
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Azul)
+}
+// d. yuanes() que describe el color con el que se representan los yuanes en el
+// tablero, Rojo.
+
+function yuanes(parámetro1, parámetro2) {
+    /*
+        PROPÓSITO:
+            * Describe el color con el que se representan los yuanes en el tablero.
+        TIPO: Color
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Rojo)
+}
+
+// e. ahorrosEn_(moneda) que dada una moneda, indica la cantidad de
+// unidades de esa moneda en la cuenta actual.
+// f. cuantosDolaresSePuedeComprarCon_Pesos(cantidadDePesos) que
+// indica la cantidad de dólares que se pueden comprar con una cantidad de
+// pesos dada.
+// g. cuantosEurosSePuedeComprarCon_Pesos(cantidadDePesos) que
+// indica la cantidad de euros que se pueden comprar con una cantidad de
+// pesos dada.
+// h. cuantosYuanesSePuedeComprarCon_Pesos(cantidadDePesos) que
+// indica la cantidad de yuanes que se pueden comprar con una cantidad de
+// pesos dada.
+// i. cuantosPesosSiVendo_Dólares(cantidadDeMonedaExtranjera)
+// que indica la cantidad de pesos a obtener si se venden (depositan) la
+// cantidad de dólares dada.
+// j. cuantosPesosSiVendo_Euros(cantidadDeMonedaExtranjera) que
+// indica la cantidad de pesos a obtener si se venden (depositan) la cantidad de
+// euros dada.
+// k. cuantosPesosSiVendo_Yuanes(cantidadDeMonedaExtranjera) que
+// indica la cantidad de pesos a obtener si se venden (depositan) la cantidad de
+// yuanes dada.
+// l. Vuelva a realizar los procedimientos de la práctica anterior, ahora utilizando
+// las funciones realizadas en los puntos anteriores.

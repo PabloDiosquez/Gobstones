@@ -423,15 +423,71 @@ function yuanes(parámetro1, parámetro2) {
 
 // e. ahorrosEn_(moneda) que dada una moneda, indica la cantidad de
 // unidades de esa moneda en la cuenta actual.
+
+function ahorrosEn_(moneda) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de unidades de la moneda dada en la cuenta actual.
+        PARÁMETROS:
+            * moneda: Color 
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (nroBolitas(moneda))
+}
+
 // f. cuantosDolaresSePuedeComprarCon_Pesos(cantidadDePesos) que
 // indica la cantidad de dólares que se pueden comprar con una cantidad de
 // pesos dada.
+
+function cuántosDólaresSePuedenComprarCon_Pesos(cantidadDePesos) {
+    /*
+        PROPÓSITO:
+            * Indica la cantidad de dólares que se pueden comprar con **cantidadDePesos** pesos.
+        PARÁMETROS:
+            * cantidadDePesos: Número
+        TIPO: Número.
+        PRECONDICIONES:
+            * **cantidadDePesos** debe ser un número mayor o igual a cero.
+    */
+    return (cantidadDePesos div 100)
+}
+
 // g. cuantosEurosSePuedeComprarCon_Pesos(cantidadDePesos) que
 // indica la cantidad de euros que se pueden comprar con una cantidad de
 // pesos dada.
+
+function cuántosEurosSePuedenComprarCon_Pesos(cantidadDePesos) {
+    /*
+        PROPÓSITO:
+            * Indica la cantidad de euros que se pueden comprar con **cantidadDePesos** pesos.
+        PARÁMETROS:
+            * cantidadDePesos: Número
+        TIPO: Número.
+        PRECONDICIONES:
+            * **cantidadDePesos** debe ser un número mayor o igual a cero.
+    */
+    return (cantidadDePesos div 115)
+}
+
 // h. cuantosYuanesSePuedeComprarCon_Pesos(cantidadDePesos) que
 // indica la cantidad de yuanes que se pueden comprar con una cantidad de
 // pesos dada.
+
+function cuántosDólaresSePuedenComprarCon_Pesos(cantidadDePesos) {
+    /*
+        PROPÓSITO:
+            * Indica la cantidad de yuanes que se pueden comprar con **cantidadDePesos** pesos.
+        PARÁMETROS:
+            * cantidadDePesos: Número
+        TIPO: Número.
+        PRECONDICIONES:
+            * **cantidadDePesos** debe ser un número mayor o igual a cero.
+    */
+    return (cantidadDePesos div 17)
+}
+
 // i. cuantosPesosSiVendo_Dólares(cantidadDeMonedaExtranjera)
 // que indica la cantidad de pesos a obtener si se venden (depositan) la
 // cantidad de dólares dada.

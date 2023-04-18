@@ -178,3 +178,62 @@ procedure ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda) {
         ExtraerTodoEnMoneda_(moneda)
     }
 }
+
+procedure ExtraerExactamente_EnMoneda_(cantidadAExtraer, moneda) {
+    /*
+        PROPÓSITO:
+            * Extrae exactamente **cantidadAExtraer** unidades de la moneda dada.
+        PARÁMETROS:
+            * cantidadAExtraer: Número
+            * moneda: Color
+        PRECONDICIONES:
+            * En la cuenta actual debe haber, al menos, **cantidadAExtraer** unidades de la moneda **moneda**.
+            * **cantidadAExtraer** debe ser un número mayor o igual a cero.
+    */
+    Sacar_DeColor_(cantidadAExtraer, moneda)
+}
+
+procedure ExtraerTodoEnMoneda_(moneda) {
+    /*
+        PROPÓSITO:
+            * Extrae todas las unidades de la moneda **moneda**.
+        PARÁMETROS:
+            * moneda: Color
+        PRECONDICIONES:
+            * No tiene
+    */
+    Sacar_DeColor_(cantidadEnLaCuentaActualEnMoneda_(moneda), moneda)
+}
+
+function cantidadEnLaCuentaActualEnMoneda_(moneda) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de la moneda dada que hay en la cuenta actual.
+        PARÁMETROS:
+            * moneda: Color
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (nroBolitas(moneda))
+}
+
+procedure Sacar_DeColor_(n, c) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    repeat (n) {
+        Sacar(c)
+    }
+}
+
+// ConvertirHasta_PesosA_(pesosAConvertir, moneda), que dada
+// una cantidad de pesos a convertir y un color que representa la moneda en la
+// cual se quiere convertir, remueve los pesos de la cuenta y agrega la moneda
+// solicitada. Si en la cuenta hubiera menos pesos de lo solicitado, se convierte
+// todo lo que haya.

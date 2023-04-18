@@ -1,0 +1,106 @@
+// Se puede modelar el paseo de un caminante por el tablero con las siguientes
+// consideraciones para la representación:
+// ● El caminante está representado por una a cuatro bolitas azules. La dirección
+// de su paseo es Norte si es una bolita, Este si son dos, Sur si son tres y Oeste
+// si son cuatro.
+// ● Las indicaciones de cambio de dirección se representan con bolitas verdes.
+// ● Si el caminante llega a una celda con una de estas indicaciones, debe
+// cambiar de dirección. La cantidad de bolitas verdes indica la nueva dirección,
+// con la misma representación de direcciones dadas para el caminante.
+// ● El caminante deja una huella de bolitas negras a su paso, una por cada paso.
+// ● La meta se representa con cualquier número de bolitas rojas. El paseo del
+// caminante termina si llega a la meta.
+// ● La celda actual siempre se encuentra sobre el caminante.
+// ● La única celda con bolitas azules es la del caminante.
+// ● Todas las celdas tienen un máximo de 4 bolitas verdes.
+// ● Las indicaciones llevan al caminante a la meta.
+// Como ayuda para guiar la división en subtareas, ya se realizó un análisis top-down
+// de la estrategia, y se eligieron ciertas subtareas. Se pide, entonces, implementar los
+// procedimientos y funciones que expresan dichas subtareas, que son los indicados a
+// continuación. Observar que en su gran mayoría, las tareas están presentadas en
+// forma top-down, por lo que es interesante mirarlas todas antes de empezar a
+// implementar, y definir todos los contratos antes de proceder a escribir el código de
+// cada una, ya que las de niveles más alto se pueden servir de las de niveles más
+// bajos. 
+// Además, puede tomarse la siguiente función como primitiva:
+//      function direcciónDelCódigo_(código)
+            /* PROPÓSITO:
+            describir la dirección correspondiente al
+            código dado
+            PRECONDICIONES:
+            * el código está entre 1 y 4
+            PARÁMETROS:
+            * código: Número. El número que codifica la
+            dirección descripta
+            */
+// Al escribir los contratos, no olvidar establecer las precondiciones necesarias (ya que
+// las mismas no siempre se explicitan en los enunciados).
+
+// a. caminante(), indicador(), huella() y meta(), que describen los
+// colores con los que se representa cada uno de los elementos nombrados.
+
+function caminante() {
+    /*
+        PROPÓSITO:
+            * Describe el color que representa al caminante.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Azul)
+}
+
+function indicador() {
+    /*
+        PROPÓSITO:
+            * Describe el color que representa el cambio de dirección del caminante.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Verde)
+}
+
+function huella() {
+    /*
+        PROPÓSITO:
+            * Describe el color que representa a una huella dejada por el caminante.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Negro)
+}
+
+function meta() {
+    /*
+        PROPÓSITO:  
+            * Describe el color que representa la meta.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (Rojo)
+}
+
+// b. LlevarAlCaminanteALaMeta() que, suponiendo que en el tablero está
+// representado un escenario válido para el caminante, lleva al caminante hasta
+// la meta.
+// c. estáEnLaMeta() que indica si el caminante está o no en la meta.
+
+function estáEnLaMeta() {
+    /*
+        PROPÓSITO:
+            * Indica si el caminante está o no en la meta.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (hayBolitas(meta()))
+}
+
+// d. DarUnPaso() que realiza un paso en el paseo del caminante, de acuerdo a
+// las siguientes reglas.
+// i. Si el caminante ya llegó a destino, no hay nada que hacer.
+// ii. Si hay que cambiar la dirección, lo hace.
+// iii. Finalmente, se mueve en la dirección correspondiente.

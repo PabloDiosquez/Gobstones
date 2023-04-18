@@ -1,3 +1,33 @@
+// En este ejercicio utilizaremos el tablero de Gobstones para representar cuentas
+// bancarias. Cada celda representará a una cuenta bancaria, y en cada una de ellas
+// puede haber dinero en distintas monedas, que representaremos con distintos
+// colores:
+// ● bolitas negras para pesos argentinos
+// ● bolitas verdes para dólares estadounidenses.
+// ● bolitas azules para euros.
+// ● bolitas rojas para yuanes chinos.
+// Se pueden hacer tres operaciones: depósitos, extracciones y conversiones a divisa
+// extranjera. Las extracciones pueden hacerse en cualquier moneda, pero los
+// depósitos siempre serán en pesos.
+
+// Se pueden hacer tres operaciones: depósitos, extracciones y conversiones a divisa
+// extranjera. Las extracciones pueden hacerse en cualquier moneda, pero los
+// depósitos siempre serán en pesos.
+// En el caso en que se quiera depositar un monto en una moneda extranjera, se
+// aplicará automáticamente la conversión a pesos según el precio de venta dado en la
+// siguiente tabla:
+// Precios de venta
+// 1 dólar 80 pesos
+// 1 euro 90 pesos
+// 1 yuan 12 pesos
+// En cuanto a la conversión a divisa extranjera, el banco actualmente aplica las
+// siguientes tarifas para la compra de divisa:
+// Precios de compra
+// 100 pesos 1 dólar
+// 115 pesos 1 euro
+// 17 pesos 1 yuan
+// Realizar los siguientes procedimientos para poder manipular la cuenta:
+
 // Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda),
 // que dada una cantidad de dinero a depositar y un color que representa la
 // moneda en la que está representado ese monto, agrega a la cuenta la

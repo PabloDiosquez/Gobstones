@@ -16,16 +16,20 @@
 // En el caso en que se quiera depositar un monto en una moneda extranjera, se
 // aplicará automáticamente la conversión a pesos según el precio de venta dado en la
 // siguiente tabla:
+
 // Precios de venta
 // 1 dólar 80 pesos
 // 1 euro 90 pesos
 // 1 yuan 12 pesos
+
 // En cuanto a la conversión a divisa extranjera, el banco actualmente aplica las
 // siguientes tarifas para la compra de divisa:
+
 // Precios de compra
 // 100 pesos 1 dólar
 // 115 pesos 1 euro
 // 17 pesos 1 yuan
+
 // Realizar los siguientes procedimientos para poder manipular la cuenta:
 
 // Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda),

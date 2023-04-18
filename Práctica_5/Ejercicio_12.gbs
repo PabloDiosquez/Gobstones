@@ -248,5 +248,79 @@ procedure ConvertirHasta_PesosA_(pesosAConvertir, moneda) {
         PRECONDICIONES:
             * **pesosAConvertir** debe ser un número mayor a cero.
     */
-    
+    if (cantidadEnLaCuentaActualEnMoneda_(Negro) >= pesosAConvertir){
+        ExtraerExactamente_EnMoneda_(pesosAConvertir,Negro)
+        if (esDolar(moneda)){
+            AgregarALaCuenta_EnMoneda_(cantidadEnDólaresEquivalenteA_Pesos(pesosAConvertir),moneda)
+        }
+        elseif (esEuro(moneda)) {
+            AgregarALaCuenta_EnMoneda_(cantidadEnEurosEquivalenteA_Pesos(pesosAConvertir),moneda)
+        }
+        elseif(esYuan(moneda)){
+            AgregarALaCuenta_EnMoneda_(cantidadEnYuanesEquivalenteA_Pesos(pesosAConvertir),moneda)
+        }
+    }
+    else {
+        ExtraerTodoEnMoneda_(Negro)
+        if (esDolar(moneda)){
+            AgregarALaCuenta_EnMoneda_(cantidadEnDólaresEquivalenteA_Pesos(cantidadEnLaCuentaActualEnMoneda_(Negro)), Verde)
+        }
+        elseif (esEuro(moneda)) {
+            AgregarALaCuenta_EnMoneda_(cantidadEnEurosEquivalenteA_Pesos(cantidadEnLaCuentaActualEnMoneda_(Negro)), Azul)
+        }
+        elseif(esYuan(moneda)){
+            AgregarALaCuenta_EnMoneda_(cantidadEnYuanesEquivalenteA_Pesos(cantidadEnLaCuentaActualEnMoneda_(Negro)), Rojo)
+        }
+    }
+}
+
+procedure AgregarALaCuenta_EnMoneda_(cantidadAAgregar, moneda) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    Poner_DeColor_(cantidadAAgregar, moneda)
+}
+
+function cantidadEnDólaresEquivalenteA_Pesos(cantidadEnPesos) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (cantidadEnPesos div 100)
+}
+
+function cantidadEnEurosEquivalenteA_Pesos(cantidadEnPesos) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (cantidadEnPesos div 115)
+}
+
+function cantidadEnYuanesEquivalenteA_Pesos(cantidadEnPesos) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    return (cantidadEnPesos div 17)
 }

@@ -51,7 +51,7 @@ procedure SacarTodasLasDeColor_(colorASacar) {
 procedure IrAlBorde_(dirección) {
     /*
         PROPÓSITO:
-            * Mueve el cabezal al borde **dirección**.
+            * Ubica el cabezal al borde **dirección**.
         PARÁMETROS:
             * dirección: Dirección - Describe la dirección hacia donde debe moverse el cabezal. 
         PRECONDICIONES:

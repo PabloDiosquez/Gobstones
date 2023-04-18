@@ -200,7 +200,36 @@ function direcciónIndicada() {
 // j. Cambiar_ParaImitar_(colorACambiar, colorAImitar) que
 // cambia la cantidad de bolitas de colorACambiar según la cantidad de
 // bolitas de colorAImitar que haya en la celda actual.
+
+procedure Cambiar_ParaImitar_(colorACambiar, colorAImitar){
+    /*
+        PROPÓSITO:
+            * Cambia la cantidad de bolitas de **colorACambiar** según la cantidad de
+              bolitas de **colorAImitar** que haya en la celda actual.
+        PARÁMETROS:
+            * colorACambiar: Color - Describe el color de las bolitas a cambiar.
+            * colorAImitar: Color - Describe el color de las bolitas a imitar.
+        PRECONDICIONES:
+            * Los colores dados deben ser distintos.
+    */
+}
+
 // k. Mover_Bolitas_Al_(cantidad, color, dirección) que “mueve”
 // (es decir, quita de una celda para llevar a la otra) la cantidad indicada de
 // bolitas de color a la celda lindante en la dirección dada, y deja el
 // cabezal en esa celda. Suponer que hay una celda lindante en esa dirección.
+
+procedure Mover_Bolitas_Al_(cantidad, color, dirección) {
+    /*
+        PROPÓSITO: 
+            * Quita de una celda para llevar a la otra lindante en la dirección **dirección**, la cantidad indicada de bolitas de color **color**. 
+        PARÁMETROS:
+            * cantidad: Número
+            * color: Color
+            * dirección: Dirección
+        PRECONDICIONES:
+            * Debe haber al menos **cantidad** de bolitas de color **color** en la celda actual.
+            * Debe haber al menos una celda lindante a la actual en la dirección **dirección**.
+    */
+    
+}

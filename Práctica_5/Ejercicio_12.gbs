@@ -41,7 +41,7 @@
 procedure Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda) {
     /*
         PROPÓSITO:
-            * Agrega a la cuenta actual la cantidad de pesos equivalente a la cantidad a depositar dada.
+            * Agrega a la cuenta actual la cantidad de pesos equivalente a la cantidad a depositar dada, de acuerdo con el precio de venta.
         PARÁMETROS:
             * cantidadADepositar: Número.
             * moneda: Color.
@@ -50,26 +50,26 @@ procedure Depositar_EnMoneda_ComoPesos(cantidadADepositar, moneda) {
     */
     if (esDolar(moneda))
     then {
-        AgregarALaCuenta_Pesos(cantidadEnPesosEquivalenteA_Dólares(cantidadADepositar))
+        DepositarEnLaCuenta_Pesos(cantidadEnPesosEquivalenteA_Dólares(cantidadADepositar))
     }
     else if (esEuro(moneda))
     then {
-        AgregarALaCuenta_Pesos(cantidadEnPesosEquivalenteA_Euros(cantidadADepositar))
+        DepositarEnLaCuenta_Pesos(cantidadEnPesosEquivalenteA_Euros(cantidadADepositar))
     }
     else if (esYuan(moneda))
     then {
-        AgregarALaCuenta_Pesos(cantidadEnPesosEquivalenteA_Yuanes(cantidadADepositar))
+        DepositarEnLaCuenta_Pesos(cantidadEnPesosEquivalenteA_Yuanes(cantidadADepositar))
     }
 }
 
-procedure AgregarALaCuenta_Pesos(cantidad) {
+procedure DepositarEnLaCuenta_Pesos(cantidadDePesos) {
     /*
         PROPÓSITO:
-            * Agrega a la cuenta actual **cantidad** pesos.
+            * Agrega a la cuenta actual **cantidadDePesos** pesos.
         PARÁMETROS:
-            * cantidad: Número.
+            * cantidadDePesos: Número.
         PRECONDICIONES:
-            * **cantidad** debe ser mayor a cero.
+            * **cantidadDePesos** debe ser mayor a cero.
     */
     Poner_DeColor_(cantidad, Negro)
 }
@@ -121,7 +121,7 @@ function esDolar(moneda) {
             * moneda: Color
         TIPO: Booleano.
         PRECONDICIONES:
-            * No tiene.
+            * No tiene (es una función total).
     */
     return (moneda == Verde)
 }
@@ -134,7 +134,7 @@ function esEuro(moneda) {
             * moneda: Color
         TIPO: Booleano.
         PRECONDICIONES:
-            * No tiene.
+            * No tiene (es una función total).
     */  
     return (moneda == Azul)
 }
@@ -147,13 +147,17 @@ function esYuan(moneda) {
             * moneda: Color
         TIPO: Booleano.
         PRECONDICIONES:
-            * No tiene.
+            * No tiene (es una función total).
     */
     return (moneda == Rojo)
 }
 
 procedure Poner_DeColor_(n,c) {
-    repeat(n) {Poner(c)}
+    /*
+    */
+    repeat(n) {
+        Poner(c)
+    }
 }
 
 // ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda), que dada
@@ -164,14 +168,14 @@ procedure Poner_DeColor_(n,c) {
 procedure ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda) {
     /*
         PROPÓSITO:
-            *  Remueve de la cuenta la cantidad que se indica. Si no hubiera tanto dinero como el solicitado, se extrae todo lo que haya.
+            *  Extrae de la cuenta la cantidad que se indica en la moneda dada. Si no hubiera tanto dinero como el solicitado, se extrae todo lo que haya.
         PARÁMETROS:
             * cantidadAExtraer: Número
             * moneda: Color
         PRECONDICIONES:
             * **cantidadAExtraer** debe ser un número mayor o igual a cero.
     */
-    if (cantidadEnLaCuentaActualEnMoneda_(moneda) >= cantidadAExtraer){
+    if (cantidadEnMoneda_EnLaCuentaActual(moneda) >= cantidadAExtraer){
         ExtraerExactamente_EnMoneda_(cantidadAExtraer, moneda)
     }
     else {
@@ -187,7 +191,7 @@ procedure ExtraerExactamente_EnMoneda_(cantidadAExtraer, moneda) {
             * cantidadAExtraer: Número
             * moneda: Color
         PRECONDICIONES:
-            * En la cuenta actual debe haber, al menos, **cantidadAExtraer** unidades de la moneda **moneda**.
+            * En la cuenta actual debe haber, al menos, **cantidadAExtraer** unidades de la moneda dada.
             * **cantidadAExtraer** debe ser un número mayor o igual a cero.
     */
     Sacar_DeColor_(cantidadAExtraer, moneda)
@@ -196,16 +200,16 @@ procedure ExtraerExactamente_EnMoneda_(cantidadAExtraer, moneda) {
 procedure ExtraerTodoEnMoneda_(moneda) {
     /*
         PROPÓSITO:
-            * Extrae todas las unidades de la moneda **moneda**.
+            * Extrae todas las unidades de la moneda dada.
         PARÁMETROS:
             * moneda: Color
         PRECONDICIONES:
             * No tiene
     */
-    Sacar_DeColor_(cantidadEnLaCuentaActualEnMoneda_(moneda), moneda)
+    Sacar_DeColor_(cantidadEnMoneda_EnLaCuentaActual(moneda), moneda)
 }
 
-function cantidadEnLaCuentaActualEnMoneda_(moneda) {
+function cantidadEnMoneda_EnLaCuentaActual(moneda) {
     /*
         PROPÓSITO:
             * Describe la cantidad de la moneda dada que hay en la cuenta actual.
@@ -220,12 +224,6 @@ function cantidadEnLaCuentaActualEnMoneda_(moneda) {
 
 procedure Sacar_DeColor_(n, c) {
     /*
-        PROPÓSITO:  ....
-        PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        PRECONDICIONES:
-            * ....
     */
     repeat (n) {
         Sacar(c)
@@ -241,7 +239,7 @@ procedure Sacar_DeColor_(n, c) {
 procedure ConvertirHasta_PesosA_(pesosAConvertir, moneda) {
     /*
         PROPÓSITO:
-            * Remueve **pesosAConvertir** pesos de la cuenta y agrega la cantidad equivalente de pesos en la moneda solicitada. Si en la cuenta hubiera menos pesos de lo solicitado, se convierte todo lo que haya.
+            * Remueve **pesosAConvertir** pesos de la cuenta actual y agrega en la moneda solicitada la cantidad equivalente en pesos. Si en la cuenta hubiera menos pesos de lo solicitado, se convierte todo lo que haya.
         PARÁMETROS:
             * pesosAConvertir: Número
             * moneda: Color
@@ -250,77 +248,84 @@ procedure ConvertirHasta_PesosA_(pesosAConvertir, moneda) {
     */
     if (cantidadEnLaCuentaActualEnMoneda_(Negro) >= pesosAConvertir){
         ExtraerExactamente_EnMoneda_(pesosAConvertir,Negro)
-        if (esDolar(moneda)){
-            AgregarALaCuenta_EnMoneda_(cantidadEnDólaresEquivalenteA_Pesos(pesosAConvertir),moneda)
-        }
-        elseif (esEuro(moneda)) {
-            AgregarALaCuenta_EnMoneda_(cantidadEnEurosEquivalenteA_Pesos(pesosAConvertir),moneda)
-        }
-        elseif(esYuan(moneda)){
-            AgregarALaCuenta_EnMoneda_(cantidadEnYuanesEquivalenteA_Pesos(pesosAConvertir),moneda)
-        }
+        DepositarEnLaCuentaMoneda_EquivalenteA_Pesos(moneda, pesosAConvertir)
     }
     else {
         ExtraerTodoEnMoneda_(Negro)
-        if (esDolar(moneda)){
-            AgregarALaCuenta_EnMoneda_(cantidadEnDólaresEquivalenteA_Pesos(cantidadEnLaCuentaActualEnMoneda_(Negro)), Verde)
-        }
-        elseif (esEuro(moneda)) {
-            AgregarALaCuenta_EnMoneda_(cantidadEnEurosEquivalenteA_Pesos(cantidadEnLaCuentaActualEnMoneda_(Negro)), Azul)
-        }
-        elseif(esYuan(moneda)){
-            AgregarALaCuenta_EnMoneda_(cantidadEnYuanesEquivalenteA_Pesos(cantidadEnLaCuentaActualEnMoneda_(Negro)), Rojo)
-        }
+        DepositarEnLaCuentaMoneda_EquivalenteA_Pesos(moneda, cantidadEnMoneda_EnLaCuentaActual(Negro))
     }
 }
 
-procedure AgregarALaCuenta_EnMoneda_(cantidadAAgregar, moneda) {
+procedure DepositarEnLaCuentaMoneda_EquivalenteA_Pesos(moneda, cantidadDePesos) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Deposita en la cuenta actual una cantidad equivalente a **cantidadDePesos** en la moneda dada, según el precio de venta.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+            * moneda: Color
+            * cantidadDePesos: Número
         PRECONDICIONES:
-            * ....
+            * **cantidadDePesos** debe ser un número mayor o igual a cero.
     */
-    Poner_DeColor_(cantidadAAgregar, moneda)
+    if (esDolar(moneda)){
+            DepositarEnLaCuenta_EnMoneda_(cantidadEnDólaresEquivalenteA_Pesos(cantidadDePesos),moneda)
+        }
+        elseif (esEuro(moneda)) {
+            DepositarEnLaCuenta_EnMoneda_(cantidadEnEurosEquivalenteA_Pesos(cantidadDePesos),moneda)
+        }
+        elseif(esYuan(moneda)){
+            DepositarEnLaCuenta_EnMoneda_(cantidadEnYuanesEquivalenteA_Pesos(cantidadDePesos),moneda)
+    }
 }
+
+procedure DepositarEnLaCuenta_EnMoneda_(cantidadADepositar, moneda) {
+    /*
+        PROPÓSITO:
+            * Deposita en la cuenta actual **cantidadADepositar** en la moneda dada.
+        PARÁMETROS:
+            * cantidadAAgregar: Número
+            * moneda: Color
+        PRECONDICIONES:
+            * **cantidadAAgregar** debe ser un número mayor o igual a cero.
+    */
+    Poner_DeColor_(cantidadADepositar, moneda)
+}
+
 
 function cantidadEnDólaresEquivalenteA_Pesos(cantidadEnPesos) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Describe la cantidad en dólares equivalente a **cantidadEnPesos** pesos de acuerdo al precio de venta.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * cantidadEnPesos: Número - Describe la cantidad de pesos para el cálculo de la equivalencia en dólares.
+        TIPO: Número.
         PRECONDICIONES:
-            * ....
+            * **cantidadEnPesos** debe ser un número mayor o igual a cero.
     */
     return (cantidadEnPesos div 100)
 }
 
 function cantidadEnEurosEquivalenteA_Pesos(cantidadEnPesos) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Describe la cantidad en euros equivalente a **cantidadEnPesos** pesos de acuerdo al precio de venta.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * cantidadEnPesos: Número - Describe la cantidad de pesos para el cálculo de la equivalencia en euros.
+        TIPO: Número.
         PRECONDICIONES:
-            * ....
+            * **cantidadEnPesos** debe ser un número mayor o igual a cero.
     */
     return (cantidadEnPesos div 115)
 }
 
 function cantidadEnYuanesEquivalenteA_Pesos(cantidadEnPesos) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Describe la cantidad en yuanes equivalente a **cantidadEnPesos** pesos de acuerdo al precio de venta.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * cantidadEnPesos: Número - Describe la cantidad de pesos para el cálculo de la equivalencia en yuanes.
+        TIPO: Número.
         PRECONDICIONES:
-            * ....
+            * **cantidadEnPesos** debe ser un número mayor o igual a cero.
     */
     return (cantidadEnPesos div 17)
 }

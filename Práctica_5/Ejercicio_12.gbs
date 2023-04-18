@@ -161,3 +161,20 @@ procedure Poner_DeColor_(n,c) {
 // que se va a extraer, remueve de la cuenta la cantidad que se indica. Si no
 // hubiera tanto dinero como el solicitado, se extrae todo lo que haya.
 
+procedure ExtraerHasta_EnMoneda_(cantidadAExtraer, moneda) {
+    /*
+        PROPÓSITO:
+            *  Remueve de la cuenta la cantidad que se indica. Si no hubiera tanto dinero como el solicitado, se extrae todo lo que haya.
+        PARÁMETROS:
+            * cantidadAExtraer: Número
+            * moneda: Color
+        PRECONDICIONES:
+            * **cantidadAExtraer** debe ser un número mayor o igual a cero.
+    */
+    if (cantidadEnLaCuentaActualEnMoneda_(moneda) >= cantidadAExtraer){
+        ExtraerExactamente_EnMoneda_(cantidadAExtraer, moneda)
+    }
+    else {
+        ExtraerTodoEnMoneda_(moneda)
+    }
+}

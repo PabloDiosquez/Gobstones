@@ -128,27 +128,27 @@ function esDolar(moneda) {
 
 function esEuro(moneda) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Indica si la moneda **moneda** es el euro.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * moneda: Color
+        TIPO: Booleano.
         PRECONDICIONES:
-            * ....
+            * No tiene.
     */  
     return (moneda == Azul)
 }
 
 function esYuan(moneda) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Indica si la moneda **moneda** es el yuan.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * moneda: Color
+        TIPO: Booleano.
         PRECONDICIONES:
-            * ....
-    */  
+            * No tiene.
+    */
     return (moneda == Rojo)
 }
 
@@ -160,3 +160,4 @@ procedure Poner_DeColor_(n,c) {
 // una cantidad de dinero a extraer y un color que representa la moneda en la
 // que se va a extraer, remueve de la cuenta la cantidad que se indica. Si no
 // hubiera tanto dinero como el solicitado, se extrae todo lo que haya.
+

@@ -20,7 +20,7 @@
 // continuación. Observar que en su gran mayoría, las tareas están presentadas en
 // forma top-down, por lo que es interesante mirarlas todas antes de empezar a
 // implementar, y definir todos los contratos antes de proceder a escribir el código de
-// cada una, ya que las de niveles más alto se pueden servir de las de niveles más
+// cada una, ya que las de niveles más altos se pueden servir de las de niveles más
 // bajos. 
 // Además, puede tomarse la siguiente función como primitiva:
 //      function direcciónDelCódigo_(código)
@@ -53,7 +53,7 @@ function caminante() {
 function indicador() {
     /*
         PROPÓSITO:
-            * Describe el color que representa el cambio de dirección del caminante.
+            * Describe el color que representa el indicador de cambio de dirección del caminante.
         TIPO: Color.
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -75,7 +75,7 @@ function huella() {
 function meta() {
     /*
         PROPÓSITO:  
-            * Describe el color que representa la meta.
+            * Describe el color que representa la meta del camino.
         TIPO: Color.
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -120,7 +120,7 @@ function estáEnLaMeta() {
 procedure DarUnPaso() {
     /*
         PROPÓSITO:
-            * Realiza un paso en el paseo del caminante, dejando éste una huella en la celda anterior.
+            * Realiza un paso en el paseo del caminante, dejando una huella del caminante en la celda anterior.
         PRECONDICIONES:
             * Debe existir una celda para poder dar un paso.
     */
@@ -178,8 +178,7 @@ function hayIndicadorDeCambioDeDirección() {
         PRECONDICIONES:
             * No tiene (es una función total).
     */
-    
-    return ()
+    return (hayBolitas(indicador()))
 }
 
 // i. direcciónIndicada() que describe la dirección en la que está mirando
@@ -222,8 +221,7 @@ procedure Cambiar_ParaImitar_(colorACambiar, colorAImitar){
 procedure Mover_Bolitas_Al_(cantidad, color, dirección) {
     /*
         PROPÓSITO: 
-            * Quita de una celda para llevar a la otra lindante en la dirección **dirección**, la cantidad indicada de bolitas de color **color**. 
-        PARÁMETROS:
+            * Quita la cantidad indicada de bolitas de color **color** de celda la celda actual para llevarlas a la otra lindante en la dirección **dirección**.        PARÁMETROS:
             * cantidad: Número
             * color: Color
             * dirección: Dirección

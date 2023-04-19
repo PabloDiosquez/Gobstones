@@ -94,7 +94,10 @@ procedure LlevarAlCaminanteALaMeta() {
         PRECONDICIONES:
             * En el tablero está representado un escenario válido para el caminante.
     */
-    
+    while (not estáEnLaMeta()) {
+        CambiarDeDirecciónSiHayIndicador()
+        DarUnPaso()
+    }
 }
 
 // c. estáEnLaMeta() que indica si el caminante está o no en la meta.
@@ -124,7 +127,12 @@ procedure DarUnPaso() {
         PRECONDICIONES:
             * Debe existir una celda para poder dar un paso.
     */
-    
+    if (not estáEnLaMeta()){
+        CambiarDeDirecciónSiHayIndicador()
+        DejarHuella()
+        MoverAlCaminanteAl_(direcciónIndicada())
+    }
+    DejarHuella()
 }
 
 // e. CambiarDeDirecciónSiHayIndicador() que cambia la dirección del
@@ -137,7 +145,9 @@ procedure CambiarDeDirecciónSiHayIndicador() {
         PRECONDICIONES:
             * No tiene.
     */
-    
+    if (hayIndicadorDeCambioDeDirección()) {
+        Cambiar_ParaImitar_(caminante(), indicador())
+    }
 }
 
 // f. DejarHuella() que deja una huella en la celda actual.
@@ -165,7 +175,7 @@ procedure MoverAlCaminanteAl_(dirección) {
         PRECONDICIONES:
             * Debe existir al menos una celda en la dirección **dirección**.
     */
-    
+    Mover_Bolitas_Al_(nroBolitas(caminante), caminante(), direcciónIndicada())
 }
 
 // h. hayIndicadorDeCambioDeDirección() que describe verdadero cuando en la celda actual hay un indicador de dirección.
@@ -193,7 +203,7 @@ function direcciónIndicada() {
             * No tiene (es una función total).
     */
     
-    return ()
+    return (direcciónDelCódigo_(caminante()))
 }
 
 // j. Cambiar_ParaImitar_(colorACambiar, colorAImitar) que

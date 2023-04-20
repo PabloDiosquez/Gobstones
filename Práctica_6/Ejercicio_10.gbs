@@ -20,6 +20,40 @@
 // a. AgregarApuestaDe_Al_Para_(monto, nroApostado, nroJugador)
 // que agrega la apuesta indicada en alguna celda vacía, la cual debe existir.
 
+function colorJugador() {
+    /*
+        PROPÓSITO:
+            * Describe el color que representa al jugador que hizo la apuesta.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (Rojo)
+}
+
+function colorNroApostado() {
+    /*
+        PROPÓSITO:
+            * Describe el color que representa el número apostado.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * No tiene.
+    */
+    
+    return (Azul)
+}
+
+function colorMonto() {
+    /*
+        PROPÓSITO:
+            * Describe el color que representa al monto apostado.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    return (Verde)
+}
+
 procedure AgregarApuestaDe_Al_Para_(monto, nroApostado, nroJugador) {
     /*
         PROPÓSITO:
@@ -64,6 +98,42 @@ procedure AgregarApuestaDe_Al_Para_EnLaCeldaActual(monto, nroApostado, nroJugado
     AgregarJugador_(nroJugador)
     AgregarNúmeroApostado_(nroApostado)
     AgregarMonto_(monto)
+}
+
+procedure AgregarJugador_(nroJugador) {
+    /*
+        PROPÓSITO:
+            * Agrega el jugador número **nroJugador** en la celda actual.
+        PARÁMETROS:
+            * nroJugador: Número - Describe el número del jugador que hizo la apuesta..
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+    */
+    Poner_DeColor(nroJugador, colorJugador())
+}
+
+procedure AgregarNúmeroApostado_(nroApostado) {
+    /*
+        PROPÓSITO:
+            * Agrega el número apostado.
+        PARÁMETROS:
+            * nroApostado: Número - Describe el número que apuesta el jugador.
+        PRECONDICIONES:
+            * Debe haber un jugador en la celda actual.
+    */
+    Poner_DeColor(nroApostado, colorNroApostado())
+}
+
+procedure AgregarMonto_(monto) {
+    /*
+        PROPÓSITO:
+            * Agrega el monto de la apuesta.
+        PARÁMETROS:
+            * monto: Número - Describe el monto de la apuesta.
+        PRECONDICIONES:
+            * Debe haber un jugador en la celda actual.
+    */
+    Poner_DeColor(monto, colorMonto())
 }
 
 // b. PagarYCobrarAl_(nroQueSalió), que pague las apuestas que

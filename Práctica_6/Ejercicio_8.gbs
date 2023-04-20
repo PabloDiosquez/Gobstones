@@ -166,11 +166,12 @@ procedure CambiarDeDirecciónDelCaminanteALaDelIndicador() {
 procedure MoverAlCaminanteHaciaDondeMira() {
     /*
         PROPÓSITO:
-            * Mueve al caminante en la dirección hacia donde mira.
+            * Mueve al caminante un paso en la dirección hacia donde está mirando.
         PRECONDICIONES:
             * El cabezal debe estar sobre el caminante.
+            * Debe haber al menos una celda en al dirección hacia donde el caminante mira.
     */
-    MoverAlCaminanteAl_(direcciónHaciaDondeMira())
+    MoverAlCaminanteAl_(direcciónHaciaDondeMiraElCaminante())
 }
 
 // f. DejarHuella() que deja una huella en la celda actual.
@@ -196,9 +197,10 @@ procedure MoverAlCaminanteAl_(dirección) {
         PARÁMETROS:
             * dirección: Dirección - Describe la dirección en la que debe moverse el caminante.
         PRECONDICIONES:
+            * El cabezal está sobre el caminante.
             * Debe existir al menos una celda en la dirección **dirección**.
     */
-    Mover_Bolitas_Al_(nroBolitas(caminante), caminante(), direcciónIndicada())
+    Mover_Bolitas_Al_(nroBolitas(caminante()), caminante(), dirección)
 }
 
 // h. hayIndicadorDeCambioDeDirección() que describe verdadero cuando en la celda actual hay un indicador de dirección.
@@ -206,7 +208,7 @@ procedure MoverAlCaminanteAl_(dirección) {
 function hayIndicadorDeCambioDeDirección() {
     /*
         PROPÓSITO:
-            * Indica si existe un indicador de cambio de dirección en la celda actual
+            * Indica si hay un indicador de cambio de dirección en la celda actual.
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -217,16 +219,27 @@ function hayIndicadorDeCambioDeDirección() {
 // i. direcciónIndicada() que describe la dirección en la que está mirando
 // el caminante.
 
-function direcciónHaciaDondeMira() {
+function direcciónHaciaDondeMiraElCaminante() {
     /*
         PROPÓSITO:
-            * Describe la dirección en la que está mirando el caminante.
+            * Describe la dirección en la que mira el caminante.
         TIPO: Dirección.
         PRECONDICIONES:
-            * No tiene (es una función total).
+            * El cabezal debe estar sobre el caminante.
     */
     
-    return (direcciónDelCódigo_(caminante()))
+    return (direcciónDelCódigo_(códigoDelCaminante()))
+}
+
+function códigoDelCaminante() {
+    /*
+        PROPÓSITO:
+            * Describe el código del caminante.
+        TIPO: Número.
+        PRECONDICIONES:
+            * El cabezal debe estar en la celda actual.
+    */
+    return (nroBolitas(caminante()))
 }
 
 // j. Cambiar_ParaImitar_(colorACambiar, colorAImitar) que
@@ -256,13 +269,16 @@ procedure Cambiar_ParaImitar_(colorACambiar, colorAImitar){
 procedure Mover_Bolitas_Al_(cantidad, color, dirección) {
     /*
         PROPÓSITO: 
-            * Quita la cantidad indicada de bolitas de color **color** de celda la celda actual para llevarlas a la otra lindante en la dirección **dirección**.        PARÁMETROS:
-            * cantidad: Número
-            * color: Color
-            * dirección: Dirección
+            * Mueve **cantidad** de bolitas de color **color** a la celda lindante al **dirección**. El cabezal termina en la celda lindante.
+        PARÁMETROS:
+            * cantidad: Número - cantidad de bolitas a mover.
+            * color: Color - color de las bolitas a mover.
+            * dirección: Dirección - dirección hacia donde se deben mover las bolitas.
         PRECONDICIONES:
             * Debe haber al menos **cantidad** de bolitas de color **color** en la celda actual.
             * Debe haber al menos una celda lindante a la actual en la dirección **dirección**.
     */
-    
+    Sacar_DeColor_(cantidad, color)
+    Mover(dirección)
+    Poner_DeColor_(cantidad, color)
 }

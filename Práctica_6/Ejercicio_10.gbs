@@ -65,6 +65,16 @@ function nroApostado() {
     return (nroBolitas(colorNroApostado()))
 }
 
+function monto() {
+    /*
+        PROPÓSITO:
+            * Describe el monto de la apuesta en la celda actual.
+        PRECONDICIONES:
+            * Debe haber una apuesta en la celda actual.
+    */ 
+    return (nroBolitas(colorMonto()))
+}
+
 function hayApuesta() {
     /*
         PROPÓSITO:
@@ -212,8 +222,31 @@ procedure PagarYCobrarAl_EnLaCeldaActual(nroQueSalió) {
     }
 }
 
+procedure PagarApuesta() {
+    /*
+        PROPÓSITO:
+            * Paga la apuesta realizada por el jugador en la celda actual.
+        PRECONDICIONES:
+            * Debe haber una apuesta en la celda actual.
+        OBSERVACIONES:
+            * Se paga 5 veces el monto de la apuesta; por ejemplo, para una
+              apuesta de 3 pesos se pagan 15, quedando 18 pesos en la celda.
+    */
+    Poner_DeColor(totalAPagar(monto()), colorMonto())
+}
 
-
+function totalAPagar(monto) {
+    /*
+        PROPÓSITO:
+            * Describe el total a pagar de acuerdo al monto en la celda actual.
+        PARÁMETROS:
+            * monto: Número - Describe el monto realizado en la apuesta.
+        TIPO: Número.
+        PRECONDICIONES:
+            * **monto** debe ser un número mayor o igual a cero.
+    */
+    return (monto + monto*5)
+}
 
 
 // c. RecogerPropinas(), que extrae un peso de cada celda donde haya al

@@ -248,6 +248,15 @@ function totalAPagar(monto) {
     return (monto + monto*5)
 }
 
+procedure ExtraerDineroDeLaCuenta() {
+    /*
+        PROPÓSITO: 
+            * Extrae todo el dinero de la cuenta actual.
+        PRECONDICIONES:
+            * Debe haber una apuesta en la celda actual.
+    */
+    SacarTodasDeColor_(colorMonto())
+}
 
 // c. RecogerPropinas(), que extrae un peso de cada celda donde haya al
 // menos 15 pesos.

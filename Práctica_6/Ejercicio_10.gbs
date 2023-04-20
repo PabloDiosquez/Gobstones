@@ -44,10 +44,27 @@ procedure IrAUnaCeldaVacia() {
         OBSERVACIONES:
             * Recorrido de búsqueda por celdas en el tablero.
     */
-    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (not esCeldaVacía()) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
 }
 
-
+procedure AgregarApuestaDe_Al_Para_EnLaCeldaActual(monto, nroApostado, nroJugador) {
+    /*
+        PROPÓSITO:
+            * Agrega la apuesta indicada en la celda actual.
+        PARÁMETROS:
+            * monto: Número - Describe el monto de la apuesta.
+            * nroApostado: Número - Describe el número que apuesta el jugador.
+            * nroJugador: Número - Describe el número del jugador que hizo la apuesta.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+    */
+    AgregarJugador_(nroJugador)
+    AgregarNúmeroApostado_(nroApostado)
+    AgregarMonto_(monto)
+}
 
 // b. PagarYCobrarAl_(nroQueSalió), que pague las apuestas que
 // acertaron, y retire el total del dinero de las que no acertaron (solamente el

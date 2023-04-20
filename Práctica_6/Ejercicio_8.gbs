@@ -90,12 +90,13 @@ function meta() {
 procedure LlevarAlCaminanteALaMeta() {
     /*
         PROPÓSITO:
-            * Lleva al caminante a la meta.
+            * Lleva al caminante a la meta respetando los indicadores de dirección.
         PRECONDICIONES:
-            * En el tablero está representado un escenario válido para el caminante.
+            * En el tablero está representado un escenario válido que llega a la meta.
+            * El cabezal está sobre el caminante.
     */
     while (not estáEnLaMeta()) {
-        CambiarDeDirecciónSiHayIndicador()
+        DejarHuella()
         DarUnPaso()
     }
 }
@@ -105,7 +106,7 @@ procedure LlevarAlCaminanteALaMeta() {
 function estáEnLaMeta() {
     /*
         PROPÓSITO:
-            * Indica si el caminante está o no en la meta.
+            * Indica si el caminante está en la meta.
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -123,16 +124,13 @@ function estáEnLaMeta() {
 procedure DarUnPaso() {
     /*
         PROPÓSITO:
-            * Realiza un paso en el paseo del caminante, dejando una huella del caminante en la celda anterior.
+            * Realiza un paso en el paseo del caminante siguiendo las reglas definidas.
         PRECONDICIONES:
+            * El cabezal debe estar sobre el caminante.
             * Debe existir una celda para poder dar un paso.
     */
-    if (not estáEnLaMeta()){
-        CambiarDeDirecciónSiHayIndicador()
-        DejarHuella()
-        MoverAlCaminanteAl_(direcciónIndicada())
-    }
-    DejarHuella()
+    CambiarDeDirecciónSiHayIndicador()
+    MoverAlCaminanteHaciaDondeMira()
 }
 
 // e. CambiarDeDirecciónSiHayIndicador() que cambia la dirección del
@@ -143,11 +141,36 @@ procedure CambiarDeDirecciónSiHayIndicador() {
         PROPÓSITO:
             * Cambia la dirección del caminante cuando éste se encuentra con un indicador.
         PRECONDICIONES:
-            * No tiene.
+            * El cabezal debe estar sobre el caminante.
     */
     if (hayIndicadorDeCambioDeDirección()) {
-        Cambiar_ParaImitar_(caminante(), indicador())
+        CambiarDeDirecciónDelCaminanteALaDelIndicador()
     }
+}
+
+//e´.
+
+procedure CambiarDeDirecciónDelCaminanteALaDelIndicador() {
+    /*
+        PROPÓSITO:  
+            * Cambia la dirección hacia donde mira el caminante por la del indicador.
+        PRECONDICIONES:
+            * Debe haber un indicador en la celda actual.
+            * El cabezal debe estar sobre el caminante.
+    */
+    Cambiar_ParaImitar_(caminante(), indicador())
+}
+
+// e´´. 
+
+procedure MoverAlCaminanteHaciaDondeMira() {
+    /*
+        PROPÓSITO:
+            * Mueve al caminante en la dirección hacia donde mira.
+        PRECONDICIONES:
+            * El cabezal debe estar sobre el caminante.
+    */
+    MoverAlCaminanteAl_(direcciónHaciaDondeMira())
 }
 
 // f. DejarHuella() que deja una huella en la celda actual.
@@ -157,7 +180,7 @@ procedure DejarHuella() {
         PROPÓSITO:
             * Deja una huella del caminante en la celda actual.
         PRECONDICIONES:
-            * El caminante debe haber dado un paso en el paseo.
+            * El cabezal está sobre el caminante.
     */
     Poner(huella())
 }
@@ -194,7 +217,7 @@ function hayIndicadorDeCambioDeDirección() {
 // i. direcciónIndicada() que describe la dirección en la que está mirando
 // el caminante.
 
-function direcciónIndicada() {
+function direcciónHaciaDondeMira() {
     /*
         PROPÓSITO:
             * Describe la dirección en la que está mirando el caminante.
@@ -214,13 +237,15 @@ procedure Cambiar_ParaImitar_(colorACambiar, colorAImitar){
     /*
         PROPÓSITO:
             * Cambia la cantidad de bolitas de **colorACambiar** según la cantidad de
-              bolitas de **colorAImitar** que haya en la celda actual.
+              bolitas de **colorAImitar** que haya en la celda actual para que ambas sean iguales.
         PARÁMETROS:
             * colorACambiar: Color - Describe el color de las bolitas a cambiar.
             * colorAImitar: Color - Describe el color de las bolitas a imitar.
         PRECONDICIONES:
-            * Los colores dados deben ser distintos.
+            * No tiene.
     */
+    SacarTodasLasDeColor(colorACambiar)
+    Poner_DeColor_(nroBolitas(colorAImitar), colorACambiar)
 }
 
 // k. Mover_Bolitas_Al_(cantidad, color, dirección) que “mueve”

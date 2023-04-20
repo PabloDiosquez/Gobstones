@@ -83,9 +83,8 @@ function hayApuesta() {
         PRECONDICIONES:
             * No tiene.
     */ 
-    return (not esCeldaVacía())
+    return (hayJugador() && hayNroApostado() && hayMonto())
 }
-
 
 procedure AgregarApuestaDe_Al_Para_(monto, nroApostado, nroJugador) {
     /*
@@ -127,6 +126,7 @@ procedure AgregarApuestaDe_Al_Para_EnLaCeldaActual(monto, nroApostado, nroJugado
             * nroJugador: Número - Describe el número del jugador que hizo la apuesta.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
+            * El jugador que agrega la apuesta no debe tener una apuesta con el mismo número.
     */
     AgregarJugador_(nroJugador)
     AgregarNúmeroApostado_(nroApostado)
@@ -138,7 +138,7 @@ procedure AgregarJugador_(nroJugador) {
         PROPÓSITO:
             * Agrega el jugador número **nroJugador** en la celda actual.
         PARÁMETROS:
-            * nroJugador: Número - Describe el número del jugador que hizo la apuesta..
+            * nroJugador: Número - Describe el número del jugador que hizo la apuesta.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
     */
@@ -177,11 +177,13 @@ procedure AgregarMonto_(monto) {
 procedure PagarYCobrarAl_(nroQueSalió) {
     /*
         PROPÓSITO:
-            * Paga las apuestas que acertaron y retira el total del dinero de las que no acertaron.
+            * Paga las apuestas que acertaron al **nroQueSalió** y retira el total del dinero de las que no acertaron.
         PARÁMETROS:
-            * nroQueSalió: Número - Describe el número que salió en la apuesta.
+            * nroQueSalió: Número - Describe el número que resultó ganador.
         PRECONDICIONES:
-            * En el tablero debe haber una representación válida de una mesa de apuestas.
+            * Debe existir en el tablero una representación válida de apuestas.
+        OBSERVACIONES:
+            * Recorrido de transformación (procesamiento).
     */
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
     while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
@@ -198,7 +200,7 @@ procedure PagarYCobrarAl_SiHayApuestaEnLaCeldaActual(nroQueSalió) {
         PARÁMETROS:
             * nroQueSalió: Número - Describe el número que salió en la apuesta.
         PRECONDICIONES:
-            * No tiene.
+            * Si existe una apuesta debe ser una apuesta válida.
     */
     if (hayApuesta()) {
         PagarYCobrarAl_EnLaCeldaActual(nroQueSalió)
@@ -212,7 +214,7 @@ procedure PagarYCobrarAl_EnLaCeldaActual(nroQueSalió) {
         PARÁMETROS:
             * nroQueSalió: Número - Describe el número que salió en la apuesta.
         PRECONDICIONES:
-            * Debe haber una apuesta en la celda actual.
+            * Debe haber una apuesta válida en la celda actual.
     */
     if (nroQueSalió == nroApostado()) {
         PagarApuesta()
@@ -227,7 +229,7 @@ procedure PagarApuesta() {
         PROPÓSITO:
             * Paga la apuesta realizada por el jugador en la celda actual.
         PRECONDICIONES:
-            * Debe haber una apuesta en la celda actual.
+            * Debe haber una apuesta válida en la celda actual.
         OBSERVACIONES:
             * Se paga 5 veces el monto de la apuesta; por ejemplo, para una
               apuesta de 3 pesos se pagan 15, quedando 18 pesos en la celda.
@@ -238,14 +240,14 @@ procedure PagarApuesta() {
 function totalAPagar(monto) {
     /*
         PROPÓSITO:
-            * Describe el total a pagar de acuerdo al monto en la celda actual.
+            * Describe el total a pagar por una apuesta ganadora de acuerdo al monto en la celda actual.
         PARÁMETROS:
             * monto: Número - Describe el monto realizado en la apuesta.
         TIPO: Número.
         PRECONDICIONES:
             * **monto** debe ser un número mayor o igual a cero.
     */
-    return (monto + monto*5)
+    return (monto*5)
 }
 
 procedure ExtraerDineroDeLaCuenta() {
@@ -255,7 +257,7 @@ procedure ExtraerDineroDeLaCuenta() {
         PRECONDICIONES:
             * Debe haber una apuesta en la celda actual.
     */
-    SacarTodasDeColor_(colorMonto())
+    SacarTodasLasDeColor_(colorMonto())
 }
 
 // c. RecogerPropinas(), que extrae un peso de cada celda donde haya al

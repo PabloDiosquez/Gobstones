@@ -54,6 +54,29 @@ function colorMonto() {
     return (Verde)
 }
 
+function nroApostado() {
+    /*
+        PROPÓSITO:
+            * Describe el número apostado en la celda actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * Debe haber una apuesta en la celda actual.
+    */
+    return (nroBolitas(colorNroApostado()))
+}
+
+function hayApuesta() {
+    /*
+        PROPÓSITO:
+            * Indica si hay una apuesta en la celda actual.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene.
+    */ 
+    return (not esCeldaVacía())
+}
+
+
 procedure AgregarApuestaDe_Al_Para_(monto, nroApostado, nroJugador) {
     /*
         PROPÓSITO:
@@ -140,6 +163,59 @@ procedure AgregarMonto_(monto) {
 // acertaron, y retire el total del dinero de las que no acertaron (solamente el
 // dinero). Se paga 5 veces el monto de la apuesta; por ejemplo, para una
 // apuesta de 3 pesos se pagan 15, quedando 18 pesos en la celda.
+
+procedure PagarYCobrarAl_(nroQueSalió) {
+    /*
+        PROPÓSITO:
+            * Paga las apuestas que acertaron y retira el total del dinero de las que no acertaron.
+        PARÁMETROS:
+            * nroQueSalió: Número - Describe el número que salió en la apuesta.
+        PRECONDICIONES:
+            * En el tablero debe haber una representación válida de una mesa de apuestas.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        PagarYCobrarAl_SiHayApuestaEnLaCeldaActual(nroQueSalió)
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    PagarYCobrarAl_EnLaCeldaActual(nroQueSalió)
+}
+
+procedure PagarYCobrarAl_SiHayApuestaEnLaCeldaActual(nroQueSalió) {
+    /*
+        PROPÓSITO:
+            * Si en la celda actual hay una apuesta, paga si el **nroQueSalió** es el número apostado o en caso contrario, retira todo el dinero de la apuesta.
+        PARÁMETROS:
+            * nroQueSalió: Número - Describe el número que salió en la apuesta.
+        PRECONDICIONES:
+            * No tiene.
+    */
+    if (hayApuesta()) {
+        PagarYCobrarAl_EnLaCeldaActual(nroQueSalió)
+    }
+}
+
+procedure PagarYCobrarAl_EnLaCeldaActual(nroQueSalió) {
+    /*
+        PROPÓSITO:
+            * Paga si el **nroQueSalió** es el número apostado en la celda actual o en caso contrario, retira todo el dinero de la apuesta.
+        PARÁMETROS:
+            * nroQueSalió: Número - Describe el número que salió en la apuesta.
+        PRECONDICIONES:
+            * Debe haber una apuesta en la celda actual.
+    */
+    if (nroQueSalió == nroApostado()) {
+        PagarApuesta()
+    }
+    else {
+        ExtraerDineroDeLaCuenta()
+    }
+}
+
+
+
+
+
 // c. RecogerPropinas(), que extrae un peso de cada celda donde haya al
 // menos 15 pesos.
 // d. SeVaElJugador_(nroJugador), que borra todas las celdas que registran

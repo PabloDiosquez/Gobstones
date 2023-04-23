@@ -54,13 +54,24 @@ function colorMonto() {
     return (Verde)
 }
 
+function nroJugador() {
+    /*
+        PROPÓSITO:
+            * Decribe el número que representa al jugador en la celda actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual.
+    */
+    return (nroBolitas(colorJugador()))
+}
+
 function nroApostado() {
     /*
         PROPÓSITO:
             * Describe el número apostado en la celda actual.
         TIPO: Número.
         PRECONDICIONES:
-            * Debe haber una apuesta en la celda actual.
+            * Debe haber una apuesta válida en la celda actual.
     */
     return (nroBolitas(colorNroApostado()))
 }
@@ -70,7 +81,7 @@ function monto() {
         PROPÓSITO:
             * Describe el monto de la apuesta en la celda actual.
         PRECONDICIONES:
-            * Debe haber una apuesta en la celda actual.
+            * Debe haber una apuesta válida en la celda actual.
     */ 
     return (nroBolitas(colorMonto()))
 }
@@ -269,6 +280,8 @@ procedure RecogerPropinas() {
             * Extrae un peso de cada celda donde haya al menos quince pesos.
         PRECONDICIONES:
             * Debe haber una representación válida de una mesa de apuestas en el tablero.
+        OBSERVACIONES:
+        * Recorrido de procesamiento.
     */
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
     while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)){
@@ -310,3 +323,36 @@ procedure Sacar_Si(color, condición) {
 // posiciona el cabezal en una celda que sea el registro de una apuesta del
 // jugador y número apostado indicados. Si no se ha registrado una apuesta
 // con estas características, el cabezal debe ubicarse en el extremo noreste.
+
+procedure BuscarApuestaDelJugador_Al_(nroJugador, nroApostado) {
+    /*
+        PROPÓSITO:
+            * Ubica el cabezal en una celda que sea el registro de una apuesta del jugador **nroJugador** al número **nroApostado**. Si no se ha registrado una apuesta como la mencionada, el cabezal se ubica en el extremo noreste.
+        PARÁMETROS:
+            * nroJugador: Número - Describe al jugador que realiza la apuesta.
+            * nroApostado: Número - Describe al número por el cual se ha apostado.
+        PRECONDICIONES:
+            * Debe haber una representación válida de una mesa de apuesta en el tablero.
+            * Un mismo jugador no puede apostar al mismo número en apuestas diferentes.
+        OBSERVACIONES:
+            * Recorrido de búsqueda.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    while (not esElJugador_ConLaApuesta_(nroJugador, nroApostado) && haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)){
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+}
+
+function esElJugador_ConLaApuesta_(nroJugador, nroApostado) {
+    /*
+        PROPÓSITO:
+            * Indica si el jugador **nroJugador** con una apuesta al número **nroApostado** están en la celda actual.
+        PARÁMETROS:
+            * nroJugador: Número - Describe el número de jugador a validar.
+            * nroApostado: Número - Describe el número apostado a validar.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual.
+    */
+    return (nroJugador() == nroJugador && nroApostado() == nroApostado)
+}

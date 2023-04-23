@@ -390,9 +390,52 @@ procedure DuplicarApuestasAl_SiEstáEnLaCeldaActual(nroApostado) {
     }
 }
 
-
 // f. DuplicarApuestasDelJugador_(nroJugador), que duplica el monto
 // de las apuestas que hizo el jugador indicado.
+
+procedure DuplicarApuestasAl_(nroJugador) {
+    /*
+        PROPÓSITO:
+            * Duplica el monto de las apuestas que hizo el jugador **nroJugador**.
+        PARÁMETROS:
+            * nroJugador: Número - Describe el jugador al que se le quiere duplicar las apuestas.
+        PRECONDICIONES:
+            * Debe haber una representación válida de una mesa de apuestas en el tablero.
+        OBSERVACIONES:
+            * Recorrido de procesamiento.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        DuplicarApuestaDelJugador_SiEstáEnLaCeldaActual(nroJugador)
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    DuplicarApuestaDelJugador_SiEstáEnLaCeldaActual(nroJugador)
+}
+
+procedure DuplicarApuestaDelJugador_SiEstáEnLaCeldaActual(nroJugador) {
+    /*
+        PROPÓSITO:
+            * Duplica el monto de la apuesta del jugador **nroJugador** si está en la celda actual.
+        PARÁMETROS:
+            * nroJugador: Número - Describe el jugador al que se le quiere duplicar la apuesta.
+        PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual.
+    */
+    if (nroJugador() == nroJugador) {
+        DuplicarMontoDeLaApuestaActual()
+    }
+}
+
+procedure DuplicarMontoDeLaApuestaActual() {
+    /*
+        PROPÓSITO:
+            * Duplica el monto de la apuesta de la celda actual.
+        PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual.
+    */
+        Poner_DeColor(monto(), colorMonto())
+}
+
 // g. CambiarNroApostadoDel_Al_(nroAnterior, nroNuevo), que
 // cambia todas las apuestas de nroAnterior para que pasen a apostar a
 // nroNuevo.

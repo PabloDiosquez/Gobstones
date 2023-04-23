@@ -306,9 +306,54 @@ procedure Sacar_Si(color, condición) {
     }
 }
 
-
 // d. SeVaElJugador_(nroJugador), que borra todas las celdas que registran
 // una apuesta del jugador indicado.
+
+procedure SeVaElJugador_(nroJugador) {
+    /*
+        PROPÓSITO:
+            * Borra todas las celdas que registran una apuesta del jugador **nroJugador**.
+        PARÁMETROS:
+            * nroJugador: Número - Describe el número del jugador a borrar de la mesa de apuestas.
+        PRECONDICIONES:
+            * Debe haber una representación válida de una mesa de apuestas en el tablero.
+        OBSERVACIONES:
+            * Recorrido de procesamiento.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        SeVaElJugador_SiEstáEnLaCeldaActual(nroJugador)
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    SeVaElJugador_SiEstáEnLaCeldaActual(nroJugador)
+}
+
+procedure SeVaElJugador_SiEstáEnLaCeldaActual(nroJugador) {
+    /*
+        PROPÓSITO:
+            * Borra la celda actual si registra una apuesta del jugador **nroJugador**.
+        PARÁMETROS:
+            * nroJugador: Número - Describe el número del jugador a borrar de la celda actual.
+        PRECONDICIONES:
+            * **nroJugador** debe ser mayor o igual a cero.
+    */
+    if (nroJugador() == nroJugador) {
+        BorrarRegistroDeApuesta()
+    }
+}
+
+procedure BorrarRegistroDeApuesta() {
+    /*
+        PROPÓSITO:
+            * Borra el registro de apuesta de la celda actual.
+        PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual.
+    */
+    SacarTodasLasDeColor_(colorJugador())
+    SacarTodasLasDeColor_(colorNroApostado())
+    SacarTodasLasDeColor_(colorMonto())
+}
+
 // e. DuplicarApuestasAl_(nroApostado), que duplica el monto de las
 // apuestas al número indicado.
 // f. DuplicarApuestasDelJugador_(nroJugador), que duplica el monto

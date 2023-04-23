@@ -356,6 +356,41 @@ procedure BorrarRegistroDeApuesta() {
 
 // e. DuplicarApuestasAl_(nroApostado), que duplica el monto de las
 // apuestas al número indicado.
+
+procedure DuplicarApuestasAl_(nroApostado) {
+    /*
+        PROPÓSITO:
+            * Duplica el monto de las apuestas al número **nroApostado**.
+        PARÁMETROS:
+            * nroApostado: Número - Describe el número a buscar en la mesa de apuestas.
+        PRECONDICIONES:
+            * Debe haber una representación válida de una mesa de apuestas en el tablero.
+        OBSERVACIONES:
+            * Recorrido de procesamiento.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(este,Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        DuplicarApuestasAl_SiEstáEnLaCeldaActual(nroApostado)
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    DuplicarApuestasAl_SiEstáEnLaCeldaActual(nroApostado)
+}
+
+procedure DuplicarApuestasAl_SiEstáEnLaCeldaActual(nroApostado) {
+    /*
+        PROPÓSITO:
+            * Duplica el monto de la apuesta al número **nroApostado** si está en la celda actual.
+        PARÁMETROS:
+            * nroApostado: Número - Describe el número a validad en la celda actual.
+        PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual o debe ser una celda vacía.
+    */
+    if (nroApostado() == nroApostado) {
+        Poner_DeColor(monto(), colorMonto())
+    }
+}
+
+
 // f. DuplicarApuestasDelJugador_(nroJugador), que duplica el monto
 // de las apuestas que hizo el jugador indicado.
 // g. CambiarNroApostadoDel_Al_(nroAnterior, nroNuevo), que

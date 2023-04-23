@@ -262,6 +262,38 @@ procedure ExtraerDineroDeLaCuenta() {
 
 // c. RecogerPropinas(), que extrae un peso de cada celda donde haya al
 // menos 15 pesos.
+
+procedure RecogerPropinas() {
+    /*
+        PROPÓSITO:
+            * Extrae un peso de cada celda donde haya al menos quince pesos.
+        PRECONDICIONES:
+            * Debe haber una representación válida de una mesa de apuestas en el tablero.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)){
+        Sacar_Si(colorMonto(), monto() >= 15)
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    Sacar_Si(colorMonto(), monto() >= 15)
+}
+
+procedure Sacar_Si(color, condición) {
+    /*
+        PROPÓSITO:
+            * Saca una bolita de color **color** si se cumple la condición dada.
+        PARÁMETROS:
+            * color: Color - Describe el color de la bolita a sacar.
+            * condición: Booleano - Describe una condición a evaluar.
+        PRECONDICIONES:
+            * Debe haber al menos una bolita de color **color** en la celda actual.
+    */
+    if (condición){
+        Sacar(color)
+    }
+}
+
+
 // d. SeVaElJugador_(nroJugador), que borra todas las celdas que registran
 // una apuesta del jugador indicado.
 // e. DuplicarApuestasAl_(nroApostado), que duplica el monto de las

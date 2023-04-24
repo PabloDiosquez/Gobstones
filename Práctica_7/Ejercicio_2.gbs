@@ -8,7 +8,7 @@ function tieneBolitas_Al_(color, dirección) {
             * Indica si la celda lindante a la actual en la dirección **dirección** tiene bolitas de color **color**.
         PARÁMETROS:
             * color: Color - Describe el color de las bolitas a validar.
-            * dirección: Dirección - Describe la dirección hacia donde se mueve el cabezal.
+            * dirección: Dirección - Describe la dirección en la que deben buscarse las bolitas del color dado.
         TIPO: Booleano.
         PRECONDICIONES:
             * Debe haber al menos una celda lindante en la dirección **dirección**.

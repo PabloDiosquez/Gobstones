@@ -1,0 +1,32 @@
+// BIBLIOTECA Escribir la función hayBolitas_Al_(color, dirección), que
+// indica si hay una celda lindante en la dirección indicada y la misma tiene bolitas del
+// color dado.
+
+function hayBolitas_Al_(color, dirección) {
+    /*
+        PROPÓSITO: 
+            * Indica si hay una celda lindante en la dirección **dirección** y si la misma tiene bolitas de color **color**.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a buscar.
+            * dirección: Dirección - Describe la dirección en la que se debe validar si hay una celda y si ésta tiene bolitas del color dado.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    return (puedeMover(dirección) && tieneBolitas_Al_(color, dirección))
+}
+
+function tieneBolitas_Al_(color, dirección) {
+    /*
+        PROPÓSITO:
+            * Indica si la celda lindante a la actual en la dirección **dirección** tiene bolitas de color **color**.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a buscar.
+            * dirección: Dirección - Describe la dirección en la que deben buscarse las bolitas del color dado.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber al menos una celda lindante en la dirección **dirección**.
+    */
+    Mover(dirección)
+    return (hayBolitas(color))
+}

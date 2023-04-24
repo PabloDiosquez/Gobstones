@@ -1,0 +1,40 @@
+// Escribir las funciones nroFilas() y nroColumnas() que describan la cantidad de
+// filas y columnas del tablero. ¿Se podría conocer la cantidad de filas o columnas del
+// tablero sin que el cabezal se mueva realmente de la celda actual? ¿Qué habría que
+// usar si hubiese que hacerlo exclusivamente con procedimientos?
+
+function nroFilas() {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de filas que tiene el tablero.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    IrAlBorde(Norte)
+    cantidadDeFilasYaVistas := 0
+    while (puedeMover(Sur)) {
+        cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1
+        Mover(Sur)
+    }
+    cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1 // Caso borde
+    return (cantidadDeFilasYaVistas)
+}
+
+function nroColumnas() {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de columnas que tiene el tablero.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    IrAlBorde(Oeste)
+    cantidadDeColumnasYaVistas := 0
+    while (puedeMover(Este)) {
+        cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
+        puedeMover(Este)
+    }
+    cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
+    return (cantidadDeColumnasYaVistas)
+}

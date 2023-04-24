@@ -1,0 +1,33 @@
+// Escribir la función nroBolitas_EnLaFilaActual(color) que describa la
+// cantidad de bolitas del color dado en la fila actual.
+// a. Escribir la solución con un recorrido de la fila actual que utilice una variable
+// cantidadDeBolitasYaVistas cuyo propósito sea describir la cantidad
+// de bolitas del color correspondiente que se contaron en cada momento.
+// ¿Cuántas se vieron antes de empezar a contar? 👉🏼 Antes de empezar a contar se vieron 0 bolitas de color **color**.
+// ¿Cómo estar seguro que se
+// consideraron todas las celdas para contarlas? 👉🏼 Uso un recorrido que considere el caso borde.
+// b. ¿En qué celda queda el cabezal al utilizar la función desde cualquier punto
+// del programa? ¿Por qué? 👉🏼 Queda en la misma celda desde donde se invoco a la función. 
+// Una función con procesamiento no cambia el estado del tablero; solo importa el valor final calculado.
+
+function nroBolitas_EnLaFilaActual(color) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de bolitas de color **color** en la fila actual.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a contar en la fila actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de la fila actual de Oeste a Este.
+    */
+    cantidadDeBolitasYaVistas := 0
+    IrAlBorde(Oeste)
+    while (puedeMover(Este)) {
+        cantidadDeBolitasYaVistas := cantidadDeBolitasYaVistas + nroBolitas(color)
+        Mover(Este)
+    }
+    cantidadDeBolitasYaVistas := cantidadDeBolitasYaVistas + nroBolitas(color)
+    return (cantidadDeBolitasYaVistas)
+}

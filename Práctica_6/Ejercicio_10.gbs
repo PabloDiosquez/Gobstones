@@ -331,10 +331,11 @@ procedure SeVaElJugador_(nroJugador) {
 procedure SeVaElJugador_SiEstáEnLaCeldaActual(nroJugador) {
     /*
         PROPÓSITO:
-            * Borra la celda actual si registra una apuesta del jugador **nroJugador**.
+            * Vacía la celda actual si registra una apuesta del jugador **nroJugador**.
         PARÁMETROS:
-            * nroJugador: Número - Describe el número del jugador a borrar de la celda actual.
+            * nroJugador: Número - Describe el número del jugador cuya apuesta se ha de borrar de la celda actual.
         PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual o debe ser una celda vacía.
             * **nroJugador** debe ser mayor o igual a cero.
     */
     if (nroJugador() == nroJugador) {
@@ -384,6 +385,7 @@ procedure DuplicarApuestasAl_SiEstáEnLaCeldaActual(nroApostado) {
             * nroApostado: Número - Describe el número a validad en la celda actual.
         PRECONDICIONES:
             * Debe haber una apuesta válida en la celda actual o debe ser una celda vacía.
+            * **nroApostado** debe ser mayor o igual a cero.
     */
     if (nroApostado() == nroApostado) {
         Poner_DeColor(monto(), colorMonto())
@@ -454,13 +456,13 @@ procedure CambiarNroApostadoDel_Al_(nroAnterior, nroNuevo) {
     */
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
     while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
-        CambiarNroApostadoDel_Al_SiEstáElPrimeroEstáEnLaCeldaActual(nroAnterior,nroNuevo)
+        CambiarNroApostadoDel_Al_SiEstáElPrimeroEnLaCeldaActual(nroAnterior,nroNuevo)
         IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
     }
     CambiarNroApostadoDel_Al_EnLaCeldaActual(nroAnterior,nroNuevo)
 }
 
-procedure CambiarNroApostadoDel_Al_SiEstáElPrimeroEstáEnLaCeldaActual(nroAnterior,nroNuevo) {
+procedure CambiarNroApostadoDel_Al_SiEstáElPrimeroEnLaCeldaActual(nroAnterior,nroNuevo) {
     /*
         PROPÓSITO:
             * Cambia la apuesta del número **nroAnterior** por la del número **nroNuevo** en caso de que el primero esté en la celda actual.

@@ -489,6 +489,22 @@ procedure CambiarNroApostadoPorElNro_(nroNuevo) {
 // h. AumentarEn_LaApuestaDelJugador_Al_(monto, nroJugador,
 // nroApostado), que agrega el monto indicado a la apuesta de este jugador
 // al número dado.
+
+procedure AumentarEn_LaApuestaDelJugador_Al_(monto, nroJugador, nroApostado) {
+    /*
+        PROPÓSITO:
+            * Agrega el monto indicado de la apuesta del jugador **nroJugador** al número **nroApostado**.
+        PARÁMETROS:
+            * monto:
+            * nroJugador:
+            * nroApostado: 
+        PRECONDICIONES:
+            * Debe haber una representación válida de una mesa de apuestas en el tablero.
+    */
+    
+}
+
+
 // i. BuscarApuestaDelJugador_Al_(nroJugador, nroApostado), que
 // posiciona el cabezal en una celda que sea el registro de una apuesta del
 // jugador y número apostado indicados. Si no se ha registrado una apuesta

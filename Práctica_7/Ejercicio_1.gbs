@@ -1,0 +1,18 @@
+// Escribir la función hayBolitas_EnElBorde_(color, dirección), que indica
+// si en la celda que se encuentra en el borde dado por la dirección, hay bolitas del
+// color indicado.
+
+function hayBolitas_EnElBorde_(color, dirección) {
+    /*
+        PROPÓSITO:
+            * Indica si en la celda que se encuentra en el borde **dirección**, hay bolitas del color **color**.
+        PARÁMETROS:
+            * color: Color - Describe el color de las bolitas a validar.
+            * dirección: Dirección - Describe la dirección hacia donde se debe mover el cabezal.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    IrAlBorde(dirección)  
+    return (hayBolitas(color))
+}

@@ -495,13 +495,33 @@ procedure AumentarEn_LaApuestaDelJugador_Al_(monto, nroJugador, nroApostado) {
         PROPÓSITO:
             * Agrega el monto indicado de la apuesta del jugador **nroJugador** al número **nroApostado**.
         PARÁMETROS:
-            * monto:
-            * nroJugador:
-            * nroApostado: 
+            * monto: Número - Describe el monto a agregar en la apuesta.
+            * nroApostado: Número - Describe el número que apuesta el jugador.
+            * nroJugador: Número - Describe el número del jugador que hizo la apuesta.
         PRECONDICIONES:
             * Debe haber una representación válida de una mesa de apuestas en el tablero.
+            * El jugador cuyo número es **nroJugador** debe estar en el tablero. 
+            * Un mismo jugador no puede apostar más de una vez por el mismo número.
+        OBSERVACIONES:  
+            * Recorrido de búsqueda.
     */
-    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    while (not esElJugador_ConLaApuesta_(nroJugador, nroApostado)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    AgregarApuestaDe_(monto)
+}
+
+procedure AgregarApuestaDe_(monto) {
+    /*
+        PROPÓSITO:
+            * Agrega el monto dado a la apuesta realizada por el jugador de la celda actual.
+        PARÁMETROS:
+            * monto: Número - Describe el monto a agregar en la celda actual.
+        PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual.
+    */
+    Poner_DeColor(monto, colorMonto())
 }
 
 

@@ -439,6 +439,43 @@ procedure DuplicarMontoDeLaApuestaActual() {
 // g. CambiarNroApostadoDel_Al_(nroAnterior, nroNuevo), que
 // cambia todas las apuestas de nroAnterior para que pasen a apostar a
 // nroNuevo.
+
+procedure CambiarNroApostadoDel_Al_(nroAnterior, nroNuevo) {
+    /*
+        PROPÓSITO:
+            * Cambia todas las apuestas del número **nroAnterior** para que pasen a apostar por el **nroNuevo**.
+        PARÁMETROS:
+            * nroAnterior: Número - Describe el número que se va a cambiar en las apuestas.
+            * nroNuevo: Número - Describe el número nuevo por el que se va a apostar.
+        PRECONDICIONES:
+            * El tablero debe tener una representación válida de una mesa de apuestas.
+        OBSERVACIONES:
+            * Recorrido de procesamiento.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        CambiarNroApostadoDel_Al_SiEstáEnLaCeldaActual(nroAnterior,nroNuevo)
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    CambiarNroApostadoDel_Al_EnLaCeldaActual(nroAnterior,nroNuevo)
+}
+
+procedure CambiarNroApostadoDel_Al_SiEstáEnLaCeldaActual(nroAnterior,nroNuevo) {
+    /*
+        PROPÓSITO:
+            * Cambia la apuesta del número **nroAnterior** por la del número **nroNuevo** en caso de que esté en la celda actual.
+        PARÁMETROS:
+            * nroAnterior: Número - Describe el número que se va a cambiar en las apuestas.
+            * nroNuevo: Número - Describe el número nuevo por el que se va a apostar.
+        PRECONDICIONES:
+            * Debe haber una apuesta válida en la celda actual.
+    */
+    if (nroApostado() == nroAnterior) {
+        
+    }
+    
+}
+
 // h. AumentarEn_LaApuestaDelJugador_Al_(monto, nroJugador,
 // nroApostado), que agrega el monto indicado a la apuesta de este jugador
 // al número dado.

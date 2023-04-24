@@ -1,0 +1,68 @@
+// Escribir las funciones coordenadaX() y coordenadaY() que retornen la
+// coordenada columna y la coordenada fila de la celda actual, respectivamente.
+// Suponer que 0 es la coordenada de la primer fila y columna. ¿Es necesario escribir
+// un recorrido para estas funciones, o puede reutilizarse alguna otra función ya
+// hecha?
+
+function coordenadaX() {
+    /*
+        PROPÓSITO:
+            * Describe la coordenada columna de la celda actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * 0 es la coordenada de la primer columna.
+    */
+    return (nroColumnas() - distanciaAlBorde_(Este) - 1)
+}
+
+function coordenadaY() {
+    /*
+        PROPÓSITO:
+            * Describe la coordenada fila de la celda actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * 0 es la coordenada de la primer fila.
+    */
+    return (nroFilas() - distanciaAlBorde_(Norte) - 1)
+}
+
+function distanciaAlBorde_(dirección) {
+    /*
+    */
+    cantidadDeCeldasYaVistas := 0
+    while (puedeMover(dirección)) {
+        cantidadDeCeldasYaVistas := cantidadDeCeldasYaVistas + 1
+        Mover(dirección)
+    }
+    return (cantidadDeCeldasYaVistas)
+}
+
+function nroFilas() {
+    /*
+    */
+    IrAlBorde(Norte)
+    cantidadDeFilasYaVistas := 0
+    while (puedeMover(Sur)) {
+        cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1
+        Mover(Sur)
+    }
+    cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1 // Caso borde
+    return (cantidadDeFilasYaVistas)
+}
+
+function nroColumnas() {
+    /*
+    */
+    IrAlBorde(Oeste)
+    cantidadDeColumnasYaVistas := 0
+    while (puedeMover(Este)) {
+        cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
+        puedeMover(Este)
+    }
+    cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
+    return (cantidadDeColumnasYaVistas)
+}

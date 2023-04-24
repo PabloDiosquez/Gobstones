@@ -1,0 +1,59 @@
+// Escribir las funciones máximoEntre_Y_(valor1, valor2),
+// mínimoEntre_Y_(valor1,valor2) que describen el valor más grande o más
+// chico, respectivamente, de los valores dados. ¿Qué herramienta hace falta? Si el
+// código resultante utiliza una función con procesamiento, ofrecer otra versión que
+// utilice solamente funciones sin procesamiento.
+
+function máximoEntre_Y_(valor1, valor2) {
+    /*
+        PROPÓSITO:
+            * Describe el valor más grande de los valores dados.
+        PARÁMETROS:
+            * valor1
+            * valor2
+        TIPO: Tipo
+        PRECONDICIONES:
+            * **valor1** y **valor2** deben ser del mismo tipo.
+    */
+    if (esMayor_Que_(valor1, valor2)) {
+        máximo := valor1
+    }
+    else {
+        máximo := valor2
+    }
+    return (máximo)
+}
+
+function mínimoEntre_Y_(valor1, valor2) {
+    /*
+        PROPÓSITO:
+            * Describe el valor más chico de los valores dados.
+        PARÁMETROS:
+            * valor1
+            * valor2
+        TIPO: Tipo
+        PRECONDICIONES:
+            * **valor1** y **valor2** deben ser del mismo tipo.
+    */
+    if (not esMayor_Que_(valor1, valor2)) {
+        mínimo := valor1
+    }
+    else {
+        mínimo := valor2
+    }
+    return (mínimo)
+}
+
+function esMayor_Que_(valor1, valor2) {
+    /*
+        PROPÓSITO:
+            * Indica si **valor1** es mayor que **valor2**.
+        PARÁMETROS:
+            * valor1
+            * valor2
+        TIPO: Tipo
+        PRECONDICIONES:
+            * Los valores dados por parámetro deben ser del mismo tipo.
+    */ 
+    return (valor1 > valor2)
+}

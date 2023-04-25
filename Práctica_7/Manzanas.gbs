@@ -1,0 +1,62 @@
+// Clase Práctica 24/4
+
+program{
+    return(nroDeManzanasAlRededorDelRecolector())
+}
+
+function nroBolitasTotalesDeLaCeldaLindanteAl_(direccion){
+    Mover(direccion)
+    return(nroBolitas(minColor()) 
+            + nroBolitas(siguiente(minColor())) 
+            + nroBolitas(previo(maxColor())) 
+            + nroBolitas(maxColor()))
+}
+
+
+function nroDeManzanasAlRededorDelRecolector(){
+    /*
+    PROPOSITO: Describir cuántas manzanas hay alrededor del recolector
+    PRECONDICIONES:
+        - Debe estar el recolector en la celda actual
+    TIPO: Número
+    OBSERVACIONES: Recorrido de acumulación por direcciones.
+    */
+    
+    nroDeManzanasVistasHastaAhora := 0  // 25
+    direccionARecorrer := minDir()      // Oeste
+    
+    while( direccionARecorrer /= maxDir()){
+        nroDeManzanasVistasHastaAhora:= nroDeManzanasVistasHastaAhora + nroDeManzanasEnDireccionA_(direccionARecorrer) // 3  + 40
+        direccionARecorrer := siguiente(direccionARecorrer)
+    }
+    return(nroDeManzanasVistasHastaAhora + nroDeManzanasEnDireccionA_(direccionARecorrer))
+}
+
+function nroDeManzanasEnDireccionA_(direccion){
+    /*
+    PROPOSITO: Describir cuántas manzanas hay en la dirección dada.
+    PRECONDICIONES: No tiene
+    PARAMENTROS:
+        - direccion: Dirección
+    TIPO: Número
+
+    */
+    return(choose   cantidadDeManzanasDeManzanasEnDireccionA_(direccion) when (puedeMover(direccion))
+                    0 otherwise
+    )
+    
+}
+
+function cantidadDeManzanasDeManzanasEnDireccionA_(direccion){
+    /*
+    PROPOSITO: describir cuántas manzanas hay en la direccion dada
+    PRECONDICIONES:
+        - Debe exitir al menos una celda en la direccion dada
+    PARAMENTROS:
+        - direccion: Dirección
+    TIPO: Número
+    */
+
+    Mover(direccion)
+    return(nroBolitas(Rojo))
+}

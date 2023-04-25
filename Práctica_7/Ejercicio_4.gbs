@@ -9,19 +9,15 @@ function máximoEntre_Y_(valor1, valor2) {
         PROPÓSITO:
             * Describe el valor más grande de los valores dados.
         PARÁMETROS:
-            * valor1
-            * valor2
-        TIPO: Tipo
+            * valor1: Elemento comparable - Describe el primer elemento a comparar.
+            * valor2: Elemento comparable - Describe el segundo elemento a comparar.
+        TIPO: Elemento comparable.
         PRECONDICIONES:
             * **valor1** y **valor2** deben ser del mismo tipo.
     */
-    if (valor1 > valor2) {
-        máximo := valor1
-    }
-    else {
-        máximo := valor2
-    }
-    return (máximo)
+    return(choose valor1  when (valor1 > valor2)
+                  valor2  otherwise           
+    )
 }
 
 function mínimoEntre_Y_(valor1, valor2) {
@@ -29,17 +25,13 @@ function mínimoEntre_Y_(valor1, valor2) {
         PROPÓSITO:
             * Describe el valor más chico de los valores dados.
         PARÁMETROS:
-            * valor1
-            * valor2
-        TIPO: Tipo
+            * valor1: Elemento comparable - Describe el primer elemento a comparar.
+            * valor2: Elemento comparable - Describe el segundo elemento a comparar.
+        TIPO: Elemento comparable.
         PRECONDICIONES:
             * **valor1** y **valor2** deben ser del mismo tipo.
     */
-    if (valor1 < valor2) {
-        mínimo := valor1
-    }
-    else {
-        mínimo := valor2
-    }
-    return (mínimo)
+    return(choose valor1  when (valor1 > valor2)
+                  valor2  otherwise           
+    )
 }

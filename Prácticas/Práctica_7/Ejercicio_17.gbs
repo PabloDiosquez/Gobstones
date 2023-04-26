@@ -51,29 +51,47 @@ function estáElJugadorNro_EnLaCeldaActual(nroJugador) {
     return (nroJugador() == nroJugador)
 }
 
-procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
-    /*
-    */
-    IrAlBorde(opuesto(dirPrincipal))
-    IrAlBorde(opuesto(dirSecundaria))
-}
-
 // b.
-function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+
+function alguienJugóA_MasDe_(nroApostado, cantidadMínima) {
     /*
-    */  
-    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+        PROPÓSITO:
+            * Indica si algún jugador apostó al número **nroApostado** por un monto mayor a  **cantidadMínima**.
+        PARÁMETROS:
+            * nroApostado:    Número - 
+            * cantidadMínima: Número - 
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber una representación válida de una mesa de apuestas en el tablero.
+            * **nroApostado** debe ser mayor o igual a cero.
+            * **cantidadMínima** debe ser mayor o igual a cero.
+    */
+
+    esLaApuestaBuscada := elJugadorActualJugóA_MásDe_(nroApostado, cantidadMínima)
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+
+    while (not esLaApuestaBuscada && haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+        esLaApuestaBuscada := elJugadorActualJugóA_MásDe_(nroApostado, cantidadMínima)
+    }
+
+    return (esLaApuestaBuscada)
 }
 
-// c.
-procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+function elJugadorActualJugóA_MásDe_(nroApostado, monto) {
     /*
+        PROPÓSITO:
+            * Indica si el jugador de la celda actual realizó una apuesta al número **nroApostado** por un monto mayor a **monto**.
+        PARÁMETROS:
+            * nroApostado: Número - 
+            * monto      : Número -
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber un registro de una apuesta válida en la celda actual.
+            * **nroApostado** debe ser mayor o igual a cero.
+            * **monto** debe ser mayor o igual a cero.
     */
-    if (puedeMover(dirPrincipal)){
-        Mover(dirPrincipal)
-    }
-    else {
-        IrAlBorde(opuesto(dirPrincipal))
-        Mover(dirSecundaria)
-    }
+    
+    return (nroApostado() == nroApostado && monto() > monto)
 }

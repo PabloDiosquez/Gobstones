@@ -20,40 +20,12 @@ procedure IrANésimaVacía_(n) {
             * Recorrido de búsqueda por celdas.
     */
     
-    celdasVacíasYaVistas := 0
+    celdasVacíasYaVistas := unoSi_CeroSino(esVacía())
 
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
 
-    while (condition) {
-        
+    while (celdasVacíasYaVistas /= n && haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
         IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
-    }
-
-}
-
-procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
-    /*
-    */
-    IrAlBorde(opuesto(dirPrincipal))
-    IrAlBorde(opuesto(dirSecundaria))
-}
-
-// b.
-function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
-    /*
-    */  
-    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
-}
-
-// c.
-procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
-    /*
-    */
-    if (puedeMover(dirPrincipal)){
-        Mover(dirPrincipal)
-    }
-    else {
-        IrAlBorde(opuesto(dirPrincipal))
-        Mover(dirSecundaria)
+        celdasVacíasYaVistas := celdasVacíasYaVistas + unoSi_CeroSino(esVacía())
     }
 }

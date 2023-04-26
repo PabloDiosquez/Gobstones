@@ -1,0 +1,9 @@
+// El casino, parte 2
+// En el marco del ejercicio del casino de la práctica 6, escribir las siguientes
+// operaciones. En cada caso, recordar escribir primero el contrato, y expresar la
+// estrategia usando subtareas (preferentemente con la metodología top-down).
+// a. estáElJugador_(nroJugador), que denota verdadero si el jugador
+// indicado tiene registrada, al menos, una apuesta.
+// b. alguienJugóA_MasDe_(nroApostado, cantidadMínima), que denota
+// verdadero si algún jugador apostó al número indicado por un monto mayor a
+// cantidadMínima.

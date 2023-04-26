@@ -1,0 +1,33 @@
+// Escribir una función colorMínimoConBolitas() que denote el color más chico
+// (en el orden Azul, Negro, Rojo, Verde) del cual hay bolitas en la celda actual.
+// a. Considerar primero el contrato. ¿Qué ocurre si en la celda actual no hay
+// bolitas de ningún color?
+// b. Escribir la solución organizada como un recorrido de búsqueda sobre los
+// colores que use una variable colorActual cuyo propósito sea denotar el
+// color que se está recorriendo.
+// c. ¿La solución funciona si se agregan más colores a Gobstones? En caso
+// negativo, modificar la solución para que funcione con cualquier cantidad de
+// colores.
+// Ayuda: considerar utilizar las expresiones primitivas minColor() y
+// maxColor() que describen al color más chico y al color más grande
+// posibles.
+
+function colorMínimoConBolitas() {
+    /*
+        PROPÓSITO:
+            * Denota el color más chico, en el orden Azul, Negro, Rojo, Verde, del cual hay bolitas en la celda actual.
+        TIPO: Color.
+        PRECONDICIONES:
+            * La celda actual no debe estar vacía.
+        OBSERVACIONES:
+            * Recorrido de búsqueda por colores.
+    */
+    
+    colorActual := minColor()
+
+    while (not hayBolitas(colorActual)) {
+        colorActual := siguiente (colorActual)
+    }
+
+    return (colorActual)
+}

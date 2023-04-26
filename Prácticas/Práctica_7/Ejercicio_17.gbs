@@ -7,3 +7,24 @@
 // b. alguienJugóA_MasDe_(nroApostado, cantidadMínima), que denota
 // verdadero si algún jugador apostó al número indicado por un monto mayor a
 // cantidadMínima.
+
+// a.
+
+function estáElJugador_(nroJugador) {
+    /*
+        PROPÓSITO:
+            * Indica si el jugador **nroJugador** tiene registrada, al menos una apuesta.
+        PARÁMETROS:
+            * nroJugador: Número - Es el número del jugador a buscar en el registro de apuestas actual.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe haber una representación válida de una mesa de apuestas en el tablero.
+            * **nroJugador** debe ser mayor o igual a cero.
+    */
+    
+    
+
+
+
+    return ()
+}

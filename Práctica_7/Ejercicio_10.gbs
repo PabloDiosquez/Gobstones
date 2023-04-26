@@ -1,0 +1,120 @@
+// Escribir una función nroVacías() que describa la cantidad de celdas vacías del
+// tablero. Estructurar el código como recorrido de celdas.
+// Con respecto al código:
+// recordar que no es buena práctica anidar herramientas en el mismo
+// procedimiento o función. ¿Cómo hacer, entonces, para aumentar la cantidad de
+// vacías en cada momento, dado que la variable solo puede modificarse de forma
+// local?
+// Ayuda: considerar una función que devuelva la cantidad de celdas vacías que hay
+// considerando solamente la celda actual… (Observar que esa cantidad solamente
+// puede ser 1 o 0.)
+
+function nroVacías() {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de celdas vacías que hay en el tablero.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        TIPO: Número.
+        OBSERVACIONES:
+            * Recorrido de acumulación.
+    */
+
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+
+    celdasVacíasYaContadas := unoSi_CeroSino(esVacía())
+    
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+        celdasVacíasYaContadas := celdasVacíasYaContadas + unoSi_CeroSino(esVacía())
+    }
+    
+    return (celdasVacíasYaContadas)
+}
+
+function unoSi_CeroSino(condición) {
+    /*
+        PROPÓSITO:
+            * Devuelve uno si la condición dada es verdadera; en caso contrario, devuelve cero.
+        PARÁMETROS:
+            * condición: Booleano - Describe la condición a validar.
+        TIPO: Número (0 o 1).
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose 1 when (condición)
+                   0 otherwise
+    )
+}
+
+function esVacía() {
+    /*
+        PROPÓSITO: 
+            * Indica si la celda actual está vacía.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de búsqueda por colores.
+    */
+    colorActual := minColor()
+
+    while (not hayBolitas(colorActual) && colorActual /= maxColor())
+    {
+        colorActual := siguiente(colorActual)
+    } 
+    
+    return (not hayBolitas(colorActual))
+}
+
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Ubica el cabezal en el inicio de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+// b.
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */  
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+// c.
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal a la siguiente celda de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Debe existir al menos una celda siguiente en el recorrido.
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    if (puedeMover(dirPrincipal)){
+        Mover(dirPrincipal)
+    }
+    else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
+    }
+}

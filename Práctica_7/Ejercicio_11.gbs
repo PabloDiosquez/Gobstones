@@ -1,7 +1,7 @@
 // Escribir una función colorMínimoConBolitas() que denote el color más chico
 // (en el orden Azul, Negro, Rojo, Verde) del cual hay bolitas en la celda actual.
 // a. Considerar primero el contrato. ¿Qué ocurre si en la celda actual no hay
-// bolitas de ningún color?
+// bolitas de ningún color? 
 // b. Escribir la solución organizada como un recorrido de búsqueda sobre los
 // colores que use una variable colorActual cuyo propósito sea denotar el
 // color que se está recorriendo.

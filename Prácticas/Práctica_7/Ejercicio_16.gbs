@@ -210,6 +210,65 @@ procedure IrACanalLibreParaAterrizar() {
 // h. La función mayorNroDeVueloDespegando(), que retorne el número de
 // vuelo más grande que esté despegando en el aeropuerto.
 
+ function mayorNroDeVueloDespegando() {
+    /*
+        PROPÓSITO:
+            * Devuelve el número de vuelo más grande que esté despegando en el aeropuerto.
+        TIPO: Número.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe haber al menos un avión despegando en el aeropuerto.
+        OBSERVACIONES:
+            * Recorrido de búsqueda por celdas.
+    */
+    
+    mayorNroDeAviónDespegandoHastaAhora := nroPrimerAviónEncontradoDespegando()
+
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+
+        if (hayAviónDespegando()) {
+            mayorNroDeAviónDespegandoHastaAhora := máximoEntre_Y_(mayorNroDeAviónDespegandoHastaAhora, nroDeVuelo())
+        }
+    }
+    
+    return (máximoEntre_Y_(mayorNroDeAviónDespegandoHastaAhora, nroDeVuelo()))
+ }
+
+ function nroPrimerAviónEncontradoDespegando() {
+    /*
+        PROPÓSITO:
+            * Devuelve el número del primer avión encontrado despegando.
+              Deja el cabezal en la posición donde se encontró el avión despegando.
+        TIPO: Número.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe haber al menos un avión despegando en el aeropuerto.
+        OBSERVACIONES:
+            * Recorrido de búsqueda por celdas.
+    */
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+
+    while (not hayAviónDespegando() && haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+
+    return (nroDeVuelo())
+ }
+
+function nroDeVuelo() {
+    /*
+        PROPÓSITO:
+            *
+        TIPO: Número.
+        PRECONDICIONES:
+            * 
+    */
+    
+    return (nroBolitas(Azul))
+}
+
 
 // Funciones auxiliares.
 

@@ -1,0 +1,58 @@
+// Escribir un procedimiento IrANésimaVacía_(n) que posicione el cabezal en la
+// celda vacía número n que se encuentra en un recorrido del tablero por celdas en las
+// direcciones Este y Norte. Si no hay suficientes celdas vacías, deja el cabezal en la
+// esquina NorEste.
+// Por ejemplo, IrANésimaVacía_(1) posiciona el cabezal en la primer celda vacía,
+// IrANésimaVacía_(2) posiciona el cabezal en la segunda celda vacía, etc.
+// Organizar la solución como un recorrido de búsqueda por celdas que utilice una
+// variable celdasVacíasYaVistas, cuyo propósito sea denotar la cantidad de
+// celdas vacías que ya se recorrieron.
+
+procedure IrANésimaVacía_(n) {
+    /*
+        PROPÓSITO:
+            * Posiciona el cabezal en la celda vacía número **n**. Si no hay suficientes celdas vacías, deja el cabezal en la esquina NorEste.
+        PARÁMETROS:
+            * n: Número - Denota el número de celda vacía donde ubicar el cabezal.
+        PRECONDICIONES:
+            * **n** debe ser un número mayor o igual a cero.
+        OBSERVACIONES:
+            * Recorrido de búsqueda por celdas.
+    */
+    
+    celdasVacíasYaVistas := unoSi_CeroSino(esVacía())
+
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+
+    while (celdasVacíasYaVistas /= n && haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+        celdasVacíasYaVistas := celdasVacíasYaVistas + unoSi_CeroSino(esVacía())
+    }
+}
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+    */
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+// b.
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+    */  
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+// c.
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+    */
+    if (puedeMover(dirPrincipal)){
+        Mover(dirPrincipal)
+    }
+    else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
+    }
+}

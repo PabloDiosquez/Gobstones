@@ -1,58 +1,113 @@
-// Escribir un procedimiento IrANésimaVacía_(n) que posicione el cabezal en la
-// celda vacía número n que se encuentra en un recorrido del tablero por celdas en las
-// direcciones Este y Norte. Si no hay suficientes celdas vacías, deja el cabezal en la
-// esquina NorEste.
-// Por ejemplo, IrANésimaVacía_(1) posiciona el cabezal en la primer celda vacía,
-// IrANésimaVacía_(2) posiciona el cabezal en la segunda celda vacía, etc.
-// Organizar la solución como un recorrido de búsqueda por celdas que utilice una
-// variable celdasVacíasYaVistas, cuyo propósito sea denotar la cantidad de
-// celdas vacías que ya se recorrieron.
+// La torre de control
+// En este ejercicio las columnas del tablero representan canales aéreos por los que
+// despegan y aterrizan aviones. Se considera que un canal está libre para aterrizar si
+// no hay avión en ninguna de las posiciones de ese el canal. Los aviones se
+// representan con tantas bolitas azules como el número de su vuelo, y con una bolita
+// Roja en la misma celda si está aterrizando o con una bolita Verde si está
+// despegando. El tablero representa a todo el aeropuerto; en cada celda hay a lo
+// sumo un avión. Implementar las siguientes operaciones:
+// a. La función cantidadDeCanalesLibres(), que devuelva la cantidad de
+// canales sin aviones.
 
-procedure IrANésimaVacía_(n) {
+function unoSi_CeroSino(condición) {
     /*
         PROPÓSITO:
-            * Posiciona el cabezal en la celda vacía número **n**. Si no hay suficientes celdas vacías, deja el cabezal en la esquina NorEste.
+            * Devuelve uno si la condición dada es verdadera; en caso contrario, devuelve cero.
         PARÁMETROS:
-            * n: Número - Denota el número de celda vacía donde ubicar el cabezal.
+            * condición: Booleano - Describe la condición a validar.
+        TIPO: Número (0 o 1).
         PRECONDICIONES:
-            * **n** debe ser un número mayor o igual a cero.
-        OBSERVACIONES:
-            * Recorrido de búsqueda por celdas.
+            * No tiene (es una función total).
     */
     
-    celdasVacíasYaVistas := unoSi_CeroSino(esVacía())
-
-    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
-
-    while (celdasVacíasYaVistas /= n && haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
-        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
-        celdasVacíasYaVistas := celdasVacíasYaVistas + unoSi_CeroSino(esVacía())
-    }
+    return (choose 1 when (condición)
+                   0 otherwise
+    )
 }
 
-procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+function cantidadDeCanalesLibres() {
     /*
+        PROPÓSITO:
+            * Devuelve la cantidad de canales libres que hay en el aeropuerto.
+        TIPO: Número.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+        OBSERVACIONES:
+            * Recorrido de acumulación por columnas.
     */
-    IrAlBorde(opuesto(dirPrincipal))
-    IrAlBorde(opuesto(dirSecundaria))
+        IrAlBorde(Oeste)
+
+        cantidadDeCanalesLibresVistosYa := unoSi_CeroSino(esUnCanalLibre())
+
+        while (puedeMover(Este)) {
+            Mover(Este)
+            cantidadDeCanalesLibresVistosYa := cantidadDeCanalesLibresVistosYa + unoSi_CeroSino(esUnCanalLibre())
+        }
+
+    return (cantidadDeCanalesLibresVistosYa + unoSi_CeroSino(esUnCanalLibre()))
 }
 
-// b.
-function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+function esUnCanalLibre() {
     /*
-    */  
-    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
-}
-
-// c.
-procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
-    /*
+        PROPÓSITO:
+            * Indica si el canal actual está libre o no.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * En cada celda hay a lo sumo un avión.
+        OBSERVACIONES:
+            * Se considera que un canal está libre para aterrizar si no hay avión en ninguna de las posiciones de ese el canal.
+            * Recorrido de búsqueda.
     */
-    if (puedeMover(dirPrincipal)){
-        Mover(dirPrincipal)
+    
+    IrAlBorde(Norte)
+
+    while (not hayAvión() && puedeMover(Sur)) {
+        Mover(Sur)
     }
-    else {
-        IrAlBorde(opuesto(dirPrincipal))
-        Mover(dirSecundaria)
-    }
+
+    return (not hayAvión())
 }
+
+function hayAvión() {
+    /*
+        PROPÓSITO: 
+            * Indica si hay un avión en la celda actual.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * En cada celda hay a lo sumo un avión.
+    */
+    
+    return (hayBolitas(colorAvión()))
+}
+
+function colorAvión() {
+    /*
+        PROPÓSITO:
+            * Describe el color que representa al avión.n.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Azul)
+}
+
+// b. La función cantidadDeAvionesDespegando(), que devuelva la cantidad
+// total de aviones que están despegando en todo el aeropuerto.
+// c. El procedimiento IrACanalLibreParaDespegar(), que deje el cabezal
+// en el primer canal libre más cercano al Sureste del aeropuerto.
+// d. La función cantidadDeAvionesTotales(), que devuelva la cantidad
+// total de aviones que están despegando/o aterrizando en todo el aeropuerto.
+// e. El procedimiento IrACanalLibreParaAterrizar(), que debe dejar al
+// cabezal en el primer canal libre más cercano al Noroeste del aeropuerto.
+// f. La función cantidadDeCanalesConColisiónInminente(), que
+// devuelva la cantidad de carriles con posibles colisiones en todo el
+// aeropuerto. Se considera que hay una colisión posible si en el mismo carril
+// hay un avión que está despegando debajo de un avión que está aterrizando.
+// g. El procedimiento IrACanalConColisiónInminente(), que deje el
+// cabezal en el primer Carril con una colisión inminente (desde el extremo
+// Suroeste del aeropuerto).
+// h. La función mayorNroDeVueloDespegando(), que retorne el número de
+// vuelo más grande que esté despegando en el aeropuerto.

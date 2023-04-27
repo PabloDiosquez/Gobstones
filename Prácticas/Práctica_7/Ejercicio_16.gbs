@@ -146,6 +146,7 @@ procedure IrACanalLibreParaDespegar() {
     */
     
     IrAlBorde(Este)
+    IrAlBorde(Sur)
 
     while (not esUnCanalLibre() && puedeMover(Oeste)) {
         Mover(Oeste)
@@ -181,8 +182,23 @@ function cantidadDeAvionesTotales() {
 // e. El procedimiento IrACanalLibreParaAterrizar(), que debe dejar al
 // cabezal en el primer canal libre más cercano al Noroeste del aeropuerto.
 
+procedure IrACanalLibreParaAterrizar() {
+    /*
+        PROPÓSITO:
+            * Deja el cabezal en el primer canal libre más cercano al Noroeste del aeropuerto.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe haber al menos un canal libre en el aeropuerto.
+        OBSERVACIONES:
+            * Recorrido de búsqueda.
+    */
+    IrAlBorde(Oeste)
+    IrAlBorde(Norte)
 
-
+    while (not esUnCanalLibre() && puedeMover(Este)) {
+        Mover(Este)
+    }
+}
 
 // f. La función cantidadDeCanalesConColisiónInminente(), que
 // devuelva la cantidad de carriles con posibles colisiones en todo el

@@ -6,24 +6,9 @@
 // Roja en la misma celda si está aterrizando o con una bolita Verde si está
 // despegando. El tablero representa a todo el aeropuerto; en cada celda hay a lo
 // sumo un avión. Implementar las siguientes operaciones:
+
 // a. La función cantidadDeCanalesLibres(), que devuelva la cantidad de
 // canales sin aviones.
-
-function unoSi_CeroSino(condición) {
-    /*
-        PROPÓSITO:
-            * Devuelve uno si la condición dada es verdadera; en caso contrario, devuelve cero.
-        PARÁMETROS:
-            * condición: Booleano - Describe la condición a validar.
-        TIPO: Número (0 o 1).
-        PRECONDICIONES:
-            * No tiene (es una función total).
-    */
-    
-    return (choose 1 when (condición)
-                   0 otherwise
-    )
-}
 
 function cantidadDeCanalesLibres() {
     /*
@@ -35,14 +20,14 @@ function cantidadDeCanalesLibres() {
         OBSERVACIONES:
             * Recorrido de acumulación por columnas.
     */
-        IrAlBorde(Oeste)
+    IrAlBorde(Oeste)
 
-        cantidadDeCanalesLibresVistosYa := unoSi_CeroSino(esUnCanalLibre())
+    cantidadDeCanalesLibresVistosYa := unoSi_CeroSino(esUnCanalLibre())
 
-        while (puedeMover(Este)) {
-            Mover(Este)
-            cantidadDeCanalesLibresVistosYa := cantidadDeCanalesLibresVistosYa + unoSi_CeroSino(esUnCanalLibre())
-        }
+    while (puedeMover(Este)) {
+        Mover(Este)
+        cantidadDeCanalesLibresVistosYa := cantidadDeCanalesLibresVistosYa + unoSi_CeroSino(esUnCanalLibre())
+    }
 
     return (cantidadDeCanalesLibresVistosYa + unoSi_CeroSino(esUnCanalLibre()))
 }
@@ -96,6 +81,56 @@ function colorAvión() {
 
 // b. La función cantidadDeAvionesDespegando(), que devuelva la cantidad
 // total de aviones que están despegando en todo el aeropuerto.
+
+function cantidadDeAvionesDespegando() {
+    /*
+        PROPÓSITO: 
+            * Devuelve la cantidad total de aviones que están despegando en el aeropuerto.
+        TIPO: Número.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+        OBSERVACIONES:
+            * Los aviones se representan con tantas bolitas azules como el número de su vuelo, y con una bolita Verde si está despegando.
+            * Recorrido de acumulación por celdas.
+    */
+
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
+
+    cantidadDeAvionesDespegandoVistosYa := unoSi_CeroSino(hayAviónDespegando())
+
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+        cantidadDeAvionesDespegandoVistosYa := cantidadDeAvionesDespegandoVistosYa + unoSi_CeroSino(hayAviónDespegando())
+    }
+
+    return (cantidadDeAvionesDespegandoVistosYa + unoSi_CeroSino(hayAviónDespegando()))
+}
+
+function hayAviónDespegando() {
+    /*
+        PROPÓSITO:
+            * Indica si hay un avión despegando en la celda actual.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+    */
+    
+    return (hayAvión() && estáDespegando())
+}
+
+function estáDespegando() {
+    /*
+        PROPÓSITO:
+            * Indica si el avión de la posición actual está despegando.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe haber un avión en la celda actual.
+    */
+    
+    return (hayBolitas(Verde))
+}
+
 // c. El procedimiento IrACanalLibreParaDespegar(), que deje el cabezal
 // en el primer canal libre más cercano al Sureste del aeropuerto.
 // d. La función cantidadDeAvionesTotales(), que devuelva la cantidad
@@ -111,3 +146,72 @@ function colorAvión() {
 // Suroeste del aeropuerto).
 // h. La función mayorNroDeVueloDespegando(), que retorne el número de
 // vuelo más grande que esté despegando en el aeropuerto.
+
+
+// Funciones auxiliares.
+
+function unoSi_CeroSino(condición) {
+    /*
+        PROPÓSITO:
+            * Devuelve uno si la condición dada es verdadera; en caso contrario, devuelve cero.
+        PARÁMETROS:
+            * condición: Booleano - Describe la condición a validar.
+        TIPO: Número (0 o 1).
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose 1 when (condición)
+                   0 otherwise
+    )
+}
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Ubica el cabezal en el inicio de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+// b.
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */  
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+// c.
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal a la siguiente celda de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Debe existir al menos una celda siguiente en el recorrido.
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    if (puedeMover(dirPrincipal)){
+        Mover(dirPrincipal)
+    }
+    else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
+    }
+}

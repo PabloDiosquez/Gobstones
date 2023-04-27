@@ -152,15 +152,38 @@ procedure IrACanalLibreParaDespegar() {
     }
 }
 
-
 // d. La función cantidadDeAvionesTotales(), que devuelva la cantidad
 // total de aviones que están despegando/o aterrizando en todo el aeropuerto.
 
+function cantidadDeAvionesTotales() {
+    /*
+        PROPÓSITO:
+            * Devuelve la cantidad total de aviones que están despegando o aterrizando en todo el aeropuerto.
+        TIPO: Número.
+        PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+        OBSERVACIONES:
+            * Recorrido de acumulación por celdas.
+    */
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
 
+    cantidadDeAvionesVistosYa := unoSi_CeroSino(hayAvión())
 
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+        cantidadDeAvionesVistosYa := cantidadDeAvionesVistosYa + unoSi_CeroSino(hayAvión())
+    }
+
+    return (cantidadDeAvionesVistosYa + unoSi_CeroSino(hayAvión()))
+}
 
 // e. El procedimiento IrACanalLibreParaAterrizar(), que debe dejar al
 // cabezal en el primer canal libre más cercano al Noroeste del aeropuerto.
+
+
+
+
 // f. La función cantidadDeCanalesConColisiónInminente(), que
 // devuelva la cantidad de carriles con posibles colisiones en todo el
 // aeropuerto. Se considera que hay una colisión posible si en el mismo carril

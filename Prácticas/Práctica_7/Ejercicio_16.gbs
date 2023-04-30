@@ -18,7 +18,7 @@ function cantidadDeCanalesLibres() {
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
         OBSERVACIONES:
-            * Recorrido de acumulación por columnas.
+            * Recorrido de acumulación por por canales aéreos.
     */
     IrAlBorde(Oeste)
 
@@ -213,7 +213,7 @@ procedure IrACanalLibreParaAterrizar() {
  function mayorNroDeVueloDespegando() {
     /*
         PROPÓSITO:
-            * Devuelve el número de vuelo más grande que esté despegando en el aeropuerto.
+            * Describe el número de vuelo más grande que esté despegando en el aeropuerto.
         TIPO: Número.
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
@@ -229,7 +229,7 @@ procedure IrACanalLibreParaAterrizar() {
 
         if (hayAviónDespegando()) {
             mayorNroDeAviónDespegandoHastaAhora := máximoEntre_Y_(mayorNroDeAviónDespegandoHastaAhora, nroDeVuelo())
-        }
+        } // Usar un choose acá...
     }
     
     return (máximoEntre_Y_(mayorNroDeAviónDespegandoHastaAhora, nroDeVuelo()))
@@ -238,7 +238,7 @@ procedure IrACanalLibreParaAterrizar() {
  function nroPrimerAviónEncontradoDespegando() {
     /*
         PROPÓSITO:
-            * Devuelve el número del primer avión encontrado despegando.
+            * Describe el número del primer avión encontrado despegando.
               Deja el cabezal en la posición donde se encontró el avión despegando.
         TIPO: Número.
         PRECONDICIONES:
@@ -275,7 +275,7 @@ function nroDeVuelo() {
 function unoSi_CeroSino(condición) {
     /*
         PROPÓSITO:
-            * Devuelve uno si la condición dada es verdadera; en caso contrario, devuelve cero.
+            * Describe el número uno si la condición dada es verdadera; en caso contrario, describe el cero.
         PARÁMETROS:
             * condición: Booleano - Describe la condición a validar.
         TIPO: Número (0 o 1).

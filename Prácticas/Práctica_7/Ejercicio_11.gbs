@@ -15,7 +15,7 @@
 function colorMínimoConBolitas() {
     /*
         PROPÓSITO:
-            * Denota el color más chico, en el orden Azul, Negro, Rojo, Verde, del cual hay bolitas en la celda actual.
+            * Describe el color más chico, en el orden Azul, Negro, Rojo, Verde, del cual hay bolitas en la celda actual.
         TIPO: Color.
         PRECONDICIONES:
             * La celda actual no debe estar vacía.

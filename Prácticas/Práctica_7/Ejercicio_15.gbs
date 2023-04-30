@@ -11,13 +11,13 @@
 procedure IrANésimaVacía_(n) {
     /*
         PROPÓSITO:
-            * Posiciona el cabezal en la celda vacía número **n**. Si no hay suficientes celdas vacías, deja el cabezal en la esquina NorEste.
+            * Posiciona el cabezal en la celda vacía número **n**. Si no hay suficientes celdas vacías, deja el cabezal en la esquina Noreste.
         PARÁMETROS:
-            * n: Número - Denota el número de celda vacía donde ubicar el cabezal.
+            * n: Número - El número de celda vacía a posicionar el cabezal.
         PRECONDICIONES:
             * **n** debe ser un número mayor o igual a cero.
         OBSERVACIONES:
-            * Recorrido de búsqueda por celdas.
+            * Recorrido de búsqueda por celdas en todo el tablero.
     */
     
     celdasVacíasYaVistas := unoSi_CeroSino(esVacía())

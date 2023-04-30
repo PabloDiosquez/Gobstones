@@ -17,7 +17,7 @@ function nroVacías() {
             * No tiene (es una función total).
         TIPO: Número.
         OBSERVACIONES:
-            * Recorrido de acumulación.
+            * Recorrido de acumulación por celdas.
     */
 
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
@@ -30,22 +30,6 @@ function nroVacías() {
     }
     
     return (celdasVacíasYaContadas)
-}
-
-function unoSi_CeroSino(condición) {
-    /*
-        PROPÓSITO:
-            * Devuelve uno si la condición dada es verdadera; en caso contrario, devuelve cero.
-        PARÁMETROS:
-            * condición: Booleano - Describe la condición a validar.
-        TIPO: Número (0 o 1).
-        PRECONDICIONES:
-            * No tiene (es una función total).
-    */
-    
-    return (choose 1 when (condición)
-                   0 otherwise
-    )
 }
 
 function esVacía() {
@@ -68,14 +52,29 @@ function esVacía() {
     return (not hayBolitas(colorActual))
 }
 
+function unoSi_CeroSino(condición) {
+    /*
+        PROPÓSITO:
+            * Devuelve uno si la condición dada es verdadera; en caso contrario, devuelve cero.
+        PARÁMETROS:
+            * condición: Booleano - La condición a validar.
+        TIPO: Número (0 o 1).
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose 1 when (condición)
+                   0 otherwise
+    )
+}
 
 procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
     /*
         PROPÓSITO:
             * Ubica el cabezal en el inicio de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
         PARÁMETROS:
-            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
-            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
         PRECONDICIONES:
             * Las direcciones dadas no deben ser ni iguales ni opuestas.
     */
@@ -89,8 +88,8 @@ function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
         PROPÓSITO:
             * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
         PARÁMETROS:
-            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
-            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
         TIPO: Booleano.
         PRECONDICIONES:
             * Las direcciones dadas no deben ser ni iguales ni opuestas.
@@ -104,8 +103,8 @@ procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
         PROPÓSITO:
             * Mueve el cabezal a la siguiente celda de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
         PARÁMETROS:
-            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
-            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
         PRECONDICIONES:
             * Debe existir al menos una celda siguiente en el recorrido.
             * Las direcciones dadas no deben ser ni iguales ni opuestas.

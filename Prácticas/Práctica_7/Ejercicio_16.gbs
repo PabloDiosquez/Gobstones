@@ -18,7 +18,7 @@ function cantidadDeCanalesLibres() {
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
         OBSERVACIONES:
-            * Recorrido de acumulación por por canales aéreos.
+            * Recorrido de acumulación por canales aéreos.
     */
     IrAlBorde(Oeste)
 
@@ -38,11 +38,12 @@ function esUnCanalLibre() {
             * Indica si el canal actual está libre o no.
         TIPO: Booleano.
         PRECONDICIONES:
-            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe existir una representación válida de un canal aéreo en la columna actual.
             * En cada celda hay a lo sumo un avión.
         OBSERVACIONES:
+            * Las columnas del tablero representan canales aéreos por los que despegan y aterrizan aviones.
             * Se considera que un canal está libre para aterrizar si no hay avión en ninguna de las posiciones de ese el canal.
-            * Recorrido de búsqueda.
+            * Recorrido de búsqueda por celdas.
     */
     
     IrAlBorde(Norte)
@@ -57,7 +58,7 @@ function esUnCanalLibre() {
 function hayAvión() {
     /*
         PROPÓSITO: 
-            * Indica si hay un avión en la celda actual.
+            * Indica si hay un avión en la posición actual.
         TIPO: Booleano.
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
@@ -70,10 +71,10 @@ function hayAvión() {
 function colorAvión() {
     /*
         PROPÓSITO:
-            * Describe el color que representa al avión.n.
+            * Describe el color que representa a un avión.
         TIPO: Color.
         PRECONDICIONES:
-            * No tiene (es una función total).
+            * Debe existir una representación válida de un aeropuerto en el tablero. 
     */
     
     return (Azul)

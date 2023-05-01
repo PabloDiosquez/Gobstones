@@ -110,16 +110,16 @@ function cantidadDeAvionesDespegando() {
 function hayAviónDespegando() {
     /*
         PROPÓSITO:
-            * Indica si hay un avión despegando en la celda actual.
+            * Indica si hay un avión despegando en la posición actual.
         TIPO: Booleano.
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
     */
     
-    return (hayAvión() && estáDespegando())
+    return (hayAvión() && elAviónEstáDespegando())
 }
 
-function estáDespegando() {
+function elAviónEstáDespegando() {
     /*
         PROPÓSITO:
             * Indica si el avión de la posición actual está despegando.

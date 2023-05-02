@@ -17,7 +17,7 @@ function nroVacías() {
             * No tiene (es una función total).
         TIPO: Número.
         OBSERVACIONES:
-            * Recorrido de acumulación por celdas.
+            * Recorrido de acumulación de celdas vacías en el tablero.
     */
 
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)

@@ -138,7 +138,7 @@ function elAviónEstáDespegando() {
 procedure IrACanalLibreParaDespegar() {
     /*
         PROPÓSITO:
-            * Deja el cabezal en el primer canal libre más cercano al Sureste del Aeropuerto.
+            * Ubica el cabezal en el primer canal libre más cercano al Sureste del Aeropuerto.
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
             * Debe haber al menos un canal libre en el aeropuerto.
@@ -223,24 +223,25 @@ procedure IrACanalLibreParaAterrizar() {
             * Recorrido de búsqueda por celdas.
     */
     
-    mayorNroDeAviónDespegandoHastaAhora := nroPrimerAviónEncontradoDespegando()
+    mayorNroDeVueloDespegandoHastaAhora := nroPrimerVueloEncontradoDespegando()
+
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
 
     while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
+
+        mayorNroDeVueloDespegandoHastaAhora := Si_Entonces_Sino_(hayAviónDespegando(), máximoEntre_Y_(mayorNroDeVueloDespegandoHastaAhora, nroDeVuelo()), mayorNroDeVueloDespegandoHastaAhora)
+
         IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
 
-        if (hayAviónDespegando()) {
-            mayorNroDeAviónDespegandoHastaAhora := máximoEntre_Y_(mayorNroDeAviónDespegandoHastaAhora, nroDeVuelo())
-        } // Usar un choose acá...
     }
     
-    return (máximoEntre_Y_(mayorNroDeAviónDespegandoHastaAhora, nroDeVuelo()))
+    return (máximoEntre_Y_(mayorNroDeVueloDespegandoHastaAhora, nroDeVuelo()))
  }
 
  function nroPrimerAviónEncontradoDespegando() {
     /*
         PROPÓSITO:
             * Describe el número del primer avión encontrado despegando.
-              Deja el cabezal en la posición donde se encontró el avión despegando.
         TIPO: Número.
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
@@ -261,13 +262,32 @@ procedure IrACanalLibreParaAterrizar() {
 function nroDeVuelo() {
     /*
         PROPÓSITO:
-            *
+            * Describe el número de vuelo del avión en la posición actual.
         TIPO: Número.
         PRECONDICIONES:
-            * 
+            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe haber un avión en la posición actual.
     */
     
-    return (nroBolitas(Azul))
+    return (nroBolitas(colorAvión()))
+}
+
+function Si_Entonces_Sino_(condición, primerNro, segundoNro) {
+    /*
+        PROPÓSITO:
+            * Describe el primer número dado si se cumple la condición dada; sino describe el segundo número dado.
+        PARÁMETROS:
+            * condición:     Booleano - La condición a validar.
+            * primerNro:     Número   - El número a describir si se cumple la condición dada.
+            * segundoNroNro: Número   - El número a describir si no se cumple la condición dada.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose primerNúmero when (condición)
+                   segundoNúmero otherwise 
+    )
 }
 
 

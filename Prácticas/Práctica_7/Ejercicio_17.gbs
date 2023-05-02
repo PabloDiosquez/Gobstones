@@ -15,14 +15,14 @@ function estáElJugador_(nroJugador) {
         PROPÓSITO:
             * Indica si el jugador **nroJugador** tiene registrada, al menos una apuesta.
         PARÁMETROS:
-            * nroJugador: Número - El número del jugador del que se indica si tiene registrada una apuesta en la mesa de apuestas actual.
+            * nroJugador: Número - El número del jugador de cual se indica si tiene registrada una apuesta en la mesa de apuestas actual.
         TIPO: Booleano.
         PRECONDICIONES:
             * Debe haber una representación válida de una mesa de apuestas en el tablero.
             * La celda actual debe tener una representación válida de una apuesta.
             * **nroJugador** debe ser mayor o igual a cero.
         OBSERVACIONES:
-            * Recorrido de búsqueda de la celda que tiene un registro de una apuesta del jugador **nroJugador**. 
+            * Recorrido de búsqueda sobre las celdas del tablero, buscando una celda que tenga un registro de una apuesta del jugador **nroJugador**. 
     */
 
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
@@ -53,7 +53,7 @@ function estáElJugador_Acá(nroJugador) {
 function nroJugador() {
     /*
         PROPÓSITO:  
-            * Describe el número de jugador en la apuesta actual.
+            * Describe el número cuya cantidad de bolitas representa el jugador en una apuesta.
         TIPO: Número.
         PRECONDICIONES:
             * La celda actual debe tener una representación válida de una apuesta.
@@ -65,7 +65,7 @@ function nroJugador() {
 function colorJugador() {
     /*
         PROPÓSITO:
-            * Describe el color que representa al jugador de la posición actual.
+            * Describe el color cuya cantidad de bolitas representa el jugador en una apuesta.
         TIPO: Color.
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -79,7 +79,7 @@ function alguienJugóA_MasDe_(nroApostado, cantidadMínima) {
         PROPÓSITO:
             * Indica si algún jugador de la mesa apostó por el número **nroApostado** por un monto mayor a  **cantidadMínima**.
         PARÁMETROS:
-            * nroApostado:    Número - El número del cual se indica si existe algún jugador de la mesa actual que haya realizado una apuesta por él.
+            * nroApostado:    Número - El número del cual se indica si existe algún jugador de la mesa actual que lo haya utilizado para una apuesta.
             * cantidadMínima: Número - La cantidad de dinero que se 
         TIPO: Booleano.
         PRECONDICIONES:
@@ -117,7 +117,7 @@ function elJugadorActualJugóA_MásDe_(nroApostado, monto) {
 function nroApostado() {
     /*
         PROPÓSITO:
-            * Describe el número apostado en la apuesta actual.
+            * Describe el número cuya cantidad de bolitas representa el número apostado en una apuesta.
         TIPO: Número.
         PRECONDICIONES:
             * Debe haber una apuesta válida en la celda actual.
@@ -128,6 +128,7 @@ function nroApostado() {
 function montoDeLaApuestaActual() {
     /*
         PROPÓSITO:
+            * Describe el número cuya cantidad de bolitas representa el monto en una apuesta.
             * Describe el monto de la apuesta actual.
         PRECONDICIONES:
             * Debe haber una apuesta válida en la celda actual.
@@ -138,7 +139,7 @@ function montoDeLaApuestaActual() {
 function colorNroApostado() {
     /*
         PROPÓSITO:
-            * Describe el color que representa el número apostado.
+            * Describe el color cuya cantidad de bolitas representa el número apostado en una apuesta.
         TIPO: Tipo
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -150,7 +151,7 @@ function colorNroApostado() {
 function colorMonto() {
     /*
         PROPÓSITO:
-            * Describe el color que representa al monto de la apuesta actual.
+            * Describe el color cuya cantidad de bolitas representa el monto en una apuesta.
         TIPO: Color.
         PRECONDICIONES:
             * No tiene (es una función total).

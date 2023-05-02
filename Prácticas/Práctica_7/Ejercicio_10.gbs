@@ -17,7 +17,7 @@ function nroVacías() {
             * No tiene (es una función total).
         TIPO: Número.
         OBSERVACIONES:
-            * Recorrido de acumulación de celdas vacías en el tablero.
+            * Recorrido de acumulación sobre las celdas del tablero acumulando la cantidad de celdas que están vacías
     */
 
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
@@ -57,7 +57,7 @@ function unoSi_CeroSino(condición) {
         PROPÓSITO:
             * Devuelve uno si la condición dada es verdadera; en caso contrario, devuelve cero.
         PARÁMETROS:
-            * condición: Booleano - La condición a validar.
+            * condición: Booleano - La condición según la cual se describe 0 o 1.
         TIPO: Número (0 o 1).
         PRECONDICIONES:
             * No tiene (es una función total).

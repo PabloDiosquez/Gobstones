@@ -18,7 +18,7 @@ function cantidadDeCanalesLibres() {
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
         OBSERVACIONES:
-            * Recorrido de acumulación por canales aéreos.
+            * Recorrido de acumulación sobre al aeropuerto, acumulando los canales aéreos que están vacíos.
     */
     IrAlBorde(Oeste)
 
@@ -35,15 +35,15 @@ function cantidadDeCanalesLibres() {
 function esUnCanalLibre() {
     /*
         PROPÓSITO:
-            * Indica si el canal actual está libre o no.
+            * Indica si el canal aéreo actual está libre o no.
         TIPO: Booleano.
         PRECONDICIONES:
+            * Debe existir una representación válida de un aeropuerto en el tablero.
             * Debe existir una representación válida de un canal aéreo en la columna actual.
-            * En cada celda hay a lo sumo un avión.
         OBSERVACIONES:
             * Las columnas del tablero representan canales aéreos por los que despegan y aterrizan aviones.
             * Se considera que un canal está libre para aterrizar si no hay avión en ninguna de las posiciones de ese el canal.
-            * Recorrido de búsqueda por celdas.
+            * Recorrido de búsqueda sobre las posiciones del canal, buscando una posición que tenga un avión.
     */
     
     IrAlBorde(Norte)
@@ -61,7 +61,7 @@ function hayAvión() {
             * Indica si hay un avión en la posición actual.
         TIPO: Booleano.
         PRECONDICIONES:
-            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe existir una representación válida de una posición de un canal aéreo en la celda actual. 
             * En cada celda hay a lo sumo un avión.
     */
     
@@ -71,10 +71,10 @@ function hayAvión() {
 function colorAvión() {
     /*
         PROPÓSITO:
-            * Describe el color que representa a un avión.
+            * Describe el color que representa a un avión en el aeropuerto.
         TIPO: Color.
         PRECONDICIONES:
-            * Debe existir una representación válida de un aeropuerto en el tablero. 
+            * No tiene (es una función total). 
     */
     
     return (Azul)
@@ -86,13 +86,13 @@ function colorAvión() {
 function cantidadDeAvionesDespegando() {
     /*
         PROPÓSITO: 
-            * Devuelve la cantidad total de aviones que están despegando en el aeropuerto.
+            * Devuelve la cantidad total de aviones que están despegando en todo el aeropuerto.
         TIPO: Número.
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
         OBSERVACIONES:
             * Los aviones se representan con tantas bolitas azules como el número de su vuelo, y con una bolita Verde si está despegando.
-            * Recorrido de acumulación por celdas.
+            * Recorrido de acumulación sobre las posiciones del aeropuerto, acumulando la cantidad de aviones que están despegando.
     */
 
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
@@ -113,7 +113,7 @@ function hayAviónDespegando() {
             * Indica si hay un avión despegando en la posición actual.
         TIPO: Booleano.
         PRECONDICIONES:
-            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe existir una representación válida de una posición de un canal aéreo de un aeropuerto en la celda actual.
     */
     
     return (hayAvión() && elAviónEstáDespegando())
@@ -125,11 +125,23 @@ function elAviónEstáDespegando() {
             * Indica si el avión de la posición actual está despegando.
         TIPO: Booleano.
         PRECONDICIONES:
-            * Debe existir una representación válida de un aeropuerto en el tablero.
+            * Debe existir una representación válida de una posición de un canal aéreo de un aeropuerto en la celda actual.
             * Debe haber un avión en la celda actual.
     */
     
-    return (hayBolitas(Verde))
+    return (hayBolitas(colorAviónDespegando()))
+}
+
+function colorAvión() {
+    /*
+        PROPÓSITO:
+            * Describe el color que representa a un avión despegando en el aeropuerto.
+        TIPO: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total). 
+    */
+    
+    return (Verde)
 }
 
 // c. El procedimiento IrACanalLibreParaDespegar(), que deje el cabezal
@@ -138,20 +150,21 @@ function elAviónEstáDespegando() {
 procedure IrACanalLibreParaDespegar() {
     /*
         PROPÓSITO:
-            * Ubica el cabezal en el primer canal libre más cercano al Sureste del Aeropuerto.
+            * Ubica el cabezal en el primer canal libre más cercano al Sureste del Aeropuerto, dejándolo en el borde Sur de ese canal.
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
             * Debe haber al menos un canal libre en el aeropuerto.
         OBSERVACIONES:
-            * Recorrido de búsqueda.
+            * Recorrido de búsqueda sobre los canales aéreos del aeropuerto actual, buscando el primer canal libre más cercano al Sureste del aeropuerto.
     */
     
     IrAlBorde(Este)
-    IrAlBorde(Sur)
 
     while (not esUnCanalLibre() && puedeMover(Oeste)) {
         Mover(Oeste)
     }
+
+    IrAlBorde(Sur)
 }
 
 // d. La función cantidadDeAvionesTotales(), que devuelva la cantidad
@@ -165,7 +178,7 @@ function cantidadDeAvionesTotales() {
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
         OBSERVACIONES:
-            * Recorrido de acumulación por celdas.
+            * Recorrido de acumulación sobre las posiciones del aeropuerto, acumulando la cantidad total de aviones.
     */
     
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este,Norte)
@@ -186,7 +199,7 @@ function cantidadDeAvionesTotales() {
 procedure IrACanalLibreParaAterrizar() {
     /*
         PROPÓSITO:
-            * Deja el cabezal en el primer canal libre más cercano al Noroeste del aeropuerto.
+            * Deja el cabezal en el primer canal libre más cercano al Noroeste del aeropuerto, dejándolo en el borde Norte de ese canal.
         PRECONDICIONES:
             * Debe existir una representación válida de un aeropuerto en el tablero.
             * Debe haber al menos un canal libre en el aeropuerto.
@@ -194,11 +207,12 @@ procedure IrACanalLibreParaAterrizar() {
             * Recorrido de búsqueda.
     */
     IrAlBorde(Oeste)
-    IrAlBorde(Norte)
 
     while (not esUnCanalLibre() && puedeMover(Este)) {
         Mover(Este)
     }
+
+    IrAlBorde(Norte)
 }
 
 // f. La función cantidadDeCanalesConColisiónInminente(), que
@@ -208,6 +222,7 @@ procedure IrACanalLibreParaAterrizar() {
 // g. El procedimiento IrACanalConColisiónInminente(), que deje el
 // cabezal en el primer Carril con una colisión inminente (desde el extremo
 // Suroeste del aeropuerto).
+
 // h. La función mayorNroDeVueloDespegando(), que retorne el número de
 // vuelo más grande que esté despegando en el aeropuerto.
 

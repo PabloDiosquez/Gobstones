@@ -219,6 +219,9 @@ procedure IrACanalLibreParaAterrizar() {
 // devuelva la cantidad de carriles con posibles colisiones en todo el
 // aeropuerto. Se considera que hay una colisión posible si en el mismo carril
 // hay un avión que está despegando debajo de un avión que está aterrizando.
+
+
+
 // g. El procedimiento IrACanalConColisiónInminente(), que deje el
 // cabezal en el primer Carril con una colisión inminente (desde el extremo
 // Suroeste del aeropuerto).
@@ -244,13 +247,13 @@ procedure IrACanalLibreParaAterrizar() {
 
     while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)) {
 
-        mayorNroDeVueloDespegandoHastaAhora := Si_Entonces_Sino_(hayAviónDespegando(), máximoEntre_Y_(mayorNroDeVueloDespegandoHastaAhora, nroDeVuelo()), mayorNroDeVueloDespegandoHastaAhora)
+        mayorNroDeVueloDespegandoHastaAhora := Si_Entonces_Sino_(hayAviónDespegando(), máximoEntre_Y_(mayorNroDeVueloDespegandoHastaAhora, nroDeVueloActual()), mayorNroDeVueloDespegandoHastaAhora)
 
         IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
 
     }
     
-    return (máximoEntre_Y_(mayorNroDeVueloDespegandoHastaAhora, nroDeVuelo()))
+    return (máximoEntre_Y_(mayorNroDeVueloDespegandoHastaAhora, nroDeVueloActual()))
  }
 
  function nroPrimerAviónEncontradoDespegando() {
@@ -274,7 +277,7 @@ procedure IrACanalLibreParaAterrizar() {
     return (nroDeVuelo())
  }
 
-function nroDeVuelo() {
+function nroDeVueloActual() {
     /*
         PROPÓSITO:
             * Describe el número de vuelo del avión en la posición actual.
@@ -292,9 +295,9 @@ function Si_Entonces_Sino_(condición, primerNro, segundoNro) {
         PROPÓSITO:
             * Describe el primer número dado si se cumple la condición dada; sino describe el segundo número dado.
         PARÁMETROS:
-            * condición:     Booleano - La condición a validar.
-            * primerNro:     Número   - El número a describir si se cumple la condición dada.
-            * segundoNroNro: Número   - El número a describir si no se cumple la condición dada.
+            * condición:  Booleano - La condición según la cual se describe el primer o el segundo número dado.
+            * primerNro:  Número   - El número que se describe si se cumple la condición dada.
+            * segundoNro: Número - El número que se describe si no se cumple la condición dada.
         TIPO: Número.
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -305,7 +308,6 @@ function Si_Entonces_Sino_(condición, primerNro, segundoNro) {
     )
 }
 
-
 // Funciones auxiliares.
 
 function unoSi_CeroSino(condición) {
@@ -313,7 +315,7 @@ function unoSi_CeroSino(condición) {
         PROPÓSITO:
             * Describe el número uno si la condición dada es verdadera; en caso contrario, describe el cero.
         PARÁMETROS:
-            * condición: Booleano - Describe la condición a validar.
+            * condición: Booleano - La condición según la cual se describe 0 o 1
         TIPO: Número (0 o 1).
         PRECONDICIONES:
             * No tiene (es una función total).

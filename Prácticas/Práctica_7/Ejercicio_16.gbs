@@ -221,7 +221,7 @@ procedure IrACanalLibreParaAterrizar() {
 // hay un avión que está despegando debajo de un avión que está aterrizando.
 
 
-
+// TODO: Resolver
 // g. El procedimiento IrACanalConColisiónInminente(), que deje el
 // cabezal en el primer Carril con una colisión inminente (desde el extremo
 // Suroeste del aeropuerto).

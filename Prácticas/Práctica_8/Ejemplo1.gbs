@@ -115,3 +115,62 @@ function anchoDe_(paloAUsar) {
     
     return (Carta(palo <- paloAUsar, numero <- 1))
 }
+
+function códigoDelPalo_(palo) {
+    /*
+        PROPÓSITO:
+            * Describe el código del palo dado.
+        PARÁMETROS:
+            * palo: Palo
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose 100 when (palo == Basto)
+                   200 when (palo == Copa)
+                   300 when (palo == Espada)
+                   200 when (palo == Oro)
+                   boom("Esto NO debería pasar. ¿Alteraste los palos?") otherwise 
+    )
+}
+
+function siguientePalo_(palo) {
+    /*
+        PROPÓSITO:
+            * Describe el palo siguiente al dado.
+        PARÁMETROS:
+            * palo: Palo
+        TIPO: Palo
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose Copa   when (palo == Basto)
+                   Espada when (palo == Copa)
+                   Oro    when (palo == Espada)
+                   Basto  when (palo == Oro)
+                   boom("Esto NO debería pasar. ¿Alteraste los palos?") otherwise
+    )
+}
+
+procedure PonerLosAnchos() {
+    /*
+        PROPÓSITO:
+            * Pone los cuatro anchos en el tablero.
+        PRECONDICIONES:
+            * Debe haber al menos tres celdas lindantes a la actual al Este.
+        OBSERVACIONES:
+            * Recorrido de transformación sobre los palos. 
+    */
+    
+    paloActual := Basto
+
+    while (paloActual != Oro) {
+        PonerCarta(anchoDe_(paloActual))
+        Mover(Este)
+        paloActual := siguientePalo_(paloActual)
+    }
+
+    PonerCarta(anchoDe_(paloActual))
+}

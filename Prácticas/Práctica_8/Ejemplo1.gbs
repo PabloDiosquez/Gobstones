@@ -1,0 +1,46 @@
+// Escribir una función celdaActual que describa la representación de la celda actual como valor del tipo Celda.
+
+// A modo de ejemplo introductorio...
+
+type Carta is record {
+    /*
+        PROPÓSITO:
+            * Modelar cartas españolas de Truco.
+        INVARIANTE DE REPRESENTACIÓN:
+            * El número está comprendido entre 1 y 7 o entre 10 y 12.
+    */
+
+    field palo // Un valor de tipo Palo
+    field número // Un valor de tipo Número.
+}
+
+type Celda is record {
+    /*
+        PROPÓSITO:
+            * Modelar una celda del tablero.
+        INVARIANTE DE REPRESENTACIÓN:
+            * Los números son todos mayores o iguales a cero.
+    */
+
+    field cantidadDeAzules  // Un valor de tipo Número.
+    field cantidadDeNegras  // Un valor de tipo Número.
+    field cantidadDeRojas   // Un valor de tipo Número.
+    field cantidadDeVerdes  // Un valor de tipo Número.
+}
+
+function celdaActual() {
+    /*
+        PROPÓSITO:
+            * Describe la celda actual como un registro de tipo Celda.
+        TIPO: Celda.
+        PRECONDICIONES:
+            * No tiene (es una funcipon total).
+    */
+    
+    return (Celda(
+        cantidadDeAzules <- nroBolitas(Azul),
+        cantidadDeNegras <- nroBolitas(Negro),
+        cantidadDeRojas  <- nroBolitas(Rojo),
+        cantidadDeVerdes <- nroBolitas(Verde)
+    ))
+}

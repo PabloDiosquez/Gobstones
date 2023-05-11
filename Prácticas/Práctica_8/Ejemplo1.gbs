@@ -197,3 +197,78 @@ function la_ConvertidaAOroII(cartaAnterior) {
     
     return (Carta(cartaAnterior | palo <- Oro))
 }
+
+// Otro ejemplo...
+
+function la_SinLasRojas(celdaAnterior) {
+    /*
+        PROPÓSITO:
+            * Describe una celda resultante al sacar todas las bolitas rojas de la celda dada.
+        PARÁMETROS:
+            * celdaAnterior: Celda.
+        TIPO: Celda.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Celda(celdaAnterior | cantidadDeRojas <- 0))
+}
+
+function la_ConDiezAzulesMás(celdaAnterior) {
+    /*
+        PROPÓSITO:
+            * Describe una celda resultante al agregar diez bolitas azules más a la celda dada.
+        PARÁMETROS:
+            * celdaAnterior: Celda.
+        TIPO: Celda.
+        PRECONDICIONES:
+            * No tiene (es una fucnión total).
+    */
+    
+    return (Celda(celdaAnterior | cantidadDeAzules <- cantidadDeAzules(celdaAnterior) + 10))
+}
+
+//🔸 Registros anidados
+
+type Jugador is record {
+    /*
+        PROPÓSITO:
+            * Modela un jugador.
+        INV. REP.:
+            * **nombre** no es vacío.
+            * **iniciativa** está entre cero y cien.
+            * **fuerza** es mayor o igual a cero.
+    */
+
+    field nombre        // String
+    field vida          // Número
+    field fuerza        // Número
+    field ataqueBásico  // Ataque
+    field iniciativa    // Número
+}
+
+type Ataque is variant {
+    /*
+        PROPÓSITO:
+            * Modela un tipo de ataque.
+    */
+
+    case Puñetazo  {}
+    case Patada    {}
+    case Mordisco  {}
+    case Cabezazo  {}
+    case Rodillazo {}
+}
+
+type Equipo is record {
+    /*
+        PROPÓSITO:
+            * Modela un equipo de juego.
+        INV. REP.:
+            * Los tres jugadores del equipo son diferentes.
+    */
+
+    field jugadorIzquierdo  // Jugador
+    field jugadorCentro     // Jugador
+    field jugadorDerecho    // Jugador
+}

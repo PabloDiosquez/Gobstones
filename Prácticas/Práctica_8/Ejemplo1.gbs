@@ -62,3 +62,18 @@ function envidoSimpleCon_Y_(carta1, carta2) {
     
     return (número(carta1) + número(carta2) + 20)
 }
+
+function la_Y_LaSonDelMismoPalo(carta1, carta2) {
+    /*
+        PROPÓSITO:
+            * Indica si las cartas dadas son del mismo palo.
+        PARÁMETROS:
+            * carta1: Carta
+            * carta2: Carta
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (palo(carta1) == palo(carta2))
+}

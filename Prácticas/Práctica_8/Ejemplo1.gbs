@@ -88,3 +88,30 @@ function la_Y_LaSonDelMismoPalo(carta1, carta2) {
     return (palo(carta1) == palo(carta2))
 }
 
+//🔸 Variantes
+
+type Palo is variant {
+    /*
+        PROPÓSITO:
+            * Modela los distintos palos de las cartas españolas.
+    */
+
+    case Basto  {}
+    case Espada {}
+    case Oro    {}
+    case Copa   {}
+}
+
+function anchoDe_(paloAUsar) {
+    /*
+        PROPÓSITO:
+            * Describe el ancho de **paloAUsar**.
+        PARÁMETROS:
+            * palo: Palo
+        TIPO: Carta
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Carta(palo <- paloAUsar, numero <- 1))
+}

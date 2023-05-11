@@ -1,6 +1,6 @@
 // Escribir una función celdaActual que describa la representación de la celda actual como valor del tipo Celda.
 
-// A modo de ejemplo introductorio...
+// A modo de ejemplo introductorio
 
 type Carta is record {
     /*
@@ -43,4 +43,22 @@ function celdaActual() {
         cantidadDeRojas  <- nroBolitas(Rojo),
         cantidadDeVerdes <- nroBolitas(Verde)
     ))
+}
+
+🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹
+// Funciones observadoras 
+
+function envidoSimpleCon_Y_(carta1, carta2) {
+    /*
+        PROPÓSITO:
+            * Describe el valor del envido simple de las dos cartas dadas.
+        PARÁMETROS:
+            * carta1: Carta 
+            * carta2: Carta
+        TIPO: Número.
+        PRECONDICIONES:
+            * Las cartas dadas deben ser del mismo palo y no deben ser figuras.
+    */
+    
+    return (número(carta1) + número(carta2) + 20)
 }

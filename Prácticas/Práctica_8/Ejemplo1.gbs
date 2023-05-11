@@ -174,3 +174,26 @@ procedure PonerLosAnchos() {
 
     PonerCarta(anchoDe_(paloActual))
 }
+
+// Se puede construir un registro basándose en un registro dado.
+function la_ConvertidaAOro(cartaAnterior) {
+    /*
+        PROPÓSITO:
+            * Describe la carta anterior convertida a Oro.
+        PARÁMETROS:
+            * cartaAnterior: Carta
+        TIPO: Carta
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Carta(palo <- Oro, número <- número(cartaAnterior)))
+}
+
+// Usando una notación especial:
+
+function la_ConvertidaAOroII(cartaAnterior) {
+    /*...*/
+    
+    return (Carta(cartaAnterior | palo <- Oro))
+}

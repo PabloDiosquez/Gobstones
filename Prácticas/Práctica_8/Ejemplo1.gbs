@@ -1,19 +1,5 @@
 // Escribir una función celdaActual que describa la representación de la celda actual como valor del tipo Celda.
 
-// A modo de ejemplo introductorio
-
-type Carta is record {
-    /*
-        PROPÓSITO:
-            * Modelar cartas españolas de Truco.
-        INVARIANTE DE REPRESENTACIÓN:
-            * El número está comprendido entre 1 y 7 o entre 10 y 12.
-    */
-
-    field palo // Un valor de tipo Palo
-    field número // Un valor de tipo Número.
-}
-
 type Celda is record {
     /*
         PROPÓSITO:
@@ -46,6 +32,30 @@ function celdaActual() {
 }
 
 🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹
+type Carta is record {
+    /*
+        PROPÓSITO:
+            * Modelar cartas españolas de Truco.
+        INVARIANTE DE REPRESENTACIÓN:
+            * El número está comprendido entre 1 y 7 o entre 10 y 12.
+    */
+
+    field palo // Un valor de tipo Palo
+    field número // Un valor de tipo Número.
+}
+
+function asDeEspadas() {
+    /*
+        PROPÓSITO:
+            * Describe el as de espadas.
+        TIPO: Carta
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Carta(palo <- Espadas, numero <- 1))
+}
+
 // Funciones observadoras 
 
 function envidoSimpleCon_Y_(carta1, carta2) {
@@ -77,3 +87,4 @@ function la_Y_LaSonDelMismoPalo(carta1, carta2) {
     
     return (palo(carta1) == palo(carta2))
 }
+

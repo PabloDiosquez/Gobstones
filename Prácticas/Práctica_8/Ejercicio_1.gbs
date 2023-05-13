@@ -25,7 +25,7 @@ type DíaDeLaSemana is variant {
 function díaSiguienteA_(día) {
     /*
         PROPÓSITO:
-            * Describe el día de la semana seguiente al día dado.
+            * Describe el día de la semana siguiente al día dado.
         PARÁMETROS:
             * día: DiaDeLaSemana.
         TIPO: DíaDeLaSemana.
@@ -41,5 +41,47 @@ function díaSiguienteA_(día) {
                    Sábado    when (día == Viernes)
                    Domingo   when (día == Sábado)
                    boom("Esto NO debería pasar.¿Alteraste los días de la semana?")    otherwise
+    )
+}
+
+//b.
+
+function díaPrevioA_(día) {
+    /*
+        PROPÓSITO:
+            * Describe el día de la semana previo al día dado.
+        PARÁMETROS:
+            * día: DíaDeLaSemana.
+        TIPO: DíaDeLaSemana.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose Domingo   when (día == Lunes)
+                   Lunes     when (día == Martes)
+                   Martes    when (día == Miércoles)
+                   Miércoles when (día == Jueves)
+                   Jueves    when (día == Viernes)
+                   Viernes   when (día == Sábado)
+                   Sábado    when (día == Domingo)
+                   boom("Esto NO debería pasar.¿Alteraste los días de la semana?") otherwise
+    )
+}
+
+//c.
+
+function es_DíaDeFinDeSemana(día) {
+    /*
+        PROPÓSITO:
+            * Indica si el día dado es uno del fin de semana.
+        PARÁMETROS:
+            * día: DíaDeLaSemana.
+        TIPO: DíaDeLaSemana.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose True when (día == Sábado || día == Domingo)
+                   False otherwise
     )
 }

@@ -40,6 +40,6 @@ function díaSiguienteA_(día) {
                    Viernes   when (día == Jueves)
                    Sábado    when (día == Viernes)
                    Domingo   when (día == Sábado)
-                   boom("")    otherwise
+                   boom("Esto NO debería pasar.¿Alteraste los días de la semana?")    otherwise
     )
 }

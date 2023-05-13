@@ -1,0 +1,45 @@
+// Declarar un tipo variante llamado DíaDeLaSemana, que sirva para identificar los
+// días de la semana. Luego implementar las siguientes funciones (sin olvidar sus
+// contratos):
+// a. díaSiguienteA_, que dado un día de la semana, devuelve el día siguiente.
+// b. díaPrevioA_, que dado un día de la semana, devuelve el día previo.
+// c. es_DíaDeFinDeSemana, que indica si el día dado es uno del fin de semana.
+
+type DíaDeLaSemana is variant {
+    /*
+        PROPÓSITO:
+            * Modela los días de la semana.
+    */
+
+    case Lunes     {}
+    case Martes    {}
+    case Miércoles {}
+    case Jueves    {}
+    case Viernes   {}
+    case Sábado    {}
+    case Domingo   {}
+}
+
+// a.
+
+function díaSiguienteA_(día) {
+    /*
+        PROPÓSITO:
+            * Describe el día de la semana seguiente al día dado.
+        PARÁMETROS:
+            * día: DiaDeLaSemana.
+        TIPO: DíaDeLaSemana.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose Lunes     when (día == Domingo)
+                   Martes    when (día == Lunes)
+                   Miércoles when (día == Martes)
+                   Jueves    when (día == Miércoles)
+                   Viernes   when (día == Jueves)
+                   Sábado    when (día == Viernes)
+                   Domingo   when (día == Sábado)
+                   boom("")    otherwise
+    )
+}

@@ -16,7 +16,7 @@ type Coordenada is record {
 
 // Implementar las siguientes operaciones:
 // a. coordenada__, que dado los números x e y retorne una nueva coordenada
-// con fila en y y columna en x
+// con fila en y y columna en x.
 
 function coordenada__(x, y) {
     /*
@@ -32,8 +32,25 @@ function coordenada__(x, y) {
     
     return (Coordenada(fila <- y, columna <- x))
 }
-// b. esCoordenadaOrigen_, que denote si es la coordenada del origen, si la
+// b. esCoordenadaOrigen_, que denote si es la coordenada del origen, si es la
 // que tiene fila y columna en 0.
+
+function esCoordenadaOrigen_(coordenada) {
+    /*
+        PROPÓSITO:
+            * Indica si la coordenada dada es la coordenada del origen.
+        PARÁMETROS:
+            * coordenada: Coordenada.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose True when (fila(coordenada) == 0 && columna(coordenada == 0))
+                   False otherwise
+    )
+}
+
 // c. es_MayorCoordenadaA_, que, dadas dos coordenadas determina si la
 // primer aparece después de la segunda en un recorrido que va primero hacia
 // el Norte y luego hacia el Este. Es decir, es_MayorCoordenadaA_(c1, c2)
@@ -41,6 +58,64 @@ function coordenada__(x, y) {
 // estando en la misma columna, la fila de c1 es mayor que la de c2.
 // d. coordenadaActual, que describa la coordenada en la que se encuentra el
 // cabezal.
+
+function coordenadaActual() {
+    /*
+        PROPÓSITO:
+            * Describe la coordenada en la que se encuentra el cabezal.
+        TIPO: Coordenada.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Coordenada(fila <- coordenadaY(), columna <- coordenadaX()))
+}
+
+function coordenadaX() {
+    /*
+        PROPÓSITO:
+            * Describe la coordenada columna de la celda en la que se encuentra el cabezal.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (distanciaAlBorde_(Este)-1)
+}
+
+function coordenadaY() {
+    /*
+        PROPÓSITO:
+            * Describe la coordenada fila de la celda en la que se encuentra el cabezal.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (distanciaAlBorde_(Norte)-1)
+}
+
+function distanciaAlBorde_(dirección) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de celdas que hay entre la celda actual y el borde **dirección**.
+        PARÁMETROS:
+            * dirección: Dirección
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    totalDeCeldasHastaAhora := 0
+
+    while (puedeMover(dirección)){
+        totalDeCeldasHastaAhora := totalDeCeldasHastaAhora + 1
+    }
+
+    return (totalDeCeldasHastaAhora)
+}
+
+
 // e. últimaCoordenada, que describa la última coordenada del tablero en un
 // recorrido hacia el Noreste.
 // f. IrACoordenada_, que, dada una coordenada posicione el cabezal en la

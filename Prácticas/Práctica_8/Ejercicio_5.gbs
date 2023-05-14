@@ -1,0 +1,52 @@
+// Declarar el registro Coordenada que representa una coordenada del tablero con los
+// campos fila y columna, donde la coordenada del origen tiene fila 0 y columna 0.
+
+type Coordenada is record {
+    /*
+        PROPÓSITO:
+            * Modela las coordenadas del tablero de Gobstones.
+        INV. REP.:
+            * Los campos fila y columna deben ser >= 0.
+    */
+
+    field fila    // Un valor de tipo Número.
+    field columna // Un valor de tipo Número.
+}
+
+
+// Implementar las siguientes operaciones:
+// a. coordenada__, que dado los números x e y retorne una nueva coordenada
+// con fila en y y columna en x
+
+function coordenada__(x, y) {
+    /*
+        PROPÓSITO:
+            * Describe una coordenada con fila en el segundo valor dado y columna en el primer valor dado. 
+        PARÁMETROS:
+            * x: Número.
+            * y: Número.
+        TIPO: Coordenada.
+        PRECONDICIONES:
+            * Los valores dados deben ser >= 0.
+    */
+    
+    return (Coordenada(fila <- y, columna <- x))
+}
+// b. esCoordenadaOrigen_, que denote si es la coordenada del origen, si la
+// que tiene fila y columna en 0.
+// c. es_MayorCoordenadaA_, que, dadas dos coordenadas determina si la
+// primer aparece después de la segunda en un recorrido que va primero hacia
+// el Norte y luego hacia el Este. Es decir, es_MayorCoordenadaA_(c1, c2)
+// es verdadero cuando la columna de c1 es mayor que la de c2, o cuando
+// estando en la misma columna, la fila de c1 es mayor que la de c2.
+// d. coordenadaActual, que describa la coordenada en la que se encuentra el
+// cabezal.
+// e. últimaCoordenada, que describa la última coordenada del tablero en un
+// recorrido hacia el Noreste.
+// f. IrACoordenada_, que, dada una coordenada posicione el cabezal en la
+// celda correspondiente del tablero.
+// g. siguienteCoordenadaA_, que, dada una coordenada describa la siguiente
+// coordenada en un recorrido que va primero hacia el Norte y luego hacia el
+// Este.
+// h. reflejoDe_, que dada una coordenada describa la coordenada que se
+// obtiene de intercambiar la fila y la columna.

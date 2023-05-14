@@ -1,0 +1,90 @@
+// Implementar las siguientes funciones utilizando el tipo Carta definido en la clase
+// teórica
+// a. es_Figura, que dada una Carta, describa verdadero solo si es una figura.
+// Se dice que una carta española es una figura, porque sus dibujos
+// representan diferentes personajes. La carta con número 10 representa un
+// paje medieval, número 11 un caballero, número 12 el rey.
+// b. envidoCon_Y_, que dadas 2 cartas, describa el valor del envido. Tener en
+// cuenta la función realizada en clase teórica para el envido simple y
+// contemplar los nuevos casos. Cuando el envido tiene alguna figura, las
+// figuras no suman nada.
+// c. envidoCon_Y_mayorA_, que dadas 2 cartas y una cantidad, indique si
+// representa ese valor de envido o mayor.
+
+type Palo is variant {
+    /*
+        PROPÓSITO:
+            * Modela los distintos palos de las cartas españolas.
+    */
+
+    case Basto  {}
+    case Copa   {}
+    case Espada {}
+    case Oro    {}
+}
+
+type Carta is record {
+    /*
+        PROPÓSITO:
+            * Modela cartas españolas.
+        INVARIANTE DE REPRESENTACIÓN:
+            * El número está comprendido entre 1 y 7 o entre 10 y 12.
+    */
+    field palo   // Un valor de tipo Palo.
+    field número // Un valor de tipo Número.
+}
+
+// a.
+function es_Figura(carta) {
+    /*
+        PROPÓSITO:
+            * Indica si la carta dada es una figura.
+        PARÁMETROS:
+            * carta: Carta.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Se dice que una carta española es una figura, porque sus dibujos representan diferentes personajes. La carta con número 10 representa un paje medieval, número 11 un caballero, número 12 el rey.
+    */
+    
+    return (choose True when (número(carta) == 10 || número(carta) == 11 || número(carta) ==  12)
+                   False otherwise
+    )
+}
+
+// b.
+
+function envidoCon_Y_(carta1, carta2) {
+    /*
+        PROPÓSITO:
+            * Describe el valor del envido con las dos cartas dadas.
+        PARÁMETROS:
+            * carta1: Carta.
+            * carta2: Carta.
+        TIPO: Número.
+        PRECONDICIONES:
+            * Las cartas dadas deben ser del mismo palo.
+    */
+    
+    return ()
+}
+
+function envidoCon_Y_mayorA_(carta1, carta2, cantidad) {
+    /*
+        PROPÓSITO:
+            * Indica si la cantidad dada representa el valor del envido con las dos cartas dadas o es mayor.
+        PARÁMETROS:
+            * carta1: Carta
+            * carta2: Carta
+            * cantidad: Número
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las cartas deben ser del mismo palo.
+            * La cantidad dada debe ser mayor o igual a cero.
+    */
+    
+    return (choose True when (envidoCon_Y_(carta1, carta2) >= cantidad)
+                   False otherwise
+    )
+}

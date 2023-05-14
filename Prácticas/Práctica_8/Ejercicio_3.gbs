@@ -53,3 +53,36 @@ function cantidadDeAzulesEn_(celda) {
     
     return (cantidadDeAzules(celda))
 }
+
+// c.
+
+function cantidadTotalDeBolitasEn_(celda) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad total de bolitas de los 4 colores de la celda dada.
+        PARÁMETROS:
+            * celda: Celda.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (cantidadDeAzules(celda) + cantidadDeNegras(celda) + cantidadDeRojas(celda) + cantidadDeVerdes(celda))
+}
+
+// d.
+
+function tiene_MásBolitasQue_(celda1, celda2) {
+    /*
+        PROPÓSITO:
+            * Indica si la primer celda dada tiene más bolitas que la segunda celda dada.
+        PARÁMETROS:
+            * celda1: Celda.
+            * celda2: Celda.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (cantidadTotalDeBolitasEn_(celda1) >= cantidadTotalDeBolitasEn_(celda2))
+}

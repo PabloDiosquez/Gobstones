@@ -57,9 +57,24 @@ function esCoordenadaOrigen_(coordenada) {
 // es verdadero cuando la columna de c1 es mayor que la de c2, o cuando
 // estando en la misma columna, la fila de c1 es mayor que la de c2.
 
-
-
-
+function es_MayorCoordenadaA_(coord1, coord2) {
+    /*
+        PROPÓSITO:
+            * Indica si la primer coordenada dada aparece después de la segunda en un recorrido que va primero hacia el Norte y luego hacia el Este.
+        PARÁMETROS:
+            * coord1:  Coordenada.
+            * coord2: Coordenada.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las coordenadas dadas deben ser válidas en el tablero actual.
+    */
+    
+    return (choose True when (
+                            columna(coord1) > columna(coord2) || 
+                            (columna(coord1) == columna(coord2) && fila(coord1) > fila(coord2)))
+                   False otherwise
+    )
+}
 
 // d. coordenadaActual, que describa la coordenada en la que se encuentra el
 // cabezal.

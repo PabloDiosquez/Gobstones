@@ -66,7 +66,7 @@ function es_MayorCoordenadaA_(coord1, coord2) {
             * coord2: Coordenada.
         TIPO: Booleano.
         PRECONDICIONES:
-            * Las coordenadas dadas deben ser válidas en el tablero actual.
+            * No tiene (es una función total).
     */
     
     return (choose True when (
@@ -145,7 +145,7 @@ function últimaCoordenada() {
             * Describre la última coordenada del tablero en un recorrido hacia el Noreste.
         TIPO: Coordenada.
         PRECONDICIONES:
-            * No tiene (es una fucnión total).
+            * No tiene (es una función total).
     */
     
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
@@ -156,7 +156,6 @@ function últimaCoordenada() {
     
     return (coordenadaActual())
 }
-
 
 // f. IrACoordenada_, que, dada una coordenada posicione el cabezal en la
 // celda correspondiente del tablero.
@@ -181,9 +180,45 @@ procedure IrACoordenada_(coordenada) {
 // g. siguienteCoordenadaA_, que, dada una coordenada describa la siguiente
 // coordenada en un recorrido que va primero hacia el Norte y luego hacia el
 // Este.
+
+function siguienteCoordenadaA_(coordenada) {
+    /*
+        PROPÓSITO:
+            * Describe la coordenada siguiente de la dada, en un recorrido que va primero hacia el Norte y luego hacia el Este.
+        PARÁMETROS:
+            * coordenada: Coordenada.
+        TIPO: Coordenada.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Coordenada(
+        fila    <- fila(coordenada) + 1              
+        columna <- columna(coordenada) + 1                    
+        )
+    )
+}
+
 // h. reflejoDe_, que dada una coordenada describa la coordenada que se
 // obtiene de intercambiar la fila y la columna.
 
+function reflejoDe_(coordenada) {
+    /*
+        PROPÓSITO:
+            * Describe la coordenada que resulta de intercambiar la fila y la columna de la coordenada dada.
+        PARÁMETROS:
+            * coordenada: Coordenada.
+        TIPO: Coordenada.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Coordenada(
+        fila    <- columna(coordenada)              
+        columna <- fila(coordenada)
+        )
+    )
+}
 
 // 🔹 Funciones auxiliares
 

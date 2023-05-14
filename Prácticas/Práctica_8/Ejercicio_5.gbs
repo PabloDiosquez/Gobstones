@@ -56,6 +56,11 @@ function esCoordenadaOrigen_(coordenada) {
 // el Norte y luego hacia el Este. Es decir, es_MayorCoordenadaA_(c1, c2)
 // es verdadero cuando la columna de c1 es mayor que la de c2, o cuando
 // estando en la misma columna, la fila de c1 es mayor que la de c2.
+
+
+
+
+
 // d. coordenadaActual, que describa la coordenada en la que se encuentra el
 // cabezal.
 
@@ -118,10 +123,102 @@ function distanciaAlBorde_(dirección) {
 
 // e. últimaCoordenada, que describa la última coordenada del tablero en un
 // recorrido hacia el Noreste.
+
+function últimaCoordenada() {
+    /*
+        PROPÓSITO:
+            * Describre la última coordenada del tablero en un recorrido hacia el Noreste.
+        TIPO: Coordenada.
+        PRECONDICIONES:
+            * No tiene (es una fucnión total).
+    */
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    
+    return (coordenadaActual())
+}
+
+
 // f. IrACoordenada_, que, dada una coordenada posicione el cabezal en la
 // celda correspondiente del tablero.
+
+procedure IrACoordenada_(coordenada) {
+    /*
+        PROPÓSITO:
+            * Ubica el cabezal en la celda correspondiente a la coordenada dada.
+        PARÁMETROS:
+            * coordenada: Coordenada.
+        PRECONDICIONES:
+            * La coordenada dada debe ser una coordenada válida en el tablero actual.
+    */
+    
+    IrAlBorde(Oeste)
+    IrAlBorde(Sur)
+
+    Mover_VecesHacia_(columna(coordenada)-1, Este)
+    Mover_VecesHacia_(fila(coordenada)-1, Norte)
+}
+
 // g. siguienteCoordenadaA_, que, dada una coordenada describa la siguiente
 // coordenada en un recorrido que va primero hacia el Norte y luego hacia el
 // Este.
 // h. reflejoDe_, que dada una coordenada describa la coordenada que se
 // obtiene de intercambiar la fila y la columna.
+
+
+// 🔹 Funciones auxiliares
+
+// a.
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Ubica el cabezal en el inicio de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+// b.
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */  
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+// c.
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal a la siguiente celda de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Debe existir al menos una celda siguiente en el recorrido.
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    if (puedeMover(dirPrincipal)){
+        Mover(dirPrincipal)
+    }
+    else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
+    }
+}

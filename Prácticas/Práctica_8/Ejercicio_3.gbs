@@ -1,0 +1,23 @@
+//  Implementar las siguientes funciones utilizando el tipo Celda.
+// a. celdaActual , que describa la celda actual.
+// b. cantidadDeAzulesEn_, que describe la cantidad de azules de la celda
+// dada.
+// c. cantidadTotalDeBolitasEn_, que describe la cantidad total de bolitas
+// de los 4 colores de la celda dada.
+// d. tiene_MásBolitasQue_, que dadas dos celdas, indica si la primera tiene
+// más bolitas que la segunda.
+
+type Celda is record {
+    /* 
+        PROPÓSITO:
+            * Modelar una celda del tablero
+        INV.REP.: 
+            * Los números son todos >=0.
+    */
+    field cantidadDeAzules // un número
+    field cantidadDeNegras // un número
+    field cantidadDeRojas // un número
+    field cantidadDeVerdes // un número
+}
+
+// a.

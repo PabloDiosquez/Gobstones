@@ -1,0 +1,201 @@
+// Declarar un tipo de registros llamado Cuenta que contenga el número de cuenta, el
+// tipo de cuenta (modelado por TipoDeCuenta), el nombre del cliente (representado
+// como un String), un tipo de moneda (modelado por Moneda) y un saldo
+// (representado como un número de centavos). Implementar las siguientes funciones:
+
+type Cuenta is record {
+    /*
+        PROPÓSITO:
+            * Modela una cuenta bancaria.
+        INV. REP.:
+            * El saldo debe ser >= 0.
+    */
+    field númeroDeCuenta   // Un valor de tipo Número.
+    field tipoDeCuenta     // TipoDeCuenta
+    field nombreDelCliente // Un valor de tipo String
+    field moneda           // Moneda
+    field saldo            // Un valor de tipo Número.
+}
+
+type TipoDeCuenta is variant {
+    /* 
+        PROPÓSITO:
+            * Modelar los diferentes tipos de cuenta que ofrece el banco
+    */
+    case CuentaCorriente {}
+    case CajaDeAhorro {}
+    case CuentaSueldo {}
+}
+type Moneda is variant {
+    /* 
+        PROPÓSITO: 
+            * Modelar los diferentes tipos de moneda con los que trabaja el banco
+    */
+    case Pesos {}
+    case Dólares {}
+    case Euros {}
+    case Reales {}
+}
+// a. cuenta_ConSaldoActualizadoA_, que dada una cuenta y un nuevo
+// saldo describa la cuenta con el saldo actualizado.
+
+function cuenta_ConSaldoActualizadoA_(cuenta, saldoActualizado) {
+    /*
+        PROPÓSITO:
+            * Describe la cuenta dada con el saldo actualizado.
+        PARÁMETROS:
+            * cuenta: Cuenta.
+            * saldoActulizado: Número
+        TIPO: Cuenta.
+        PRECONDICIONES:
+            * **saldoActualizado** debe ser >= 0.
+    */
+    
+    return (Cuenta(cuenta | saldo <- saldoActualizado))
+}
+
+// b. cuenta_ConTipoDeCuentaCambiadoA_, que dada una cuenta y un nuevo
+// tipo de cuenta bancaria describa la cuenta con el tipo cambiado al dado.
+
+function cuenta_ConTipoCambiadoSegúnDisposición(cuenta, nuevoTipoDeCuenta) {
+    /*
+        PROPÓSITO:
+            * Describe la cuenta dada con el tipo de cuenta actualizado.
+        PARÁMETROS:
+            * cuenta: Cuenta.
+            * nuevoTipoDeCuenta: TipoDeCuenta.
+        TIPO: Cuenta
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Cuenta(cuenta | tipoDeCuenta <- nuevoTipoDeCuenta))
+}
+
+// c. Por disposición bancaria todas las cuentas bancarias de tipo Sueldo cuyo
+// saldo supera los $25.000 deben cambiar su tipo de cuenta bancaria a Caja
+// de Ahorro.
+// Implementar cuenta_ConTipoCambiadoSegúnDisposición, que dada
+// una cuenta bancaria describe la cuenta con el tipo que corresponda a cada
+// caso.
+
+function cuenta_ConTipoCambiadoSegúnDisposición(cuenta) {
+    /*
+        PROPÓSITO:
+            * Describe la cuenta dada con el tipo que corresponda según la disposición bancaria.
+        PARÁMETROS:
+            * cuenta: Cuenta.
+        TIPO: Cuenta.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose Cuenta(cuenta | tipoDeCuenta <- CajaDeAhorro) when (tipoDeCuenta        (cuenta) == Sueldo && saldo(cuenta) > 25000)
+            cuenta otherwise
+    ) 
+}
+
+// d. saldoEnPesosDe_, que dada una cuenta describe el saldo en pesos de la
+// misma. Asumir los valores cambiarios dados en la siguiente tabla .
+// 
+//                          Un dólar $68
+//                          Un euro $74
+//                          Un real $12
+
+function saldoEnPesosDe_(cuenta) {
+    /*
+        PROPÓSITO:
+            * Describe el saldo en pesos de la cuenta dada.
+        PARÁMETROS:
+            * cuenta: Cuenta.
+        TIPO: Cuenta.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose saldo(cuenta)*68 when (moneda(cuenta) == Dólares)
+                   saldo(cuenta)*74 when (moneda(cuenta) == Euros)
+                   saldo(cuenta)*12 when (moneda(cuenta) == Reales)
+                   saldo(cuenta)    otherwise
+    )
+}
+
+// e. númeroDeCuentaConMayorSaldoEntre_Y_, que dadas dos cuentas
+// bancarias describe el número de la cuenta que tiene mayor saldo entre
+// ambas. Tener en cuenta que las cuentas pueden estar expresadas en
+// diferentes monedas.
+
+function númeroDeCuentaConMayorSaldoEntre_Y_(cuenta1, cuenta2) {
+    /*
+        PROPÓSITO:
+            * Describe el número de la cuenta que tiene mayor saldo entre las dos cuentas dadas.
+        PARÁMETROS:
+            * cuenta1: Cuenta.
+            * cuenta2: Cuenta.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose númeroDeCuenta(cuenta1) when (saldoEnPesosDe_(cuenta1) >= saldoEnPesosDe_(cuenta2))
+                   númeroDeCuenta(cuenta2) otherwise
+    )
+}
+
+// f. cuenta_ActualizadaTrasExtracciónDeCajeroDe_, que dada una
+// cuenta y un monto a extraer describa la cuenta con el saldo actualizado. ¿Es
+// necesario establecer alguna una precondición?
+
+function cuenta_ActualizadaTrasExtracciónDeCajeroDe_(cuenta, montoAExtraer) {
+    /*
+        PROPÓSITO:
+            * Describe la cuenta dada con el saldo actualizado, luego de extraer el monto dado. 
+        PARÁMETROS:
+            * cuenta: Cuenta.
+            * montoAExtraer: Número.
+        TIPO: Cuenta.
+        PRECONDICIONES:
+            * El saldo de la cuenta dada debe ser >= al monto a extraer.
+    */
+    
+    return (Cuenta(cuenta | saldo <- saldo(cuenta) - montoAExtraer))
+}
+
+
+
+// g. puedeExtraer_PorCajeroDeLaCuenta_, que dado un monto a extraer y
+// una cuenta indique si la extracción NO resultaría en un saldo negativo.
+
+function puedeExtraer_PorCajeroDeLaCuenta_(montoAExtraer, cuenta) {
+    /*
+        PROPÓSITO:
+            * Indica si se puede realizar la extracción del monto dado de la cuenta dada.
+        PARÁMETROS:
+            * montoAExtraer: Número.
+            * cuenta: Cuenta.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    return (saldo(cuenta) >= montoAExtraer)
+}
+
+
+// h. cuenta_ActualizadaTrasDepósitoEnCajeroDe_, que dada una
+// cuenta y un monto a depositar describa la cuenta con el saldo actualizado.
+
+function cuenta_ActualizadaTrasDepósitoEnCajeroDe_(cuenta, montoADepositar) {
+    /*
+        PROPÓSITO:
+            * Describe la cuenta con el saldo actualizado luego de depositar el monto dado en la cuenta dada.
+        PARÁMETROS:
+            * cuenta: Cuenta.
+            * montoADepositar: Número.
+        TIPO: Cuenta.
+        PRECONDICIONES:
+            * **montoADepositar** debe ser >= 0.
+    */
+    
+    return (Cuenta(cuenta | saldo <- saldo(cuenta) + montoADepositar))
+}

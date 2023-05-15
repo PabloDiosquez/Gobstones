@@ -1,0 +1,48 @@
+type pieza is record {
+    /*
+        PROPÓSITO:
+            * Modela una pieza de ajedrez.
+        INV. REP.:
+            * 
+    */
+    
+    field color  // Un valor de tipo ColorFicha
+    field figura // Un valor de tipo Figura
+    field posición // Un valor de tipo Coordenada
+}
+
+type ColorFicha is variant {
+    /*
+        PROPÓSITO:
+            * Modela el color de las fichas de ajedrez.
+    */
+    
+    case FichaNegra  {}
+    case FichaBlanca {}
+}
+
+type Figura is variant {
+    /*
+        PROPÓSITO:
+            * Modela las figuras del ajedrez.
+    */
+    
+    case Peón       {}
+    case Torre      {}
+    case Caballo    {}
+    case Reina      {}
+    case Alfil      {}
+    case Rey        {}
+}
+
+type Coordenada is record {
+    /*
+        PROPÓSITO:
+            * Modela una coordenada del tablero.
+        INV. REP.:
+            * x e y deben ser mayores o iguales a cero.
+    */
+    
+    field x // Un valor de tipo Número.
+    field y // Un valor de tipo Número.
+}

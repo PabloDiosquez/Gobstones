@@ -3,7 +3,7 @@ type pieza is record {
         PROPÓSITO:
             * Modela una pieza de ajedrez.
         INV. REP.:
-            * 
+            * Las coordenadas deben tener un x máximo de 7 y un y máximo de 7.
     */
     
     field color  // Un valor de tipo ColorFicha

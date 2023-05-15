@@ -3,7 +3,7 @@ type pieza is record {
         PROPÓSITO:
             * Modela una pieza de ajedrez.
         INV. REP.:
-            * Las coordenadas deben tener un x máximo de 7 y un y máximo de 7.
+            * Las coordenadas deben x e y deben ser menores o iguales a 7.
     */
     
     field color  // Un valor de tipo ColorFicha
@@ -45,4 +45,41 @@ type Coordenada is record {
     
     field x // Un valor de tipo Número.
     field y // Un valor de tipo Número.
+}
+
+// 🔹 Algunas funciones...
+
+function coordenadaConUnoMásEnY_(coordenada) {
+    /*
+        PROPÓSITO:
+            * Describe la coordenada que resulta de incrementar en uno la variable y de la coordenada dada. 
+        PARÁMETROS:
+            * coordenada: Coordenada.
+        TIPO: Coordenada.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    return (Coordenada(coordenada | y <- y(coordenada)))
+}
+
+function peón_BlancoEnSiguientePosición(peón) {
+    /*
+        PROPÓSITO:
+            * Describe un péon blanco en la siguiente posición de avance vertical.
+        PARÁMETROS:
+            * peón: Ficha.
+        TIPO: Ficha.
+        PRECONDICIONES:
+            * La figura de la ficha debe ser peón.
+            * EL color de la ficha dada deber ser blanco.
+            * La posición de la ficha no debe estar en el borde superior del tablero de ajedrez.
+    */
+    
+    return (Ficha(
+        color <- color(peón)
+        figura <- figura(peón)
+        coordenada <- coordenadaConUnoMásEnY_(coordenada(peón))
+        )
+    )
 }

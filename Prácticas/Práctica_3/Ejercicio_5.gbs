@@ -18,7 +18,7 @@ procedure EscribirFecha___(día, mes, año) {
             * El valor de mes sólo puede ir del 1 al 12.
             * Si mes es igual a 4, 6, 9 u 11, los valores para día  pueden encontrarse únicamente entre 1 y 30.
             * Si mes es igual a 1, 3, 5, 7, 8, 10 o 12, los valores para día pueden encontrarse únicamente entre 1 y 31.
-            *Si mes es igual a 2, los valores para  día pueden encontrarse únicamente entre 1 y 29 sólo si año es divisible por 4. Sino los valores para día pueden encontrarse únicamente entre 1 y 28.
+            * Si mes es igual a 2, los valores para  día pueden encontrarse únicamente entre 1 y 29 sólo si año es divisible por 4. Sino los valores para día pueden encontrarse únicamente entre 1 y 28.
     */
     EscribirDía_(día)
     Mover(Este)
@@ -35,6 +35,7 @@ procedure EscribirDía_(día) {
             * día: Es un Número - Un número que describe el día de la fecha a registrar.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
+            * Los valores para día deben encontrarse entre 1 y 31 como máximo, dependiendo del mes.
     */
     repeat(dia) {
         Poner(Azul)
@@ -49,13 +50,14 @@ procedure EscribirMes_(mes) {
             * mes: Es un Número - Un número que describe el mes de la fecha a registrar.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
+            * El valor de mes sólo puede ir del 1 al 12.
     */
     repeat(mes) {
         Poner(Rojo)
     }
 }
 
-procedure EscribirMes_(año) {
+procedure EscribirAño_(año) {
     /*
         PROPÓSITO:
             * Escribe el año de la fecha dado.
@@ -63,6 +65,7 @@ procedure EscribirMes_(año) {
             * año: Es un Número - Un número que describe el año de la fecha a registrar.
         PRECONDICIONES:
             * La celda actual debe estar vacía.
+            * El valor del año debe ser mayor o igual a cero.
     */
     repeat(año) {
         Poner(Verde)

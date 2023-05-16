@@ -1,0 +1,47 @@
+// Escribir el procedimiento EscribirFecha_, que dada una fecha, la represente con
+// bolitas siguiendo la representación utilizada en las prácticas 2 y 3.
+// AYUDA: considerar reutilizar el procedimiento EscribirFecha_Del_De_ definido
+// en el ejercicio 5 de la práctica 3.
+
+procedure EscribirFecha_(fecha) {
+    /*
+        PROPÓSITO:
+            * Representa la fecha dada con bolitas en el tablero de Gobstones.
+        PARÁMETROS:
+            * fecha: Fecha.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+            * Deben existir al menos dos celdas lindantes a la actual también vacías.
+    */
+    
+    EscribirDía_(día(fecha))
+    Mover(Este)
+    EscribirMes_(mes(fecha))
+    Mover(Este)
+    EscribirAño_(año(fecha))
+}
+
+procedure EscribirDía_(día) {
+    /*
+        PROPÓSITO:
+            * Representa el día de una fecha en el calendario gregoriano.
+        PARÁMETROS:
+            * día: Número - Es un número según el cual se representa el día de una fecha en el calendario gregoriano.
+        PRECONDICIONES:
+            * **día** debe ser un número comprendido entre 1 y 31 inclusive.
+    */
+    
+    Poner_Veces_DeColor_(día, Azul)
+}
+
+procedure EscribirMes_(mes) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    
+}

@@ -24,11 +24,12 @@ procedure EscribirFecha_(fecha) {
 procedure EscribirDía_(día) {
     /*
         PROPÓSITO:
-            * Representa el día de una fecha en el calendario gregoriano.
+            * Representa el día de una fecha del calendario gregoriano en el tablero.
         PARÁMETROS:
-            * día: Número - Es un número según el cual se representa el día de una fecha en el calendario gregoriano.
+            * día: Número - Es un número según el cual se representa el día de una fecha del calendario gregoriano en el tablero.
         PRECONDICIONES:
             * **día** debe ser un número comprendido entre 1 y 31 inclusive.
+            * La celda actual debe estar vacía.
     */
     
     Poner_Veces_DeColor_(día, Azul)
@@ -36,12 +37,69 @@ procedure EscribirDía_(día) {
 
 procedure EscribirMes_(mes) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Representa el mes de una fecha del calendario gregoriano en el tablero. 
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+            * mes: Mes.
         PRECONDICIONES:
-            * ....
+            * La celda actual debe estar vacía.
     */
     
+    Poner_Veces_DeColor_(códigoMes(mes(fecha)), Rojo)
+}
+
+function códigoMes(mes) {
+    /*
+        PROPÓSITO:
+            * Describe un número que codifica el mes dado, desde 1 (Enero) hasta 12 (Diciembre).
+        PARÁMETROS:
+            * mes: Mes.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose 1  when (mes == Enero)
+                   2  when (mes == Febrero)
+                   3  when (mes == Marzo)
+                   4  when (mes == Abril)
+                   5  when (mes == Mayo)
+                   6  when (mes == Junio)
+                   7  when (mes == Julio)
+                   8  when (mes == Agosto)
+                   9  when (mes == Septiembre)
+                   10 when (mes == Octubre)
+                   11 when (mes == Noviembre)
+                   12 when (mes == Diciembre)
+                   boom("Algo salió mal. ¿Alteraste el mes?") otherwise
+    )
+}
+
+procedure EscribirAño_(año) {
+    /*
+        PROPÓSITO:
+            * Representa el año de una fecha del calendario gregoriano en el tablero.
+        PARÁMETROS:
+            * año: Número - Es un número según el cual se representa el año de una fecha del calendario gregoriano en el tablero.
+        PRECONDICIONES:
+            * La celda actual debe estar vacía.
+            * **año** debe ser un número mayor o igual a cero.
+    */
+    
+    Poner_Veces_DeColor_(día, Azul)
+}
+
+procedure Poner_Veces_DeColor_(cantidad, color) {
+    /*
+        PROPÓSITO:
+            * Pone **cantidad** bolitas de color **color** en la celda actual.
+        PARÁMETROS:
+            * cantidad: Número.
+            * color: Color.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    repeat (cantidad) {
+        Poner(color)
+    }
 }

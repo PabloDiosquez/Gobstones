@@ -44,11 +44,13 @@ function esCoordenadaOrigen_(coordenada) {
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * La coordenada del origen tiene fila y columna en 0.
     */
     
     return (choose True when (fila(coordenada) == 0 && columna(coordenada == 0))
                    False otherwise
-            )
+        )
 }
 
 // c. es_MayorCoordenadaA_, que, dadas dos coordenadas determina si la
@@ -70,7 +72,7 @@ function es_MayorCoordenadaA_(coord1, coord2) {
     */
     
     return (choose True when (columna(coord1) > columna(coord2) || (columna(coord1) == columna(coord2) && fila(coord1) > fila(coord2)))
-    
+
                    False otherwise
     )
 }
@@ -111,66 +113,8 @@ function coordenadaY() {
             * No tiene (es una función total).
     */
     
-    return (nroFilas() - distanciaAlBorde_(Norte)-1)
+    return (nroFilas() - distanciaAlBorde_(Norte) - 1)
 }
-
-function nroColumnas() {
-    /*
-        PROPÓSITO:
-            * Describe el número de columnas del tablero actual.
-        TIPO: Número.
-        PRECONDICIONES:
-            * No tiene (es una función total).
-    */
-    IrAlBorde(Oeste)
-    cantidadDeColumnasYaVistas := 0
-    while (puedeMover(Este)) {
-        cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
-        Mover(Este)
-    }
-    cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
-    return (cantidadDeColumnasYaVistas)
-}
-
-function nroFilas() {
-    /*
-        PROPÓSITO:
-            * Describe el número de filas en el tablero actual.
-        TIPO: Número.
-        PRECONDICIONES:
-            * No tiene (es una función total).
-    */
-    IrAlBorde(Norte)
-    cantidadDeFilasYaVistas := 0
-    while (puedeMover(Sur)) {
-        cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1
-        Mover(Sur)
-    }
-    cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1 // Caso borde
-    return (cantidadDeFilasYaVistas)
-}
-
-function distanciaAlBorde_(dirección) {
-    /*
-        PROPÓSITO:
-            * Describe la cantidad de celdas que hay entre la celda actual y el borde **dirección**.
-        PARÁMETROS:
-            * dirección: Dirección
-        TIPO: Número.
-        PRECONDICIONES:
-            * No tiene (es una función total).
-    */
-    
-    totalDeCeldasHastaAhora := 0
-
-    while (puedeMover(dirección)){
-        totalDeCeldasHastaAhora := totalDeCeldasHastaAhora + 1
-        Mover(dirección)
-    }
-
-    return (totalDeCeldasHastaAhora)
-}
-
 
 // e. últimaCoordenada, que describa la última coordenada del tablero en un
 // recorrido hacia el Noreste.
@@ -256,6 +200,69 @@ function reflejoDe_(coordenada) {
 }
 
 // 🔹 Funciones auxiliares
+
+function nroColumnas() {
+    /*
+        PROPÓSITO:
+            * Describe el número de columnas del tablero actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido sobre las columnas del tablero, buscando contarlas.   
+    */
+    IrAlBorde(Oeste)
+    cantidadDeColumnasYaVistas := 0
+    while (puedeMover(Este)) {
+        cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
+        Mover(Este)
+    }
+    cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
+    return (cantidadDeColumnasYaVistas)
+}
+
+function nroFilas() {
+    /*
+        PROPÓSITO:
+            * Describe el número de filas en el tablero actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido sobre las filas del tablero, buscando contarlas.
+    */
+    IrAlBorde(Norte)
+    cantidadDeFilasYaVistas := 0
+    while (puedeMover(Sur)) {
+        cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1
+        Mover(Sur)
+    }
+    cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1 // Caso borde
+    return (cantidadDeFilasYaVistas)
+}
+
+function distanciaAlBorde_(dirección) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de celdas que hay entre la celda actual y el borde **dirección**.
+        PARÁMETROS:
+            * dirección: Dirección
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido sobre las celdas del tablero en una dirección fija, buscando contarlas.
+    */
+    
+    totalDeCeldasHastaAhora := 0
+
+    while (puedeMover(dirección)){
+        totalDeCeldasHastaAhora := totalDeCeldasHastaAhora + 1
+        Mover(dirección)
+    }
+
+    return (totalDeCeldasHastaAhora)
+}
 
 // a.
 procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {

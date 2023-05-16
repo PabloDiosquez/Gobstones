@@ -48,11 +48,11 @@ function esCoordenadaOrigen_(coordenada) {
     
     return (choose True when (fila(coordenada) == 0 && columna(coordenada == 0))
                    False otherwise
-    )
+            )
 }
 
 // c. es_MayorCoordenadaA_, que, dadas dos coordenadas determina si la
-// primer aparece después de la segunda en un recorrido que va primero hacia
+// primera aparece después de la segunda en un recorrido que va primero hacia
 // el Norte y luego hacia el Este. Es decir, es_MayorCoordenadaA_(c1, c2)
 // es verdadero cuando la columna de c1 es mayor que la de c2, o cuando
 // estando en la misma columna, la fila de c1 es mayor que la de c2.
@@ -63,15 +63,14 @@ function es_MayorCoordenadaA_(coord1, coord2) {
             * Indica si la primer coordenada dada aparece después de la segunda en un recorrido que va primero hacia el Norte y luego hacia el Este.
         PARÁMETROS:
             * coord1:  Coordenada.
-            * coord2: Coordenada.
+            * coord2:  Coordenada.
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene (es una función total).
     */
     
-    return (choose True when (
-                            columna(coord1) > columna(coord2) || 
-                            (columna(coord1) == columna(coord2) && fila(coord1) > fila(coord2)))
+    return (choose True when (columna(coord1) > columna(coord2) || (columna(coord1) == columna(coord2) && fila(coord1) > fila(coord2)))
+    
                    False otherwise
     )
 }
@@ -100,7 +99,7 @@ function coordenadaX() {
             * No tiene (es una función total).
     */
     
-    return (distanciaAlBorde_(Este)-1)
+    return (nroColumnas() - distanciaAlBorde_(Este) - 1)
 }
 
 function coordenadaY() {
@@ -112,7 +111,43 @@ function coordenadaY() {
             * No tiene (es una función total).
     */
     
-    return (distanciaAlBorde_(Norte)-1)
+    return (nroFilas() - distanciaAlBorde_(Norte)-1)
+}
+
+function nroColumnas() {
+    /*
+        PROPÓSITO:
+            * Describe el número de columnas del tablero actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    IrAlBorde(Oeste)
+    cantidadDeColumnasYaVistas := 0
+    while (puedeMover(Este)) {
+        cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
+        Mover(Este)
+    }
+    cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
+    return (cantidadDeColumnasYaVistas)
+}
+
+function nroFilas() {
+    /*
+        PROPÓSITO:
+            * Describe el número de filas en el tablero actual.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    IrAlBorde(Norte)
+    cantidadDeFilasYaVistas := 0
+    while (puedeMover(Sur)) {
+        cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1
+        Mover(Sur)
+    }
+    cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1 // Caso borde
+    return (cantidadDeFilasYaVistas)
 }
 
 function distanciaAlBorde_(dirección) {
@@ -130,6 +165,7 @@ function distanciaAlBorde_(dirección) {
 
     while (puedeMover(dirección)){
         totalDeCeldasHastaAhora := totalDeCeldasHastaAhora + 1
+        Mover(dirección)
     }
 
     return (totalDeCeldasHastaAhora)
@@ -189,7 +225,7 @@ function siguienteCoordenadaA_(coordenada) {
             * coordenada: Coordenada.
         TIPO: Coordenada.
         PRECONDICIONES:
-            * No tiene (es una función total).
+            * La coordenada dada no debe describir una celda del borde Norte ni del borde Este.
     */
     
     return (Coordenada(
@@ -205,7 +241,7 @@ function siguienteCoordenadaA_(coordenada) {
 function reflejoDe_(coordenada) {
     /*
         PROPÓSITO:
-            * Describe la coordenada que resulta de intercambiar la fila y la columna de la coordenada dada.
+            * Describe la coordenada que resulta de intercambiar fila y columna de la coordenada dada.
         PARÁMETROS:
             * coordenada: Coordenada.
         TIPO: Coordenada.
@@ -215,8 +251,7 @@ function reflejoDe_(coordenada) {
     
     return (Coordenada(
         fila    <- columna(coordenada)              
-        columna <- fila(coordenada)
-        )
+        columna <- fila(coordenada))
     )
 }
 

@@ -1,0 +1,102 @@
+// Declarar un tipo de registros llamado Persona, que contenga el número de DNI y el
+// domicilio representados mediante Strings, la fecha de nacimiento utilizando el tipo
+// Fecha del ejercicio 3 y un Booleano indicando si la persona es donante de
+// órganos. Implementar las siguientes funciones:
+// a. sonConvivientes_Y_, que dadas dos personas indique si comparten
+// domicilio.
+// b. personaNacidaDe_El_, que, dada una persona madre y una fecha,
+// describe a una nueva persona que haya nacido en la fecha dada, conviva
+// con la madre, no tenga DNI asignado y en principio se indica que no es
+// donante de órganos.
+// Para registrar el DNI sin asignar, escribir la función sinAsignar, que denote
+// el string vacío y utilizarla adecuadamente.
+// c. persona_RegistradaCon_, que dada una persona con DNI sin asignar y
+// un DNI de registro, describe a la persona pero con el DNI asignado al dado.
+// d. persona_ConDomicilioNuevoEn_, que recibe una persona y un nuevo
+// domicilio y describe a la persona con el domicilio cambiado.
+// e. persona_ConSituaciónComoDonanteCambiada, que recibe una persona
+// y retorna la persona con su situación como donante cambiada.
+// f. edadDe_Al_, que dada una persona y una fecha, describe su edad en esa
+// fecha. AYUDA: utilizar alguna de las funciones del ejercicio 8.
+
+type Persona is record {
+    /*
+        PROPÓSITO:
+            * Modelar una persona.
+        INV. REP.:
+            * **domicilio** no es vacío.
+    */
+
+    field dni               // String
+    field domicilio         // String
+    field fechaDeNacimiento // Fecha
+    field esDonante         // Booleano
+}
+
+// a.
+
+function sonConvivientes_Y_(persona1, persona2) {
+    /*
+        PROPÓSITO:
+            * Indica si las personas dadas comparten el mismo domicilio.
+        PARÁMETROS:
+            * persona1: Persona.
+            * persona2: Persona.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (domicilio(persona1) == domicilio(persona2))
+}
+
+// b.
+
+function personaNacidaDe_El_(madre, fecha) {
+    /*
+        PROPÓSITO:
+            * Describe una persona cuya fecha de nacimiento es la fecha dada, cuyo domicilio es el de la persona madre dada, cuyo DNI no está asignado y no es donante de órganos. 
+        PARÁMETROS:
+            * madre: Persona.
+            * fecha: Fecha.
+        TIPO: Persona.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Persona(
+                    dni               <- sinAsignar(),
+                    domicilio         <- domicilio(madre),
+                    fechaDeNacimiento <- fecha,
+                    esDonante         <- False
+                    ))
+}
+
+function sinAsignar() {
+    /*
+        PROPÓSITO:
+            * Describe el string vacío que denota un DNI sin asignar.
+        TIPO: String
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return ("")
+}
+
+// c.
+
+function persona_RegistradaCon_(persona, dniNuevo) {
+    /*
+        PROPÓSITO: 
+            * Describe a la persona que resulta de asignarle el DNI dado a la persona dada.
+        PARÁMETROS:
+            * persona: Persona.
+            * dni:     String.
+        TIPO: Persona.
+        PRECONDICIONES:
+            * La persona dada está con DNI sin asignar.
+    */
+    
+    return (Persona(persona | dni <- dniNuevo))
+}

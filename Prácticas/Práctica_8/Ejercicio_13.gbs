@@ -1,0 +1,40 @@
+//  Declarar un tipo de registros llamado Empleado que contenga la identidad del
+// empleado modelada con el registro Persona, el puesto dentro de la empresa,
+// representado por un tipo variante llamado Puesto dado a continuación, y un sueldo
+// modelado como un número en centavos.
+
+    type Puesto is variant {
+    /* PROPÓSITO: 
+        *Modelar los diferentes puestos que hay dentro
+        de una empresa de software.
+    */
+        case GestorDeProyecto   {}
+        case LíderDeProyecto    {}
+        case Desarrollador      {}
+        case Operador           {}
+    }
+
+// Implementar las siguientes funciones:
+// a. empleado_ConSueldoActualizadoA_, que dado un empleado y un
+// nuevo sueldo, describa al empleado con el sueldo actualizado.
+// b. empleado_ConNuevoPuesto_, que dado un empleado y un nuevo puesto,
+// describa al empleado con el puesto actualizado.
+// c. categoríaDelPuesto_, que dado un valor de tipo puesto devuelve su
+// categoría según la siguiente tabla:
+
+                        // GestorDeProyecto 4
+                        // LíderDeProyecto 3
+                        // Desarrollador 2
+                        // Operador 1
+
+// d. empleadoConMayorCargoEntre_Y_, que dados dos empleados describa
+// el empleado de mayor categoría entre ellos.
+// e. tienenIgualSueldo_Y_, que dados dos empleados indique si ambas
+// cobran lo mismo.
+// f. empleado_ConAumentoEn_PorBonoDeFinalizaciónDeProyecto, que
+// dado un empleado y un porcentaje de aumento describa al empleado con el
+// sueldo actualizado en ese porcentaje. El porcentaje de aumento es un
+// número del 0 al 100. El monto en el que se incrementa depende del
+// porcentaje (i.e. si el porcentaje es 20%, cuando el sueldo es 100, el nuevo
+// sueldo es 120, cuando el sueldo es 200 el nuevo sueldo es 240, y cuando el
+// sueldo es 150, el nuevo sueldo es 180).

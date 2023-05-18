@@ -160,14 +160,14 @@ function siguienteCoordenadaA_(coordenada) {
             * coordenada: Coordenada.
         TIPO: Coordenada.
         PRECONDICIONES:
-            * La coordenada dada no debe describir una celda del borde Norte ni del borde Este.
+            * Debe existir la siguiente coordenada de **coordenada**.
     */
     
-    return (Coordenada(
-        fila    <- fila(coordenada) + 1,              
-        columna <- columna(coordenada) + 1                    
-        )
-    )
+    IrACoordenada_(coordenada)
+
+    IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)
+
+    return (coordenadaActual())
 }
 
 // h. reflejoDe_, que dada una coordenada describa la coordenada que se

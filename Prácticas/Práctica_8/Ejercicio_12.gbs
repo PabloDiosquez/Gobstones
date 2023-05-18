@@ -22,6 +22,7 @@ type Estudiante is record {
         PROPÓSITO:
             * Modela un estudiante.
         INV. REP.:
+            * cantidadDeMateriasRendidas debe ser mayor o igual que cantidadDeMateriasAprobadas.
             * legajo debe ser mayor o igual a cero.
             * cantidadDeMateriasRendidas debe ser mayor o igual a cero.
             * cantidadDeMateriasAprobadas debe ser mayor o igual a cero.
@@ -36,7 +37,7 @@ type Estudiante is record {
 
 // a.
 
-function ingresante_En_Con_(persona, fecha, legajo) {
+function ingresante_En_Con_(persona, fecha, legajoNuevo) {
     /*
         PROPÓSITO:
             * Describe un estudiante que ingresó en la fecha dada, con el legajo dado y aún no curso ninguna materia.
@@ -47,6 +48,29 @@ function ingresante_En_Con_(persona, fecha, legajo) {
         TIPO: Estudiante.
         PRECONDICIONES:
             * **legajo** debe ser mayor o igual a cero.
+    */
+    
+    return (Estudiante(
+                        identidad                   <- persona,
+                        legajo                      <- legajoNuevo,
+                        fechaDeIngreso              <- fecha,
+                        cantidadDeMateriasRendidas  <- 0,
+                        cantidadDeMateriasAprobadas <- 0
+                      )
+    )
+}
+
+// b.
+
+function materiasDesaprobadasPor_(estudiante) {
+    /*
+        PROPÓSITO: 
+            * Describe el número de materias desaprobadas por el estudiante dado.
+        PARÁMETROS:
+            * estudiante: Estudiante.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función).
     */
     
     return ()

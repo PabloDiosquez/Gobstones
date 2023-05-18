@@ -3,16 +3,28 @@
 // representado por un tipo variante llamado Puesto dado a continuación, y un sueldo
 // modelado como un número en centavos.
 
-    type Puesto is variant {
+type Puesto is variant {
     /* PROPÓSITO: 
-        *Modelar los diferentes puestos que hay dentro
-        de una empresa de software.
+        *Modelar los diferentes puestos que hay dentro de una empresa de software.
     */
         case GestorDeProyecto   {}
         case LíderDeProyecto    {}
         case Desarrollador      {}
         case Operador           {}
-    }
+}
+
+type Empleado is record {
+    /*
+        PROPÓSITO:
+            * Modela un empleado de una empresa de software.
+        INV. REP.:
+            * El campo sueldo debe ser mayor o igual a cero.
+    */
+
+        field identidad     // Persona
+        field puesto        // Puesto
+        field sueldo        // Número 
+}
 
 // Implementar las siguientes funciones:
 // a. empleado_ConSueldoActualizadoA_, que dado un empleado y un

@@ -1,0 +1,53 @@
+// Declarar un tipo de registros llamado Estudiante, que contenga los siguientes
+// datos básicos de: su identidad modelada con el registro Persona, su número de
+// legajo, la fecha de ingreso a la Universidad, la cantidad de materias que rindió y la
+// cantidad que aprobó. Implementar las siguientes funciones:
+// a. ingresante_En_Con_, que recibe una persona, una fecha de ingreso y un
+// número de legajo y describe un estudiante que ingresó en la fecha dada con
+// el legajo dado, y no cursó aún ninguna materia (no rindió ninguna, y por lo
+// tanto no aprobó ninguna).
+// b. materiasDesaprobadasPor_, que describe el número de materias
+// desaprobadas por el estudiante dado.
+// c. estudiante_ConLegajoNuevo_, que dado un estudiante y un número de
+// legajo describe al estudiante que resulta de modificar el legajo del estudiante
+// dado como argumento al nuevo legajo.
+// d. estudiante_ConDomicilioNuevo_, que dado un estudiante y un nuevo
+// domicilio describe al estudiante que resulta de modificar el domicilio del
+// estudiante dado como argumento al domicilio dado.
+// e. edadDelEstudiante_AlIngresar, que describe la edad que tenía el
+// estudiante dado en el momento de ingresar a la Universidad.
+
+type Estudiante is record {
+    /*
+        PROPÓSITO:
+            * Modela un estudiante.
+        INV. REP.:
+            * legajo debe ser mayor o igual a cero.
+            * cantidadDeMateriasRendidas debe ser mayor o igual a cero.
+            * cantidadDeMateriasAprobadas debe ser mayor o igual a cero.
+    */
+
+    field identidad                     // Persona
+    field legajo                        // Número
+    field fechaDeIngreso                // Fecha
+    field cantidadDeMateriasRendidas    // Número
+    field cantidadDeMateriasAprobadas   // Número
+}
+
+// a.
+
+function ingresante_En_Con_(persona, fecha, legajo) {
+    /*
+        PROPÓSITO:
+            * Describe un estudiante que ingresó en la fecha dada, con el legajo dado y aún no curso ninguna materia.
+        PARÁMETROS:
+            * persona: Persona.
+            * fecha:   Fecha.
+            * legajo:  Número.
+        TIPO: Estudiante.
+        PRECONDICIONES:
+            * **legajo** debe ser mayor o igual a cero.
+    */
+    
+    return ()
+}

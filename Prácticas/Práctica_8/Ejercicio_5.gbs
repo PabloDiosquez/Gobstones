@@ -173,7 +173,7 @@ function siguienteCoordenadaA_(coordenada) {
     */
     
     return (Coordenada(
-        fila    <- fila(coordenada) + 1              
+        fila    <- fila(coordenada) + 1,              
         columna <- columna(coordenada) + 1                    
         )
     )

@@ -73,5 +73,22 @@ function materiasDesaprobadasPor_(estudiante) {
             * No tiene (es una función).
     */
     
-    return ()
+    return (cantidadDeMateriasRendidas(estudiante) - cantidadDeMateriasAprobadas(estudiante))
+}
+
+// c.
+
+function estudiante_ConLegajoNuevo_(estudiante, legajoNuevo) {
+    /*
+        PROPÓSITO:
+            * Describe al estudiante que resulta de modificar el legajo del estudiante dado como argumento al nuevo legajo dado.
+        PARÁMETROS:
+            * estudiante:  Estudiante.
+            * legajoNuevo: Número.
+        TIPO: Estudiante.
+        PRECONDICIONES:
+            * **legajoNuevo** debe ser mayor o igual a cero.
+    */
+    
+    return (Estudiante(estudiante | legajo <- legajoNuevo))
 }

@@ -48,9 +48,7 @@ function esCoordenadaOrigen_(coordenada) {
             * La coordenada del origen tiene fila y columna en 0.
     */
     
-    return (choose True when (fila(coordenada) == 0 && columna(coordenada == 0))
-                   False otherwise
-        )
+    return (fila(coordenada) == 0 && columna(coordenada == 0))
 }
 
 // c. es_MayorCoordenadaA_, que, dadas dos coordenadas determina si la
@@ -71,10 +69,7 @@ function es_MayorCoordenadaA_(coord1, coord2) {
             * No tiene (es una función total).
     */
     
-    return (choose True when (columna(coord1) > columna(coord2) || (columna(coord1) == columna(coord2) && fila(coord1) > fila(coord2)))
-
-                   False otherwise
-    )
+    return (columna(coord1) > columna(coord2) || (columna(coord1) == columna(coord2) && fila(coord1) > fila(coord2)))
 }
 
 // d. coordenadaActual, que describa la coordenada en la que se encuentra el
@@ -128,12 +123,8 @@ function últimaCoordenada() {
             * No tiene (es una función total).
     */
     
-    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    IrALaÚltimaCelda()
 
-    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
-        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
-    }
-    
     return (coordenadaActual())
 }
 
@@ -153,8 +144,8 @@ procedure IrACoordenada_(coordenada) {
     IrAlBorde(Oeste)
     IrAlBorde(Sur)
 
-    Mover_VecesHacia_(columna(coordenada)-1, Este)
-    Mover_VecesHacia_(fila(coordenada)-1, Norte)
+    Mover_VecesHacia_(columna(coordenada), Este)
+    Mover_VecesHacia_(fila(coordenada), Norte)
 }
 
 // g. siguienteCoordenadaA_, que, dada una coordenada describa la siguiente
@@ -217,8 +208,7 @@ function nroColumnas() {
         cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
         Mover(Este)
     }
-    cantidadDeColumnasYaVistas := cantidadDeColumnasYaVistas + 1
-    return (cantidadDeColumnasYaVistas)
+    return (cantidadDeColumnasYaVistas + 1)
 }
 
 function nroFilas() {
@@ -237,8 +227,7 @@ function nroFilas() {
         cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1
         Mover(Sur)
     }
-    cantidadDeFilasYaVistas := cantidadDeFilasYaVistas + 1 // Caso borde
-    return (cantidadDeFilasYaVistas)
+    return (cantidadDeFilasYaVistas + 1)
 }
 
 function distanciaAlBorde_(dirección) {
@@ -264,6 +253,18 @@ function distanciaAlBorde_(dirección) {
     return (totalDeCeldasHastaAhora)
 }
 
+procedure IrALaÚltimaCelda() {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal a la última celda en un recorrido hacia el Noreste.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    IrAlBorde(Este)
+    IrAlBorde(Norte)
+}
+
 // a.
 procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
     /*
@@ -283,7 +284,7 @@ procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
 function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
     /*
         PROPÓSITO:
-            * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+            * Indica si existe una celda siguiente a la celda actual en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
         PARÁMETROS:
             * dirPrincipal: Dirección - La primera dirección del recorrido.
             * dirSecundaria: Dirección - La segunda dirección del recorrido.
@@ -298,7 +299,7 @@ function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
 procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
     /*
         PROPÓSITO:
-            * Mueve el cabezal a la siguiente celda de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+            * Mueve el cabezal a la siguiente celda de la celda actual en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
         PARÁMETROS:
             * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
             * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.

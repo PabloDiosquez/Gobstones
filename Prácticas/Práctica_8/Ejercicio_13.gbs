@@ -149,3 +149,18 @@ function tienenIgualSueldo_Y_(empleado1, empleado2) {
 // porcentaje (i.e. si el porcentaje es 20%, cuando el sueldo es 100, el nuevo
 // sueldo es 120, cuando el sueldo es 200 el nuevo sueldo es 240, y cuando el
 // sueldo es 150, el nuevo sueldo es 180).
+
+function empleado_ConAumentoEn_PorBonoDeFinalizaciónDeProyecto(empleado, porcentajeDeAumento) {
+    /*
+        PROPÓSITO:
+            * Describe al empleado dado con el sueldo actualizado en el porcentaje dado.
+        PARÁMETROS:
+            * empleado: Empleado.
+            * porcentajeDeAumento: Número.
+        TIPO: Empleado.
+        PRECONDICIONES:
+            * El **porcentajeDeAumento** es un número comprendido entre 0 y 100.
+    */
+    
+    return (Empleado(empleado | sueldo <- (sueldo(empleado)*porcentajeDeAumento) div 100))
+}

@@ -86,12 +86,44 @@ function categoríaDelPuesto_(puesto) {
                     2 when (puesto == Desarrollador)
                     3 when (puesto == LíderDeProyecto)
                     4 when (puesto == Operador)
-                    boom("Algo salió mal. ¿Alteraste los puestos?")
+                    boom("Algo salió mal. ¿Alteraste los puestos?") otherwise
     )
 }
 
 // d. empleadoConMayorCargoEntre_Y_, que dados dos empleados describa
 // el empleado de mayor categoría entre ellos.
+
+function empleadoConMayorCargoEntre_Y_(empleado1, empleado2) {
+    /*
+        PROPÓSITO:
+            * Describe al empleado con mayor categoría de los dos empleados dados.
+        PARÁMETROS:
+            * empleado1: Empleado.
+            * empleado2: Empleado.
+        TIPO: Empleado.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    return (choose empleado1 when (categoríaDelEmpleado_(empleado1) > categoríaDelEmpleado_(empleado2))
+                   empleado2 otherwise
+    )
+}
+
+function categoríaDelEmpleado_(empleado) {
+    /*
+        PROPÓSITO:
+            * Describe la categoría del puesto del empleado dado.
+        PARÁMETROS:
+            * empleado: Empleado.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (categoríaDelPuesto_(puesto(empleado)))
+}
+
 // e. tienenIgualSueldo_Y_, que dados dos empleados indique si ambas
 // cobran lo mismo.
 // f. empleado_ConAumentoEn_PorBonoDeFinalizaciónDeProyecto, que

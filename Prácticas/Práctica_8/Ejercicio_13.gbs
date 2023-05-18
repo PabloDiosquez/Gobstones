@@ -29,8 +29,40 @@ type Empleado is record {
 // Implementar las siguientes funciones:
 // a. empleado_ConSueldoActualizadoA_, que dado un empleado y un
 // nuevo sueldo, describa al empleado con el sueldo actualizado.
+
+function empleado_ConSueldoActualizadoA_(empleado, nuevoSueldo) {
+    /*
+        PROPÓSITO:
+            * Describe al empleado dado con el sueldo actualizado.
+        PARÁMETROS:
+            * empleado:     Empleado.
+            * nuevoSueldo:  Número.
+        TIPO: Empleado.
+        PRECONDICIONES:
+            * **nuevoSueldo** debe ser mayor o igual a cero.
+    */
+    
+    return (Empleado(empleado | sueldo <- nuevoSueldo))
+}
+
 // b. empleado_ConNuevoPuesto_, que dado un empleado y un nuevo puesto,
 // describa al empleado con el puesto actualizado.
+
+function empleado_ConNuevoPuesto_(empleado, nuevoPuesto) {
+    /*
+        PROPÓSITO:
+            * Describe al empleado dado con el puesto actualizado.
+        PARÁMETROS:
+            * empleado:     Empleado.
+            * nuevoPuesto:  Puesto.
+        TIPO: Empleado.
+        PRECONDICIONES:
+            * No tiene (es una fucnión total). 
+    */
+    
+    return (Empleado(empleado | puesto <- nuevoPuesto))
+}
+
 // c. categoríaDelPuesto_, que dado un valor de tipo puesto devuelve su
 // categoría según la siguiente tabla:
 
@@ -38,6 +70,25 @@ type Empleado is record {
                         // LíderDeProyecto 3
                         // Desarrollador 2
                         // Operador 1
+
+function categoríaDelPuesto_(puesto) {
+    /*
+        PROPÓSITO:
+            * Describe la categoría del puesto dado.
+        PARÁMETROS:
+            * puesto: Puesto.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose  1 when (puesto == Operador)
+                    2 when (puesto == Desarrollador)
+                    3 when (puesto == LíderDeProyecto)
+                    4 when (puesto == Operador)
+                    boom("Algo salió mal. ¿Alteraste los puestos?")
+    )
+}
 
 // d. empleadoConMayorCargoEntre_Y_, que dados dos empleados describa
 // el empleado de mayor categoría entre ellos.

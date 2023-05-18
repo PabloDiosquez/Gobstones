@@ -124,8 +124,24 @@ function categoríaDelEmpleado_(empleado) {
     return (categoríaDelPuesto_(puesto(empleado)))
 }
 
-// e. tienenIgualSueldo_Y_, que dados dos empleados indique si ambas
+// e. tienenIgualSueldo_Y_, que dados dos empleados indique si ambos
 // cobran lo mismo.
+
+function tienenIgualSueldo_Y_(empleado1, empleado2) {
+    /*
+        PROPÓSITO:
+            * Indica si los dos empleados dados tienen el mismo sueldo.
+        PARÁMETROS:
+            * empleado1: Empleado.
+            * empleado2: Empleado.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    return (sueldo(empleado1) == sueldo(empleado2))
+}
+
 // f. empleado_ConAumentoEn_PorBonoDeFinalizaciónDeProyecto, que
 // dado un empleado y un porcentaje de aumento describa al empleado con el
 // sueldo actualizado en ese porcentaje. El porcentaje de aumento es un

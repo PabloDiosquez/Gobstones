@@ -92,3 +92,36 @@ function estudiante_ConLegajoNuevo_(estudiante, legajoNuevo) {
     
     return (Estudiante(estudiante | legajo <- legajoNuevo))
 }
+
+// d.
+
+function estudiante_ConDomicilioNuevo_(estudiante, nuevoDomicilio) {
+    /*
+        PROPÓSITO:
+            * describe al estudiante que resulta de modificar el domicilio del estudiante dado como argumento al domicilio dado.
+        PARÁMETROS:
+            * estudiante: Estudiante.
+            * domincilio: String.
+        TIPO: Estudiante.
+        PRECONDICIONES:
+            * **domicilio** no debe ser vacío.
+    */
+    
+    return (Estudiante(estudiante | domicilio(identidad) <- nuevoDomicilio))
+}
+
+// e. 
+
+function edadDelEstudiante_AlIngresar(estudiante) {
+    /*
+        PROPÓSITO:
+            * Describe la edad que tenía el estudiante dado en el momento de ingresar a la Universidad.
+        PARÁMETROS:
+            * estudiante: Estudiante.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (edadDe_Al_(estudiante, fechaDeIngreso(estudiante)))
+}

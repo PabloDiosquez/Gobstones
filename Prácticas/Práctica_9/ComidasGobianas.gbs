@@ -5,6 +5,7 @@ type ComidaGobiana is record {
         PROPÓSITO:
             * Modela una comida que come un gobiano.
         INV. DE REP.:
+            * El nombre de la comida no puede estar vacío.
             * calorías es un número mayor a cero.
     */
 
@@ -87,4 +88,27 @@ function tieneMásCalorías_Que_(primerComida, segundaComida) {
     */
     
     return (calorías(primerComida) > calorías(segundaComida))
+}
+
+// Ejercicio 3)
+// Además, queremos poder elegir de forma automática la comida más saludable, dadas dos comidas gobianas. Para ello, queremos crear lal función comidaMásSaludableEntre_Y_ que describe la comida gobiana más saludable de las dos comidas dadas. La comida más saludable es aquella que tiene menos calorías.
+
+function comidaMásSaludableEntre_Y_(primerComida, segundaComida) {
+    /*
+        PROPÓSITO:
+            * Describe la comida más saludable de las dos comidas dadas.
+        PARÁMETROS:
+            * primerComida:  ComidaGobiana.
+            * segundaComida: ComidaGobiana.
+        TIPO: ComidaGobiana.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * La comida más saludable es aquella que tiene menos calorías.
+    */
+    
+    return (
+            choose primerComida  when (tieneMásCalorías_Que_(segundaComida, primerComida))
+                   segundaComida otherwise 
+    )
 }

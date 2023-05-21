@@ -33,3 +33,165 @@ function snoc(lista, elemento) {
     
     return (lista ++ [elemento])
 }
+
+// 3.
+
+function secuenciaAritméticaDeNúmerosDe_A_(valorInicial, valorFinal) {
+    /*
+        PROPÓSITO:
+            * Describe una lista que tiene todos los números desde **valorInicial** hasta **valorFinal**.
+        PARÁMETROS:
+            * valorInicial: Número.
+            * valorFinal  : Número.
+        TIPO: [Número].
+        PRECONDICIONES:
+            * El valor incial dado debe ser <= que el valor final dado.
+        OBSERVACIONES:
+            * Recorrido de acumulación de listas.
+    */
+        
+    próximoNúmero := valorInicial
+
+    listaHastaAhora := []
+
+    while (próximoNúmero <= valorFinal) {
+        
+        listaHastaAhora := listaHastaAhora ++ [próximoNúmero]
+
+        próximoNúmero := próximoNúmero + 1
+    }
+
+    return (listaHastaAhora)
+}
+
+// 4.
+
+function enTotal_IgualesA_(cantidad, elemento) {
+    /*
+        PROPÓSITO:
+            * Describe una lista con **cantidad** de elementos iguales a **elemento**.
+        PARÁMETROS:
+            * cantidad: Número.
+            * elemento: Elemento.
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * La cantidad dada debe ser >= 0.
+    */
+    
+    listaHastaAhora := []
+
+    repeat (cantidad) {
+        
+        listaHastaAhora := [elemento ]++ listaHastaAhora
+    }
+
+    return (listaHastaAhora)
+}
+
+// 5.
+
+function filaActual() {
+    /*
+        PROPÓSITO:
+            * Describe la fila actual del tablero como una lista de celdas.
+        TIPO: [Celda]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    filaProcesada := []
+
+    IrAlBorde(Oeste)
+
+    while (puedeMover(Este)) {
+        filaProcesada := filaProcesada ++ [celdaActual()]
+
+        Mover(Este)
+    }
+
+    return (filaProcesada ++ [celdaActual()])
+}
+
+// 6.
+
+function tableroActual() {
+    /*
+        PROPÓSITO:
+            * Describe el tablero actual como una lista de listas de celdas..
+        TIPO: [[Celda]]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    tableroProcesado := []
+
+    IrAlBorde(Norte)
+
+    while (puedeMover(Sur)) {
+        tableroActual := tableroActual ++ [filaActual()]
+
+        Mover(Sur)
+    }
+
+    return (tableroProcesado ++ [filaActual()])
+}
+
+// 🔹 PRIMITIVAS
+
+// ¿Cómo obtenemos información de una lista? ● Precisamos acceder a sus elementos… ○¡Funciones sobre listas! 
+// ¿Cuál es el conjunto mínimo de expresiones primitivas que resulta más conveniente tener para construir esas funciones?
+
+// Un conjunto adecuado de primitivas debe permitir crear todas las demás operaciones que se deseen 
+// El siguiente conjunto cumple esa condición: 
+//primero(<expLista>) 
+//resto(<expLista>) (en bloques: “sinElPrimero_”) 
+//esVacía(<expLista>) (en bloques: “¿estáVacía_?”)
+
+// primero(<expLista>) 
+// PROPÓSITO: describir el primer elemento de la lista dada 
+// PRECONDICIÓN: la lista dada no es vacía 
+// PARÁMETRO: la lista es de un tipo Lista cualquiera 
+// TIPO: el tipo de los elementos de la lista dada
+
+// resto(<expLista>)
+// PROPÓSITO: describir una lista con los elementos de la lista dada, excepto que sin el primero de ellos PRECONDICIÓN: la lista dada no es vacía 
+// PARÁMETRO: la lista es de un tipo Lista cualquiera 
+// TIPO: el tipo de la lista dada
+
+// esVacía(<expLista>) 
+// PROPÓSITO: indicar si la lista es vacía 
+// PRECONDICIÓN: ninguna 
+// PARÁMETRO: la lista es de un tipo Lista cualquiera 
+// TIPO: Booleano
+
+// 7.
+
+function segundo(lista) {
+    /*
+        PROPÓSITO:
+            * Describe el segundo elemento de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento].
+        TIPO: Elemento.
+        PRECONDICIONES:
+            * La lista dada debe tener al menos dos elementos.
+    */
+    
+    return (primero(resto(lista)))
+}
+
+// 8.
+
+function sinLosDosPrimeros(lista) {
+    /*
+        PROPÓSITO: 
+            * Describe la lista que resulta de quitar los dos primeros elementos de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento].
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * La lista dada debe tener al menos dos elementos.
+    */
+    
+    return (resto(resto(lista)))
+}

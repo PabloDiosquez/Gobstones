@@ -1,0 +1,35 @@
+// Algunas funciones sobre listas
+
+// 1.
+
+function cons(elemento, lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que resulta de agregar **elemento** a la lista dada, adelante de todos los demás.
+        PARÁMETROS:
+            * elemento: Elemento
+            * lista   : [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return ([elemento] ++ lista)
+}
+
+// 2.
+
+function snoc(lista, elemento) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que resulta de agregar **elemento** a la lista dada, al final de todos los demás.
+        PARÁMETROS:
+            * lista    : [Elemento]
+            * elemento : Elemento
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una fucnión total).
+    */
+    
+    return (lista ++ [elemento])
+}

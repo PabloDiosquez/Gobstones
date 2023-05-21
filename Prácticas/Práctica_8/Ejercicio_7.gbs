@@ -1,7 +1,7 @@
 // Escribir el procedimiento EscribirFecha_, que dada una fecha, la represente con
 // bolitas siguiendo la representación utilizada en las prácticas 2 y 3.
 // AYUDA: considerar reutilizar el procedimiento EscribirFecha_Del_De_ definido
-// en el ejercicio 5 de la práctica 3.
+// en el ejercicio 5 de la práctica 3 👉🏼 Decidí reescribir todo el código.
 
 procedure EscribirFecha_(fecha) {
     /*

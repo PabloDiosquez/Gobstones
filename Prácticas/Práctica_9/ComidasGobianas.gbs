@@ -1,0 +1,90 @@
+// Comidas Gobianas 🍩🥐🥕🍱
+
+type ComidaGobiana is record {
+    /*
+        PROPÓSITO:
+            * Modela una comida que come un gobiano.
+        INV. DE REP.:
+            * calorías es un número mayor a cero.
+    */
+
+    field nombre   // String
+    field origen   // Continente
+    field calorías // Número
+}
+
+type Continente is variant {
+    /*
+        PROPÓSITO:
+            * Modela un continente de donde puede proceder una comida gobiana.
+    */
+
+    case África     {}
+    case América    {}
+    case Asia       {}
+    case Europa     {}
+    case Oceanía    {}
+}
+
+// Ejercicio 1)
+// Como primer ejercicio queremos modelar dos de las comidas Gobianas más típicas, las Bolitas de Fraile, y las Bolitas de Queso. Las primeras son una comida originaria de América, y tiene 500 calorías. La segunda, son de Europa, y tienen tan sólo 150 calorías. Se pide implementar entonces:
+// a. bolitasDeFraile, una función que describe la comida gobiana Bolitas de Fraile.
+// b. bolitasDeQueso, una función que describe la comida gobiana Bolitas de Queso.
+
+// 1) a.
+
+function bolitasDeFraile() {
+    /*
+        PROPÓSITO:
+            * Describe la comida gobiana Bolitas de Fraile, de América con 500 calorías.
+        TIPO: ComidaGobiana.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (
+        ComidaGobiana(
+                        nombre   <- "Bolitas de Fraile",
+                        origen   <- América,
+                        calorías <- 500
+                    )
+    )
+}
+
+// 1) b.
+
+function bolitasDeQueso() {
+    /*
+        PROPÓSITO:
+            * Describe la comida gobiana Bolitas de Queso, de Europa con 150 calorías.
+        TIPO: ComidaGobiana.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (
+        ComidaGobiana(
+                        nombre   <- "Bolitas de Queso",
+                        origen   <- Europa,
+                        calorías <- 150
+                    )
+    )
+}
+
+// Ejercicio 2)
+// Deseamos determinar si, dadas dos comidas gobianas, la primera tiene más calorías que la segunda. Para ello, realizar la función tieneMásCalorías_Que_ que dadas dos comidas gobianas, indica si la primera tiene más calorías que la segunda.
+
+function tieneMásCalorías_Que_(primerComida, segundaComida) {
+    /*
+        PROPÓSITO:
+            * Dadas dos comidas gobianas, indica si la primer comida tiene más calorías que la segunda comida.
+        PARÁMETROS:
+            * primerComida:  ComidaGobiana.
+            * segundaComida: ComidaGobiana.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (calorías(primerComida) > calorías(segundaComida))
+}

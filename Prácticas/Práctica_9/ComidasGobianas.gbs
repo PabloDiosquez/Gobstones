@@ -219,3 +219,6 @@ function hayUnaBolitaDeFraileEn_(listaDeComidas) {
 
     return (not esVacía(lasComidasPorMirar))
 }
+
+// Ejercicio 8
+// A los gobianos hay que cuidarlos, por eso, cuando se les lleva comida, hay que analizar si no se está pasando de la cantidad de calorías que un ser humano normal puede consumir. Por eso, queremos hacer la función cantidadDeCaloríasDe_ que dada una lista de comidas, describe la cantidad total de calorías de los elementos de dicha lista. 

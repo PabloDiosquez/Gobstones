@@ -1,0 +1,33 @@
+// Escribir la función cantidadDeRojasADistancia2DelBordeOesteDe_ que dada
+// una lista de números que representa las cantidades de bolitas rojas de una fila
+// cualquiera, describa la cantidad de bolitas rojas que había en la celda a distancia 2 del
+// borde Oeste de la fila dada al momento de su lectura. Por ejemplo, dada la lista del
+// ejemplo anterior, debería describir el número 5.
+
+function cantidadDeRojasADistancia2DelBordeOesteDe_(listaDeRojasEnLaFila) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de bolitas rojas que había en la celda a distancia 2 del borde Oeste de una fila cualquiera al momento de su lectura. 
+        PARÁMETROS:
+            * listaDeRojasEnLaFila: [Número].
+        TIPO: Número.
+        PRECONDICIONES:
+            * Debe haber al menos tres elementos en la lista dada.
+    */
+    
+    return (tercerElementoDeLaLista_(listaDeRojasEnLaFila))
+}
+
+function tercerElementoDeLaLista_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe el tercer elemento de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]. 
+        TIPO: Elemento.
+        PRECONDICIONES:
+            * Debe haber al menos tres elementos en la lista dada.
+    */
+    
+    return (primero(resto(resto(lista))))
+}

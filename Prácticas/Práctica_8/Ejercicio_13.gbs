@@ -1,4 +1,4 @@
-//  Declarar un tipo de registros llamado Empleado que contenga la identidad del
+// Declarar un tipo de registros llamado Empleado que contenga la identidad del
 // empleado modelada con el registro Persona, el puesto dentro de la empresa,
 // representado por un tipo variante llamado Puesto dado a continuación, y un sueldo
 // modelado como un número en centavos.
@@ -33,7 +33,7 @@ type Empleado is record {
 function empleado_ConSueldoActualizadoA_(empleado, nuevoSueldo) {
     /*
         PROPÓSITO:
-            * Describe al empleado dado con el sueldo actualizado.
+            * Describe al empleado que resulta de actualizar el sueldo del empleado dado con el nuevo sueldo dado. 
         PARÁMETROS:
             * empleado:     Empleado.
             * nuevoSueldo:  Número.
@@ -51,7 +51,7 @@ function empleado_ConSueldoActualizadoA_(empleado, nuevoSueldo) {
 function empleado_ConNuevoPuesto_(empleado, nuevoPuesto) {
     /*
         PROPÓSITO:
-            * Describe al empleado dado con el puesto actualizado.
+            * Describe al empleado que resulta de actualizar el puesto del empleado dado con el nuevo puesto dado.
         PARÁMETROS:
             * empleado:     Empleado.
             * nuevoPuesto:  Puesto.
@@ -96,7 +96,7 @@ function categoríaDelPuesto_(puesto) {
 function empleadoConMayorCargoEntre_Y_(empleado1, empleado2) {
     /*
         PROPÓSITO:
-            * Describe al empleado con mayor categoría de los dos empleados dados.
+            * Describe al empleado de mayor categoría de los dos empleados dados.
         PARÁMETROS:
             * empleado1: Empleado.
             * empleado2: Empleado.
@@ -153,7 +153,7 @@ function tienenIgualSueldo_Y_(empleado1, empleado2) {
 function empleado_ConAumentoEn_PorBonoDeFinalizaciónDeProyecto(empleado, porcentajeDeAumento) {
     /*
         PROPÓSITO:
-            * Describe al empleado dado con el sueldo actualizado en el porcentaje dado.
+            * Describe al empleado que resulta de actualizar el sueldo del empleado dado con el porcentaje dado.
         PARÁMETROS:
             * empleado: Empleado.
             * porcentajeDeAumento: Número.
@@ -163,4 +163,19 @@ function empleado_ConAumentoEn_PorBonoDeFinalizaciónDeProyecto(empleado, porcen
     */
     
     return (Empleado(empleado | sueldo <- (sueldo(empleado)*porcentajeDeAumento) div 100))
+}
+
+function sueldoDeEmpleado_ActualizadoEn_PorCiento(empleado, porcentajeDeAumento) {
+    /*
+        PROPÓSITO:
+            * Describe el sueldo actualizado del empleado dado en el porcentaje de acuerdo al porcentaje de aumento dado.
+        PARÁMETROS:
+            * empleado:            Empleado.
+            * porcentajeDeAumento: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * **porcentajeDeAumento** debe ser mayor o igual a cero.
+    */
+    
+    return (sueldo(empleado) + (sueldo(empleado)*porcentajeDeAumento) div 100))
 }

@@ -1,5 +1,5 @@
 // Declarar un tipo de registros llamado Estudiante, que contenga los siguientes
-// datos básicos de: su identidad modelada con el registro Persona, su número de
+// datos básicos: su identidad modelada con el registro Persona, su número de
 // legajo, la fecha de ingreso a la Universidad, la cantidad de materias que rindió y la
 // cantidad que aprobó. Implementar las siguientes funciones:
 // a. ingresante_En_Con_, que recibe una persona, una fecha de ingreso y un
@@ -20,12 +20,12 @@
 type Estudiante is record {
     /*
         PROPÓSITO:
-            * Modela un estudiante.
+            * Modela un estudiante de la Universidad.
         INV. REP.:
-            * cantidadDeMateriasRendidas debe ser mayor o igual que cantidadDeMateriasAprobadas.
             * legajo debe ser mayor o igual a cero.
-            * cantidadDeMateriasRendidas debe ser mayor o igual a cero.
-            * cantidadDeMateriasAprobadas debe ser mayor o igual a cero.
+            * cantidadDeMateriasRendidas debe ser un número mayor o igual a cero.
+            * cantidadDeMateriasAprobadas debe ser un número mayor o igual a cero.
+            * cantidadDeMateriasRendidas debe ser mayor o igual que cantidadDeMateriasAprobadas.
     */
 
     field identidad                     // Persona
@@ -81,7 +81,7 @@ function materiasDesaprobadasPor_(estudiante) {
 function estudiante_ConLegajoNuevo_(estudiante, legajoNuevo) {
     /*
         PROPÓSITO:
-            * Describe al estudiante que resulta de modificar el legajo del estudiante dado como argumento al nuevo legajo dado.
+            * Describe al estudiante que resulta de modificar el legajo del estudiante dado como argumento asignándole el nuevo legajo dado.
         PARÁMETROS:
             * estudiante:  Estudiante.
             * legajoNuevo: Número.
@@ -98,7 +98,7 @@ function estudiante_ConLegajoNuevo_(estudiante, legajoNuevo) {
 function estudiante_ConDomicilioNuevo_(estudiante, nuevoDomicilio) {
     /*
         PROPÓSITO:
-            * describe al estudiante que resulta de modificar el domicilio del estudiante dado como argumento al domicilio dado.
+            * Describe al estudiante que resulta de modificar el domicilio del estudiante dado como argumento al domicilio dado.
         PARÁMETROS:
             * estudiante: Estudiante.
             * domincilio: String.

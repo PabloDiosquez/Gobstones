@@ -147,3 +147,75 @@ function enmantecar_(comidaAEnmantecar) {
     
     return (ComidaGobiana(comidaAEnmantecar | calorías <- calorías(comidaAEnmantecar) + 200))
 }
+
+// Ejercicio 6)
+// Una albondigueada es un tipo de plato que consiste en una serie de albóndigas de carne donde cada una tiene más calorías que la anterior. Se sirven un total de 5 albóndigas con calorías que comienzan en 300 y aumentan de a 100. Se pide que escriba la función albondigueada que describe una lista de 5 comidas gobianas donde todas las comidas son albóndigas provenientes de Europa, y donde tienen 300, 400, 500, 600 y 700 calorías. 
+
+function albondigueada() {
+    /*
+        PROPÓSITO:
+            * Describe una lista de comidas gobianas con albóndigas europeas con diferentes calorías, comenzando con 300 y cada una con 100 calorías más que la anterior.
+        TIPO: [ComidaGobiana] (Lista de ComidaGobiana).
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    listaDeAlbóndigas := []
+
+    caloríasDePróximaAlbóndiga := 300
+
+    repeat (5) {
+        listaDeAlbóndigas := listaDeAlbóndigas ++ [albóndigaCon_Calorías(caloríasDePróximaAlbóndiga)]
+
+        caloríasDePróximaAlbóndiga := caloríasDePróximaAlbóndiga + 100
+    }
+
+    return (listaDeAlbóndigas)
+}
+
+function albóndigaCon_Calorías(calorías) {
+    /*
+        PROPÓSITO:
+            * Describe una albóndiga europea con **calorías** calorías.
+        PARÁMETROS:
+            * calorías: Número.
+        TIPO: ComidaGobiana.
+        PRECONDICIONES:
+            * **calorías** debe ser >= 0.
+    */
+    
+    return (
+        ComidaGobiana(
+                    nombre   <- "Albóndiga",
+                    origen   <- Europa,
+                    calorías <- calorías
+        )
+    )
+}
+
+// Ejercicio 7)
+// Hay gobianos que sólo comen bolitas de fraile. Si les das una pila de comida, primero buscan a ver si hay efectivamente una bolita de fraile, y si hay, se quedan con la pila de comida, sino, la descartan. Por eso, queremos hacer la función hayUnaBolitaDeFraileEn_ que dada una lista de comidas, indica si en la pila hay alguna cuyo nombre sea "Bolita de Fraile".
+
+function hayUnaBolitaDeFraileEn_(listaDeComidas) {
+    /*
+        PROPÓSITO:
+            * Indica si en la lista de comidas dada hay alguna cuyo nombre sea "Bolita de Fraile".
+        PARÁMETROS:
+            * listaDeComidas: [ComidaGobiana].
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de búsqueda sobre listas.
+    */
+    
+    lasComidasPorMirar := listaDeComidas
+
+    while (not esVacía(lasComidasPorMirar) && 
+                                    nombre(primero(listaDeComidas)) /= "Bolitas de Fraile") {
+        
+        lasComidasPorMirar := resto(lasComidasPorMirar)
+    }
+
+    return (not esVacía(lasComidasPorMirar))
+}

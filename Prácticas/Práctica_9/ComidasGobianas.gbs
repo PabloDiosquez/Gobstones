@@ -112,3 +112,38 @@ function comidaMásSaludableEntre_Y_(primerComida, segundaComida) {
                    segundaComida otherwise 
     )
 }
+
+// Ejercicio 4)
+// Algunos fanáticos de las comidas gobianas sólo comen comidas si provienen de determinadas regiones. Por ello, deseamos poder crear la función proviene_De_ que dada una comida y un continente indica si una comida proviene del continente dado.
+
+function proviene_De_(comida, origenDeComida) {
+    /*
+        PROPÓSITO:
+            * Indica si **comida** proviene de **continente**.
+        PARÁMETROS:
+            * comida:         ComidaGobiana.
+            * origenDeComida: Continente
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (origen(comida) == origenDeComida)
+}
+
+// Ejercicio 5)
+// Hay gente que tiene la idea de que si le unta manteca a la comida, ésta se vuelve mucho mejor. Por ese motivo, se quiere hacer la función enmantecar_ que describe una nueva comida, igual que la dada pero donde las calorías aumentan en 200. Por ejemplo, enmantecar una bolita de fraile, produce una bolita de fraile de 700 calorías.
+
+function enmantecar_(comidaAEnmantecar) {
+    /*
+        PROPÓSITO:
+            * Describe una nueva comida gobiana, igual que la dada pero con 200 calorías más.
+        PARÁMETROS:
+            * comida: ComidaGobiana.
+        TIPO: ComidaGobiana.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (ComidaGobiana(comidaAEnmantecar | calorías <- calorías(comidaAEnmantecar) + 200))
+}

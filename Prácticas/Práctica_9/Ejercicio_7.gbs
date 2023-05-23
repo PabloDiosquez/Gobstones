@@ -1,0 +1,118 @@
+// Escribir las siguientes funciones que utilizan listas de elementos del tipo Carta definido
+// en clase. Tener en cuenta que la mano de un jugador está representada por una Lista
+// de Cartas dispuestas en el orden en el que las va jugar. No olvidarse de establecer
+// las precondiciones necesarias.
+// a. primerCartaDeLaMano_, que dada una lista de las cartas que recibe el
+// jugador (la “mano” de ese jugador, en terminología de juegos de cartas),
+// describa la primera carta a jugar.
+
+function primerCartaDeLaMano_(listaDeCartas) {
+    /*
+        PROPÓSITO:
+            * Describe la primer carta de la lista de cartas dada.
+        PARÁMETROS:
+            * listaDeCartas: [Carta].
+        TIPO: Carta.
+        PRECONDICIONES:
+            * La lista de cartas dada no debe ser vacía.
+        OBSERVACIONES:
+            * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
+    */
+    
+    return (primero(listaDeCartas))
+}
+
+// b. segundaCartaDeLaMano_, que dada una mano, describa la segunda carta a
+// jugar.
+
+function segundaCartaDeLaMano_(listaDeCartas) {
+    /*
+        PROPÓSITO:
+            * Describe la segunda carta de la lista de cartas dada.
+        PARÁMETROS:
+            * listaDeCartas: [Carta].
+        TIPO: Carta.
+        PRECONDICIONES:
+            * La mano de cartas debe tener al menos 2 cartas.
+        OBSERVACIONES:
+            * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
+    */
+    
+    return (primero(resto(listaDeCartas)))
+}
+
+// c. tercerCartaDeLaMano_, que dada una mano, describa la tercera carta a
+// jugar.
+
+function tercerCartaDeLaMano_(listaDeCartas) {
+    /*
+        PROPÓSITO:
+            * Describe la tercer carta de la lista de cartas dada.
+        PARÁMETROS:
+            * listaDeCartas: [Carta].
+        TIPO: Carta.
+        PRECONDICIONES:
+            * La mano de cartas debe tener al menos 3 cartas.
+        OBSERVACIONES:
+            * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
+    */
+    
+    return (primero(resto(resto(listaDeCartas))))
+}
+
+// d. laMano_LuegoDeRobarUnaCartaDe_, que dada una mano y un mazo de
+// Cartas del cual puede robar, describir la mano resultante luego de robar.
+
+function laMano_LuegoDeRobarUnaCartaDe_(manoDeCartas, mazoDeCartas) {
+    /*
+        PROPÓSITO:
+            * Describe la mano resultante luego de robar una carta del mazo de cartas dado y agregarlo a la mano de cartas dada.
+        PARÁMETROS:
+            * manoDeCartas: [Carta].
+            * manoDeCartas: [Carta].
+        TIPO: [Carta]
+        PRECONDICIONES:
+            * El mazo de cartas debe tener al menos una carta que robar.
+    */
+    
+    return (manoDeCartas ++ [primero(mazoDeCartas)])
+}
+
+// e. laMano_LuegoDeJugarUnaCarta, que dada una mano, describir la mano
+// resultante luego de jugar una carta en su turno.
+
+function laMano_LuegoDeJugarUnaCarta(listaDeCartas) {
+    /*
+        PROPÓSITO:  
+            * Describe la mano de cartas resultante luego de jugar una carta en su turno.
+        PARÁMETROS:
+            * listaDeCartas: [Carta].
+        TIPO: [Carta].
+        PRECONDICIONES:
+            * La lista de cartas debe tener al menos una carta.
+        OBSERVACIONES:
+            * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
+    */
+    
+    return (resto(listaDeCartas))
+}
+
+
+// f. laMano_LuegoDeJugarLaSegundaCarta, que dada una mano, describir la
+// mano resultante luego de jugar exclusivamente la segunda de todas sus cartas.
+
+function laMano_LuegoDeJugarLaSegundaCarta(listaDeCartas) {
+    /*
+        PROPÓSITO:  
+            * Describe la mano de cartas resultante luego de jugar la segunda de todas sus cartas.
+        PARÁMETROS:
+            * listaDeCartas: [Carta].
+        TIPO: [Carta].
+        PRECONDICIONES:
+            * La lista de cartas debe tener al menos 2 cartas.
+        OBSERVACIONES:
+            * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
+    */
+    
+    return (resto(resto(listaDeCartas)))
+}

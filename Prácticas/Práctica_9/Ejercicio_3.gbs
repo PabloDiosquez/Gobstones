@@ -4,15 +4,96 @@
 // al Oeste de la fila representada tenían la misma cantidad de bolitas rojas al
 // momento en que la fila fue leída.
 
-
+function las3PrimerasDe_ConLaMismaCantidad(listaDeRojasEnLaFila) {
+    /*
+        PROPÓSITO:
+            * Indica si las primeras 3 celdas al Oeste de la fila representada por la lista dada tenían la misma cantidad de bolitas rojas al momento en que la fila fue leída.
+        PARÁMETROS:
+            * listaDeRojasEnLaFila: [Número].
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * **listaDeRojasEnLaFila** debe tener al menos 3 elementos.
+    */
+    
+    return (
+            primero(listaDeRojasEnLaFila) == segundo(listaDeRojasEnLaFila) &&
+            segundo(listaDeRojasEnLaFila) == tercero(listaDeRojasEnLaFila)
+           )
+}
 
 // b. las3PrimerasDe_ConDistintasCantidades que indica si en las primeras 3
 // celdas al Oeste hay diferente cantidad de bolitas de rojas (es decir, son todas
 // distintas).
 
 
+function las3PrimerasDe_ConDistintasCantidades(listaDeRojasEnLaFila) {
+    /*
+        PROPÓSITO:
+            * Indica si en las primeras 3 celdas al Oeste de la fila representada por la lista dada tenían distinta cantidad de bolitas rojas (todas distintas) al momento en que la fila fue leída.
+        PARÁMETROS:
+            * listaDeRojas: [Número].
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * **listaDeRojasEnLaFila** debe tener al menos 3 elementos.
+    */
+    
+    return (
+            sonDistintos_Y_(primero(listaDeRojasEnLaFila, segundo(listaDeRojasEnLaFila))) &&
+            sonDistintos_Y_(segundo(listaDeRojasEnLaFila, tercero(listaDeRojasEnLaFila))) &&
+            sonDistintos_Y_(primero(listaDeRojasEnLaFila), tercero(listaDeRojasEnLaFila))
+           )
+}
+
 
 // c. hayAlgunaCantidadIgualEnLas3PrimerasDe_ que determine si en algún
 // caso hay la misma cantidad de bolitas de dos colores (por ejemplo, la primera y
 // la tercera celda tienen la misma cantidad de bolitas rojas, o la segunda y la
 // tercera, etc.).
+
+
+
+
+// FUNCIONES AUXILIARES 🥨
+
+function segundo(lista) {
+    /*
+        PROPÓSITO: 
+            * Describe el segundo elemento de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento].
+        TIPO: Elemento.
+        PRECONDICIONES:
+            * La lista dada debe tener al menos 2 elementos.
+    */
+    
+    return (primero(resto(lista)))
+}
+
+function tercero(lista) {
+    /*
+        PROPÓSITO: 
+            * Describe el tercer elemento de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento].
+        TIPO: Elemento.
+        PRECONDICIONES:
+            * La lista dada debe tener al menos 3 elementos.
+    */
+    
+    return (primero(resto(resto(lista))))
+}
+
+function sonDistintos_Y_(elemento1, elemento2) {
+    /*
+        PROPÓSITO:
+            * Indica si los elementos dados son distintos.
+        PARÁMETROS:
+            * elemento1: Elemento.
+            * elemento2: Elemento.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Los elementos dados deben ser del mismo tipo.
+    */
+    
+    return (elemento1 /= elemento2)
+}

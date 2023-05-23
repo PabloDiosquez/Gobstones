@@ -16,8 +16,8 @@ function las3PrimerasDe_ConLaMismaCantidad(listaDeRojasEnLaFila) {
     */
     
     return (
-            primero(listaDeRojasEnLaFila) == segundo(listaDeRojasEnLaFila) &&
-            segundo(listaDeRojasEnLaFila) == tercero(listaDeRojasEnLaFila)
+            sonIguales_Y_(primero(listaDeRojasEnLaFila), segundo(listaDeRojasEnLaFila)) &&
+            sonIguales_Y_(segundo(listaDeRojasEnLaFila), tercero(listaDeRojasEnLaFila))
            )
 }
 
@@ -44,14 +44,24 @@ function las3PrimerasDe_ConDistintasCantidades(listaDeRojasEnLaFila) {
            )
 }
 
-
 // c. hayAlgunaCantidadIgualEnLas3PrimerasDe_ que determine si en algún
 // caso hay la misma cantidad de bolitas de dos colores (por ejemplo, la primera y
 // la tercera celda tienen la misma cantidad de bolitas rojas, o la segunda y la
 // tercera, etc.).
 
-
-
+function hayAlgunaCantidadIgualEnLas3PrimerasDe_(listaDeRojasEnLaFila) {
+    /*
+        PROPÓSITO:
+            Indica si en algún caso hay igual cantidad de bolitas rojas en las 3 primeras celdas al Oeste de la fila representada por la lista dada.
+        PARÁMETROS:
+            * listaDeRojasEnLaFila: [Número].
+        TIPO: Booleano
+        PRECONDICIONES:
+            * **listaDeRojasEnLaFila** debe tener al menos 3 elementos.
+    */
+    
+    return (not las3PrimerasDe_ConDistintasCantidades(listaDeRojasEnLaFila))
+}
 
 // FUNCIONES AUXILIARES 🥨
 
@@ -83,10 +93,25 @@ function tercero(lista) {
     return (primero(resto(resto(lista))))
 }
 
+function sonIguales_Y_(elemento1, elemento2) {
+    /*
+        PROPÓSITO:
+            * Indica si los dos elementos dados son iguales.
+        PARÁMETROS:
+            * elemento1: Elemento.
+            * elemento2: Elemento.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Los elementos dados deben ser del mismo tipo.
+    */
+    
+    return (elemento1 == elemento2)
+}
+
 function sonDistintos_Y_(elemento1, elemento2) {
     /*
         PROPÓSITO:
-            * Indica si los elementos dados son distintos.
+            * Indica si los dos elementos dados son distintos.
         PARÁMETROS:
             * elemento1: Elemento.
             * elemento2: Elemento.

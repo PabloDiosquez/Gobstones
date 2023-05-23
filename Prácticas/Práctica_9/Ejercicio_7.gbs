@@ -2,62 +2,66 @@
 // en clase. Tener en cuenta que la mano de un jugador está representada por una Lista
 // de Cartas dispuestas en el orden en el que las va jugar. No olvidarse de establecer
 // las precondiciones necesarias.
+
 // a. primerCartaDeLaMano_, que dada una lista de las cartas que recibe el
 // jugador (la “mano” de ese jugador, en terminología de juegos de cartas),
 // describa la primera carta a jugar.
 
-function primerCartaDeLaMano_(listaDeCartas) {
+function primerCartaDeLaMano_(manoDeCartas) {
     /*
         PROPÓSITO:
-            * Describe la primer carta de la lista de cartas dada.
+            * Describe la primer carta de la mano de cartas dada.
         PARÁMETROS:
-            * listaDeCartas: [Carta].
+            * manoDeCartas: [Carta].
         TIPO: Carta.
         PRECONDICIONES:
-            * La lista de cartas dada no debe ser vacía.
+            * La mano de cartas dada no debe ser vacía.
         OBSERVACIONES:
-            * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
+            * La mano de cartas dada está representada por una lista de elementos de tipo Carta.
+            * La mano de cartas está dispuesta en el orden en que se van a jugar las cartas.
     */
     
-    return (primero(listaDeCartas))
+    return (primero(manoDeCartas))
 }
 
 // b. segundaCartaDeLaMano_, que dada una mano, describa la segunda carta a
 // jugar.
 
-function segundaCartaDeLaMano_(listaDeCartas) {
+function segundaCartaDeLaMano_(manoDeCartas) {
     /*
         PROPÓSITO:
-            * Describe la segunda carta de la lista de cartas dada.
+            * Describe la segunda carta de la mano de cartas dada.
         PARÁMETROS:
-            * listaDeCartas: [Carta].
+            * manoDeCartas: [Carta].
         TIPO: Carta.
         PRECONDICIONES:
             * La mano de cartas debe tener al menos 2 cartas.
         OBSERVACIONES:
-            * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
+            * La mano de cartas dada está representada por una lista de elementos de tipo Carta.
+            * La mano de cartas está dispuesta en el orden en que se van a jugar las cartas.
     */
     
-    return (primero(resto(listaDeCartas)))
+    return (primero(resto(manoDeCartas)))
 }
 
 // c. tercerCartaDeLaMano_, que dada una mano, describa la tercera carta a
 // jugar.
 
-function tercerCartaDeLaMano_(listaDeCartas) {
+function tercerCartaDeLaMano_(manoDeCartas) {
     /*
         PROPÓSITO:
-            * Describe la tercer carta de la lista de cartas dada.
+            * Describe la tercer carta de la mano de cartas dada.
         PARÁMETROS:
-            * listaDeCartas: [Carta].
+            * manoDeCartas: [Carta].
         TIPO: Carta.
         PRECONDICIONES:
             * La mano de cartas debe tener al menos 3 cartas.
         OBSERVACIONES:
+            * La mano de cartas dada está representada por una lista de elementos de tipo Carta.
             * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
     */
     
-    return (primero(resto(resto(listaDeCartas))))
+    return (primero(resto(resto(manoDeCartas))))
 }
 
 // d. laMano_LuegoDeRobarUnaCartaDe_, que dada una mano y un mazo de
@@ -66,12 +70,13 @@ function tercerCartaDeLaMano_(listaDeCartas) {
 function laMano_LuegoDeRobarUnaCartaDe_(manoDeCartas, mazoDeCartas) {
     /*
         PROPÓSITO:
-            * Describe la mano resultante luego de robar una carta del mazo de cartas dado y agregarlo a la mano de cartas dada.
+            * Describe la mano resultante luego de robar una carta del mazo de cartas dado y agregarlo al final de la mano de cartas dada.
         PARÁMETROS:
             * manoDeCartas: [Carta].
             * manoDeCartas: [Carta].
         TIPO: [Carta]
         PRECONDICIONES:
+            * La mano de cartas dada está representada por una lista de elementos de tipo Carta.
             * El mazo de cartas debe tener al menos una carta que robar.
     */
     
@@ -81,38 +86,39 @@ function laMano_LuegoDeRobarUnaCartaDe_(manoDeCartas, mazoDeCartas) {
 // e. laMano_LuegoDeJugarUnaCarta, que dada una mano, describir la mano
 // resultante luego de jugar una carta en su turno.
 
-function laMano_LuegoDeJugarUnaCarta(listaDeCartas) {
+function laMano_LuegoDeJugarUnaCarta(manoDeCartas) {
     /*
         PROPÓSITO:  
-            * Describe la mano de cartas resultante luego de jugar una carta en su turno.
+            * Describe la mano de cartas resultante luego de jugar una carta en su debido turno.
         PARÁMETROS:
-            * listaDeCartas: [Carta].
+            * manoDeCartas: [Carta].
         TIPO: [Carta].
         PRECONDICIONES:
             * La lista de cartas debe tener al menos una carta.
         OBSERVACIONES:
+            * La mano de cartas dada está representada por una lista de elementos de tipo Carta.
             * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
     */
     
-    return (resto(listaDeCartas))
+    return (resto(manoDeCartas))
 }
-
 
 // f. laMano_LuegoDeJugarLaSegundaCarta, que dada una mano, describir la
 // mano resultante luego de jugar exclusivamente la segunda de todas sus cartas.
 
-function laMano_LuegoDeJugarLaSegundaCarta(listaDeCartas) {
+function laMano_LuegoDeJugarLaSegundaCarta(manoDeCartas) {
     /*
         PROPÓSITO:  
             * Describe la mano de cartas resultante luego de jugar la segunda de todas sus cartas.
         PARÁMETROS:
-            * listaDeCartas: [Carta].
+            * manoDeCartas: [Carta].
         TIPO: [Carta].
         PRECONDICIONES:
             * La lista de cartas debe tener al menos 2 cartas.
         OBSERVACIONES:
+            * La mano de cartas dada está representada por una lista de elementos de tipo Carta.
             * La lista de cartas está dispuesta en el orden en que se van a jugar las cartas.
     */
     
-    return (resto(resto(listaDeCartas)))
+    return (resto(resto(manoDeCartas)))
 }

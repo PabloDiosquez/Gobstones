@@ -1,0 +1,60 @@
+// Escribir la función direccionesAlBorde que retorne la lista de direcciones en las que
+// el cabezal no se puede mover.
+// a. ¿Cómo puede utilizarse direccionesAlBorde para determinar si el tablero
+// tiene una única celda?
+
+function tieneEltableroUnaÚnicaCelda() {
+    /*
+        PROPÓSITO:
+            * Indica si el tablero está formado por una única celda.n.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (direccionesAlBorde() == [minDir() .. maxDir()])
+}
+
+
+function direccionesAlBorde() {
+    /*
+        PROPÓSITO: 
+            * Describe la lista de direcciones en las que el cabezal no se puede mover.
+        TIPO: [Dirección].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    próximaDirección := minDir()
+
+    listaDeDireccionesHastaAhora := singularSi_VacíoSino(próximaDirección, not puedeMover(próximaDirección))
+
+    while (próximaDirección /= maxDir()) {
+        
+        próximaDirección := siguiente(próximaDirección)
+
+        listaDeDireccionesHastaAhora := listaDeDireccionesHastaAhora ++ singularSi_VacíoSino(próximaDirección, not puedeMover(próximaDirección))
+
+    }
+
+    return (listaDeDireccionesHastaAhora)
+}
+
+// FUNCIÓN AUXILIAR 🖖🏼 (BIBLIOTECA 📚)
+
+function singularSi_VacíoSino(elemento, condición) {
+    /*
+        PROPÓSITO:
+            * Describe la lista formada únicamente por el elemento dado si se cumple la condición dada; caso contrario, describe la lista vacía.
+        PARÁMETROS:
+            * elemento:  Elemento.
+            * condición: Booleano - Condición según la cual se describe la lista singular formada por el elemento dado o la lista vacía. 
+        TIPO: [Elemento].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return ( choose [elemento] when (condición)
+                    []         otherwise
+           )
+}

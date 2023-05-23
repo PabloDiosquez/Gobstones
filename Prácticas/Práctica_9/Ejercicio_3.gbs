@@ -1,0 +1,18 @@
+// Escribir las funciones dadas a continuación, que reciben como parámetros una lista de
+// números que representa las cantidades de bolitas rojas de una fila cualquiera:
+// a. las3PrimerasDe_ConLaMismaCantidad, que indica si las primeras 3 celdas
+// al Oeste de la fila representada tenían la misma cantidad de bolitas rojas al
+// momento en que la fila fue leída.
+
+
+
+// b. las3PrimerasDe_ConDistintasCantidades que indica si en las primeras 3
+// celdas al Oeste hay diferente cantidad de bolitas de rojas (es decir, son todas
+// distintas).
+
+
+
+// c. hayAlgunaCantidadIgualEnLas3PrimerasDe_ que determine si en algún
+// caso hay la misma cantidad de bolitas de dos colores (por ejemplo, la primera y
+// la tercera celda tienen la misma cantidad de bolitas rojas, o la segunda y la
+// tercera, etc.).

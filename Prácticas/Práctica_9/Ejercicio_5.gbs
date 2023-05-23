@@ -1,0 +1,18 @@
+// Escribir la función es_Singular, que dada una Lista de elementos de cualquier tipo,
+// indique si la lista tiene exactamente un único elemento.
+// SUGERENCIA: pensar en combinación con qué otras operaciones puede aprovecharse
+// la expresión primitiva esVacía.
+
+function es_Singular(lista) {
+    /*
+        PROPÓSITO: 
+            * Indica si la lista de elementos de cualquier tipo dada tiene exactamente un único elemento.
+        PARÁMETROS:
+            * lista: [Elemento].
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (not esVacía(lista) && esVacía(resto(lista)))
+}

@@ -234,14 +234,14 @@ function cantidadDeCaloríasDe_(listaDeComidas) {
             * No tiene (es una función total).
     */
 
-    comidasPorMirar = listaDeComidas
+    lasComidasPorMirar = listaDeComidas
 
-    caloríasQueYaConté := calorías(primero(comidasPorMirar))
+    caloríasQueYaConté := 0
 
-    while (not esVacía(comidasPorMirar)) {
-        listaDeComidasQueFaltan := resto(comidasPorMirar)
+    while (not esVacía(lasComidasPorMirar)) {
+        caloríasQueYaConté := caloríasQueYaConté + calorías(primero(lasComidasPorMirar))
 
-        caloríasQueYaConté := caloríasQueYaConté + calorías(primero(comidasPorMirar))
+        lasComidasPorMirar := resto(lasComidasPorMirar)
     }
 
     return (caloríasQueYaConté)
@@ -263,12 +263,12 @@ function comidasDe_Enmantecadas(listaDeComidas) {
     
     lasComidasPorMirar := listaDeComidas
 
-    lasComidasEnmantecadasHastaAhora := [enmantecar(primerComida(lasComidasPorMirar))]
+    lasComidasEnmantecadasHastaAhora := []
 
     while (not esVacía(lasComidasPorMirar)) {
-        lasComidasPorMirar := resto(lasComidasPorMirar)
-        
         lasComidasEnmantecadasHastaAhora := lasComidasEnmantecadasHastaAhora ++ [enmantecar(primero(lasComidasPorMirar))]
+        
+        lasComidasPorMirar := resto(lasComidasPorMirar)
     }
 
     return (lasComidasEnmantecadasHastaAhora)
@@ -290,15 +290,13 @@ function comidasPulentaDe_(listaDeComidas) {
     
     lasComidasPorMirar := listaDeComidas
 
-    próximaComida := primero(lasComidasPorMirar)
-
-    lasComidasDeMásDe500CaloríasHastaAhora := singularSi_VacíaSino(próximaComida, tiene_MásDe_Calorías(próximaComida, 500))
+    lasComidasDeMásDe500CaloríasHastaAhora := []
 
     while (not esVacía(lasComidasPorMirar)) {
-        lasComidasPorMirar := resto(lasComidasPorMirar)
-
         lasComidasDeMásDe500CaloríasHastaAhora := lasComidasDeMásDe500CaloríasHastaAhora
-                        ++ singularSi_VacíaSino(próximaComida, tiene_MásDe_Calorías(próximaComida, 500))
+                        ++ singularSi_VacíaSino(primero(lasComidasPorMirar), tiene_MásDe_Calorías(primero(lasComidasPorMirar), 500))
+
+        lasComidasPorMirar := resto(lasComidasPorMirar)
     }
 
     return (lasComidasDeMásDe500CaloríasHastaAhora)

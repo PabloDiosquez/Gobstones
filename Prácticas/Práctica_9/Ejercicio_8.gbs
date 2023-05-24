@@ -14,16 +14,76 @@ function primerasTresCartasDeLaTira_(tiraDeCartas) {
         TIPO: [Carta].
         PRECONDICIONES:
             * La tira de cartas dada debe tener al menos 3 cartas.
+            * La lista de cartas que representa a la tira de cartas debe estar ordenada de forma creciente.
     */
     
-    
-}
+    laTiraRestante := tiraDeCartas
 
+    lasPrimerasTresHastaAhora := []
+
+    repeat (3) {
+        lasPrimerasTresHastaAhora := lasPrimerasTresHastaAhora ++ [primero(laTiraRestante)]
+
+        laTiraRestante := resto(laTiraRestante)
+    }
+
+    return (lasPrimerasTresHastaAhora)
+
+}
 
 
 // b. laMano_TieneJugadaParaAgregarALaTira_, que dada una mano de
 // cartas de un jugador, y una tira de cartas, indique si la primera carta que puede
 // jugar el jugador puede ser agregada en la tira o no.
+
+function laMano_TieneJugadaParaAgregarALaTira_(manoDeCartas, tiraDeCartas) {
+    /*
+        PROPÓSITO:
+            * Indica si la primera carta de la mano de cartas dada puede ser agregada o no a la tira de cartas.
+        PARÁMETROS:
+            * manoDeCartas: [Carta].
+            * tiraDeCartas: [Carta].
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * La lista de cartas que representa a la tira de cartas debe estar ordenada de forma creciente.
+        OBSERVACIONES:
+            * Para agregar una carta a una tira, debe ser de diferente palo y menor a la primera carta de la tira.
+    */
+    
+    return (not sonDelMismoPalo_Y_(primero(manoDeCartas), primero(tiraDeCartas))
+                 && elNúmeroDe_EsMenorQueElDe_(primero(manoDeCartas), primero(tiraDeCartas)))
+}
+
+function sonDelMismoPalo_Y_(primerCarta, segundaCarta) {
+    /*
+        PROPÓSITO:
+            * Indica si las cartas dadas son del mismo palo.
+        PARÁMETROS:
+            * primerCarta: Carta.
+            * segundaCarta: Carta.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (palo(primerCarta) == palo(segundaCarta))
+}
+
+function elNúmeroDe_EsMenorQueElDe_(primerCarta, segundaCarta) {
+    /*
+        PROPÓSITO:
+            * Indica si el número de la primer carta dada es menor que el número de la segunda carta dada.
+        PARÁMETROS:
+            * primerCarta: Carta.
+            * segundaCarta: Carta.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (número(primerCarta) < número(segundaCarta))
+}
+
 // c. laTira_DespuésDeJugar_, que dada una tira de cartas y una carta que
 // cumple las condiciones para ser agregada en la misma, describa la tira que
 // resulta de jugar esa carta en esa tira.

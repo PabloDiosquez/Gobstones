@@ -273,3 +273,67 @@ function comidasDe_Enmantecadas(listaDeComidas) {
 
     return (lasComidasEnmantecadasHastaAhora)
 }
+
+// Ejercicio 10
+// Algunos gobianos son muy quisquillosos, y sólo comen comidas que verdaderamente los dejen como bolitas a ellos. Por ello, si les das mucha comida, solamente elegirán comer, aquellas comidas que tengan más de 500 calorías. Se desea la función comidasPulentaDe_ que dada una lista de comidas, describe una lista que tiene solamente aquellas comidas de la lista original que tienen más de 500 calorías.
+
+function comidasPulentaDe_(listaDeComidas) {
+    /*
+        PROPÓSITO:
+            * Describe una lista de comidas gobianas que tiene solamente aquellas comidas de la lista dada que tienen más de 500 calorías.
+        PARÁMETROS:
+            * listaDeComidas: [ComidaGobiana].
+        TIPO: [ComidaGobiana].
+        PRECONDICIONES:
+            * No tiene (es una funcipon total).
+    */
+    
+    lasComidasPorMirar := listaDeComidas
+
+    próximaComida := primero(lasComidasPorMirar)
+
+    lasComidasDeMásDe500CaloríasHastaAhora := singularSi_VacíaSino(próximaComida, tiene_MásDe_Calorías(próximaComida, 500))
+
+    while (not esVacía(lasComidasPorMirar)) {
+        lasComidasPorMirar := resto(lasComidasPorMirar)
+
+        lasComidasDeMásDe500CaloríasHastaAhora := lasComidasDeMásDe500CaloríasHastaAhora
+                        ++ singularSi_VacíaSino(próximaComida, tiene_MásDe_Calorías(próximaComida, 500))
+    }
+
+    return (lasComidasDeMásDe500CaloríasHastaAhora)
+}
+
+function tiene_MásDe_Calorías(comidaGobiana, calorías) {
+    /*
+        PROPÓSITO:
+            * Indica si la comida dada tiene más de 500 calorías.
+        PARÁMETROS:
+            * comidaGobiana: ComidaGobiana.
+            * calorías:      Número.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * **calorías** debe ser >= 0.
+    */
+    
+    return (calorías(comidaGobiana) > calorías)
+}
+
+// FUNCIONES AUXILIARES 🔙
+
+function singularSi_VacíaSino(elemento, condición) {
+    /*
+        PROPÓSITO: 
+            * Describe una lista formada únicamente por el elemento dado, si la condición dada es verdadera; caso contrario, describe la lista vacía.
+        PARÁMETROS:
+            * elemento:  Elemento.
+            * condición: Booleano.
+        TIPO: [Elemento].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose [elemento] when (condición)
+                   []         otherwise
+    )
+}

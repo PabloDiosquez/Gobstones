@@ -234,23 +234,23 @@ function cantidadDeCaloríasDe_(listaDeComidas) {
             * No tiene (es una función total).
     */
 
-    listaDeComidasQueFaltan = listaDeComidas
+    comidasPorMirar = listaDeComidas
 
-    cantidadDeCaloríasHastaAhora := calorías(primero(listaDeComidasQueFaltan))
+    caloríasQueYaConté := calorías(primero(comidasPorMirar))
 
-    while (not esVacía(listaDeComidasQueFaltan)) {
-        
-        listaDeComidasQueFaltan := resto(listaDeComidasQueFaltan)
-        cantidadDeCaloríasHastaAhora := cantidadDeCaloríasHastaAhora + calorías(primero(listaDeComidasQueFaltan))
+    while (not esVacía(comidasPorMirar)) {
+        listaDeComidasQueFaltan := resto(comidasPorMirar)
+
+        caloríasQueYaConté := caloríasQueYaConté + calorías(primero(comidasPorMirar))
     }
 
-    return (cantidadDeCaloríasHastaAhora)
+    return (caloríasQueYaConté)
 }
 
 // Ejercicio 9
-// Los fanáticos de la manteca son tan obsesivos que si les das un montón de comida, la enmantecan toda, sin miramientos. Por eso, queremos hacer la función enmantecarTodasLasDe_ que dada una lista de comidas, describe una lista del mismo tamaño que la original, donde cada elemento se corresponde con la comida en dicha lista, pero enmantecada. 
+// Los fanáticos de la manteca son tan obsesivos que si les das un montón de comida, la enmantecan toda, sin miramientos. Por eso, queremos hacer la función comidasDe_Enmantecadas que dada una lista de comidas, describe una lista del mismo tamaño que la original, donde cada elemento se corresponde con la comida en dicha lista, pero enmantecada. 
 
-function enmantecarTodasLasDe_(listaDeComidas) {
+function comidasDe_Enmantecadas(listaDeComidas) {
     /*
         PROPÓSITO:
             * Describe una nueva lista de comidas, del mismo tamaño que la lista de comidas original dada, donde cada elemento se corresponde con la comida en la lista dada, pero enmantecada.
@@ -263,15 +263,13 @@ function enmantecarTodasLasDe_(listaDeComidas) {
     
     lasComidasPorMirar := listaDeComidas
 
-    lasComidasEnmantecadas := [enmantecar(primerComida(lasComidasPorMirar))]
+    lasComidasEnmantecadasHastaAhora := [enmantecar(primerComida(lasComidasPorMirar))]
 
     while (not esVacía(lasComidasPorMirar)) {
-        
         lasComidasPorMirar := resto(lasComidasPorMirar)
-
-        lasComidasEnmantecadas := lasComidasEnmantecadas ++ [enmantecar(primerComida(lasComidasPorMirar))]
-
+        
+        lasComidasEnmantecadasHastaAhora := lasComidasEnmantecadasHastaAhora ++ [enmantecar(primero(lasComidasPorMirar))]
     }
 
-    return (lasComidasEnmantecadas)
+    return (lasComidasEnmantecadasHastaAhora)
 }

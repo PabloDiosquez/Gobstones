@@ -1,0 +1,29 @@
+// Escribir las siguientes funciones que continúan utilizando listas de elementos del tipo
+// Carta. Una tira de cartas es una secuencia de cartas en orden creciente; para agregar
+// una carta a una tira, debe ser de diferente palo y menor a la primera carta de la tira.
+
+// a. primerasTresCartasDeLaTira_, que dado una tira, describa una lista con
+// las primeras 3 cartas de la misma.
+
+function primerasTresCartasDeLaTira_(tiraDeCartas) {
+    /*
+        PROPÓSITO:
+            * Describe una lista con las 3 primeras cartas de la tira de cartas dada.
+        PARÁMETROS:
+            * tiraDeCartas: [Carta].
+        TIPO: [Carta].
+        PRECONDICIONES:
+            * La tira de cartas dada debe tener al menos 3 cartas.
+    */
+    
+    
+}
+
+
+
+// b. laMano_TieneJugadaParaAgregarALaTira_, que dada una mano de
+// cartas de un jugador, y una tira de cartas, indique si la primera carta que puede
+// jugar el jugador puede ser agregada en la tira o no.
+// c. laTira_DespuésDeJugar_, que dada una tira de cartas y una carta que
+// cumple las condiciones para ser agregada en la misma, describa la tira que
+// resulta de jugar esa carta en esa tira.

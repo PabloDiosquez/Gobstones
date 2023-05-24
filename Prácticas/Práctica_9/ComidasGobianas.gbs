@@ -189,7 +189,7 @@ function albóndigaCon_Calorías(calorías) {
                     nombre   <- "Albóndiga",
                     origen   <- Europa,
                     calorías <- calorías
-        )
+                    )
     )
 }
 
@@ -212,7 +212,7 @@ function hayUnaBolitaDeFraileEn_(listaDeComidas) {
     lasComidasPorMirar := listaDeComidas
 
     while (not esVacía(lasComidasPorMirar) && 
-                                    nombre(primero(listaDeComidas)) /= "Bolitas de Fraile") {
+                nombre(primero(listaDeComidas)) /= "Bolitas de Fraile") {
         
         lasComidasPorMirar := resto(lasComidasPorMirar)
     }
@@ -222,3 +222,56 @@ function hayUnaBolitaDeFraileEn_(listaDeComidas) {
 
 // Ejercicio 8
 // A los gobianos hay que cuidarlos, por eso, cuando se les lleva comida, hay que analizar si no se está pasando de la cantidad de calorías que un ser humano normal puede consumir. Por eso, queremos hacer la función cantidadDeCaloríasDe_ que dada una lista de comidas, describe la cantidad total de calorías de los elementos de dicha lista. 
+
+function cantidadDeCaloríasDe_(listaDeComidas) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad total de calorías de las comidas de la lista de comidas dada.
+        PARÁMETROS:
+            * listaDeComidas: [ComidaGobiana].
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    listaDeComidasQueFaltan = listaDeComidas
+
+    cantidadDeCaloríasHastaAhora := calorías(primero(listaDeComidasQueFaltan))
+
+    while (not esVacía(listaDeComidasQueFaltan)) {
+        
+        listaDeComidasQueFaltan := resto(listaDeComidasQueFaltan)
+        cantidadDeCaloríasHastaAhora := cantidadDeCaloríasHastaAhora + calorías(primero(listaDeComidasQueFaltan))
+    }
+
+    return (cantidadDeCaloríasHastaAhora)
+}
+
+// Ejercicio 9
+// Los fanáticos de la manteca son tan obsesivos que si les das un montón de comida, la enmantecan toda, sin miramientos. Por eso, queremos hacer la función enmantecarTodasLasDe_ que dada una lista de comidas, describe una lista del mismo tamaño que la original, donde cada elemento se corresponde con la comida en dicha lista, pero enmantecada. 
+
+function enmantecarTodasLasDe_(listaDeComidas) {
+    /*
+        PROPÓSITO:
+            * Describe una nueva lista de comidas, del mismo tamaño que la lista de comidas original dada, donde cada elemento se corresponde con la comida en la lista dada, pero enmantecada.
+        PARÁMETROS:
+            * listaDeComidas: [ComidaGobiana].
+        TIPO: [ComidaGobiana].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    lasComidasPorMirar := listaDeComidas
+
+    lasComidasEnmantecadas := [enmantecar(primerComida(lasComidasPorMirar))]
+
+    while (not esVacía(lasComidasPorMirar)) {
+        
+        lasComidasPorMirar := resto(lasComidasPorMirar)
+
+        lasComidasEnmantecadas := lasComidasEnmantecadas ++ [enmantecar(primerComida(lasComidasPorMirar))]
+
+    }
+
+    return (lasComidasEnmantecadas)
+}

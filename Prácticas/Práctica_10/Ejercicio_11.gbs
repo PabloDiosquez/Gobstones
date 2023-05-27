@@ -1,0 +1,61 @@
+// 11. Construir las funciones:
+// a. direccionesOpuestasDe_, que dada una lista de direcciones, describa la
+// lista de direcciones en donde cada elemento es el opuesto al de la posición
+// original.
+// Por ejemplo, direccionesOpuestasDe_([Oeste,Sur,Norte]) describe
+// [Este,Norte,Sur].
+
+function direccionesOpuestasDe_(listaDeDirecciones) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de direcciones en la cual cada elemento es el opuesto al de la dirección correspondiente en la lista de direcciones dada.
+        PARÁMETROS:
+            * listaDeDirecciones: [Dirección].
+        TIPO: [Dirección].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    direccionesPorMirar := listaDeDirecciones
+
+    direccionesOpuestasHastaAhora := []
+
+    while (not esVacía(direccionesPorMirar)) {
+        
+        direccionesOpuestasHastaAhora := direccionesOpuestasHastaAhora ++ [opuesto(primero(direccionesPorMirar))]
+
+        direccionesPorMirar := resto(direccionesPorMirar)
+    }
+
+    return (direccionesOpuestasHastaAhora)
+}
+
+// b. siguientesDe_, que dada una lista de colores, describa la lista de colores en
+// donde cada elemento es el siguiente del original.
+// Por ejemplo, siguientesDe_([Rojo,Azul,Verde,Azul,Azul]) describe
+// [Verde,Negro,Azul,Negro,Negro].
+
+function siguientesDe_(listaDeColores) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de colores en donde cada elemento es el siguiente del color correspondiente en la lista dada.
+        PARÁMETROS:
+            * listaDeColores: [Color].
+        TIPO: [Color].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    coloresPorMirar := listaDeColores
+
+    siguientesHastaAhora := []
+
+    while (not esVacía(coloresPorMirar)) {
+        
+        siguientesHastaAhora := siguientesHastaAhora ++ [siguiente(primero(coloresPorMirar))]
+
+        coloresPorMirar := resto(coloresPorMirar)
+    }
+
+    return (siguientesHastaAhora)
+}

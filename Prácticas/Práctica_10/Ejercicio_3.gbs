@@ -30,7 +30,6 @@ function aparicionesDeColor_(colorBuscado) {
     return (listaDeCantidadesDelColorBuscado ++ [nroBolitas(colorBuscado)])
 }
 
-
 // FUNCIONES AUXILARES 👽
 
 procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {

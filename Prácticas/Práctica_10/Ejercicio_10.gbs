@@ -1,0 +1,28 @@
+// Construir la función reversoDe_, que dada una lista, describa la lista que tiene los
+// mismos elementos que la dada, pero en orden reverso.
+// Por ejemplo, reversoDe_([Negro,Azul,Azul,Verde,Rojo]) describe
+// [Rojo,Verde,Azul,Azul,Negro].
+
+function reversoDe_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que tiene los mismos elementos que la dada, pero en orden inverso.
+        PARÁMETROS:
+            * lista: [Elemento].
+        TIPO: [Elemento].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    elementosPorMirar := lista
+
+    listaEnOrdenReversoHastaAhora := []
+
+    while (not esVacía(elementosPorMirar)) {
+        listaEnOrdenReversoHastaAhora := [primero(elementosPorMirar)] ++ listaEnOrdenReversoHastaAhora
+
+        elementosPorMirar := resto(elementosPorMirar)
+    }
+
+    return (listaEnOrdenReversoHastaAhora)
+}

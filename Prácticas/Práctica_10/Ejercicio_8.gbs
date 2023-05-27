@@ -64,3 +64,46 @@ function productoriaDe_(listaDeNúmeros) {
 // código ya hecho?
 // AYUDA: pensar en combinar algunas de las funciones hechas en ejercicios
 // anteriores con alguna de las de este.
+
+function cantidadDeBolitas_DelTablero(colorBuscado) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad total de bolitas de color **colorBuscado** que hay en el tablero.
+        PARÁMETROS:
+            * colorBuscado: Color.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (sumatoriaDe_(aparicionesDeColor_(colorBuscado)))
+}
+
+// FUNCIONES AUXILIARES 👷🏼‍♂️
+
+function aparicionesDeColor_(colorBuscado) {
+    /*
+        PROPÓSITO:
+            * Describe una lista de números que indican, para cada una de las celdas del tablero recorridas en dirección principal Norte y dirección secundaria Oeste, la cantidad de bolitas del color buscado en ese celda del tablero.
+        PARÁMETROS:
+            * colorBuscado: Color.
+        TIPO: [Número].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de ...
+    */
+
+    listaDeCantidadesDelColorBuscado := []
+
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
+
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)) {
+        listaDeCantidadesDelColorBuscado := listaDeCantidadesDelColorBuscado ++ [nroBolitas(colorBuscado)]
+
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
+        
+    }
+
+    return (listaDeCantidadesDelColorBuscado ++ [nroBolitas(colorBuscado)])
+}

@@ -1,0 +1,24 @@
+// Construir el procedimiento RecorrerCamino_, que dada una lista de Direcciones
+// mueve el cabezal en la dirección indicada por cada elemento, en orden. Por ejemplo,
+// RecorrerCamino_([Este, Este, Norte, Este]) debe mover el cabezal primero
+// hacia el Este dos veces, luego hacia el Norte 1 vez y por último se mueve hacia el Este.
+// ¿Cuál es la precondición de este procedimiento?
+
+procedure RecorrerCamino_(listaDeDirecciones) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal en la dirección indicada por cada elemento en la lista de direcciones, en orden.
+        PARÁMETROS:
+            * listaDeDirecciones: [Dirección].
+        PRECONDICIONES:
+            * ....
+    */
+    
+    lasDireccionesPorMirar := listaDeDirecciones
+
+    while (not esVacía(lasDireccionesPorMirar)) {
+        Mover(primero(lasDireccionesPorMirar))
+
+        lasDireccionesPorMirar := resto(lasDireccionesPorMirar)
+    }
+}

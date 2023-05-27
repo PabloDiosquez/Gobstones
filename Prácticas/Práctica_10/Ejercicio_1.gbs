@@ -1,0 +1,23 @@
+// Construir el procedimiento PonerColores_EnLaCeldaActual, que dada una lista de
+// Colores, pone una bolita del color correspondiente por cada uno de los elementos de la
+// misma. Por ejemplo, PonerColores_EnLaCeldaActual([Verde, Verde,
+// Azul]) pone dos bolitas Verdes y una Azul en la celda actual.
+
+procedure PonerColores_EnLaCeldaActual(listaDeColores) {
+    /*
+        PROPÓSITO:
+            * Pone en la celda actual, una bolita del color correspondiente por cada uno de los colores de la lista dada.
+        PARÁMETROS:
+            * listaDeColores: [Color].
+        PRECONDICIONES:
+            * No tiene.
+    */
+    
+    listaDeColoresPorPoner := listaDeColores
+
+    while (not esVacía(listaDeColoresPorPoner)) {
+        Poner(primero(listaDeColoresPorPoner))
+
+        listaDeColoresPorPoner := resto(listaDeColoresPorPoner)
+    }    
+}

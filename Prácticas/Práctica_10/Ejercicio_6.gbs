@@ -1,0 +1,5 @@
+// Construir la función aparicionesDelColor_EnElCamino_, que dado un color,
+// colorBuscado, y una lista de Direcciones, direccionesDelCamino, describa la
+// lista con la cantidad de bolitas del color dado en las celdas recorridas, si las mismas se
+// recorren en el orden en que indica el camino dado, incluyendo la celda en que se encuentra el cabezal antes de empezar y al finalizar el recorrido. ¿Cuál es la
+// precondición del procedimiento?

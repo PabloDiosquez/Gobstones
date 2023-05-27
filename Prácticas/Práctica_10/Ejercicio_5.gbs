@@ -1,0 +1,46 @@
+// Construir la función coloresEnLaCeldaActual, que describa la lista de los colores
+// que aparecen en la celda actual. ¿Cuál es el número mínimo de elementos que tendrá
+// esta lista? ¿Y el máximo? 
+// 🟣 El número mínimo de elementos que tendrá esta lista es 0 (la lista vacía que corresponde a una celda vacía).
+// 🔴 El número máximo es 4 (todos los colores).
+
+function coloresEnLaCeldaActual() {
+    /*
+        PROPÓSITO:
+            * Describe la lista formada por los colores que aparecen en la celda actual.
+        TIPO: [Color].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    próximoColor := minColor()
+
+    listaDeColoresHastaAhora := singular_Si_VacíaSino(próximoColor, hayBolitas(próximoColor))
+
+    while (próximoColor /= maxColor()) {
+        próximoColor := siguiente(próximoColor)
+        
+        listaDeColoresHastaAhora := listaDeColoresHastaAhora ++ singular_Si_VacíaSino(próximoColor, hayBolitas(próximoColor))
+    }
+
+    return (listaDeColoresHastaAhora)
+}
+
+// FUNCIONES AUXILIARES 👌🏼
+
+function singular_Si_VacíaSino(elemento, condición) {
+    /*
+        PROPÓSITO:
+            * Describe la lista formada únicamente por el elemento dado si se cumple la condición dada; en caso contrario, describe la lista vacía. 
+        PARÁMETROS:
+            * elemento:  Elemento.
+            * condición: Booleano.
+        TIPO: [Elemento].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose [elemento] when (condición)
+                   []         otherwise
+        )
+}

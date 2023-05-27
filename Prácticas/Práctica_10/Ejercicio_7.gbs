@@ -1,0 +1,27 @@
+// Construir la función longitudDe_, que dada una lista cualquiera, describa la cantidad
+// de elementos de la misma.
+// Por ejemplo, longitudDe_([Azul,Azul,Verde,Rojo]) describe 4.
+
+function longitudDe_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de elementos que tiene la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento].
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    losElementosPorContar := lista
+
+    cantidadDeElementosHastaAhora := 0
+
+    while (not esVacía(losElementosPorContar)) {
+        cantidadDeElementosHastaAhora := cantidadDeElementosHastaAhora + 1
+
+        losElementosPorContar := resto(losElementosPorContar) 
+    }
+    
+    return (cantidadDeElementosHastaAhora)
+}

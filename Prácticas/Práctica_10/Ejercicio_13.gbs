@@ -34,6 +34,31 @@ function númerosParesDe_(listaDeNúmeros) {
 // Por ejemplo, laLista_SinElElemento_([Azul,Verde,Azul,Rojo],
 // Azul) describe [Verde,Rojo].
 
+function laLista_SinElElemento_(lista, elemento) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que resulta de quitar todas las apariciones del elemento dado que ocurren en la lista dada.
+        PARÁMETROS:
+            * lista:    [Elemento].
+            * elemento: Elemento.
+        TIPO: [Elemento].
+        PRECONDICIONES:
+            * El elemento dado debe ser del mismo tipo que los elementos de la lista.
+    */
+    
+    elementosPorMirar := lista
+
+    listaSinAparicionesHastaAhora := []
+
+    while (not esVacía(elementosPorMirar)) {
+
+        listaSinAparicionesHastaAhora := listaSinAparicionesHastaAhora ++ singular_Si_VacíoSino(primero(elementosPorMirar), primero(elementosPorMirar) /= elemento)
+
+        elementosPorMirar := resto(elementosPorMirar)
+    } 
+
+    return (listaSinAparicionesHastaAhora)
+}
 
 // FUNCIONES AUXILIARES 🐱‍🚀
 

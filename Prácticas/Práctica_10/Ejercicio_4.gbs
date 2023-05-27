@@ -6,11 +6,50 @@
 // ignoran los números sobrantes.
 
 
+procedure Poner_Bolitas_EnElTablero(listaDeNúmeros, color) {
+    /*
+        PROPÓSITO:  
+            * Pone en cada celda del tablero la cantidad de bolitas del color dado, según el elemento en la posición correspondiente. Si hubiera menos números que celdas, en las celdas restantes no se pondrán bolitas y si hubiera más números que celdas, se ignoran los números sobrantes.
+        PARÁMETROS:
+            * listaDeNúmeros: [Número]
+            * color:          Color
+        PRECONDICIONES:
+            * ....
+        OBSERVACIONES:
+            * Recorrido de procesamiento sobre las celdas del tablero.
+    */
 
+        losNúmerosPorMirar := listaDeNúmeros
 
+        IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
+
+        while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste) && not esVacía(losNúmerosPorMirar)) {
+            
+            Poner_DeColor_(primero(losNúmerosPorMirar), color)
+
+            losNúmerosPorMirar := resto(losNúmerosPorMirar)
+
+            IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
+        }
+}  
 
 
 // FUNCIONES AUXILARES 🐱‍🏍
+
+procedure Poner_DeColor_(cantidad, color) {
+    /*
+        PROPÓSITO:
+            * Pone **cantidad** bolitas de color **color** en la celda actual.
+        PARÁMETROS:
+            * cantidad: Número.
+            * color:    Color.
+        PRECONDICIONES:
+            * **cantidad** debe ser >= 0.
+    */
+    repeat (cantidad) {
+        Poner(color)
+    }
+}
 
 procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
     /*

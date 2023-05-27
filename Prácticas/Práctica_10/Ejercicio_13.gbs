@@ -1,0 +1,69 @@
+// Construir las funciones:
+// a. númerosParesDe_, que dada una lista de Números, describa la lista de
+// números pares que aparecen en la misma.
+// Por ejemplo, númerosParesDe_([3,4,5,2,5]) describe [4,2].
+
+function númerosParesDe_(listaDeNúmeros) {
+    /*
+        PROPÓSITO:
+            * Dada una lista de números, describe la lista de números pares que aparecen en la misma.
+        PARÁMETROS:
+            * listaDeNúmeros: [Número].
+        TIPO: [Número].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    númerosPorMirar := listaDeNúmeros
+
+    númerosParesHastaAhora := []
+
+    while (not esVacía(númerosPorMirar)) {
+        
+        númerosParesHastaAhora := númerosParesHastaAhora ++ singular_Si_VacíoSino(primero(númerosPorMirar), esPar_(primero(númerosPorMirar)))
+
+        númerosPorMirar := resto(númerosPorMirar)
+    }
+
+    return (númerosParesHastaAhora)
+}
+
+// b. laLista_SinElElemento_, que dados una lista y un elemento, describa la
+// lista que resulta de quitar todas las apariciones del elemento dado que ocurren
+// en lista dada. ¿De qué tipo debe ser elemento?
+// Por ejemplo, laLista_SinElElemento_([Azul,Verde,Azul,Rojo],
+// Azul) describe [Verde,Rojo].
+
+
+// FUNCIONES AUXILIARES 🐱‍🚀
+
+function singular_Si_VacíoSino(elemento, condición) {
+    /*
+        PROPÓSITO: 
+            * Describe la lista formada únicamente por el elemento dado si la condición dada es verdadera; en caso contrario, describe la lista vacía.
+        PARÁMETROS:
+            * elemento:  Elemento.
+            * condición: Booleano.
+        TIPO: [Elemento].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose [elemento] when (condición)
+                   []         otherwise 
+        )
+}
+
+function esPar_(número) {
+    /*
+        PROPÓSITO:
+            * Indica si el número dado es par.
+        PARÁMETROS:
+            * número: Número.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (número mod 2 == 0)
+}

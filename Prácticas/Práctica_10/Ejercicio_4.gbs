@@ -14,7 +14,7 @@ procedure Poner_Bolitas_EnElTablero(listaDeNúmeros, color) {
             * listaDeNúmeros: [Número]
             * color:          Color
         PRECONDICIONES:
-            * ....
+            * Los números de la lista de números dada deben ser >= 0.
         OBSERVACIONES:
             * Recorrido de procesamiento sobre las celdas del tablero.
     */
@@ -30,6 +30,12 @@ procedure Poner_Bolitas_EnElTablero(listaDeNúmeros, color) {
             losNúmerosPorMirar := resto(losNúmerosPorMirar)
 
             IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
+        }
+
+        // Caso borde 
+
+        if (not esVacía(losNúmerosPorMirar)){
+            Poner_DeColor_(primero(losNúmerosPorMirar), color)
         }
 }  
 

@@ -1,0 +1,50 @@
+// Construir la función contiene_A_, que dada una lista y un elemento, indica si el
+// elemento está en la lista.
+// Por ejemplo, contiene_A_([21,3,42], 3) indica que es verdadero que la lista contiene a 3, mientras que contiene([21,3,42], 5) indica que es falso que la lista
+// contiene a 5.
+
+function contiene_A_(lista, elemento) {
+    /*
+        PROPÓSITO:
+            * Indica si la lista dada contiene al elemento dado.
+        PARÁMETROS:
+            * lista:   [Elemento]
+            * elemento: Elemento
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * El elemento dado debe ser del mismo tipo que los elementos de la lista dada.
+        OBSERVACIONES:
+            * Recorrido de búsqueda sobre la lista dada.
+    */
+    
+    elementosPorMirar := lista
+
+    aparicionesEnLaListaHastaAHora := 0
+
+    while (not esVacía(elementosPorMirar)) {
+        
+        aparicionesEnLaListaHastaAHora := aparicionesEnLaListaHastaAHora + unoSi_CeroSino(primero(elementosPorMirar) == elemento)
+
+        elementosPorMirar := resto(elementosPorMirar)
+    }
+
+    return (aparicionesEnLaListaHastaAHora > 0)
+}
+
+// FUNCIONES AUXILIARES 🛸
+
+function unoSi_CeroSino(condición) {
+    /*
+        PROPÓSITO:
+            * Describe 1 si la condición dada es verdadera; describe 0 en caso contrario.
+        PARÁMETROS:
+            * condición: Booleano
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose 1 when (condición)
+                   0 otherwise
+        )
+}

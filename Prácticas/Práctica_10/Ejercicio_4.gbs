@@ -1,0 +1,61 @@
+// Construir el procedimiento Poner_Bolitas_EnElTablero, que dada una lista de
+// números y un color, recorre el tablero con dirección principal Norte y dirección
+// secundaria Oeste y pone en cada celda la cantidad de bolitas del color dado, según el
+// elemento en la posición correspondiente. Si hubiera menos números que celdas, en las
+// celdas restantes no se pondrán bolitas, y si hubiera más números que celdas, se
+// ignoran los números sobrantes.
+
+
+
+
+
+
+// FUNCIONES AUXILARES 🐱‍🏍
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Ubica el cabezal en el inicio de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */  
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal a la siguiente celda de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Debe existir al menos una celda siguiente en el recorrido.
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    if (puedeMover(dirPrincipal)){
+        Mover(dirPrincipal)
+    }
+    else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
+    }
+}

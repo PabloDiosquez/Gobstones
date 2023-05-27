@@ -1,0 +1,84 @@
+// Construir la función aparicionesDeColor_, que dado un color, colorBuscado,
+// describa una lista de números que indican para cada una de las celdas del tablero
+// recorridas en dirección principal Norte y dirección secundaria Oeste, la cantidad de
+// bolitas del color buscado en esa celda del tablero.
+
+function aparicionesDeColor_(colorBuscado) {
+    /*
+        PROPÓSITO:
+            * Describe una lista de números que indican para cada una de las celdas del tablero recorridas en dirección principal Norte y dirección secundaria Oeste, la cantidad de bolitas del color buscado en ese celda del tablero.
+        PARÁMETROS:
+            * colorBuscado: Color.
+        TIPO: [Número].
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de ...
+    */
+
+    listaDeCantidadesDelColorBuscado := []
+
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
+
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)) {
+        listaDeCantidadesDelColorBuscado := listaDeCantidadesDelColorBuscado ++ [nroBolitas(colorBuscado)]
+
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
+        
+    }
+
+    return (listaDeCantidadesDelColorBuscado ++ [nroBolitas(colorBuscado)])
+}
+
+
+// FUNCIONES AUXILARES 👽
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Ubica el cabezal en el inicio de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+// b.
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */  
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+// c.
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal a la siguiente celda de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Debe existir al menos una celda siguiente en el recorrido.
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    if (puedeMover(dirPrincipal)){
+        Mover(dirPrincipal)
+    }
+    else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
+    }
+}

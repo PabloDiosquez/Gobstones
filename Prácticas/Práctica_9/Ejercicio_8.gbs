@@ -87,3 +87,18 @@ function elNúmeroDe_EsMenorQueElDe_(primerCarta, segundaCarta) {
 // c. laTira_DespuésDeJugar_, que dada una tira de cartas y una carta que
 // cumple las condiciones para ser agregada en la misma, describa la tira que
 // resulta de jugar esa carta en esa tira.
+
+function laTira_DespuésDeJugar_(tiraDeCartas, carta) {
+    /*
+        PROPÓSITO:
+            * Describe la tira de cartas que resulta de agregar la carta dada a la tira de cartas dada.
+        PARÁMETROS:
+            * tiraDeCartas: [Carta].
+            * carta:        Carta
+        TIPO: [Carta].
+        PRECONDICIONES:
+            * La carta dada cumple con las condiciones para ser agregada a la tira dada.
+    */
+    
+    return ([carta] ++ tiraDeCartas)
+}

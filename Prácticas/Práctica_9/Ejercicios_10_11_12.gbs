@@ -1,0 +1,228 @@
+// 10.
+// Se desea modelar boletos de colectivo como eran antes de existir la Sube. Todo boleto
+// tenía que contener ciertos datos que eran obligatorios por las regulaciones vigentes en
+// la época. En particular, un boleto debe contener: 
+
+//      ● el número de línea al cual pertenece el boleto (p.ej. 324, 159, 257, 85, etc.),
+//      ● la cantidad de tramos para la cual se sacó dicho boleto (siendo 1 el mínimo y 4
+//      el máximo),
+//      ● la serie, que puede estar compuesta de números y letras, y
+//      ● el número del boleto, que corresponde a un número siempre de cinco dígitos.
+
+// Definir el tipo BoletoDeColectivo, con los datos necesarios para modelar el boleto
+// de un colectivo según fue explicado. No olvidar escribir los tipos de los campos, y la
+// invariante de representación.
+
+type BoletoDeColectivo is record { 
+    /*
+        PROPÓSITO:
+            * Modela boletos de colectivo tal como eran antes de existir la SUBE.
+        INV. REP.:
+            * **númeroDeLínea** debe ser >= 0.
+            * **cantidadDeTramos** debe ser un número entre 1 y 4 inclusive.
+            * **serie** no debe ser vacío.
+            * **númeroDeBoleto** debe ser un número de exactamente 5 dígitos.
+    */
+
+    field númeroDeLínea       // Número
+    field cantidadDeTramos    // Número
+    field serie               // String
+    field númeroDeBoleto      // Número
+}
+
+// 11.
+// Pensar una estrategia para realizar la función es_Capicúa, que dado un boleto,
+// determine si el número del mismo es capicúa. Un boleto es capicúa cuando el primer
+// dígito es igual al último, y el segundo al anteúltimo.
+// ¿Fué fácil la pensar la estrategia? ¿Puede usarse otra representación de
+// BoletoDeColectivo que haga más fácil resolver el problema?
+
+function es_Capicúa(boleto) {
+    /*
+        PROPÓSITO:
+            * Indica si el número del boleto de colectivo dado es capicúa.
+        PARÁMETROS:
+            * boleto: BoletoDeColectivo.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return ( 
+        primerDígito(númeroDeBoleto(boleto)) == últimoDígito(númeroDeBoleto(boleto)) 
+        && segundoDígito(númeroDeBoleto(boleto)) == anteÚltimoDígito(númeroDeBoleto(boleto))
+        )
+}
+
+function primerDígitoDe_(número) {
+    /*
+        PROPÓSITO: 
+            * Describe el primer dígito de un número de 5 dígitos.
+        PARÁMETROS:
+            * número: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * El número dado debe ser >= 0.
+            * El número dado debe tener exactamente 5 dígitos.
+    */
+    
+    return ((número div 10000) mod 10)
+}
+
+function segundoDígitoDe_(número) {
+    /*
+        PROPÓSITO: 
+            * Describe el segundo dígito de un número de 5 dígitos.
+        PARÁMETROS:
+            * número: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * El número dado debe ser >= 0.
+            * El número dado debe tener exactamente 5 dígitos.
+    */
+    
+    return ((número div 1000) mod 10)
+}
+
+
+function últimoDígitoDe_(número) {
+    /*
+        PROPÓSITO: 
+            * Describe el último dígito del número dado.
+        PARÁMETROS:
+            * número: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * El número dado debe ser >= 0.
+    */
+    
+    return (número mod 10)
+}
+
+function anteúltimoDígitoDe_(número) {
+    /*
+        PROPÓSITO: 
+            * Describe el anteúltimo dígito del número dado.
+        PARÁMETROS:
+            * número: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * El número dado debe ser >= 0.
+    */
+    
+    return ((número div 10) mod 10)
+}
+
+// 12.
+// Construir las siguientes funciones sobre boletos.
+// a. costoDeBoleto_, que determina el costo del boleto. El costo de un boleto es
+// de $18, si se abona un solo tramo, y aumenta en $3 por cada tramo adicional.
+
+function costoDeBoleto_(boleto) {
+    /*
+        PROPÓSITO:
+            * Describe el costo del boleto de colectivo dado.
+        PARÁMETROS:
+            * boleto: BoletoDeColectivo.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * El costo de un boleto es de $18, si se abona un solo tramo, y aumenta en $3  por cada tramo adicional.
+    */
+    
+    return (choose 18 when (cantidadDeTramos(boletoDeColectivo) == 1)
+                   21 when (cantidadDeTramos(boletoDeColectivo) == 2) 
+                   24 when (cantidadDeTramos(boletoDeColectivo) == 3)
+                   27 otherwise 
+            )
+}
+
+// b. elBoleto_TieneElMismoNúmeroQue_, que dados dos boletos, boleto1 y
+// boleto2, indique si ambos boletos tienen el mismo número de boleto.
+
+function elBoleto_TieneElMismoNúmeroQue_(boleto1, boleto2) {
+    /*
+        PROPÓSITO:
+            * Indica si **boleto1** y **boleto2** tienen el mismo número de boleto.
+        PARÁMETROS:
+            * boleto1: BoletoDeColectivo.
+            * boleto2: BoletoDeColectivo.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (númeroDeBoleto(boleto1) == númeroDeBoleto(boleto2))
+}
+
+// c. elBoleto_EsParejaCapicúaDe_, que dados dos boletos, boleto1 y
+// boleto2, indique si el número del primer boleto es igual al número del segundo
+// boleto dado vuelta. Por ejemplo, los boletos con números 12345 y 54321 serían
+// pareja capicúa.
+
+function elBoleto_EsParejaCapicúaDe_(boleto1, boleto2) {
+    /*
+        PROPÓSITO:
+            * Indica si el número de boleto del primer boleto dado es igual al número de boleto del segundo boleto dado vuelta.
+        PARÁMETROS:
+            * boleto1: BoletoDeColectivo.
+            * boleto2: BoletoDeColectivo.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return ( 
+        primerDígitoDe_(númeroDeBoleto(boleto1)) == últimoDígitoDe_(númeroDeBoleto(boleto2)) &&
+        segundoDígitoDe_(númeroDeBoleto(boleto1)) == anteúltimoDígitoDe_(númeroDeBoleto(boleto2)) &&
+        tercerDígitoDe_(númeroDeBoleto(boleto1)) == tercerDígitoDe_(númeroDeBoleto(boleto2))
+        )
+}
+
+function tercerDígitoDe_(número) {
+    /*
+        PROPÓSITO:
+            * Describe el tercer dígito de un número de 5 dígitos.
+        PARÁMETROS:
+            * número: Número.
+        TIPO: Número.
+        PRECONDICIONES:
+            * El número dado debe ser >= 0.
+            * El número dado debe tener exactamente 5 dígitos.
+    */
+    
+    return ((número div 100) mod 10)
+}
+
+
+// d. es_CapicúaDePrimeraSerie, que dado un boleto, indique si el mismo es
+// capicúa de una primera serie. La primera serie debe ser la serie “1” o serie “A”.
+
+function es_CapicúaDePrimeraSerie(boleto) {
+    /*
+        PROPÓSITO:
+            * Indica si el boleto de colectivo dado es capicúa de una primera serie.
+        PARÁMETROS:
+            * boleto: BoletoDeColectivo
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (es_DeUnaPrimeraSerie(boleto) && es_Capicúa(boleto))
+}
+
+function es_DeUnaPrimeraSerie(boleto) {
+    /*
+        PROPÓSITO:
+            * Indica si el boleto dado es una una primera serie.
+        PARÁMETROS:
+            * boleto: BoletoDeColectivo.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (serie(boleto) == "A" || serie(boleto) == "1")
+}

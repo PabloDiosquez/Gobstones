@@ -1,0 +1,66 @@
+// Construir las funciones:
+// a. sumatoriaDe_, que dada una lista de Números, describa la suma de todos los
+// elementos de la misma.
+// Por ejemplo, sumatoriaDe_([1,10,15,7,9]) describe el número 42,
+// porque 1+10+15+7+9 es igual a 42;
+
+function sumatoriaDe_(listaDeNúmeros) {
+    /*
+        PROPÓSITO:
+            * Describe la suma de todos los elementos de la lista dada.
+        PARÁMETROS:
+            * listaDeNúmeros: [Número].
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    númerosPorSumar := listaDeNúmeros
+
+    sumatoriaHastaAhora := 0
+
+    while (not esVacía(númerosPorSumar)) {
+        
+        sumatoriaHastaAhora := sumatoriaHastaAhora + primero(númerosPorSumar)
+
+        númerosPorSumar := resto(númerosPorSumar)
+    }
+
+    return (sumatoriaHastaAhora)
+}
+
+// b. productoriaDe_, que dada una lista de Números, describa el producto de
+// todos los elementos de la misma.
+// Por ejemplo, productoriaDe_([1,5,7,9]) describe el número 315, porque
+// 1*5*7*9 es igual a 315.
+
+function productoriaDe_(listaDeNúmeros) {
+    /*
+        PROPÓSITO:
+            * Describe el producto de los elementos de la lista dada.
+        PARÁMETROS:
+            * listaDeNúmeros: [Número].
+        TIPO: Número.
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+    */
+    
+    númerosPorMultiplicar := listaDeNúmeros
+
+    productoHastaAhora := 1
+
+    while (not esVacía(númerosPorMultiplicar)) {
+        
+        productoHastaAhora := productoHastaAhora * primero(númerosPorMultiplicar)
+
+        númerosPorMultiplicar := resto(númerosPorMultiplicar)
+    }
+
+    return (productoHastaAhora)
+}
+
+// c. cantidadDeBolitas_DelTablero, que dado un color, indique la cantidad
+// total de bolitas de ese color que hay en el tablero. ¿Puede hacerse reutilizando
+// código ya hecho?
+// AYUDA: pensar en combinar algunas de las funciones hechas en ejercicios
+// anteriores con alguna de las de este.

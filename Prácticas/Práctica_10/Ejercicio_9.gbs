@@ -1,0 +1,91 @@
+// Construir las funciones:
+// a. repetición_VecesDe_, que dado un número y un elemento de cualquier tipo,
+// describa una lista con la cantidad indicada de repeticiones del elemento dado. Si
+// el número es menor o igual que cero, retorna la lista vacía.
+// Por ejemplo, repetición_VecesDe_(3, 8) describe la lista [8,8,8],
+// mientras que repetición_VecesDe_(5, Verde) describe la lista
+// [Verde,Verde,Verde,Verde,Verde].
+
+function repetición_VecesDe_(repeticiones, elemento) {
+    /*
+        PROPÓSITO:
+            * Describe una lista con la cantidad indicada de repeticiones del elemento dado.Si el número es menor o igual que cero, retorna la lista vacía.
+        PARÁMETROS:
+            * repeticiones: Número
+            * elemento: Elemento
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    repeticionesHastaAhora := []
+    
+    repeat (repeticiones) {
+        repeticionesHastaAhora := repeticionesHastaAhora ++ [elemento]
+    }
+
+    return (repeticionesHastaAhora)
+}
+
+// b. laLista_Clonada_Veces, que dados una lista de elementos y un número,
+// describa la lista resultante de clonar la lista dada tantas veces como se indica.
+// Por ejemplo, laLista_Clonada_Veces([Rojo,Azul,Verde], 3) retorna
+// [Rojo,Azul,Verde,Rojo,Azul,Verde,Rojo,Azul,Verde]
+
+function laLista_Clonada_Veces(lista, número) {
+    /*
+        PROPÓSITO:
+            * Describe la lista resultante de clonar la lista dada tantas veces como indica el número dado.
+        PARÁMETROS:
+            * lista: [Elemento]
+            * número: Número
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * **número** debe ser >= 0.
+    */
+    
+    listaClonadaHastaAhora := []
+
+    repeat (número) {
+        listaClonadaHastaAhora := listaClonadaHastaAhora ++ lista
+    }
+
+    return (listaClonadaHastaAhora)
+}
+
+// c. losElementosDe_Clonados_Veces, que dados una lista de elementos y un
+// número, describa la lista que contenga los elementos dados en el orden de dicha
+// lista, pero repetidos la cantidad de veces indicada.
+// Por ejemplo, losElementosDe_Clonados_Veces([Rojo,Azul,Verde],
+// 3) retorna [Rojo,Rojo,Rojo,Azul,Azul,Azul,Verde,Verde,Verde].
+
+function losElementosDe_Clonados_Veces(lista, cantidad) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que contiene a los elementos de la lista dada, en el orden de dicha lista, pero repetidos la cantidad de veces indicada.
+        PARÁMETROS:
+            * lista: [Elemento]
+            * cantidad: Número
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * **cantidad** debe ser >= 0.
+        OBSERVACIONES:
+            * Por ejemplo, losElementosDe_Clonados_Veces([Rojo,Azul,Verde], 3) retorna [Rojo,Rojo,Rojo,Azul,Azul,Azul,Verde,Verde,Verde].
+    */
+
+    losElementosPorClonar := lista
+
+    elementosClonadosHastaAhora := []
+
+    while (not esVacía(losElementosPorClonar)) {
+        
+        elementosClonadosHastaAhora := elementosClonadosHastaAhora ++ repetición_VecesDe_(cantidad, primero(losElementosPorClonar))
+
+        losElementosPorClonar := resto(losElementosPorClonar)
+    }
+    
+    return (elementosClonadosHastaAhora)
+}
+
+// d. La solución anterior, ¿fue construida reutilizando repetición_VecesDe_? Si
+// no es así, resolverla nuevamente utilizando esa función.

@@ -209,15 +209,15 @@ function hayUnaBolitaDeFraileEn_(listaDeComidas) {
             * Recorrido de búsqueda sobre listas.
     */
     
-    lasComidasPorMirar := listaDeComidas
+    comidasPorMirar := listaDeComidas
 
-    while (not esVacía(lasComidasPorMirar) && 
+    while (not esVacía(comidasPorMirar) && 
                 nombre(primero(listaDeComidas)) /= "Bolitas de Fraile") {
         
-        lasComidasPorMirar := resto(lasComidasPorMirar)
+        comidasPorMirar := resto(comidasPorMirar)
     }
 
-    return (not esVacía(lasComidasPorMirar))
+    return (not esVacía(comidasPorMirar))
 }
 
 // Ejercicio 8
@@ -234,14 +234,14 @@ function cantidadDeCaloríasDe_(listaDeComidas) {
             * No tiene (es una función total).
     */
 
-    lasComidasPorMirar = listaDeComidas
+    comidasPorMirar = listaDeComidas
 
     caloríasQueYaConté := 0
 
-    while (not esVacía(lasComidasPorMirar)) {
-        caloríasQueYaConté := caloríasQueYaConté + calorías(primero(lasComidasPorMirar))
+    while (not esVacía(comidasPorMirar)) {
+        caloríasQueYaConté := caloríasQueYaConté + calorías(primero(comidasPorMirar))
 
-        lasComidasPorMirar := resto(lasComidasPorMirar)
+        comidasPorMirar := resto(comidasPorMirar)
     }
 
     return (caloríasQueYaConté)
@@ -261,14 +261,14 @@ function comidasDe_Enmantecadas(listaDeComidas) {
             * No tiene (es una función total).
     */
     
-    lasComidasPorMirar := listaDeComidas
+    comidasPorMirar := listaDeComidas
 
     lasComidasEnmantecadasHastaAhora := []
 
-    while (not esVacía(lasComidasPorMirar)) {
-        lasComidasEnmantecadasHastaAhora := lasComidasEnmantecadasHastaAhora ++ [enmantecar(primero(lasComidasPorMirar))]
+    while (not esVacía(comidasPorMirar)) {
+        lasComidasEnmantecadasHastaAhora := lasComidasEnmantecadasHastaAhora ++ [enmantecar(primero(comidasPorMirar))]
         
-        lasComidasPorMirar := resto(lasComidasPorMirar)
+        comidasPorMirar := resto(comidasPorMirar)
     }
 
     return (lasComidasEnmantecadasHastaAhora)
@@ -288,18 +288,18 @@ function comidasPulentaDe_(listaDeComidas) {
             * No tiene (es una funcipon total).
     */
     
-    lasComidasPorMirar := listaDeComidas
+    comidasPorMirar := listaDeComidas
 
-    lasComidasDeMásDe500CaloríasHastaAhora := []
+    comidasPulentasVistasAlMomento := []
 
-    while (not esVacía(lasComidasPorMirar)) {
-        lasComidasDeMásDe500CaloríasHastaAhora := lasComidasDeMásDe500CaloríasHastaAhora
-                        ++ singularSi_VacíaSino(primero(lasComidasPorMirar), tiene_MásDe_Calorías(primero(lasComidasPorMirar), 500))
+    while (not esVacía(comidasPorMirar)) {
+        comidasPulentasVistasAlMomento := comidasPulentasVistasAlMomento
+                        ++ singularSi_VacíaSino(primero(comidasPorMirar), tiene_MásDe_Calorías(primero(comidasPorMirar), 500))
 
-        lasComidasPorMirar := resto(lasComidasPorMirar)
+        comidasPorMirar := resto(comidasPorMirar)
     }
 
-    return (lasComidasDeMásDe500CaloríasHastaAhora)
+    return (comidasPulentasVistasAlMomento)
 }
 
 function tiene_MásDe_Calorías(comidaGobiana, calorías) {
@@ -351,10 +351,63 @@ function simonBolitas() {
     )
 }
 
+// Ejercicio 12
+// Para ir cerrando esta sección queremos saber si un chef es demasiado light. Un chef es demasiado light si ninguna de sus comidas es una comida pulenta. Elabore la función elChefEsMuyLight_ que indique si ninguna de sus comidas es pulenta.
 
 
+function elChefEsMuyLight_(chefGobiano) {
+    /*
+        PROPÓSITO:
+            * Indica si el chef dado es muy light, esto es, si ninguna de sus comidas es una comida pulenta.
+        PARÁMETROS:
+            * chefGobiano: ChefGobiano.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    // return (esVacía(comidasPulentaDe_(recetas(chefGobiano))))
 
+    // RESOLUCIÓN ALTERNATIVA RECORRIENDO LA LISTA DE RECETAS 🙊
 
+    return(sonLightTodasLasDe_(recetas(chefGobiano)))
+}
+
+function sonLightTodasLasDe_(listaDeComidas) {
+    /*
+        PROPÓSITO:
+            * 
+        PARÁMETROS:
+            * listaDeComidas: [ComidaGobiana]
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de búsqueda sobre la lista de comidas.
+    */
+    
+    comidasPorMirar := listaDeComidas
+
+    while (not esVacía(comidasPorMirar) && not esPulenta_(primero(comidasPorMirar))) {
+        comidasPorMirar := resto(comidasPorMirar)
+    }
+
+    return (esVacía(comidasPorMirar))
+}
+
+function esPulenta_(comida) {
+    /*
+        PROPÓSITO:
+            * Indica si la comida gobiana dada es pulenta.
+        PARÁMETROS:
+            * comida: ComidaGobiana.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Una comida gobiana es pulenta si tiene más de 500 calorías.
+    */
+    
+    return (calorías(comida) > 500)
+}
 
 // FUNCIONES AUXILIARES 🔙
 

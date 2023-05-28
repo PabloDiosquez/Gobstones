@@ -40,7 +40,7 @@ type BoletoDeColectivo is record {
 function es_Capicúa(boleto) {
     /*
         PROPÓSITO:
-            * Indica si el número del boleto de colectivo dado es capicúa.
+            * Indica si el número de boleto del boleto de colectivo dado es capicúa.
         PARÁMETROS:
             * boleto: BoletoDeColectivo.
         TIPO: Booleano.
@@ -121,7 +121,7 @@ function anteúltimoDígitoDe_(número) {
 function costoDeBoleto_(boleto) {
     /*
         PROPÓSITO:
-            * Describe el costo del boleto de colectivo dado.
+            * Describe el costo del boleto de colectivo dado según la cantidad de tramos abonados.
         PARÁMETROS:
             * boleto: BoletoDeColectivo.
         TIPO: Número.
@@ -164,7 +164,7 @@ function elBoleto_TieneElMismoNúmeroQue_(boleto1, boleto2) {
 function elBoleto_EsParejaCapicúaDe_(boleto1, boleto2) {
     /*
         PROPÓSITO:
-            * Indica si el número de boleto del primer boleto dado es igual al número de boleto del segundo boleto dado vuelta.
+            * Indica si el número de boleto del primer boleto dado es igual al número de boleto del segundo boleto dado en orden inverso.
         PARÁMETROS:
             * boleto1: BoletoDeColectivo.
             * boleto2: BoletoDeColectivo.
@@ -174,10 +174,10 @@ function elBoleto_EsParejaCapicúaDe_(boleto1, boleto2) {
     */
     
     return ( 
-        primerDígitoDe_(númeroDeBoleto(boleto1)) == últimoDígitoDe_(númeroDeBoleto(boleto2)) &&
-        segundoDígitoDe_(númeroDeBoleto(boleto1)) == anteúltimoDígitoDe_(númeroDeBoleto(boleto2)) &&
-        tercerDígitoDe_(númeroDeBoleto(boleto1)) == tercerDígitoDe_(númeroDeBoleto(boleto2))
-        )
+           primerDígitoDe_(númeroDeBoleto(boleto1))  == últimoDígitoDe_(númeroDeBoleto(boleto2))
+        && segundoDígitoDe_(númeroDeBoleto(boleto1)) == anteúltimoDígitoDe_(númeroDeBoleto(boleto2))
+        && tercerDígitoDe_(númeroDeBoleto(boleto1))  == tercerDígitoDe_(númeroDeBoleto(boleto2))
+    )
 }
 
 function tercerDígitoDe_(número) {
@@ -208,6 +208,8 @@ function es_CapicúaDePrimeraSerie(boleto) {
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * La primera serie debe ser la serie “1” o serie “A”.
     */
     
     return (es_DeUnaPrimeraSerie(boleto) && es_Capicúa(boleto))
@@ -222,6 +224,8 @@ function es_DeUnaPrimeraSerie(boleto) {
         TIPO: Booleano.
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * La primera serie debe ser la serie “1” o serie “A”.
     */
     
     return (serie(boleto) == "A" || serie(boleto) == "1")

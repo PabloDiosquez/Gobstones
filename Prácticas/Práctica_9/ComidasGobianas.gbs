@@ -317,6 +317,45 @@ function tiene_MásDe_Calorías(comidaGobiana, calorías) {
     return (calorías(comidaGobiana) > calorías)
 }
 
+// Ejercicio 11 
+// En el mundo gobiano también hay Chefs, que se han vuelto muy renombrados por sus recetas. Queremos poder modelar a un chef y las recetas de los mismos.
+
+type ChefGobiano is record {
+    /*
+        PROPÓSITO: 
+            * Modela un chef de comida gobiana.
+        INV. REP.:
+            * **nombre** no debe ser vacío.
+    */
+
+    field nombre    // String
+    field recetas   // [ComidaGobiana] 
+}
+
+// Nos interesa saber cosas de un Chef, pero por el momento sólo queremos modelar al chef "Simón Bolitas", el gran cocinero que ha dado origen a todo este movimiento. Cree la función simonBolitas que describe al chef con su repertorio de comidas, que incluyen solamente bolitas de fraile y de queso.
+
+function simonBolitas() {
+    /*
+        PROPÓSITO: 
+            * Describe al chef "Simón Bolitas" con su repertorio de comidas.Éste incluye, solamente bolitas de fraile y de queso.
+        TIPO: ChefGobiano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (
+        ChefGobiano(
+            nombre  <- "Simón Bolitas",
+            recetas <- [bolitasDeFraile(), bolitasDeQueso]
+            )
+    )
+}
+
+
+
+
+
+
 // FUNCIONES AUXILIARES 🔙
 
 function singularSi_VacíaSino(elemento, condición) {

@@ -1,5 +1,32 @@
 // Construir la función aparicionesDelColor_EnElCamino_, que dado un color,
 // colorBuscado, y una lista de Direcciones, direccionesDelCamino, describa la
 // lista con la cantidad de bolitas del color dado en las celdas recorridas, si las mismas se
-// recorren en el orden en que indica el camino dado, incluyendo la celda en que se encuentra el cabezal antes de empezar y al finalizar el recorrido. ¿Cuál es la
-// precondición del procedimiento?
+// recorren en el orden en que indica el camino dado, incluyendo la celda en que se encuentra el cabezal antes de empezar y al finalizar el recorrido. ¿Cuál es la precondición del procedimiento?
+
+function aparicionesDelColor_EnElCamino_(colorBuscado, direccionesDelCamino) {
+    /*
+        PROPÓSITO: 
+            * Describe la lista con la cantidad de bolitas de color **colorBuscado** en las celdas recorridas, si las mismas se recorren en el orden indicado por la lista de direcciones dadas, incluyendo la celda en que se encuentra el cabezal antes de empezar y al finalizar el recorrido.
+        PARÁMETROS:
+            * colorBuscado:Color
+            * direccionesDelCamino: [Dirección]
+        TIPO: [Número]
+        PRECONDICIONES:
+            * ...
+    */
+    
+    direccionesPorRecorrer := direccionesDelCamino
+
+    nroDeBolitasDelColorBuscadoEnCadaCeldaRecorridaHastaAhora := []
+
+    while (not esVacía(direccionesPorRecorrer)) {
+        
+        nroDeBolitasDelColorBuscadoEnCadaCeldaRecorridaHastaAhora := nroDeBolitasDelColorBuscadoEnCadaCeldaRecorridaHastaAhora ++ [nroBolitas(colorBuscado)]
+
+        Mover(primero(direccionesDelCamino))
+
+        direccionesPorRecorrer := resto(direccionesPorRecorrer)
+    }
+
+    return (nroDeBolitasDelColorBuscadoEnCadaCeldaRecorridaHastaAhora)
+}

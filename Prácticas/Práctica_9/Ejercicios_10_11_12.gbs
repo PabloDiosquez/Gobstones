@@ -49,9 +49,39 @@ function es_Capicúa(boleto) {
     */
     
     return ( 
-        primerDígito(númeroDeBoleto(boleto)) == últimoDígito(númeroDeBoleto(boleto)) 
-        && segundoDígito(númeroDeBoleto(boleto)) == anteÚltimoDígito(númeroDeBoleto(boleto))
+        esElPrimerDígitoIgualAlÚltimoDe_(númeroDeBoleto(boleto)) &&
+        esElSegundoDígitoIgualAlAnteúltimoDe_(númeroDeBoleto(boleto))
         )
+}
+
+function esElPrimerDígitoIgualAlÚltimoDe_(número) {
+    /*
+        PROPÓSITO:
+            * Indica si el primer dígito es igual al último dígito del número dado.
+        PARÁMETROS:
+            * número: Número.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * El número dado debe ser >= 0.
+            * El número dado debe tener exactamente 5 dígitos.
+    */
+    
+    return (primerDígito(número) == últimoDígito(número))
+}
+
+function esElSegundoDígitoIgualAlAnteúltimoDe_(número) {
+    /*
+        PROPÓSITO:
+            * Indica si el segundo dígito es igual al anteúltimo dígito del número dado.
+        PARÁMETROS:
+            * número: Número.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * El número dado debe ser >= 0.
+            * El número dado debe tener exactamente 5 dígitos.
+    */
+    
+    return (segundoDígito(número) == anteÚltimoDígito(número))
 }
 
 function primerDígitoDe_(número) {

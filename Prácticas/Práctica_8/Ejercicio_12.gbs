@@ -40,11 +40,11 @@ type Estudiante is record {
 function ingresante_En_Con_(persona, fecha, legajoNuevo) {
     /*
         PROPÓSITO:
-            * Describe un estudiante que ingresó en la fecha dada, con el legajo dado y aún no curso ninguna materia.
+            * Describe un estudiante cuya identidad es la dada, que ingresó en la fecha dada, con el legajo dado y aún no curso ninguna materia.
         PARÁMETROS:
             * persona: Persona.
-            * fecha:   Fecha.
-            * legajo:  Número.
+            * fecha: Fecha.
+            * legajoNuevo: Número.
         TIPO: Estudiante.
         PRECONDICIONES:
             * **legajo** debe ser mayor o igual a cero.
@@ -65,7 +65,7 @@ function ingresante_En_Con_(persona, fecha, legajoNuevo) {
 function materiasDesaprobadasPor_(estudiante) {
     /*
         PROPÓSITO: 
-            * Describe el número de materias desaprobadas por el estudiante dado.
+            * Describe el número total de materias desaprobadas por el estudiante dado.
         PARÁMETROS:
             * estudiante: Estudiante.
         TIPO: Número.
@@ -98,16 +98,16 @@ function estudiante_ConLegajoNuevo_(estudiante, legajoNuevo) {
 function estudiante_ConDomicilioNuevo_(estudiante, nuevoDomicilio) {
     /*
         PROPÓSITO:
-            * Describe al estudiante que resulta de modificar el domicilio del estudiante dado como argumento al domicilio dado.
+            * Describe al estudiante con domicilio actualizado.
         PARÁMETROS:
             * estudiante: Estudiante.
-            * domincilio: String.
+            * nuevoDomicilio: String.
         TIPO: Estudiante.
         PRECONDICIONES:
             * **domicilio** no debe ser vacío.
     */
     
-    return (Estudiante(estudiante | domicilio(identidad) <- nuevoDomicilio))
+    return (persona_ConDomicilioActualizado_(identidad(estudiante), nuevoDomicilio))
 }
 
 // e. 
@@ -124,4 +124,35 @@ function edadDelEstudiante_AlIngresar(estudiante) {
     */
     
     return (edadDe_Al_(estudiante, fechaDeIngreso(estudiante)))
+}
+
+// REGISTROS Y FUNCIONES AUXILIARES 🥨
+
+type Persona is record {
+    /*
+        PROPÓSITO:
+            * Modelar una persona.
+        INV. REP.:
+            * **domicilio** no es vacío.
+    */
+
+    field dni               // String
+    field domicilio         // String
+    field fechaDeNacimiento // Fecha
+    field esDonante         // Booleano
+}
+
+function persona_ConDomicilioActualizado_(persona, domicilioNuevo) {
+    /*
+        PROPÓSITO:
+            * Describe a la persona dada con el domicilio actualizado.
+        PARÁMETROS:
+            * persona: Persona.
+            * domicilio: String.
+        TIPO: Persona.
+        PRECONDICIONES:
+            * **domicilioNuevo** no debe ser vacío.
+    */
+    
+    return (Persona(persona | domicilio <- domicilioNuevo))
 }

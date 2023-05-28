@@ -33,7 +33,7 @@ type Empleado is record {
 function empleado_ConSueldoActualizadoA_(empleado, nuevoSueldo) {
     /*
         PROPÓSITO:
-            * Describe al empleado que resulta de actualizar el sueldo del empleado dado con el nuevo sueldo dado. 
+            * Describe al empleado dado con el sueldo actualizado. 
         PARÁMETROS:
             * empleado:     Empleado.
             * nuevoSueldo:  Número.

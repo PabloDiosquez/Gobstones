@@ -1,0 +1,53 @@
+// Construir la función lista_HomologadaPorDebajoDe_A_, que dada una lista de
+// números, y dos números umbral y default, describa una lista de números que está
+// basada en la lista dada de la siguiente manera: aquellos números de la lista dada que
+// son mayores o iguales al umbral, permanecen igual, pero aquellos que son menores,
+// son reemplazados por el valor default.
+// Por ejemplo, lista_HomologadaPorDebajoDe_A_([3,7,8,5,1,3,2,4], 4, 2)
+// describe [2,7,8,5,2,2,2,4].
+
+function lista_HomologadaPorDebajoDe_A_(listaDeNúmeros, umbral, default) {
+    /*
+        PROPÓSITO: 
+            * Dada una lista de números, y dos números umbral y default, describe una lista de números que está basada en la lista dada de la siguiente manera: aquellos números de la lista dada que son mayores o iguales al umbral, permanecen igual, pero aquellos que son menores, son reemplazados por el valor default.
+        PARÁMETROS:
+            * listaDeNúmeros: [Número]
+            * umbral: Número
+            * default: Número
+        TIPO: [Número]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    númerosVistosAlMomento := listaDeNúmeros
+
+    númerosHomologadosAlMomento := []
+
+    while (not esVacía(númerosVistosAlMomento)) {
+        
+        númerosHomologadosAlMomento := númerosHomologadosAlMomento ++ [si_EsMayorOIgualA_QuedaAsíSinoCambiaA_(primero(númerosVistosAlMomento), umbral, default)]
+                                 
+
+        númerosVistosAlMomento := resto(númerosVistosAlMomento)
+    }
+    
+    return (númerosHomologadosAlMomento)
+}
+
+function si_EsMayorOIgualA_QuedaAsíSinoCambiaA_(número, umbral, default) {
+    /*
+        PROPÓSITO:
+            * Describe **número** si **número** es >= a **umbral**; en caso contrario, describe **default**.
+        PARÁMETROS:
+            * número: Número
+            * umbral: Número
+            * default: Número
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose número when (número >= umbral)
+                   default otherwise 
+        )
+}

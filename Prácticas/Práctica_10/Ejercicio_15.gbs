@@ -1,0 +1,88 @@
+// Construir la función sinDuplicados_, que dada una lista, describa una lista que tenga
+// todos los elementos de la lista dada, pero donde no aparecen elementos repetidos,
+// pues las repeticiones que aparecen luego de la primera fueron eliminadas.
+// Por ejemplo, sinDuplicados_([1,3,4,2,4,3,5]) describe a la lista
+// [1,3,4,2,5]. Observar que no es lo mismo describir a la lista [1,2,4,3,5], que
+// podría ser un resultado válido, pero no es el solicitado (porque no se conservó el
+// primero de cada uno).
+
+function sinDuplicados_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe una lista que tiene todos los elementos de la lista dada, pero sin repetidos.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    elementosPorMirar := lista
+
+    sinRepetidos := []
+
+    while (not esVacía(elementosPorMirar)) {
+        
+        sinRepetidos := sinRepetidos ++ singular_SiNoPerteneceA_(primero(elementosPorMirar), sinRepetidos)
+
+        elementosPorMirar := resto(elementosPorMirar)
+    }
+
+    return (sinRepetidos)
+}
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+function singular_SiNoPerteneceA_(elemento, lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista formada únicamente por **elemento** si éste no pertenece a la lista dada; en caso contrario, describe la lista vacía.
+        PARÁMETROS:
+            * elemento: Elemento
+            * lista: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * El elemento dado debe tener el mismo tipo que los elementos de la lista dada.
+    */
+    
+    return (singular_Si_VacíoSino(elemento, not pertenece_A_(elemento, lista)))
+}
+
+function singular_Si_VacíoSino(elemento, condición) {
+    /*
+        PROPÓSITO:
+            * Describe la lista formada únicamente por **elemento** si la condición dada es verdadera; caso contrario, describe la lista vacía.
+        PARÁMETROS:
+            * elemento: Elemento
+            * condición: Booleano
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose [elemento] when (condición)
+                   []         otherwise
+    )
+}
+
+function pertenece_A_(elemento, lista) {
+    /*
+        PROPÓSITO:
+            * Indica si el elemento dado pertenece a la lista dada.
+        PARÁMETROS:
+            * elemento: Elemento
+            * lista: [Elemento]
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * El elemento dado debe tener el mismo tipo que los elementos de la lista dada.
+    */
+    
+    elementosPorMirar := lista
+
+
+    while (not esVacía(elementosPorMirar) && primero(elementosPorMirar) /= elemento) {
+        elementosPorMirar := resto(elementosPorMirar)
+    }
+
+    return (not esVacía(elementosPorMirar))
+}

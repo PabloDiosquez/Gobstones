@@ -49,7 +49,13 @@ function uniónDe_Con_(lista1, lista2) {
             * Las listas dadas no contienen elementos repetidos.
     */
     
-    return ()
+    uniónAlMomento := lista1
+
+    foreach elemento in lista2 {
+        uniónAlMomento := uniónAlMomento ++ singular_Si_VacíoSino(elemento, not pertenece_A_(elemento, uniónAlMomento))
+    }
+    
+    return (uniónAlMomento)
 }
 
 // FUNCIONES AUXILIARES 🐱‍🏍

@@ -4,21 +4,21 @@
 // hacia el Este dos veces, luego hacia el Norte 1 vez y por último se mueve hacia el Este.
 // ¿Cuál es la precondición de este procedimiento?
 
-procedure RecorrerCamino_(listaDeDirecciones) {
+procedure RecorrerCamino_(direcciones) {
     /*
         PROPÓSITO:
             * Mueve el cabezal en la dirección indicada por cada elemento en la lista de direcciones, en orden.
         PARÁMETROS:
-            * listaDeDirecciones: [Dirección].
+            * direcciones: [Dirección].
         PRECONDICIONES:
             * ....
     */
     
-    lasDireccionesPorMirar := listaDeDirecciones
+    direccionesPorMirar := direcciones
 
-    while (not esVacía(lasDireccionesPorMirar)) {
-        Mover(primero(lasDireccionesPorMirar))
+    while (not esVacía(direccionesPorMirar)) {
+        Mover(primero(direccionesPorMirar))
 
-        lasDireccionesPorMirar := resto(lasDireccionesPorMirar)
+        direccionesPorMirar := resto(direccionesPorMirar)
     }
 }

@@ -6,28 +6,27 @@
 function aparicionesDeColor_(colorBuscado) {
     /*
         PROPÓSITO:
-            * Describe una lista de números que indican para cada una de las celdas del tablero recorridas en dirección principal Norte y dirección secundaria Oeste, la cantidad de bolitas del color buscado en ese celda del tablero.
+            * Describe una lista de números que indican, para cada una de las celdas del tablero, la cantidad de bolitas del color buscado que cada una tiene.
         PARÁMETROS:
-            * colorBuscado: Color.
-        TIPO: [Número].
+            * colorBuscado: Color
+        TIPO: [Número]
         PRECONDICIONES:
             * No tiene (es una función total).
         OBSERVACIONES:
             * Recorrido de ...
     */
 
-    listaDeCantidadesDelColorBuscado := []
-
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
 
-    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)) {
-        listaDeCantidadesDelColorBuscado := listaDeCantidadesDelColorBuscado ++ [nroBolitas(colorBuscado)]
+    bolitasDelColorBuscadoAlMomento := [nroBolitas(colorBuscado)]
 
-        IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
-        
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)    
+
+        bolitasDelColorBuscadoAlMomento := bolitasDelColorBuscadoAlMomento ++ [nroBolitas(colorBuscado)]
     }
 
-    return (listaDeCantidadesDelColorBuscado ++ [nroBolitas(colorBuscado)])
+    return (bolitasDelColorBuscadoAlMomento)
 }
 
 // FUNCIONES AUXILARES 👽

@@ -12,7 +12,7 @@ function aparicionesDelColor_EnElCamino_(colorBuscado, direccionesDelCamino) {
             * direccionesDelCamino: [Dirección]
         TIPO: [Número]
         PRECONDICIONES:
-            * ...
+            * Debe existir un camino válido para recorrer en el tablero en función de las direcciones de la lista dada.
     */
     
     direccionesPorRecorrer := direccionesDelCamino

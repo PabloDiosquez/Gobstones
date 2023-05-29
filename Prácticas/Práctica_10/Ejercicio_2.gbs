@@ -11,7 +11,7 @@ procedure RecorrerCamino_(direcciones) {
         PARÁMETROS:
             * direcciones: [Dirección].
         PRECONDICIONES:
-            * ....
+            * Debe existir un camino válido para recorrer en el tablero en función de las direcciones de la lista dada.
     */
     
     direccionesPorMirar := direcciones

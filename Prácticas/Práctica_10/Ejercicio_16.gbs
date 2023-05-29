@@ -1,0 +1,90 @@
+// Construir las funciones:
+// a. intersecciónDe_Con_, que dadas dos listas que no contienen elementos
+// repetidos, describe la lista de todos los elementos que aparecen en ambas.
+// Por ejemplo: intersecciónDe_Con_([1,3,4], [2,4,3,5]) describe
+// [3,4].
+// b. uniónDe_Con_, que dadas dos listas que no contienen elementos repetidos,
+// describe una lista sin repetidos que contenga todos los elementos que aparecen
+// en alguna de las 2 listas.
+// Por ejemplo, uniónDe_Con_([1,3,4],[2,4,3,5]) describe [1,3,4,2,5].
+// ¿De qué tipo es la primera lista? ¿Y la segunda? ¿Pueden ser de tipos
+// diferentes?
+
+// a.
+function intersecciónDe_Con_(lista1, lista2) {
+    /*
+        PROPÓSITO: 
+            * Describe la lista de todos los elementos que aparecen en las dos listas dadas.
+        PARÁMETROS:
+            * lista1: [Elemento]
+            * lista2: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * Los elementos de la lista dada deben ser del mismo tipo.
+            * Las listas dadas no contienen elementos repetidos.
+    */
+
+    intersecciónAlMomento := []
+
+    foreach elemento in lista1 {
+        intersecciónAlMomento := intersecciónAlMomento ++
+                 singular_Si_VacíoSino(elemento, pertenece_A_(elemento, lista2))
+    }
+    
+    return (intersecciónAlMomento)
+}
+
+// b.
+
+function uniónDe_Con_(lista1, lista2) {
+    /*
+        PROPÓSITO: 
+            * Describe una lista sin repetidos que contiene a todos los elementos que aparecen en alguna de las 2 listas dadas.
+        PARÁMETROS:
+            * lista1: [Elemento]
+            * lista2: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * Los elementos de la lista dada deben ser del mismo tipo.
+            * Las listas dadas no contienen elementos repetidos.
+    */
+    
+    return ()
+}
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+function singular_Si_VacíoSino(elemento, condición) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (choose [elemento] when(condición)
+                   []         otherwise
+    )
+}
+
+function pertenece_A_(elemento, lista) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    elementosPorMirar := lista 
+
+    while (not esVacía(elementosPorMirar) && elemento /= primero(elementosPorMirar)) {
+        elementosPorMirar := resto(elementosPorMirar)
+    }
+
+    return (not esVacía(elementosPorMirar))
+}

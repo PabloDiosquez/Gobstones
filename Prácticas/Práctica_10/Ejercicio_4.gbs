@@ -5,40 +5,34 @@
 // celdas restantes no se pondrán bolitas, y si hubiera más números que celdas, se
 // ignoran los números sobrantes.
 
-
-procedure Poner_Bolitas_EnElTablero(listaDeNúmeros, color) {
+procedure Poner_Bolitas_EnElTablero(números, color) {
     /*
         PROPÓSITO:  
             * Pone en cada celda del tablero la cantidad de bolitas del color dado, según el elemento en la posición correspondiente. Si hubiera menos números que celdas, en las celdas restantes no se pondrán bolitas y si hubiera más números que celdas, se ignoran los números sobrantes.
         PARÁMETROS:
-            * listaDeNúmeros: [Número]
-            * color:          Color
+            * números: [Número]
+            * color:    Color
         PRECONDICIONES:
             * Los números de la lista de números dada deben ser >= 0.
         OBSERVACIONES:
-            * Recorrido de procesamiento sobre las celdas del tablero.
+            * Recorrido de procesamiento sobre la lista dada.
     */
 
-        losNúmerosPorMirar := listaDeNúmeros
+        númerosPorMirar := números
 
         IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
 
-        while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste) && not esVacía(losNúmerosPorMirar)) {
+        while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste) && not esVacía(númerosPorMirar)) {
             
-            Poner_DeColor_(primero(losNúmerosPorMirar), color)
+            Poner_DeColor_(primero(númerosPorMirar), color)
 
-            losNúmerosPorMirar := resto(losNúmerosPorMirar)
+            númerosPorMirar := resto(númerosPorMirar)
 
             IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
         }
 
-        // Caso borde 
-
-        if (not esVacía(losNúmerosPorMirar)){
-            Poner_DeColor_(primero(losNúmerosPorMirar), color)
-        }
+        Poner_BolitasDeColor_Si_(primero(númerosPorMirar), color, not esVacía(númerosPorMirar)) // Caso borde 🙊
 }  
-
 
 // FUNCIONES AUXILARES 🐱‍🏍
 
@@ -55,6 +49,24 @@ procedure Poner_DeColor_(cantidad, color) {
     repeat (cantidad) {
         Poner(color)
     }
+}
+
+procedure Poner_BolitasDeColor_Si_(cantidad, color, condición) {
+    /*
+        PROPÓSITO:
+            * Pone **cantidad** de bolitas de color **color** si se cumple la condición dada.
+        PARÁMETROS:
+            * cantidad: Número
+            * color: Color
+            * condición: Booleano
+        PRECONDICIONES:
+            * **cantidad** debe ser >= 0.
+    */
+
+    if (condición) {
+        Poner_DeColor_(cantidad, color)
+    }
+    
 }
 
 procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {

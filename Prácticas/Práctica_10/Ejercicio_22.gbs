@@ -1,0 +1,57 @@
+// 22. Construir las siguientes funciones:
+// a. mínimoElementoDe_, que dada una lista de Números, describe el elemento
+// más chico que se encuentra en la lista. ¿Cuál es la precondición de la función?
+// Por ejemplo, mínimoElementoDe_([13,21,3,9,45,3,7]) describe 3.
+// b. sinElMínimoElemento_, que dada una lista de Números, describe la lista que
+// se obtiene de eliminar una única vez el elemento más chico. ¿Cuál es la
+// precondición de la función?
+// Por ejemplo, sinElMínimoElemento_([13,21,3,9,45,3,7]) describe
+// [13,21,9,45,3,7].
+// c. lista_ordenada, que dada una lista de Números, describe la lista con los
+// mismos elementos que la dada, pero ordenada de menor a mayor. ¿Se puede elaborar una estrategia combinando los ejercicios anteriores?
+// Por ejemplo, lista_ordenada([13,21,3,9,45,17,8,3,7]) describe
+// [3,3,7,8,9,13,17,21,45].
+
+// a.
+
+function mínimoElementoDe_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe el elemento más chico de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Elemento
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+    */
+    
+    mínimoAlMomento := primero(elementosPorRecorrer)
+
+    foreach elemento in lista {
+        mínimoAlMomento := mínimoEntre_Y_(mínimoAlMomento, elemento)
+    }
+
+    return (mínimoAlMomento)
+}
+
+
+
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+function mínimoEntre_Y_(elemento1, elemento2) {
+    /*
+        PROPÓSITO:
+            * Describe el elemento más chico entre los dos elementos dados.
+        PARÁMETROS:
+            * elemento1: Elemento
+            * elemento2: Elemento
+        TIPO: Elemento
+        PRECONDICIONES:
+            * Los elementos dados deben ser del mismo tipo.
+    */
+    
+    return (choose elemento1 when (elemento1 <= elemento2)
+                   elemento2 otherwise 
+    )
+}

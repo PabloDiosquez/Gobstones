@@ -1,0 +1,21 @@
+// Construir la función sinLaPrimeraApariciónDe_en_ que dado un elemento y una
+// lista, describe la lista que se obtiene de eliminar una única vez el elemento, si es que
+// este aparece en la lista.
+// Por ejemplo, sinLaPrimeraApariciónDe_en_(8,[4,8,42,15,8,42]) describe
+// [4,42,15,8,42] y sinLaPrimerApariciónDe_en_(42,[4,8,42,15,8,42])
+// describe [4,8,15,8,42].
+
+function sinLaPrimeraApariciónDe_en_(elemento, lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que se obtiene de eliminar una única vez el elemento dado de la lista dada, si es que éste aparece en la misma.
+        PARÁMETROS:
+            * elemento: Elemento
+            * lista: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * ...
+    */
+    
+    // 😤
+}

@@ -5,7 +5,7 @@
 // [4,42,15,8,42] y sinLaPrimerApariciónDe_en_(42,[4,8,42,15,8,42])
 // describe [4,8,15,8,42].
 
-function sinLaPrimeraApariciónDe_en_(elemento, lista) {
+function sinLaPrimeraApariciónDe_en_(elementoBuscado, lista) {
     /*
         PROPÓSITO:
             * Describe la lista que se obtiene de eliminar una única vez el elemento dado de la lista dada, si es que éste aparece en la misma.
@@ -14,8 +14,21 @@ function sinLaPrimeraApariciónDe_en_(elemento, lista) {
             * lista: [Elemento]
         TIPO: [Elemento]
         PRECONDICIONES:
-            * El elemento dado debe aparecer al menos una vez en la lista dada.
+            * No tiene (es una función total).
     */
     
-    
+    apareció = False 
+
+    listaAux := []
+
+    foreach elemento in lista {
+        if (elemento /= elementoBuscado || apareció){
+            listaAux := listaAux ++ [elemento]
+        }
+        else{
+            apareció := True
+        }
+    }
+
+    return(listaAux)
 }

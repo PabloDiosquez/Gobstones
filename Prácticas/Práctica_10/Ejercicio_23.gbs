@@ -1,0 +1,65 @@
+// Construir las siguientes funciones. ¿Cuáles son las precondiciones de estas funciones?
+// a. máximoElementoDe_, que dada una lista de Números, describe el elemento
+// más grande que se encuentra en la lista.
+// Por ejemplo, máximoElementoDe_([13,21,3,9,45,3,7]) describe 45.
+// b. sinElMáximoElemento_, que dada una lista de Números, describe la lista que
+// se obtiene de eliminar una única vez el elemento más grande.
+// Por ejemplo, sinElMáximoElemento_([13,21,3,9,45,3,7]) describe
+// [13,21,3,9,3,7].
+
+// a.
+
+function máximoElementoDe_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe el elemento más grande que se encuentra en la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Elemento
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+    */
+
+    máximoAlMomento := primero(lista)
+
+    foreach elemento in lista {
+        máximoAlMomento := máximoEntre_Y_(máximoAlMomento, elemento)
+    }
+    
+    return (máximoAlMomento)
+}
+
+// b.
+
+function sinElMáximoElemento_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que se obtiene de eliminar una única vez el elemento más grande.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+    */
+    
+    return (sinLaPrimeraApariciónDe_en_(máximoElementoDe_(lista), lista))
+}
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+function máximoEntre_Y_(elemento1, elemento2) {
+    /*
+        PROPÓSITO:
+            * Describe el elemento más grande entre los dos elementos dados.
+        PARÁMETROS:
+            * elemento1: Elemento
+            * elemento2: Elemento
+        TIPO: Elemento
+        PRECONDICIONES:
+            * Los elementos dados deben ser del mismo tipo.
+    */
+    
+    return (choose elemento1 when (elemento1 >= elemento2)
+                   elemento2 otherwise
+    )
+}

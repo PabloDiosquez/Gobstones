@@ -67,8 +67,9 @@ function mínimoEntre_Y_(elemento1, elemento2) {
 }
 
 // VERSIÓN ALTERNATIVA 🎉
-// ¿La solución propuesta requirió el uso de variables que recuerdan valores booleanos?
-// Si fue así, considerar ofrecer una solución que NO utilice variables booleanas.
+// ¿La solución propuesta requirió el uso de variables que recuerdan valores diferentes a
+// la lista que todavía falta recorrer? Si fue así, considerar ofrecer una solución que NO
+// utilice variables además de la que se utiliza para recordar la lista a recorrer.
 
 function estáOrdenada_(lista) {
     /*

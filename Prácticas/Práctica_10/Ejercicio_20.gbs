@@ -1,0 +1,38 @@
+// Construir la función posiciónDe_enLaQueAparece_ que dada una lista y un
+// elemento, describe la posición de la lista en la que aparece ese elemento por primera
+// vez. Se define la posición de un elemento como un número que representa la cantidad
+// de veces que debe usarse la función sinElPrimero para acceder a ese elemento.
+// ¿Cuál es la precondición de la función? ¿Por qué no tendría sentido que esta función
+// sea total? 👉🏼 No tiene sentido buscar un elemento en una lista vacía.
+// Por ejemplo, posiciónDe_enLaQueAparece_([4,8,15,16,42],8) describe al
+// número 1, porque solo se usa una vez sinElPrimero (para quitar el 4),
+// posiciónDe_enLaQueAparece_([4,8,15,16,42],16) describe 3, porque se
+// deben usar 3 veces la función (para quitar el 4, el 8 y el 15), y
+// posiciónDe_enLaQueAparece_([4,8,15,16,23,42],4) describe 0, porque no
+// hace falta usar sinElPrimero.
+
+function posiciónDe_enLaQueAparece_(lista, elemento) {
+    /*
+        PROPÓSITO:
+            * Describe la posición en la que aparece por primera vez, el elemento dado en la lista dada. 
+        PARÁMETROS:
+            * elemento: Elemento
+            * lista: [Elemento]
+        TIPO: Número
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+            * El elemento dado debe aparecer al menos una vez en la lista.
+    */
+
+    elementosPorRecorrer := lista
+
+    posiciónAlMomento := 0
+    
+    while (not esVacía(elementosPorRecorrer) && primero(elementosPorRecorrer) /= elemento) {
+        posiciónAlMomento := posiciónAlMomento + 1
+
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+    }
+
+    return (posiciónAlMomento)
+}

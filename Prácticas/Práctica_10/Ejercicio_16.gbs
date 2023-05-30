@@ -28,14 +28,13 @@ function intersecciónDe_Con_(lista1, lista2) {
 
     foreach elemento in lista1 {
         intersecciónAlMomento := intersecciónAlMomento ++
-                 singular_Si_VacíoSino(elemento, pertenece_A_(elemento, lista2))
+                 singular_Si_(elemento, pertenece_A_(elemento, lista2))
     }
     
     return (intersecciónAlMomento)
 }
 
 // b.
-
 function uniónDe_Con_(lista1, lista2) {
     /*
         PROPÓSITO: 
@@ -52,7 +51,7 @@ function uniónDe_Con_(lista1, lista2) {
     uniónAlMomento := lista1
 
     foreach elemento in lista2 {
-        uniónAlMomento := uniónAlMomento ++ singular_Si_VacíoSino(elemento, not pertenece_A_(elemento, uniónAlMomento))
+        uniónAlMomento := uniónAlMomento ++ singular_Si_(elemento, not pertenece_A_(elemento, uniónAlMomento))
     }
     
     return (uniónAlMomento)
@@ -60,15 +59,16 @@ function uniónDe_Con_(lista1, lista2) {
 
 // FUNCIONES AUXILIARES 🐱‍🏍
 
-function singular_Si_VacíoSino(elemento, condición) {
+function singular_Si_(elemento, condición) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Describe una lista formada únicamente por el elemento dado si la condición dada es verdadera; caso contrario, describe la lista vacía.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * elemento: Elemento
+            * condición: Booleano
+        TIPO: [Elemento]
         PRECONDICIONES:
-            * ....
+            * No tiene (es una función total).
     */
     
     return (choose [elemento] when(condición)
@@ -78,13 +78,14 @@ function singular_Si_VacíoSino(elemento, condición) {
 
 function pertenece_A_(elemento, lista) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Indica si **elemento** pertenece a la lista dada.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * elemento: Elemento
+            * lista: [Elemento]
+        TIPO: Booleano
         PRECONDICIONES:
-            * ....
+            * El elemento dado debe ser del mismo tipo que los elementos de la lista dada.
     */
     elementosPorMirar := lista 
 

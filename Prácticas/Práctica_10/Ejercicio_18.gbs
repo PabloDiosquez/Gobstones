@@ -1,0 +1,54 @@
+// Construir la función lista_estáIncluidaEn_ que dadas 2 listas que no contienen
+// elementos repetidos, describe si la primer lista se encuentra contenida en la segunda
+// lista (o sea, todos los elementos de la primera aparecen en la segunda).
+// Por ejemplo, las expresiones lista_estáIncluidaEn_([4,5],[5,3,4,6]) y
+// lista_estáIncluidaEn_([4,5],[2,3,4,6,5]) indican que es verdadero que
+// está incluida, mientras que lista_estáIncluidaEn_([4,5,8],[4,3,5,6]) indica
+// que es falso que esté incluida.
+
+function lista_estáIncluidaEn_(primerLista, segundaLista) {
+    /*
+        PROPÓSITO:
+            * Indica si la primer lista se encuetra contenida en la segunda lista (o sea, todos los elementos de la primera aparecen en la segunda).
+        PARÁMETROS:
+            * primerLista: [Elemento]
+            * segundaLista: [Elemento]
+        TIPO: Booleano
+        PRECONDICIONES:
+            * Los elementos de las listas dadas deben ser del mismo tipo.
+            * Las listas dadas no contienen elementos repetidos.
+        OBSERVACIONES:
+            * Recorrido de búsqueda de los elementos de la primer lista sobre la segunda lista.
+    */
+    
+    elementosPorRecorrer := primerLista
+
+    while (not esVacía(elementosPorRecorrer) && pertenece_A_(primero(elementosPorRecorrer)), segundaLista) {
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+    }
+
+    return (esVacía(elementosPorRecorrer))
+}
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+function pertenece_A_(elemento, lista) {
+    /*
+        PROPÓSITO:
+            * Indica si **elemento** pertenece a la lista dada.
+        PARÁMETROS:
+            * elemento: Elemento
+            * lista: [Elemento]
+        TIPO: Booleano
+        PRECONDICIONES:
+            * El elemento dado debe ser del mismo tipo que los elementos de la lista dada.
+    */
+    
+    elementosPorRecorrer := lista
+
+    while (not esVacía(elementosPorRecorrer) && primero(elementosPorRecorrer) /= elemento) {
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+    }
+
+    return (not esVacía(elementosPorRecorrer))
+}

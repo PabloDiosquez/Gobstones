@@ -1,0 +1,68 @@
+// Construir la función estáOrdenada_ que, dada una lista de números indica si está
+// ordenada de menor a mayor. Para que una lista esté ordenada, cada elemento debe ser
+// menor o igual al que le sigue.
+// Por ejemplo, la expresión estáOrdenada_([2,7,9,15]) indica verdadero, mientras
+// que la expresión estáOrdenada_([2,15,9,7]) indica falso.
+
+function estáOrdenada_(lista) {
+    /*
+        PROPÓSITO: 
+            * Indica si la lista dada está ordenada de menor a mayor.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIÓN:
+            * Como ejemplo ➡ la expresión estáOrdenada_([2,7,9,15]) indica verdadero, mientras que la expresión estáOrdenada_([2,15,9,7]) indica falso.
+            * La lista vacía está ordenada.
+    */
+
+    elementosPorRecorrer := lista 
+
+    while (not esVacía(elementosPorRecorrer) && mínimoDe_(elementosPorRecorrer) == primero(elementosPorRecorrer)) {
+        
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+    }
+    
+    return (esVacía(elementosPorRecorrer))
+}
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+function mínimoDe_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe el mínimo elemento de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Elemento
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+    */
+    
+    mínimoHastaAhora := primero(lista)
+
+    foreach elemento in lista {
+        mínimoHastaAhora := mínimoEntre_Y_(mínimoHastaAhora, elemento)
+    }
+
+    return (mínimoHastaAhora)
+}
+
+function mínimoEntre_Y_(elemento1, elemento2) {
+    /*
+        PROPÓSITO: 
+            * Describe el mínimo entre los elementos dados.
+        PARÁMETROS:
+            * elemento1: Elemento
+            * elemento2: Elemento
+        TIPO: Elemento
+        PRECONDICIONES:
+            * Los elementos dados deben ser del mismo tipo.
+    */
+    
+    return (choose elemento1 when (elemento1 < elemento2)
+                   elemento2 otherwise 
+        )
+}

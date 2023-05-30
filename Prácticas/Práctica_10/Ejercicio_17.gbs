@@ -1,0 +1,8 @@
+// Construir la función algunoDe_Entre_Y_, que, dada una lista de Números y dos
+// números desde y hasta, indica si la lista contiene algún elemento que se encuentre
+// entre los números desde y hasta, sin incluirlos. Es decir, si algún elemento k de la lista,
+// cumple desde < k < hasta.
+// Por ejemplo, algunoDe_Entre_Y_([7,3,1,25,16], 13, 18) indica que es
+// verdadero que hay un elemento entre 13 y 18 (el 16), mientras que
+// algunoDe_Entre_Y_([7,3,1,25,16], 13, 16) indica que es falso que haya
+// algún elemento entre 13 y 16 (el 16 no es menor que 16).

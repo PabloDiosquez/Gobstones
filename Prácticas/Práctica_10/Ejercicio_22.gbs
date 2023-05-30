@@ -34,8 +34,49 @@ function mínimoElementoDe_(lista) {
     return (mínimoAlMomento)
 }
 
+// b.
 
+function sinElMínimoElemento_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que resulta de eliminar una única vez el elemento más chico de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+    */
+    
+    return (sinLaPrimeraApariciónDe_en_(mínimoElementoDe_(lista), lista))
+}
 
+// c.
+
+function lista_ordenada(lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista con los mismos elementos que la dada, pero ordenada de menor a mayor.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una fucnión total).
+        OBSERVACIONES:
+            * La lista vacía está ordenada.
+    */
+    
+    elementosPorRecorrer := lista
+
+    elementosOrdenadosAlMomento := []
+
+    while (not esVacía(elementosPorRecorrer)) {
+        elementosOrdenadosAlMomento := elementosOrdenadosAlMomento ++ [mínimoElementoDe_(elementosPorRecorrer)]
+
+        elementosPorRecorrer := sinElMínimoElemento_(elementosPorRecorrer)
+    }
+
+    return (elementosOrdenadosAlMomento)
+}
 
 // FUNCIONES AUXILIARES 🐱‍🏍
 

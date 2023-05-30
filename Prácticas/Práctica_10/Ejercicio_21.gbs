@@ -14,8 +14,8 @@ function sinLaPrimeraApariciónDe_en_(elemento, lista) {
             * lista: [Elemento]
         TIPO: [Elemento]
         PRECONDICIONES:
-            * ...
+            * El elemento dado debe aparecer al menos una vez en la lista dada.
     */
     
-    // 😤
+    
 }

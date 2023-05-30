@@ -14,8 +14,7 @@ function estáOrdenada_(lista) {
         PRECONDICIONES:
             * No tiene (es una función total).
         OBSERVACIÓN:
-            * Como ejemplo ➡ la expresión estáOrdenada_([2,7,9,15]) indica verdadero, mientras que la expresión estáOrdenada_([2,15,9,7]) indica falso.
-            * La lista vacía está ordenada.
+            * La lista vacía está ordenada. 🐸
     */
 
     elementosPorRecorrer := lista 
@@ -62,7 +61,59 @@ function mínimoEntre_Y_(elemento1, elemento2) {
             * Los elementos dados deben ser del mismo tipo.
     */
     
-    return (choose elemento1 when (elemento1 < elemento2)
+    return (choose elemento1 when (elemento1 <= elemento2)
                    elemento2 otherwise 
         )
+}
+
+// VERSIÓN ALTERNATIVA 🎉
+// ¿La solución propuesta requirió el uso de variables que recuerdan valores booleanos?
+// Si fue así, considerar ofrecer una solución que NO utilice variables booleanas.
+
+function estáOrdenada_(lista) {
+    /*
+        PROPÓSITO: 
+            * Indica si la lista dada está ordenada de menor a mayor.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Booleano
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+    */
+    
+    elementosPorRecorrer := lista
+
+    while (not esSingular_(elementosPorRecorrer) && primero(elementosPorRecorrer) <= segundo(elementosPorRecorrer)) {
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+    }
+
+    return (esSingular_(elementosPorRecorrer))
+}
+
+function esSingular_(lista) {
+    /*
+        PROPÓSITO:
+            * Indica si la lista dada está formada por un único elemento.
+        PARÁMETROS:
+            *lista: [Elemento]
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (not esVacía(lista) && esVacía(resto(lista)))
+}
+
+function segundo(lista) {
+    /*
+        PROPÓSITO:
+            * Describe el segundo elemento de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Elemento
+        PRECONDICIONES:
+            * La lista dada debe tener al menos dos elementos.
+    */
+    
+    return (primero(resto(lista)))
 }

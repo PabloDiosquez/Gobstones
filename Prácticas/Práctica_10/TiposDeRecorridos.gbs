@@ -1,0 +1,96 @@
+// Recorrido de busqueda sobre la lista para ver si hay Alguno que cumple
+// [A] -> Booleano
+
+elementosQueQuedanPorVer := listaSobreLaCualBuscar
+while (not esVacía(elementosQueQuedanPorVer) && not encontreLoQueBusco(primero(elementosQueQuedanPorVer))) {
+    elementosQueQuedanPorVer := resto(elementosQueQuedanPorVer)
+}
+return (not esVacía(elementosQueQuedanPorVer))
+
+
+// Recorrido de busqueda sobre la lista para ver si hay Todos que cumple
+// [A] -> Booleano
+elementosQueQuedanPorVer := listaSobreLaCualBuscar
+while (not esVacía(elementosQueQuedanPorVer) && cumpleLoPedido(primero(elementosQueQuedanPorVer))) {
+    elementosQueQuedanPorVer := resto(elementosQueQuedanPorVer)
+}
+return (esVacía(elementosQueQuedanPorVer))
+
+// Recorrido de transformación sobre los elementos de una lista
+// [A] -> [B]   y longitudDe_([A]) == longitudDe_([B])
+listaTransformadaHastaAhora := []
+foreach elemento in listaATransformar {
+    listaTransformadaHastaAhora := listaTransformadaHastaAhora ++ [elemento_transformado(elemento)]
+}
+return (listaTransformadaHastaAhora)
+
+// Recorrido de filtro sobre los elementos de una lista
+// [A] -> [A]   y longitudDe_([A]) >= longitudDe_([A])
+listaFiltradaHastaAhora := []
+foreach elemento in listaAFiltrar {
+    listaFiltradaHastaAhora := listaFiltradaHastaAhora ++ singular_Si_(elemento, cumple_CondicionDeFiltro(elemento))
+}
+return (listaFiltradaHastaAhora)
+
+
+//SINGULAR_SI_ (ELEMENTO, CONDICION(BOOLEANA))
+
+function singular_Si_(elemento, condición){
+    /*
+        PROPOSITO: describe el elemento singular si la condicion es verdadera,
+            sino describe una lista vacía.
+        PRECONDICONES: Ninguna
+        PARAMETROS:
+            - elemento: Elemento
+            - condición: Booleano
+        TIPO: [Elemento]
+    
+    */
+    return(
+        choose  [elemento] when( condición )
+                []  otherwise
+        )
+}
+
+
+// Recorrido de transformación y filtro sobre los elementos de una lista
+// [A] -> [B]   y longitudDe_([A]) >= longitudDe_([B])
+listaFiltradaHastaAhora := []
+foreach elemento in listaATransformarYFiltrar {
+    listaFiltradaHastaAhora := listaFiltradaHastaAhora ++ singular_Si_(elemento_transformado(elemento), cumple_CondicionDeFiltro(elemento))
+}
+return (listaFiltradaHastaAhora)
+
+//PARA QUE QUEDE ORDENADO --> USAR EL SNOC O EL CONS
+    listaConDuplicados := []
+    foreach pókemon in listaPókemon {
+        listaConDuplicados := snoc(listaConDuplicados, pókemon) ++ singular_Si_(pókemon, tipo(pókemon) == tipoPókemon)
+    } 
+    return (listaConDuplicados)
+}
+
+
+// Recorrido de acumulacion/totalizacion sobre los elementos de una lista
+// [A] -> Numero 
+contadoHastaAhora := 0
+foreach elemento in listaAAcumular {
+    contadoHastaAhora := contadoHastaAhora + valorNumericoPara_(elemento)
+}
+return (contadoHastaAhora)
+
+// Recorrido de maximo/minimo
+// [A] -> A  pred: [A] no es vacia
+maximoHastaahora := primero(listaDondeBuscar)
+foreach elemento in resto(listaDondeBuscar) {
+    maximoHastaahora := elMaximoEntre_Y_(maximoHastaahora, elemento)
+}
+return (maximoHastaahora)
+
+// si tengo una lista no vacía poner primero y dps resto.
+
+function elMaximoEntre_Y_(a, b) {
+    return (choose
+        a when (valorPara_(a) >= valorPara_(b))
+        b otherwise
+    )
+}

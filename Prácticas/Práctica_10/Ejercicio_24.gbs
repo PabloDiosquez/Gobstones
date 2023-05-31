@@ -1,0 +1,40 @@
+// Construir la función segmentoInicialDeLargo_de_ que, dado un número que
+// representa a una cantidad y una lista de cualquier tipo, describe la lista que se obtiene
+// de quedarse únicamente con esa cantidad de elementos de la lista comenzando por el
+// primero (sus primeros elementos), o todos, si no hay suficientes. ¿Cuál es la
+// precondición de esta función? ¿Qué nombre te parece adecuado en este caso para el
+// parámetro de tipo número? ¿Para qué tipos de lista funciona tu solución?
+// Por ejemplo, segmentoInicialDeLargo_de_(4,[4,8,15,16,99,42]) describe
+// [4,8,15,16], mientras que segmentoInicialDeLargo_de_(2,[4,8,15,42])
+// describe [4,8] y segmentoInicialDeLargo_de_(7,[4,8,15,42]) describe
+// [4,8,15,42].
+
+function segmentoInicialDeLargo_de_(cantidad, lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista formada únicamente con la cantidad dada de elementos de la lista dada comenzado por el primero.
+        PARÁMETROS:
+            * cantidad: Número
+            * lista: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * La lista dada debe ser no vacía.
+            * **cantidad** debe ser >= 0.
+    */
+
+    elementosPorRecorrer := lista
+
+    cantidadAlMomento := 0
+
+    elementosAlMomento := []
+
+    while (not esVacía(elementosPorRecorrer) && cantidadAlMomento <= cantidad) {
+        elementosAlMomento := elementosAlMomento ++ [primero(elementosPorRecorrer)]
+        
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+        
+        cantidadAlMomento := cantidadAlMomento + 1
+    }
+    
+    return (elementosAlMomento)
+}

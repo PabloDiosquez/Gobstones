@@ -1,0 +1,25 @@
+// Construir la función lista_Desagrupada, que dada una lista de listas, describe una
+// lista que contiene cada uno de los elementos de las listas internas de la lista dada.
+// Por ejemplo, lista_Desagrupada([[1,2,3],[4,5,6],[7,8,9]]) describe la
+// lista [1,2,3,4,5,6,7,8,9]. Observar que la lista argumento tiene 3 elementos,
+// mientras que la lista resultado tiene 9.
+
+function lista_Desagrupada(listaDeListas) {
+    /*
+        PROPÓSITO:
+            * Describe una lista formada por todos los elementos de las listas internas de la lista de listas dada.
+        PARÁMETROS:
+            * listaDeListas: [[Elemento]]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    listaAgrupadaAlMomento := []
+
+    foreach lista in listaDeListas {
+        listaAgrupadaAlMomento := listaAgrupadaAlMomento ++ lista
+    }
+    
+    return (listaAgrupadaAlMomento)
+}

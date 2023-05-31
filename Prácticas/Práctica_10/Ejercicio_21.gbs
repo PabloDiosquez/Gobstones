@@ -16,19 +16,111 @@ function sinLaPrimeraApariciónDe_en_(elementoBuscado, lista) {
         PRECONDICIONES:
             * No tiene (es una función total).
     */
+
+    return (subListaDe_Hasta_(lista, posiciónDe_enLaQueAparece_(lista, elementoBuscado)) ++
+            subListaDe_Desde_(lista, posiciónDe_enLaQueAparece_(lista, elementoBuscado))
+    )
+
+}
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+function subListaDe_Hasta_(lista, posición) {
+    /*
+        PROPÓSITO:
+            * Describe la sublista formada por todos los elementos de la lista dada hasta la posición **posición**.
+        PARÁMETROS:
+            * lista: [Elemento]
+            * posición: Número
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * ....
+    */
     
-    apareció = False 
+    elementosPorRecorrer := lista
 
-    listaAux := []
+    posiciónActual := 0
 
-    foreach elemento in lista {
-        if (elemento /= elementoBuscado || apareció){
-            listaAux := listaAux ++ [elemento]
-        }
-        else{
-            apareció := True
-        }
+    listaDeElementosHasta := [] 
+
+    while(not esVacía(elementosPorRecorrer) && posiciónActual < posición){
+        listaDeElementosHasta := listaDeElementosHasta ++ [primero(elementosPorRecorrer)]
+
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+
+        posiciónActual := posiciónActual + 1
     }
 
-    return(listaAux)
+    return (listaDeElementosHasta)
+}
+
+function subListaDe_Desde_(lista, posición) {
+    /*
+        PROPÓSITO:
+            * Describe la sublista formada por todos los elementos de la lista dada desde la posición **posición**.
+        PARÁMETROS:
+            * lista: [Elemento]
+            * posición: Número
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * ....
+    */
+    
+    elementosPorRecorrer := lista
+
+    posiciónActual := 0
+
+    listaDeElementosDesde :[]
+
+    while (not esVacía(elementosPorRecorrer)) {
+        listaDeElementosDesde := listaDeElementosDesde ++ singular_Si_(primero(elementosPorRecorrer), posiciónActual > posición)
+
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+
+        posiciónActual := posiciónActual + 1
+    }
+
+    return (listaDeElementosDesde)
+}
+
+function posiciónDe_enLaQueAparece_(lista, elemento) {
+    /*
+        PROPÓSITO:
+            * Describe la posición en la que aparece por primera vez, el elemento dado en la lista dada. 
+        PARÁMETROS:
+            * elemento: Elemento
+            * lista: [Elemento]
+        TIPO: Número
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+            * El elemento dado debe aparecer al menos una vez en la lista.
+    */
+
+    elementosPorRecorrer := lista
+
+    posiciónAlMomento := 0
+    
+    while (not esVacía(elementosPorRecorrer) && primero(elementosPorRecorrer) /= elemento) {
+        posiciónAlMomento := posiciónAlMomento + 1
+
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+    }
+
+    return (posiciónAlMomento)
+}
+
+function singular_Si_(elemento, condición) {
+    /*
+        PROPÓSITO: 
+            * Describe la lista formada únicamente por el elemento dado si se cumple la condición dada; en caso contrario, describe la lista vacía.
+        PARÁMETROS:
+            * elemento: Elemento
+            * condición: Booleano
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose [elemento] when (condición) 
+                    []    otherwise)
 }

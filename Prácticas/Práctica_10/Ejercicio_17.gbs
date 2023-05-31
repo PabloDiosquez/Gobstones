@@ -6,3 +6,43 @@
 // verdadero que hay un elemento entre 13 y 18 (el 16), mientras que
 // algunoDe_Entre_Y_([7,3,1,25,16], 13, 16) indica que es falso que haya
 // algún elemento entre 13 y 16 (el 16 no es menor que 16).
+
+function algunoDe_Entre_Y_(números, desde, hasta) {
+    /*
+        PROPÓSITO:
+            * Indica si **lista** contiene algún elemento que se encuentre entre **desde** y **hasta**, sin incluirlos.
+        PARÁMETROS:
+            * números: [Número]
+            * desde: Número
+            * hasta: Número
+        TIPO: Booleano
+        PRECONDICIONES:
+            * **desde** debe ser <= **hasta**.
+    */
+
+    númerosPorRecorrer := números
+
+
+    while (not esVacía(númerosPorRecorrer) && not está_Entre_Y_(primero(númerosPorRecorrer), desde, hasta)) {
+        númerosPorRecorrer := resto(númerosPorRecorrer)
+    }
+
+    return (not esVacía(númerosPorRecorrer))
+}
+
+
+function está_Entre_Y_(número, desde, hasta) {
+    /*
+        PROPÓSITO:
+            * Indica si **número** está entre **desde** y **hasta**, sin incluirlos.
+        PARÁMETROS:
+            * número: Número
+            * desde: Número
+            * hasta: Número
+        TIPO: Booleano
+        PRECONDICIONES:
+            * **desde** debe ser <= **hasta**.
+    */
+    
+    return (número > desde && número < hasta)
+}

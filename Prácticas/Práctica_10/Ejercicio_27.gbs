@@ -1,0 +1,55 @@
+// Construir la función laLista_SinLosPrimeros_, que dados una lista de elementos
+// de cualquier tipo y un número que representa a una cantidad, describe la lista que se
+// obtiene de quedarse con todos los elementos excepto el segmento inicial del largo
+// dado.
+// Por ejemplo, laLista_SinLosPrimeros_([4,8,15,23,42],4) describe [42],
+// laLista_SinLosPrimeros_([4,8,16,23,9,42],4) describe [9,42], y la
+// expresión laLista_SinLosPrimeros_([4,8,15,16,23,42],8) describe [].
+// ATENCIÓN: según qué estrategia se haya utilizado al escribir la función
+// lista_AgrupadosDeA_, es posible que ya se haya resuelto este ejercicio como
+// subtarea de aquél (quizás con otro nombre). En ese caso, ¿sería necesario volverlo a
+// escribir? ¿Puede reutilizarse lo hecho con anterioridad?
+
+function laLista_SinLosPrimeros_(lista, cantidadDeElementos) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que se obtiene de quedarse con todos los elementos de la lista dada excepto con los primeros **cantidadDeElementos**.
+        PARÁMETROS:
+            * lista: [Elemento]
+            * cantidadDeElementos: Número
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+            * **cantidadDeElementos** debe ser >= 0.
+    */
+
+    cantidadDeElementosActual := 0
+
+    listaSinLosPrimerosAlMomento := []
+
+    foreach elemento in lista {
+        listaSinLosPrimerosAlMomento := listaSinLosPrimerosAlMomento ++
+                                     singular_Si_(elemento, cantidadDeElementosActual >= cantidad)
+        cantidadDeElementosActual := cantidadDeElementosActual + 1
+    }
+    
+    return (listaSinLosPrimerosAlMomento)
+}
+
+// FUNCIONES AUXILIARES 
+
+function singular_Si_(elemento, condición) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (choose [elemento] when(condición)
+                   []         otherwise
+        )
+}

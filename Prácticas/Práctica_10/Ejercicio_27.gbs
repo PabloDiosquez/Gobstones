@@ -40,13 +40,14 @@ function laLista_SinLosPrimeros_(lista, cantidadDeElementos) {
 
 function singular_Si_(elemento, condición) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Describe la lista que contiene únicamente al elemento dado si se cumple la condición dada; en caso contrario, describe la lista vacía.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * elemento: Elemento
+            * condición: Booleano
+        TIPO: [Elemento]
         PRECONDICIONES:
-            * ....
+            * No tiene (es una función total).
     */
     
     return (choose [elemento] when(condición)

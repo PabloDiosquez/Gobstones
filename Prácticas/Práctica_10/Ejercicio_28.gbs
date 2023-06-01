@@ -1,0 +1,86 @@
+// Construir la función sinInternos_, que dada una lista de Números, describa la lista
+// que se obtiene de quitar todos los elementos internos. Un elemento de una lista se dice
+// interno si es igual al anterior de la lista.
+// Por ejemplo, sinInternos_([1,1,2,2,2,3,1,2,2]) describe [1,2,3,1,2].
+
+function sinInternos_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que se obtiene al quitar todos los elementos internos.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+        OBSERVACIONES:
+            * Un elemento de una lista dada se dice interno si es igual a su anterior en la lista.
+    */
+    
+    elementosPorRecorrer := lista
+
+    sinInternos := [primero(elementosPorRecorrer)]
+
+    while (not esVacía(elementosPorRecorrer)) {
+        sinInternos := sinInternos ++
+             singular_Si_(primero(elementosPorRecorrer), primero(elementosPorRecorrer) == últimoDe_(sinInternos))
+        
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+    }
+
+    return (sinInternos)
+}
+
+function últimoDe_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe el último elemento de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Elemento
+        PRECONDICIONES:
+            * La lista dada no debe ser vacía.
+    */
+    
+    elementosPorRecorrer := lista
+
+    últimoAlMomento := primero(elementosPorRecorrer)
+
+    while (not esVacía(elementosPorRecorrer) && not esSingular_(elementosPorRecorrer)) {
+        elementosPorRecorrer := resto(elementosPorRecorrer)
+
+        últimoAlMomento := primero(elementosPorRecorrer)
+    }
+
+    return (últimoAlMomento)
+}
+
+function singular_Si_(elemento, condición) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que contiene únicamente al elemento dado si se cumple la condición dada; en caso contrario, describe la lista vacía.
+        PARÁMETROS:
+            * elemento: Elemento
+            * condición: Booleano
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose [elemento] when(condición)
+                   []         otherwise
+        )
+}
+
+function esSingular_(lista) {
+    /*
+        PROPÓSITO:
+            * Indica si la lista dada está formada por un único elemento.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (not esVacía(lista) && esVacía(resto(lista)))
+}

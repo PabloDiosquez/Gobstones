@@ -166,8 +166,55 @@ function pókemon_Derrotado(pókemon) {
 // a) pókemonDe_Entrenados_, que dada una lista de Pókemon y un número,
 // describe la lista resultante de potenciar cada Pókemon de la lista dada en la
 // cantidad dada.
+
+function pókemonDe_Entrenados_(pókemons, número) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que resulta de potenciar en el número dado los pókemons de la lista dada.
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+            * número: Número
+        TIPO: [Pókemon]
+        PRECONDICIONES:
+            * **número** debe ser >= 0.
+    */
+    
+    pókemonsPotenciadosAlMomento := []
+
+    foreach pókemon in pókemons {
+        pókemonsPotenciadosAlMomento := pókemonsPotenciadosAlMomento
+                                             ++ [pókemon_PotenciadoEn_(pókemon, número)]
+    }
+
+    return (pókemonsPotenciadosAlMomento)
+}
+
 // b) pókemonDe_DelTipo_, que dada una lista de Pókemon y un tipo de Pókemon,
 // describe la lista de aquellos Pókemon de la lista dada que son del tipo dado.
+
+function pókemonDe_DelTipo_(pókemons, tipoDado) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de los pókemons de la lista dada que son del tipo dado.
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+            * tipoDado: TipoDePókemon
+        TIPO: [Pókemon]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    pókemonsDelTipoDadoAlMomento := []
+
+    foreach pókemon in pókemons {
+        pókemonsDelTipoDadoAlMomento := pókemonsDelTipoDadoAlMomento ++
+                                                singular_Si_(pókemon, _esDeTipo_(pókemon, tipo))
+    }
+
+    return (pókemonsDelTipoDadoAlMomento)
+}
+
+
 // c) elMásFuerteDe_, que dada una lista de Pókemon, describe el Pókemon de
 // nivel más alto de toda la lista; si hay dos o más del mismo nivel más alto, da lo
 // mismo cual se describe. ¿Qué precondición se debe exigir?

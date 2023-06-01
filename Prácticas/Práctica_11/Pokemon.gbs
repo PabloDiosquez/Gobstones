@@ -144,6 +144,22 @@ function _esDeTipo_(pókemon, tipoDado) {
 // f) pókemon_Derrotado, que dado un Pókemon, describe el Pokémon resultante
 // de debilitar al Pókemon dado (o sea, su fuerza será 0 y su estado, debilitado).
 
+function pókemon_Derrotado(pókemon) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon que resulta de debilitar al pókemon dado.
+        PARÁMETROS:
+            * pókemon: Pókemon
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Si el pókemon está debilitado, su fuerza es cero.
+    */
+    
+    return (Pókemon(pókemon | fuerza <- 0))
+}
+
 
 // Ejercicios con Listas de Registros
 // Definir las siguientes funciones:

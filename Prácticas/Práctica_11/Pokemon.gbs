@@ -81,7 +81,7 @@ function pókemon_PotenciadoEn_(pókemon, número) {
     return (
         Pokémon(pókemon | 
                           fuerza <- fuerza(pókemon)*número
-                        , nivel  <- nivel(pókemon)*número 
+                        , nivel  <- nivel(pókemon) *número 
         )
     )
 }
@@ -107,5 +107,68 @@ function pókemon_ConValoresDuplicados(pókemon) {
 // Pókemon, un tipo de Pókemon y un número, describe el Pokémon resultante de
 // potenciar el dado en el número dado, solamente si es del tipo recibido, y el
 // original si no.
+
+function pókemon_PotenciadoSiEsDeTipo_En_(pókemon, tipo, número) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon resultante de potenciar en el número dado al pókemon dado, sólo si es del tipo recibido; en caso contrario, describe el pókemon original.
+        PARÁMETROS:
+            * pókemon: Pókemon
+            * tipo: TipoDePókemon
+            * número: Número
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * **número** debe ser >= 0.
+    */
+    
+    return (choose pókemon_PotenciadoEn_(pókemon, número) when (_esDeTipo_(pokémon, tipo))
+                   pókemon otherwise
+    )
+}
+
+function _esDeTipo_(pókemon, tipoDado) {
+    /*
+        PROPÓSITO:
+            * Indica si el pókemon dado es del tipo dado.
+        PARÁMETROS:
+            * pókemon: Pókemon
+            * tipoDado: TipoDePókemon
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (tipo(pokémon) == tipoDado)
+}
+
 // f) pókemon_Derrotado, que dado un Pókemon, describe el Pokémon resultante
 // de debilitar al Pókemon dado (o sea, su fuerza será 0 y su estado, debilitado).
+
+
+// Ejercicios con Listas de Registros
+// Definir las siguientes funciones:
+// a) pókemonDe_Entrenados_, que dada una lista de Pókemon y un número,
+// describe la lista resultante de potenciar cada Pókemon de la lista dada en la
+// cantidad dada.
+// b) pókemonDe_DelTipo_, que dada una lista de Pókemon y un tipo de Pókemon,
+// describe la lista de aquellos Pókemon de la lista dada que son del tipo dado.
+// c) elMásFuerteDe_, que dada una lista de Pókemon, describe el Pókemon de
+// nivel más alto de toda la lista; si hay dos o más del mismo nivel más alto, da lo
+// mismo cual se describe. ¿Qué precondición se debe exigir?
+// d) pókemonDe_DelTipo_Duplicados, que dada una lista de Pókemo y un tipo
+// de Pókemon, describe lista de Pókemon resultante de duplicar aquellos
+// Pókemon de la lista original que son del tipo dado, dejando los demás
+// exactamente igual. El orden en la lista resultante debe ser el mismo que en la
+// lista dada.
+// e) elPókemonMásDébilDe_, que dada una lista de Pókemon describe al
+// Pókemon de nivel más bajo de toda la lista; si hay dos o más del mismo nivel
+// más bajo, da lo mismo cual se describe. ¿Cuál es la precondición de esta
+// función?
+// f) pókemonDebilitadosDe_, que dada una lista de Pókemon, describe la lista
+// de aquellos Pókemon de la lista dada que están debilitados.
+// g) cantidadDePókemonSaludablesEn_, que dada una lista de Pókemon,
+// describe la cantidad de Pókemon de la lista que no están debilitados.
+// h) existePókemonEn_ConFuerza_Tipo_YNivel_, que dada una lista de
+// Pókemon, un número para indicar una fuerza, un tipo de Pókemon y un número
+// para indicar un nivel, indica si en la lista dada existe algun Pókemon de ese tipo
+// con esa fuerza y ese nivel.

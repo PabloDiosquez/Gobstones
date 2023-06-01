@@ -1,0 +1,75 @@
+// Se desea modelar una parte de un juego de Pókemon mediante los siguientes tipos:
+
+type TipoDePókemon is variant{
+    /* 
+    PROPÓSITO:
+        * Modelar los tipos de Pókemon posibles */
+    case Tierra {}
+    case Agua {}
+    case Fuego {}
+}
+
+type Pókemon is record {
+    /*
+     PROPÓSITO: 
+        *Modelar un Pókemon
+    INV.REP.: 
+        * La fuerza y el nivel son mayores o iguales a 0
+        * Si está debilitado, su fuerza es cero.
+     */
+
+    field tipo // TipoDePókemon
+    field fuerza // Número
+    field estáVivo // Booleano.
+    field nivel // Número
+}
+
+// Ejercicios con Registros y Variantes
+// Definir las siguientes funciones:
+// a) _esMásFuerteQue_, que dados dos Pókemon indica si el primero tiene más
+// fuerza que el segundo.
+
+function _esMásFuerteQue_(pókemon1, pókemon2) {
+    /*
+        PROPÓSITO:
+            * Indica si el primer pókemon dado tiene más fuerza que el segundo dado.
+        PARÁMETROS:
+            * pókemon1: Pókemon
+            * pókemon2: Pókemon
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (fuerza(pókemon1) > fuerza(pókemon2))
+}
+
+// b) esDeMayorNivel_Que_, que dados dos Pókemon indica si el si el primero
+// tiene un nivel más alto que el segundo.
+
+function esDeMayorNivel_Que_(pókemon1, pókemon2) {
+    /*
+        PROPÓSITO:
+            * Indica si el primer pókemon dado tiene un nivel más alto que el segundo pókemon dado.
+        PARÁMETROS:
+            * pókemon1: Pókemon
+            * pókemon2: Pókemon
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (nivel(pókemon1) > nivel(pókemon2))
+}
+
+// c) pókemon_PotenciadoEn_, que dado un Pókemon y un número, describe el
+// Pókemon resultante de multiplicar la fuerza y el nivel del Pókemon dado por ese
+// número.
+// d) pókemon_ConValoresDuplicados, que dado un Pókemon, describe el
+// Pókemon resultante de duplicar la fuerza y el nivel del Pokémon dado.
+// e) pókemon_PotenciadoSiEsDeTipo_En(pokémon , tipo,n), que dado un
+// Pókemon, un tipo de Pókemon y un número, describe el Pokémon resultante de
+// potenciar el dado en el número dado, solamente si es del tipo recibido, y el
+// original si no.
+// f) pókemon_Derrotado, que dado un Pókemon, describe el Pokémon resultante
+// de debilitar al Pókemon dado (o sea, su fuerza será 0 y su estado, debilitado).

@@ -65,8 +65,44 @@ function esDeMayorNivel_Que_(pókemon1, pókemon2) {
 // c) pókemon_PotenciadoEn_, que dado un Pókemon y un número, describe el
 // Pókemon resultante de multiplicar la fuerza y el nivel del Pókemon dado por ese
 // número.
+
+function pókemon_PotenciadoEn_(pókemon, número) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon resultante de multiplicar la fuerza y el nivel del pókemon dado por el número dado.
+        PARÁMETROS:
+            * pókemon: Pókemon
+            * número: Número
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * **número** debe ser >= 0.
+    */
+    
+    return (
+        Pokémon(pókemon | 
+                          fuerza <- fuerza(pókemon)*número
+                        , nivel  <- nivel(pókemon)*número 
+        )
+    )
+}
+
 // d) pókemon_ConValoresDuplicados, que dado un Pókemon, describe el
 // Pókemon resultante de duplicar la fuerza y el nivel del Pokémon dado.
+
+function pókemon_ConValoresDuplicados(pókemon) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon que resulta de duplicar los valores de fuerza y de nivel del pókemon dado.
+        PARÁMETROS:
+            * pókemon: Pókemon
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (pókemon_PotenciadoEn_(pókemon, 2))
+}
+
 // e) pókemon_PotenciadoSiEsDeTipo_En(pokémon , tipo,n), que dado un
 // Pókemon, un tipo de Pókemon y un número, describe el Pokémon resultante de
 // potenciar el dado en el número dado, solamente si es del tipo recibido, y el

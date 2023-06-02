@@ -346,7 +346,108 @@ function estáDebilitado_(pókemon) {
 
 // g) cantidadDePókemonSaludablesEn_, que dada una lista de Pókemon,
 // describe la cantidad de Pókemon de la lista que no están debilitados.
+
+function cantidadDePókemonSaludablesEn_(pókemons) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de pókemons saludables de la lista de pókemons dada.
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES: 
+            * Recorrido de acumulación sobre la lista de pókemons dada.
+    */
+    
+    cantidadDePókemonSaludablesAlMomento := 0
+
+    foreach pókemon in pókemons {
+        cantidadDePókemonSaludablesAlMomento := cantidadDePókemonSaludablesAlMomento + 
+                                                            unoSi_CeroSino(estáSaludable_(pókemon))
+    }
+
+    return (cantidadDePókemonSaludablesAlMomento)
+}
+
+function estáSaludable_(pókemon) {
+    /*
+        PROPÓSITO:
+            * Indica si el pókemon dado está saludable.
+        PARÁMETROS:
+            * pókemon: Pókemon
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (fuerza(pókemon) > 0)
+}
+
+
 // h) existePókemonEn_ConFuerza_Tipo_YNivel_, que dada una lista de
 // Pókemon, un número para indicar una fuerza, un tipo de Pókemon y un número
 // para indicar un nivel, indica si en la lista dada existe algun Pókemon de ese tipo
 // con esa fuerza y ese nivel.
+
+function existePókemonEn_ConFuerza_Tipo_YNivel_(pókemons, fuerza, tipo, nivel) {
+    /*
+        PROPÓSITO:
+            * Indica si existe un pókemon del tipo dado, con la fuerza dada y el nivel dado, en la lista de pókemons dada. 
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+            * fuerza: Número
+            * tipo: tipoDePókemon
+            * nivel: Número
+        TIPO: Booleano
+        PRECONDICIONES:
+            * **fuerza** debe ser >= 0.
+            * **nivel**  debe ser >= 0.
+        OBSERVACIONES:
+            * Recorrido de búsqueda sobre la lista de pókemons dada.
+    */
+
+    pókemonsPorRecorrer := pókemons 
+
+    while (not esVacía(pókemonsPorRecorrer) && not _esDeTipo_ConFuerza_YNivel_(pókemon, tipo, fuerza, nivel)) {
+        pókemonsPorRecorrer := resto(pókemonsPorRecorrer)
+    }
+    
+    return (not esVacía(pókemonsPorRecorrer))
+}
+
+function _esDeTipo_ConFuerza_YNivel_(pókemon, tipoDado, fuerzaDada, nivelDado) {
+    /*
+        PROPÓSITO:
+            * Indica si el pókemon dado es de tipo **tipoDado**, con fuerza **fuerzaDada** y nivel **nivelDado**.
+        PARÁMETROS:
+            * pókemon: Pókemon
+            * tipoDado: tipoDePókemon
+            * fuerzaDada: Número
+            * nivelDado: Número
+        TIPO: Booleano
+        PRECONDICIONES:
+            * **fuerza** debe ser >= 0.
+            * **nivel**  debe ser >= 0.
+    */
+    
+    return (tipo(pókemon) == tipoDado && fuerza(pókemon) == fuerzaDada && nivel(pókemon) == nivelDado)
+}
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+function unoSi_CeroSino(condición) {
+    /*
+        PROPÓSITO:
+            * Describe 1 si se cumple la condición dada; describe 0 en caso contrario.
+        PARÁMETROS:
+            * condición: Booleano
+        TIPO: Número (0 o 1)
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose 1 when (condición)
+                   0 otherwise
+    )
+}

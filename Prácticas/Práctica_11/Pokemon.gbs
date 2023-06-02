@@ -231,7 +231,7 @@ function elMásFuerteDe_(pókemons) {
     
     elMásFuerteAlMomento := primero(pókemons)
 
-    foreach pókemon in pókemons {
+    foreach pókemon in resto(pókemons) {
         elMásFuerteAlMomento := elMásFuerteEntre_Y_(elMásFuerteAlMomento, pókemon)
     }
 
@@ -255,16 +255,58 @@ function elMásFuerteEntre_Y_(pókemon1, pókemon2) {
     )
 }
 
-
-// d) pókemonDe_DelTipo_Duplicados, que dada una lista de Pókemo y un tipo
+// d) pókemonDe_DelTipo_Duplicados, que dada una lista de Pókemons y un tipo
 // de Pókemon, describe lista de Pókemon resultante de duplicar aquellos
 // Pókemon de la lista original que son del tipo dado, dejando los demás
 // exactamente igual. El orden en la lista resultante debe ser el mismo que en la
 // lista dada.
+
+
+
+
 // e) elPókemonMásDébilDe_, que dada una lista de Pókemon describe al
 // Pókemon de nivel más bajo de toda la lista; si hay dos o más del mismo nivel
 // más bajo, da lo mismo cual se describe. ¿Cuál es la precondición de esta
 // función?
+
+function elPókemonMásDébilDe_(pókemons) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon de nivel más bajo de la lista de pókemons dada.
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * La lista de pókemons dada debe ser no vacía.
+    */
+    
+    pókemonMásDébilAlMomento := primero(pókemons)
+
+    foreach pókemon in resto(pókemons) {
+        pókemonMásDébilAlMomento := elMásDébilEntre_Y_(pókemonMásDébilAlMomento, pókemon)
+    }
+
+    return (pókemonMásDébilAlMomento)
+}
+
+function elMásDébilEntre_Y_(pókemon1, pókemon2) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon de nivel más bajo de los dos pókemons dados.
+        PARÁMETROS:
+            * pókemon1: Pókemon
+            * pókemon2: Pókemon
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose pókemon1 when (nivel(pókemon1) < nivel(pókemon2))
+                   pókemon2 otherwise
+    )
+}
+
+
 // f) pókemonDebilitadosDe_, que dada una lista de Pókemon, describe la lista
 // de aquellos Pókemon de la lista dada que están debilitados.
 // g) cantidadDePókemonSaludablesEn_, que dada una lista de Pókemon,

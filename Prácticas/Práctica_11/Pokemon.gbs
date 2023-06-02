@@ -306,9 +306,44 @@ function elMásDébilEntre_Y_(pókemon1, pókemon2) {
     )
 }
 
+// f) pókemonsDebilitadosDe_, que dada una lista de Pókemon, describe la lista
+// de aquellos pókemons de la lista dada que están debilitados.
 
-// f) pókemonDebilitadosDe_, que dada una lista de Pókemon, describe la lista
-// de aquellos Pókemon de la lista dada que están debilitados.
+function pókemonsDebilitadosDe_(pókemons) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de pókemons debilitados de la lista dada. 
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+        TIPO: [Pókemon]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    pókemonsDebilitadosAlMomento := []
+
+    foreach pókemon in pókemons {
+        pókemonsDebilitadosAlMomento := pókemonsDebilitadosAlMomento ++ 
+                                                singular_Si_(pókemon, estáDebilitado_(pókemon))
+    }
+    
+    return (pókemonsDebilitadosAlMomento)
+}
+
+function estáDebilitado_(pókemon) {
+    /*
+        PROPÓSITO:
+            * Indica si el pókemon dado está debilitado.
+        PARÁMETROS:
+            * pókemon: Pókemon
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (fuerza(pókemon) == 0)
+}
+
 // g) cantidadDePókemonSaludablesEn_, que dada una lista de Pókemon,
 // describe la cantidad de Pókemon de la lista que no están debilitados.
 // h) existePókemonEn_ConFuerza_Tipo_YNivel_, que dada una lista de

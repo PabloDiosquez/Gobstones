@@ -182,8 +182,8 @@ function pókemonDe_Entrenados_(pókemons, número) {
     pókemonsPotenciadosAlMomento := []
 
     foreach pókemon in pókemons {
-        pókemonsPotenciadosAlMomento := pókemonsPotenciadosAlMomento
-                                             ++ [pókemon_PotenciadoEn_(pókemon, número)]
+        pókemonsPotenciadosAlMomento := pókemonsPotenciadosAlMomento ++
+                                        [pókemon_PotenciadoEn_(pókemon, número)]
     }
 
     return (pókemonsPotenciadosAlMomento)
@@ -208,7 +208,7 @@ function pókemonDe_DelTipo_(pókemons, tipoDado) {
 
     foreach pókemon in pókemons {
         pókemonsDelTipoDadoAlMomento := pókemonsDelTipoDadoAlMomento ++
-                                                singular_Si_(pókemon, _esDeTipo_(pókemon, tipo))
+                                        singular_Si_(pókemon, _esDeTipo_(pókemon, tipo))
     }
 
     return (pókemonsDelTipoDadoAlMomento)
@@ -261,7 +261,47 @@ function elMásFuerteEntre_Y_(pókemon1, pókemon2) {
 // exactamente igual. El orden en la lista resultante debe ser el mismo que en la
 // lista dada.
 
+function pókemonDe_DelTipo_Duplicados(pókemons, tipo) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de pókemons que resulta de duplicar aquellos pókemons de la lista dada que son del tipo dado, dejando los demás exactamente igual.
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+            * tipo: tipoDePókemon
+        TIPO: [Pókemon]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    pókemonsDelTipoDadoAlMomento := []
 
+    foreach pókemon in pókemons {
+        pókemonsDelTipoDadoAlMomento := pókemonsDelTipoDadoAlMomento ++ 
+                                        singular_Si_(pókemon, es_DelTipo_(pókemon, tipo))
+    }
+
+    return (pókemonsDe_Duplicados(pókemonsDelTipoDadoAlMomento))
+}
+
+function pókemonsDe_Duplicados(pókemons) {
+    /*
+        PROPÓSITO:
+            * Describe la lista que resulta de duplicar los valores de fuerza y nivel de cada pókemon de la lista dada.
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+        TIPO: [Pókemon]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    pókemonsDuplicadosAlMomento := []
+
+    foreach pókemon in pókemons {
+        pókemonsDuplicadosAlMomento := pókemonsDuplicadosAlMomento ++ [pókemon_ConValoresDuplicados(pókemon)]
+    }
+
+    return (pókemonsDebilitadosAlMomento)
+}
 
 
 // e) elPókemonMásDébilDe_, que dada una lista de Pókemon describe al
@@ -433,6 +473,82 @@ function _esDeTipo_ConFuerza_YNivel_(pókemon, tipoDado, fuerzaDada, nivelDado) 
     
     return (tipo(pókemon) == tipoDado && fuerza(pókemon) == fuerzaDada && nivel(pókemon) == nivelDado)
 }
+
+// Ejercicio con Registros y Listas.
+// Supongamos además que se definen el siguiente tipo:
+
+type Entrenador is record{
+    /* 
+        PROPÓSITO: 
+            * Modelar un entrenador de Pókemon.
+        INV.REP.: 
+            * Identificador es un número > 0 */
+
+        field lista // [Pokemon]
+        field identificador // Número
+        field esTáctico // Booleano
+}
+
+// Definir las siguientes funciones, sin olvidar establecer adecuadamente las
+// precondiciones:
+
+// a) entrenador__, que dados un identificador y un booleano que indica si el
+// entrenador es táctico, describe un Entrenador con los datos dados. Notar que
+// por defecto el entrenador no tiene Pókemon para entrenar.
+// b) entrenador_ConPókemon_Agregado, que dados un entrenador y un
+// Pókemon, describe al entrenador resultante de agregar al Pókemon dado a la
+// lista de Pókemon del entrenador dado.
+// c) cantidadDePókemonDe_, que dado un entrenador, describe la cantidad de
+// Pókemon del entrenador recibido.
+// d) cantidadTotalDePókemonEn_, que dada una lista de entrenadores, describe
+// la cantidad total de Pókemon entre todos los entrenadores de la lista.
+// e) entrenadorMásAntiguoEntre_Y_, que dados dos entrenadores, describe al
+// entrenador más antiguo de ambos (o sea, el que tiene menor número de
+// identificación).
+// f) elMásAntiguoEn_, que dada una lista de entrenadores, describe al entrenador
+// más antiguo de la lista dada.
+// g) entrenadorGanadorDeDesafíoEntre_Y_, que dados dos entrenadores,
+// describe al Entrenador ganador del desafío.
+// El desafío consiste en que compitan un Pókemon de cada entrenador hasta que
+// se acaben los Pókemon de uno de ellos, resultando en batallas del primero con
+// el primero, el segundo con el segundo, etc. En cada pelea entre dos Pókemon
+// siempre gana el más fuerte, y si tienen igual fuerza, la pelea no cuenta para
+// ninguno de los dos. Gana el desafío el entrenador que consiga ganar más
+// batallas, o de haber empate en la cantidad de peleas ganadas, el de mayor
+// antigüedad.
+// h) entrenadorGanadorDeDesafioEn_, que dada una lista de entrenadores,
+// describe al entrenador ganador del desafío entre todos los entrenadores.
+// El desafío de cada par de entrenadores es idéntico al que se describió en el
+// punto anterior. En primer lugar compiten el primer entrenador con el segundo, y
+// luego de cada pelea el entrenador que gana compite con el siguiente de la lista,
+// hasta que no haya más entrenadores para competir. El ganador del desafío es el
+// entrenador que gana la última batalla.
+// i) fuerzaTotalDe_, que dado un entrenador, describe el número que es la suma
+// de la fuerza de todos los Pókemon de ese entrenador.
+// j) fuerzaTotalEnBatallaEn_, que dada una lista de entrenadores, describe el
+// número que es la suma de la fuerza de todos los Pókemon de todos los
+// entrenadores recibidos.
+// k) mejorPókemonDe_ParaJugada, que dado un entrenador, si el entrenador es
+// Táctico describe a su Pokémon de mayor nivel con sus valores duplicados, y si
+// no es táctico describe al primero de su lista de Pókemon.
+// l) ganadorDeDesafíoInteligenteDe_CombatesEntre_Y_, que dados un
+// número de combates y dos entrenadores, describe al entrenador ganador del
+// desafío inteligente entre ambos.
+// A diferencia del desafío común, un desafío inteligente consiste solamente en la
+// cantidad de combates dada. En cada combate el entrenador usa su mejor
+// Pókemon para esa jugada, que luego no vuelve a competir. Notar que no juegan
+// todos los Pókemon de la lista como en el desafío común, sino solamente la
+// cantidad dada. Nuevamente, gana el que más combates gana, y si hay empate,
+// el de mayor antigüedad.
+// m) ganadorDeDesafíoInteligenteDe_CombatesEn_, que dados un número
+// de combates por desafío y una lista de entrenadores, describe al entrenador
+// ganador del desafío inteligente entre todos los entrenadores dados.
+// El desafío inteligente entre varios entrenadores sigue la misma mecánica que el
+// común, pero
+
+
+
+
 
 // FUNCIONES AUXILIARES 🐱‍🏍
 

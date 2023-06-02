@@ -214,10 +214,9 @@ function pókemonDe_DelTipo_(pókemons, tipoDado) {
     return (pókemonsDelTipoDadoAlMomento)
 }
 
-// c) elMásFuerteDe_, que dada una lista de Pókemon, describe el Pókemon de
+// c) elMásFuerteDe_, que dada una lista de Pókemon, describe el pókemon de
 // nivel más alto de toda la lista; si hay dos o más del mismo nivel más alto, da lo
 // mismo cual se describe. ¿Qué precondición se debe exigir?
-
 
 function elMásFuerteDe_(pókemons) {
     /*
@@ -233,12 +232,29 @@ function elMásFuerteDe_(pókemons) {
     elMásFuerteAlMomento := primero(pókemons)
 
     foreach pókemon in pókemons {
-        ...
+        elMásFuerteAlMomento := elMásFuerteEntre_Y_(elMásFuerteAlMomento, pókemon)
     }
-
 
     return (elMásFuerteAlMomento)
 }
+
+function elMásFuerteEntre_Y_(pókemon1, pókemon2) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon de nivel más alto entre los dos pókemons dados.
+        PARÁMETROS:
+            * pókemon1: Pókemon
+            * pókemon2: Pókemon
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose pókemon1 when(nivel(pókemon1) > nivel(pókemon2))
+                   pókemon2 otherwise
+    )
+}
+
 
 // d) pókemonDe_DelTipo_Duplicados, que dada una lista de Pókemo y un tipo
 // de Pókemon, describe lista de Pókemon resultante de duplicar aquellos

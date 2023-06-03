@@ -537,22 +537,46 @@ function entrenador_ConPókemon_Agregado(entrenador, pókemon) {
     return (Entrenador(entrenador | lista <- lista(entrenador) ++ [pókemon]))
 }
 
-
-
 // c) cantidadDePókemonDe_, que dado un entrenador, describe la cantidad de
 // Pókemon del entrenador recibido.
 
 
-
-
-
-
+function cantidadDePókemonDe_(entrenador) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de pókemons del entrenador dado.
+        PARÁMETROS:
+            * entrenador: Entrenador
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (cantidadDeElementosDe_(lista(entrenador)))
+}
 
 // d) cantidadTotalDePókemonEn_, que dada una lista de entrenadores, describe
 // la cantidad total de Pókemon entre todos los entrenadores de la lista.
 
+function cantidadTotalDePókemonEn_(entrenadores) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad total de pókemons entre todos los entrenadores de la lista dada.
+        PARÁMETROS:
+            * entrenadores: [Entrenador]
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    cantidadDePókemonsAlMomento := 0
 
+    foreach entrenador in entrenadores {
+        cantidadDePókemonsAlMomento := cantidadDePókemonsAlMomento ++ cantidadDePókemonDe_(entrenador)
+    }
 
+    return (cantidadDePókemonsAlMomento)
+}
 
 // e) entrenadorMásAntiguoEntre_Y_, que dados dos entrenadores, describe al
 // entrenador más antiguo de ambos (o sea, el que tiene menor número de
@@ -647,4 +671,26 @@ function listaVacía() {
     */
     
     return ([])
+}
+
+function cantidadDeElementosDe_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de elementos de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de acumulación de la cantidad de elementos de la lista dada.
+    */
+    
+    cantidadDeElementosAlMomento := 0
+
+    foreach elemento in lista {
+        cantidadDeElementosAlMomento := cantidadDeElementosAlMomento + 1
+    }
+
+    return (cantidadDeElementosAlMomento)
 }

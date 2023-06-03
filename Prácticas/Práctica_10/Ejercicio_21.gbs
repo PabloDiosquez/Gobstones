@@ -28,13 +28,13 @@ function sinLaPrimeraApariciónDe_en_(elementoBuscado, lista) {
 function subListaDe_Hasta_(lista, posición) {
     /*
         PROPÓSITO:
-            * Describe la sublista formada por todos los elementos de la lista dada hasta la posición **posición**.
+            * Describe la sublista formada por todos los elementos de la lista dada desde el primero hasta la posición **posición**.
         PARÁMETROS:
             * lista: [Elemento]
             * posición: Número
         TIPO: [Elemento]
         PRECONDICIONES:
-            * ....
+            * **posición** debe ser >= 0.
     */
     
     elementosPorRecorrer := lista
@@ -63,14 +63,14 @@ function subListaDe_Desde_(lista, posición) {
             * posición: Número
         TIPO: [Elemento]
         PRECONDICIONES:
-            * ....
+            * **posición** debe ser >= 0.
     */
     
     elementosPorRecorrer := lista
 
     posiciónActual := 0
 
-    listaDeElementosDesde :[]
+    listaDeElementosDesde :=[]
 
     while (not esVacía(elementosPorRecorrer)) {
         listaDeElementosDesde := listaDeElementosDesde ++ singular_Si_(primero(elementosPorRecorrer), posiciónActual > posición)

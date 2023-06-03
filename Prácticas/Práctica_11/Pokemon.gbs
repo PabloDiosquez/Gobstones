@@ -639,8 +639,6 @@ function elMásAntiguoEn_(entrenadores) {
 
 
 
-
-
 // h) entrenadorGanadorDeDesafioEn_, que dada una lista de entrenadores,
 // describe al entrenador ganador del desafío entre todos los entrenadores.
 // El desafío de cada par de entrenadores es idéntico al que se describió en el
@@ -655,9 +653,48 @@ function elMásAntiguoEn_(entrenadores) {
 
 // i) fuerzaTotalDe_, que dado un entrenador, describe el número que es la suma
 // de la fuerza de todos los Pókemon de ese entrenador.
+
+function fuerzaTotalDe_(entrenador) {
+    /*
+        PROPÓSITO:
+            * Describe el número que es la suma de la fuerza de todos los pókemons del entrenador dado.
+        PARÁMETROS:
+            * entrenador: Entrenador
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    fuerzaTotalAlMomento := 0
+
+    foreach pókemon in lista(entrenador) {
+        fuerzaTotalAlMomento := fuerzaTotalAlMomento + fuerza(pókemon)
+    }
+
+    return (fuerzaTotalAlMomento)
+}
+
 // j) fuerzaTotalEnBatallaEn_, que dada una lista de entrenadores, describe el
 // número que es la suma de la fuerza de todos los Pókemon de todos los
 // entrenadores recibidos.
+
+function fuerzaTotalEnBatallaEn_(entrenadores) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return ()
+}
+
+
+
+
 // k) mejorPókemonDe_ParaJugada, que dado un entrenador, si el entrenador es
 // Táctico describe a su Pokémon de mayor nivel con sus valores duplicados, y si
 // no es táctico describe al primero de su lista de Pókemon.

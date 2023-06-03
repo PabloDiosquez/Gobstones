@@ -657,7 +657,7 @@ function elMásAntiguoEn_(entrenadores) {
 function fuerzaTotalDe_(entrenador) {
     /*
         PROPÓSITO:
-            * Describe el número que es la suma de la fuerza de todos los pókemons del entrenador dado.
+            * Describe la suma de la fuerza de todos los pókemons del entrenador dado.
         PARÁMETROS:
             * entrenador: Entrenador
         TIPO: Número
@@ -680,19 +680,23 @@ function fuerzaTotalDe_(entrenador) {
 
 function fuerzaTotalEnBatallaEn_(entrenadores) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Describe la suma de la fuerza de todos los pókemons de los entrenadores de la lista dada.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * entrenadores: [Entrenador]
+        TIPO: Número
         PRECONDICIONES:
-            * ....
+            * No tiene (es una función total).
     */
     
-    return ()
+    fuerzaTotalDeLosPókemonsAlMomento := 0
+
+    foreach entrenador in entrenadores {
+        fuerzaTotalDeLosPókemonsAlMomento := fuerzaTotalDeLosPókemonsAlMomento + fuerzaTotalDe_(entrenador)
+    }
+
+    return (fuerzaTotalDeLosPókemonsAlMomento)
 }
-
-
 
 
 // k) mejorPókemonDe_ParaJugada, que dado un entrenador, si el entrenador es

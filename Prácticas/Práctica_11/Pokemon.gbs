@@ -495,18 +495,77 @@ type Entrenador is record{
 // a) entrenador__, que dados un identificador y un booleano que indica si el
 // entrenador es táctico, describe un Entrenador con los datos dados. Notar que
 // por defecto el entrenador no tiene Pókemon para entrenar.
+
+function entrenador__(identificador, esTáctico) {
+    /*
+        PROPÓSITO:
+            * Describe un entrenador con los datos dados.
+        PARÁMETROS:
+            * identificador: Número
+            * esTáctico: Booleano
+        TIPO: Entrenador
+        PRECONDICIONES:
+            * **identificador** es un número > 0
+    */
+    
+    return (
+            Entrenador(
+                        lista <- listaVacía()
+                    ,   identificador <- identificador
+                    ,   esTáctico <- esTáctico
+            )
+    )
+}
+
+
 // b) entrenador_ConPókemon_Agregado, que dados un entrenador y un
 // Pókemon, describe al entrenador resultante de agregar al Pókemon dado a la
 // lista de Pókemon del entrenador dado.
+
+function entrenador_ConPókemon_Agregado(entrenador, pókemon) {
+    /*
+        PROPÓSITO:
+            * Describe al entrenador dado con su lista de pókemons actualizada por el agregado del pókemon dado.
+        PARÁMETROS:
+            * entrenador: Entrenador
+            * pókemon: Pókemon
+        TIPO: Entrenador
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Entrenador(entrenador | lista <- lista(entrenador) ++ [pókemon]))
+}
+
+
+
 // c) cantidadDePókemonDe_, que dado un entrenador, describe la cantidad de
 // Pókemon del entrenador recibido.
+
+
+
+
+
+
+
 // d) cantidadTotalDePókemonEn_, que dada una lista de entrenadores, describe
 // la cantidad total de Pókemon entre todos los entrenadores de la lista.
+
+
+
+
 // e) entrenadorMásAntiguoEntre_Y_, que dados dos entrenadores, describe al
 // entrenador más antiguo de ambos (o sea, el que tiene menor número de
 // identificación).
+
+
+
+
 // f) elMásAntiguoEn_, que dada una lista de entrenadores, describe al entrenador
 // más antiguo de la lista dada.
+
+
+
 // g) entrenadorGanadorDeDesafíoEntre_Y_, que dados dos entrenadores,
 // describe al Entrenador ganador del desafío.
 // El desafío consiste en que compitan un Pókemon de cada entrenador hasta que
@@ -516,6 +575,11 @@ type Entrenador is record{
 // ninguno de los dos. Gana el desafío el entrenador que consiga ganar más
 // batallas, o de haber empate en la cantidad de peleas ganadas, el de mayor
 // antigüedad.
+
+
+
+
+
 // h) entrenadorGanadorDeDesafioEn_, que dada una lista de entrenadores,
 // describe al entrenador ganador del desafío entre todos los entrenadores.
 // El desafío de cada par de entrenadores es idéntico al que se describió en el
@@ -523,6 +587,11 @@ type Entrenador is record{
 // luego de cada pelea el entrenador que gana compite con el siguiente de la lista,
 // hasta que no haya más entrenadores para competir. El ganador del desafío es el
 // entrenador que gana la última batalla.
+
+
+
+
+
 // i) fuerzaTotalDe_, que dado un entrenador, describe el número que es la suma
 // de la fuerza de todos los Pókemon de ese entrenador.
 // j) fuerzaTotalEnBatallaEn_, que dada una lista de entrenadores, describe el
@@ -566,4 +635,16 @@ function unoSi_CeroSino(condición) {
     return (choose 1 when (condición)
                    0 otherwise
     )
+}
+
+function listaVacía() {
+    /*
+        PROPÓSITO:
+            * Describe la lista vacía.
+        TIPO: [Elemento]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return ([])
 }

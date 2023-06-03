@@ -582,12 +582,49 @@ function cantidadTotalDePókemonEn_(entrenadores) {
 // entrenador más antiguo de ambos (o sea, el que tiene menor número de
 // identificación).
 
-
-
+function entrenadorMásAntiguoEntre_Y_(primerEntrenador, segundoEntrenador) {
+    /*
+        PROPÓSITO:
+            * Describe al entrenador más antiguo entre los dos entrenadores dados.
+        PARÁMETROS:
+            * primerEntrenador:  Entrenador
+            * segundoEntrenador: Entrenador
+        TIPO: Entrenador
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * El entrenador más antiguo es el que tiene el menor número de identificación.
+    */
+    
+    return (choose primerEntrenador  when (identificación(primerEntrenador) < identificación(segundoEntrenador))
+                   segundoEntrenador otherwise
+    )
+}
 
 // f) elMásAntiguoEn_, que dada una lista de entrenadores, describe al entrenador
 // más antiguo de la lista dada.
 
+function elMásAntiguoEn_(entrenadores) {
+    /*
+        PROPÓSITO:
+            * Describe al entrenador más antiguo de la lista de entrenadores dada.
+        PARÁMETROS:
+            * entrenadores: [Entrenador]
+        TIPO: Entrenador
+        PRECONDICIONES:
+            * La lista de entrenadores dada no debe ser vacía.
+        OBSERVACIONES:
+            * Recorrido de búsqueda de un mínimo sobre la lista de entrenadores.
+    */
+    
+    entrenadorMásAntiguoVisto := primero(entrenadores)
+
+    foreach entrenador in entrenadores {
+        entrenadorMásAntiguoVisto := entrenadorMásAntiguoEntre_Y_(entrenadorMásAntiguoVisto, entrenador)
+    }
+
+    return (entrenadorMásAntiguoVisto)
+}
 
 
 // g) entrenadorGanadorDeDesafíoEntre_Y_, que dados dos entrenadores,
@@ -638,9 +675,6 @@ function cantidadTotalDePókemonEn_(entrenadores) {
 // ganador del desafío inteligente entre todos los entrenadores dados.
 // El desafío inteligente entre varios entrenadores sigue la misma mecánica que el
 // común, pero
-
-
-
 
 
 // FUNCIONES AUXILIARES 🐱‍🏍

@@ -161,11 +161,13 @@ function costoDeBoleto_(boleto) {
             * El costo de un boleto es de $18, si se abona un solo tramo, y aumenta en $3  por cada tramo adicional.
     */
     
-    return (choose 18 when (cantidadDeTramos(boletoDeColectivo) == 1)
-                   21 when (cantidadDeTramos(boletoDeColectivo) == 2) 
-                   24 when (cantidadDeTramos(boletoDeColectivo) == 3)
-                   27 otherwise 
-            )
+    return (18 + 3*(cantidadDeTramos(boletoDeColectivo) - 1))
+
+    // return (choose 18 when (cantidadDeTramos(boletoDeColectivo) == 1)
+    //                21 when (cantidadDeTramos(boletoDeColectivo) == 2) 
+    //                24 when (cantidadDeTramos(boletoDeColectivo) == 3)
+    //                27 otherwise 
+    //         )
 }
 
 // b. elBoleto_TieneElMismoNúmeroQue_, que dados dos boletos, boleto1 y

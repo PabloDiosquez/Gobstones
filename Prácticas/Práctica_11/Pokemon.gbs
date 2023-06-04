@@ -698,10 +698,78 @@ function fuerzaTotalEnBatallaEn_(entrenadores) {
     return (fuerzaTotalDeLosPókemonsAlMomento)
 }
 
-
 // k) mejorPókemonDe_ParaJugada, que dado un entrenador, si el entrenador es
 // Táctico describe a su Pokémon de mayor nivel con sus valores duplicados, y si
 // no es táctico describe al primero de su lista de Pókemon.
+
+function mejorPókemonDe_ParaJugada(entrenador) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon de mayor nivel del entrenador dado con sus valores duplicados, si éste es táctico; en caso contrario, describe el primero de su lista de pókemons.
+        PARÁMETROS:
+            * entrenador: Entrenador
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * La lista de pókemons del entrenador dado no debe ser vacía.
+    */
+    
+    return (choose pókemon_ConValoresDuplicados(pókemonDeMayorDeNivelDe_(entrenador)) when (esTáctico(entrenador))
+                   primero(lista(entrenador)) otherwise
+        )
+}
+
+function pókemonDeMayorDeNivelDe_(entrenador) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon de mayor nivel del entrenador dado.
+        PARÁMETROS:
+            * entrenador: Entrenador
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * La lista de pókemons del entrenador dado no debe ser vacía.
+    */
+    
+    return (pókemonDeMayorNivelDe_(lista(entrenador)))
+}
+
+function pókemonDeMayorDeNivelDe_(pókemons) {
+    /*
+        PROPÓSITO:
+            * Describe el pókemon de mayor nivel de la lista de pókemons dada.
+        PARÁMETROS:
+            * pókemons: [Pókemon]
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * La lista de pókemons dada no debe ser vacía.
+    */
+    
+    pókemonDeMayorNivelVisto := primero(pókemons)
+
+    foreach pókemon in resto(pókemons) {
+        pókemonDeMayorNivelVisto := pókemonDeMayorNivelEntre_Y_(pókemonDeMayorNivelVisto, pókemon)
+    }
+
+    return (pókemonDeMayorNivelVisto)
+}
+
+function pókemonDeMayorNivelEntre_Y_(primerPókemon, segundoPókemon) {
+    /*
+        PROPÓSITO:
+            * 
+        PARÁMETROS:
+            * primerPókemon:  Pókemon
+            * segundoPókemon: Pókemon
+        TIPO: Pókemon
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose primerPókemon when (nivel(primerPókemon) > nivel(segundoPókemon))
+                   segundoPókemon otherwise
+        )
+}
+
+
 // l) ganadorDeDesafíoInteligenteDe_CombatesEntre_Y_, que dados un
 // número de combates y dos entrenadores, describe al entrenador ganador del
 // desafío inteligente entre ambos.

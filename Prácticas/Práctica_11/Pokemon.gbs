@@ -859,6 +859,7 @@ function ganadorDeDesafíoInteligenteDe_CombatesEntre_Y_(número, entrenador1, e
             * entrenador2: Entrenador
         TIPO: Entrenador
         PRECONDICIONES:
+            * **número** debe ser >= 0.
             * Cada entrenador debe tener al menos tantos pókemons en su lista como el número de combates que se pretende disputar.
         OBSERVACIONES:
             * Un desafío inteligente consiste solamente en la cantidad de combates dada.
@@ -866,9 +867,40 @@ function ganadorDeDesafíoInteligenteDe_CombatesEntre_Y_(número, entrenador1, e
             * Gana el que más combates gana, y si hay empate, el de mayor antigüedad.
     */
     
-    return ()
+    return (choose entrenador1 when (nroDeGanadosEnUnTotalDe_CombatesInteligentesPor_VS_(número, entrenador1, entrenador2) > nroDeGanadosEnUnTotalDe_CombatesInteligentesPor_VS_(número, entrenador2, entrenador1))
+                   entrenador2 when (...)
+                   entrenadorMásAntiguoEntre_Y_(entrenador1, entrenador2) otherwise
+    )
 }
 
+function nroDeGanadosEnUnTotalDe_CombatesInteligentesPor_VS_(número, entrenador1, entrenador2) {
+    /*
+        PROPÓSITO:
+            * Describe el número de combates inteligentes de un total de **número** ganados por el primer entrenador dado vs. el segundo entrenador dado.
+        PARÁMETROS:
+            * número: Número
+            * entrenador1: Entrenador
+            * entrenador2: Entrenador
+        TIPO: Número
+        PRECONDICIONES:
+            * **número** debe ser >= 0.
+            * Cada entrenador debe tener al menos tantos pókemons en su lista como el número de combates que se pretende disputar. 
+    */
+
+    nroCombatesGanadosPorElPrimerEntrenadorAlMomento := 0
+
+    pókemonsDisponiblesParaElPrimerEntrenador  := lista(entrenador1)
+    pókemonsDisponiblesParaElSegundoEntrenador := lista(entrenador2)
+
+    repeat (número) {
+        nroCombatesGanadosPorElPrimerEntrenadorAlMomento := nroCombatesGanadosPorElPrimerEntrenadorAlMomento + 
+        unoSi_CeroSino(elMejorPókemonDe_LeGanaAlMejorDe_(pókemonsDisponiblesParaElPrimerEntrenador, pókemonsDisponiblesParaElSegundoEntrenador))
+
+        pókemonsDisponiblesParaElPrimerEntrenador := quitarTodasLaAparicionesDe_En_()
+    }
+    
+    return ()
+}
 
 // m) ganadorDeDesafíoInteligenteDe_CombatesEn_, que dados un número
 // de combates por desafío y una lista de entrenadores, describe al entrenador
@@ -886,6 +918,7 @@ function ganadorDeDesafíoInteligenteDe_CombatesEn_(número, entrenadores) {
             * entrenadores: [Entrenador]
         TIPO: Entrenador
         PRECONDICIONES:
+            * **número** debe ser >= 0.
             * La lista de entrenadores dada no debe ser vacía.
             * Cada entrenador debe tener en su lista de pókemons al menos tantos pókemons como el número de combates dado. 
     */

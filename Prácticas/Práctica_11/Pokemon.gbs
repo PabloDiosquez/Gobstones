@@ -648,30 +648,16 @@ function entrenadorGanadorDeDesafíoEntre_Y_(primerEntrenador, segundoEntrenador
         PRECONDICIONES:
             * La lista de pókemons de los entrenadores dados no debe ser vacía.
     */
+    cantidadTotalDeDesafíos := cantidadTotalDeDesafíosEntre_Y_(lista(primerEntrenador), lista(segundoEntrenador))
     
-    pókemonsDelPrimerEntenadorPorRecorrer  := lista(primerEntrenador)
+    cantidadDeDesafíosGanadosPorElPrimerEntrenador := cantidadDeDesafíosGanadosPor_Contra_(lista(primerEntrenador), lista(segundoEntrenador))
 
-    cantidadDeDesafíosGanadosPorElPrimerEntrenador := 0
-
-    pókemonsDelSegundoEntenadorPorRecorrer := lista(segundoEntrenador)
-
-    cantidadDeDesafíosGanadosPorElSegundoEntrenador := 0
-
-    while (not esVacía(pókemonsDelPrimerEntenadorPorRecorrer) && not esVacía(pókemonsDelSegundoEntenadorPorRecorrer)) {
-        
-        cantidadDeDesafíosGanadosPorElPrimerEntrenador := cantidadDeDesafíosGanadosPorElPrimerEntrenador ++
-                        unoSi_CeroSino(es_ElGanadorDelDesafíoContra_(primerEntrenador, segundoEntrenador))
-
-        cantidadDeDesafíosGanadosPorElSegundoEntrenador := cantidadDeDesafíosGanadosPorElSegundoEntrenador ++       unoSi_CeroSino(es_ElGanadorDelDesafíoContra_(segundoEntrenador, primerEntrenador))                
-
-        pókemonsDelPrimerEntenadorPorRecorrer := resto(pókemonsDelPrimerEntenadorPorRecorrer)
-
-        pókemonsDelSegundoEntenadorPorRecorrer := resto(pókemonsDelSegundoEntenadorPorRecorrer)
-    }
-
-    return (choose primerEntrenador when (cantidadDeDesafíosGanadosPorElPrimerEntrenador > cantidadDeDesafíosGanadosPorElSegundoEntrenador)
-            segundoEntrenador when (cantidadDeDesafíosGanadosPorElSegundoEntrenador > cantidadDeDesafíosGanadosPorElPrimerEntrenador)
-            entrenadorMásAntiguoEntre_Y_(primerEntrenador, segundoEntrenador) otherwise 
+    cantidadDeDesafíosGanadosPorElSegundoEntrenador := cantidadTotalDeDesafíos - cantidadDeDesafíosGanadosPorElPrimerEntrenador
+    
+    return (
+             choose primerEntrenador when (cantidadDeDesafíosGanadosPorElPrimerEntrenador > cantidadDeDesafíosGanadosPorElSegundoEntrenador)
+             segundoEntrenador when (cantidadDeDesafíosGanadosPorElSegundoEntrenador > cantidadDeDesafíosGanadosPorElPrimerEntrenador)
+             entrenadorMásAntiguoEntre_Y_(primerEntrenador, segundoEntrenador) otherwise 
     )
 }
 

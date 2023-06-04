@@ -637,6 +637,45 @@ function elMásAntiguoEn_(entrenadores) {
 // batallas, o de haber empate en la cantidad de peleas ganadas, el de mayor
 // antigüedad.
 
+function entrenadorGanadorDeDesafíoEntre_Y_(primerEntrenador, segundoEntrenador) {
+    /*
+        PROPÓSITO:
+            * Describe al entrenador ganador del desafío entre los dos entrenadores dados.
+        PARÁMETROS:
+            * primerEntrenador:  Entrenador
+            * segundoEntrenador: Entrenador
+        TIPO: Entrenador
+        PRECONDICIONES:
+            * La lista de pókemons de los entrenadores dados no debe ser vacía.
+    */
+    
+    pókemonsDelPrimerEntenadorPorRecorrer  := lista(primerEntrenador)
+
+    cantidadDeDesafíosGanadosPorElPrimerEntrenador := 0
+
+    pókemonsDelSegundoEntenadorPorRecorrer := lista(segundoEntrenador)
+
+    cantidadDeDesafíosGanadosPorElSegundoEntrenador := 0
+
+    while (not esVacía(pókemonsDelPrimerEntenadorPorRecorrer) && not esVacía(pókemonsDelSegundoEntenadorPorRecorrer)) {
+        
+        cantidadDeDesafíosGanadosPorElPrimerEntrenador := cantidadDeDesafíosGanadosPorElPrimerEntrenador ++
+                        unoSi_CeroSino(es_ElGanadorDelDesafíoContra_(primerEntrenador, segundoEntrenador))
+
+        cantidadDeDesafíosGanadosPorElSegundoEntrenador := cantidadDeDesafíosGanadosPorElSegundoEntrenador ++       unoSi_CeroSino(es_ElGanadorDelDesafíoContra_(segundoEntrenador, primerEntrenador))                
+
+        pókemonsDelPrimerEntenadorPorRecorrer := resto(pókemonsDelPrimerEntenadorPorRecorrer)
+
+        pókemonsDelSegundoEntenadorPorRecorrer := resto(pókemonsDelSegundoEntenadorPorRecorrer)
+    }
+
+    return (choose primerEntrenador when (cantidadDeDesafíosGanadosPorElPrimerEntrenador > cantidadDeDesafíosGanadosPorElSegundoEntrenador)
+            segundoEntrenador when (cantidadDeDesafíosGanadosPorElSegundoEntrenador > cantidadDeDesafíosGanadosPorElPrimerEntrenador)
+            entrenadorMásAntiguoEntre_Y_(primerEntrenador, segundoEntrenador) otherwise 
+    )
+}
+
+
 
 
 // h) entrenadorGanadorDeDesafioEn_, que dada una lista de entrenadores,
@@ -769,7 +808,6 @@ function pókemonDeMayorNivelEntre_Y_(primerPókemon, segundoPókemon) {
         )
 }
 
-
 // l) ganadorDeDesafíoInteligenteDe_CombatesEntre_Y_, que dados un
 // número de combates y dos entrenadores, describe al entrenador ganador del
 // desafío inteligente entre ambos.
@@ -783,7 +821,8 @@ function pókemonDeMayorNivelEntre_Y_(primerPókemon, segundoPókemon) {
 // de combates por desafío y una lista de entrenadores, describe al entrenador
 // ganador del desafío inteligente entre todos los entrenadores dados.
 // El desafío inteligente entre varios entrenadores sigue la misma mecánica que el
-// común, pero
+// común, pero en el desafío entre cada par de entrenadores, se realiza un desafío
+// inteligente.
 
 
 // FUNCIONES AUXILIARES 🐱‍🏍

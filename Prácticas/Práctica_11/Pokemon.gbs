@@ -676,8 +676,6 @@ function entrenadorGanadorDeDesafíoEntre_Y_(primerEntrenador, segundoEntrenador
 }
 
 
-
-
 // h) entrenadorGanadorDeDesafioEn_, que dada una lista de entrenadores,
 // describe al entrenador ganador del desafío entre todos los entrenadores.
 // El desafío de cada par de entrenadores es idéntico al que se describió en el
@@ -686,9 +684,25 @@ function entrenadorGanadorDeDesafíoEntre_Y_(primerEntrenador, segundoEntrenador
 // hasta que no haya más entrenadores para competir. El ganador del desafío es el
 // entrenador que gana la última batalla.
 
+function entrenadorGanadorDeDesafioEn_(entrenadores) {
+    /*
+        PROPÓSITO:
+            * Describe al entrenador ganador del desafío entre todos los entrenadores de la lista dada.
+        PARÁMETROS:
+            * entrenadores: [Entrenador]
+        TIPO: Entrenador
+        PRECONDICIONES:
+            * La lista de entrenadores dada no debe ser vacía.
+    */
+    
+    entrenadorGanadorAlMomento := primero(entrenadores)
 
+    foreach entrenador in resto(entrenadores) {
+        entrenadorGanadorAlMomento := entrenadorGanadorDeDesafíoEntre_Y_(entrenadorGanadorAlMomento, entrenador)
+    }
 
-
+    return (entrenadorGanadorAlMomento)
+}
 
 // i) fuerzaTotalDe_, que dado un entrenador, describe el número que es la suma
 // de la fuerza de todos los Pókemon de ese entrenador.
@@ -823,7 +837,6 @@ function pókemonDeMayorNivelEntre_Y_(primerPókemon, segundoPókemon) {
 // El desafío inteligente entre varios entrenadores sigue la misma mecánica que el
 // común, pero en el desafío entre cada par de entrenadores, se realiza un desafío
 // inteligente.
-
 
 // FUNCIONES AUXILIARES 🐱‍🏍
 

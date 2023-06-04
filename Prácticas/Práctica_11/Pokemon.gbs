@@ -848,6 +848,28 @@ function pókemonDeMayorNivelEntre_Y_(primerPókemon, segundoPókemon) {
 // todos los Pókemon de la lista como en el desafío común, sino solamente la
 // cantidad dada. Nuevamente, gana el que más combates gana, y si hay empate,
 // el de mayor antigüedad.
+
+function ganadorDeDesafíoInteligenteDe_CombatesEntre_Y_(número, entrenador1, entrenador2) {
+    /*
+        PROPÓSITO:
+            * Describe al entrenador ganador del desafío inteligente entre los dos entrenadores dados.
+        PARÁMETROS:
+            * número: Número
+            * entrenador1: Entrenador
+            * entrenador2: Entrenador
+        TIPO: Entrenador
+        PRECONDICIONES:
+            * Cada entrenador debe tener al menos tantos pókemons en su lista como el número de combates que se pretende disputar.
+        OBSERVACIONES:
+            * Un desafío inteligente consiste solamente en la cantidad de combates dada.
+            * En cada combate el entrenador usa su mejor pókemon para esa jugada, que luego no vuelve a competir.
+            * Gana el que más combates gana, y si hay empate, el de mayor antigüedad.
+    */
+    
+    return ()
+}
+
+
 // m) ganadorDeDesafíoInteligenteDe_CombatesEn_, que dados un número
 // de combates por desafío y una lista de entrenadores, describe al entrenador
 // ganador del desafío inteligente entre todos los entrenadores dados.
@@ -855,7 +877,29 @@ function pókemonDeMayorNivelEntre_Y_(primerPókemon, segundoPókemon) {
 // común, pero en el desafío entre cada par de entrenadores, se realiza un desafío
 // inteligente.
 
-// FUNCIONES AUXILIARES 🐱‍🏍
+function ganadorDeDesafíoInteligenteDe_CombatesEn_(número, entrenadores) {
+    /*
+        PROPÓSITO:
+            * Describe al entrenador ganador del desafío inteligente entre todos los entrenadores dados.
+        PARÁMETROS:
+            * número: Número
+            * entrenadores: [Entrenador]
+        TIPO: Entrenador
+        PRECONDICIONES:
+            * La lista de entrenadores dada no debe ser vacía.
+            * Cada entrenador debe tener en su lista de pókemons al menos tantos pókemons como el número de combates dado. 
+    */
+    
+    ganadorDelDesafíoInteligenteAlMomento := primero(entrenadores)
+
+    foreach entrenador in resto(entrenadores) {
+        ganadorDelDesafíoInteligenteAlMomento := ganadorDeDesafíoInteligenteDe_CombatesEntre_Y_(número, ganadorDelDesafíoInteligenteAlMomento, entrenador)
+    }
+
+    return (ganadorDelDesafíoInteligenteAlMomento)
+}
+
+// FUNCIONES SÚPER AUXILIARES 🐱‍🏍
 
 function unoSi_CeroSino(condición) {
     /*

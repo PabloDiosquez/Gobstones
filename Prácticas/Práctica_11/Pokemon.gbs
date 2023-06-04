@@ -649,16 +649,35 @@ function entrenadorGanadorDeDesafíoEntre_Y_(primerEntrenador, segundoEntrenador
             * La lista de pókemons de los entrenadores dados no debe ser vacía.
     */
     
-    cantidadDeDesafíosGanadosPorElPrimerEntrenador  := cantidadDeDesafíosGanadosPor_Contra_(lista(primerEntrenador), lista(segundoEntrenador))
+    cantidadDePeleasPókemonGanadasPorElPrimerEntrenador  := cantidadDePeleasPókemonGanadasPor_Contra_(lista(primerEntrenador), lista(segundoEntrenador))
     
-    cantidadDeDesafíosGanadosPorElSegundoEntrenador := cantidadDeDesafíosGanadosPor_Contra_(lista(segundoEntrenador), lista(primerEntrenador))
+    cantidadDePeleasPókemonGanadasPorElSegundoEntrenador := cantidadDePeleasPókemonGanadasPor_Contra_(lista(segundoEntrenador), lista(primerEntrenador))
 
     return (
-             choose primerEntrenador when (cantidadDeDesafíosGanadosPorElPrimerEntrenador > cantidadDeDesafíosGanadosPorElSegundoEntrenador)
-             segundoEntrenador when (cantidadDeDesafíosGanadosPorElSegundoEntrenador > cantidadDeDesafíosGanadosPorElPrimerEntrenador)
+             choose primerEntrenador when (cantidadDePeleasPókemonGanadasPorElPrimerEntrenador > cantidadDePeleasPókemonGanadasPorElSegundoEntrenador)
+             segundoEntrenador       when (cantidadDePeleasPókemonGanadasPorElSegundoEntrenador > cantidadDePeleasPókemonGanadasPorElPrimerEntrenador)
              entrenadorMásAntiguoEntre_Y_(primerEntrenador, segundoEntrenador) otherwise 
     )
 }
+
+function cantidadDePeleasPókemonGanadasPor_Contra_(pókemons1, pókemons2) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de combates ganados por la primer lista de pókemons dada vs. la segunda lista de pókemons dada. 
+        PARÁMETROS:
+            * pókemons1: [Pókemon]
+            * pókemons2: [Pókemon]
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Pelean un pókemon de cada lista hasta que se acaben los Pókemon de una de ellos, resultando en batallas del primero con el primero, el segundo con el segundo, etc.
+            * En cada pelea entre dos Pókemon siempre gana el más fuerte, y si tienen igual fuerza, la pelea no cuenta para ninguno de los dos.
+    */
+    
+    return ()
+}
+
 
 
 // h) entrenadorGanadorDeDesafioEn_, que dada una lista de entrenadores,

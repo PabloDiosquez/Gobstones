@@ -674,10 +674,23 @@ function cantidadDePeleasPókemonGanadasPor_Contra_(pókemons1, pókemons2) {
             * Pelean un pókemon de cada lista hasta que se acaben los Pókemon de una de ellos, resultando en batallas del primero con el primero, el segundo con el segundo, etc.
             * En cada pelea entre dos Pókemon siempre gana el más fuerte, y si tienen igual fuerza, la pelea no cuenta para ninguno de los dos.
     */
-    
-    return ()
-}
 
+    pókemonsDeLaPrimerListaPorRecorrer  := pókemons1
+    pókemonsDeLaSegundaListaPorRecorrer := pókemons2
+
+    cantidadDePeleasGanadasPorLaPrimerListaAlMomento := 0
+
+    while (not esVacía(pókemonsDeLaPrimerListaPorRecorrer) && not esVacía(pókemonsDeLaSegundaListaPorRecorrer)) {
+        
+        cantidadDePeleasGanadasPorLaPrimerListaAlMomento := cantidadDePeleasGanadasPorLaPrimerListaAlMomento ++
+        unoSi_CeroSino(es_MásFuerteQue_(primero(pókemonsDeLaPrimerListaPorRecorrer), primero(pókemonsDeLaSegundaListaPorRecorrer)))
+
+        pókemonsDeLaPrimerListaPorRecorrer  := resto(pókemonsDeLaPrimerListaPorRecorrer)
+        pókemonsDeLaSegundaListaPorRecorrer := resto(pókemonsDeLaSegundaListaPorRecorrer)
+    }
+    
+    return (cantidadDePeleasGanadasPorLaPrimerListaAlMomento)
+}
 
 
 // h) entrenadorGanadorDeDesafioEn_, que dada una lista de entrenadores,

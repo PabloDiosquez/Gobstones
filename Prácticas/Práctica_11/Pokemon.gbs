@@ -648,12 +648,11 @@ function entrenadorGanadorDeDesafíoEntre_Y_(primerEntrenador, segundoEntrenador
         PRECONDICIONES:
             * La lista de pókemons de los entrenadores dados no debe ser vacía.
     */
-    cantidadTotalDeDesafíos := cantidadTotalDeDesafíosEntre_Y_(lista(primerEntrenador), lista(segundoEntrenador))
     
-    cantidadDeDesafíosGanadosPorElPrimerEntrenador := cantidadDeDesafíosGanadosPor_Contra_(lista(primerEntrenador), lista(segundoEntrenador))
+    cantidadDeDesafíosGanadosPorElPrimerEntrenador  := cantidadDeDesafíosGanadosPor_Contra_(lista(primerEntrenador), lista(segundoEntrenador))
+    
+    cantidadDeDesafíosGanadosPorElSegundoEntrenador := cantidadDeDesafíosGanadosPor_Contra_(lista(segundoEntrenador), lista(primerEntrenador))
 
-    cantidadDeDesafíosGanadosPorElSegundoEntrenador := cantidadTotalDeDesafíos - cantidadDeDesafíosGanadosPorElPrimerEntrenador
-    
     return (
              choose primerEntrenador when (cantidadDeDesafíosGanadosPorElPrimerEntrenador > cantidadDeDesafíosGanadosPorElSegundoEntrenador)
              segundoEntrenador when (cantidadDeDesafíosGanadosPorElSegundoEntrenador > cantidadDeDesafíosGanadosPorElPrimerEntrenador)

@@ -1,0 +1,113 @@
+type ProtectoraDeAnimales is record {
+/*
+    PROPÓSITO: Modela una entidad protectora de animales.
+    Inv. Rep.:
+    * No hay dos animales con el mismo nombre.
+    * No hay dos adoptantes con el mismo DNI
+    * No hay dos cuidadores con el mismo nombre
+    */
+
+    field animales // [Animal]
+    field cuidadores // [Cuidador]
+    field adopciones // [Adopcion]
+    field adoptantes // [Adoptante]
+}
+
+type Animal is record {
+/*
+    PROPÓSITO: Modela un Animal.
+    INV.REP:
+    * El campo nombre no puede estar
+    vacio
+    * mesesDeEdad es un número mayor o
+    igual a cero.
+    */
+
+    field nombre // String
+    field especie // Especie
+    field mesesDeEdad // Número
+    field vacunas // [Vacuna]
+    field enRecuperacion // Booleano
+}
+
+type Adopción is record {
+/*
+    PROPÓSITO: Modela una adopción.
+    INV.REP:
+    * El campo dniAdoptante no puede estar
+    vacio
+    * El campo nombreAnimal no puede estar
+    vacio
+    */
+
+    field dniAdoptante // String
+    field nombreAnimal // String
+    field fechaAdopcion // Fecha
+}
+
+type Cuidador is record {
+/*
+    PROPÓSITO: Modela un Cuidador.
+    INV.REP:
+    * El campo nombre no puede estar
+    vacío
+    * No hay dos animalesACargo
+    iguales
+    */
+
+    field nombre // String
+    field animalesACargo // [String]
+}
+
+type Especie is variant {
+/*
+    PROPÓSITO: Modela las especies de
+    animales.
+    */
+
+    case Perro {}
+    case Gato {}
+    case Conejo {}
+    case Pájaro {}
+}
+
+type TipoDeVacuna is variant {
+/*
+    PROPÓSITO: Modela los tipos de
+    vacunas.
+    */
+    case Antirrábica {}
+    case TripleFelina {}
+    case Polivalente {}
+    case Moquillo {}
+}
+
+type Adoptante is record {
+/*
+    PROPÓSITO: Modela los adoptantes.
+    INV.REP:
+    * El campo dni no puede estar vacío
+    * El campo teléfono no puede estar vacío
+    * El campo dirección no puede estar vacío
+    */
+
+    field dni // String
+    field teléfono // String
+    field dirección // String
+}
+
+type Vacuna is record {
+    /*
+    PROPÓSITO: Modela una Vacuna.
+    */
+    
+    field tipo // TipoDeVacuna
+    field fechaAplicacion //Fecha
+}
+
+// Punto 1)
+// Escriba la función protectoraConAnimalesVacunadosConAntirrabicaSiCorrespondeEn_ que dada una
+// protectora, describe la protectora con todos los animales que tienen más de 2 meses de edad con la Antirrábica
+// incluida en sus vacunas, esta vacuna se aplica una unica vez, si ya fue aplicada, no debe aplicarse nuevamente.
+// Para solucionar este problema puede hacer uso de la función primitiva contieneLaVacuna_En_, que dado un tipo
+// de vacuna y una lista de vacunas, indica si la vacuna con el tipo dado existe en la lista dada..

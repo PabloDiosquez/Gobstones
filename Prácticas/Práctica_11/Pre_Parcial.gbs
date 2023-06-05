@@ -125,7 +125,7 @@ function protectoraConAnimalesVacunadosConAntirrabicaSiCorrespondeEn_(protectora
     
     animalesDeMásDeDosMesesConLaAntirrábicaAlMomento := []
 
-    foreach animal in animales {
+    foreach animal in animales(protectora) {
         animalesDeMásDeDosMesesConLaAntirrábicaAlMomento := animalesDeMásDeDosMesesConLaAntirrábicaAlMomento ++
         singular_Si_(animal, _tieneMásDe_MesesDeEdad(animal, 2) && contieneLaVacuna_En_(Antirrábica, vacunas(animal)))
     }
@@ -159,3 +159,44 @@ function _tieneMásDe_MesesDeEdad(animal, meses) {
 // Como estrategia pensar una subtarea que dado un animal, reconoce la especie del animal y en base a esto evaluar
 // si tiene las vacunas necesarias para ser adoptado
 
+function nombreDeAnimalesDisponiblesParaAdopcionEn_(protectora) {
+    /*
+        PROPÓSITO:
+            * Describe una lista con los nombres de los animales que están aptos para ser adoptados en la protectora dada.
+        PARÁMETROS:
+            * protectora: ProtectoraDeAnimales
+        TIPO: [String]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    animalesAptosParaSerAdoptadosAlMomento := []
+
+    foreach animal in animales(protectora) {
+        animalesAptosParaSerAdoptadosAlMomento := animalesAptosParaSerAdoptadosAlMomento ++ 
+        singular_Si_(animal, _tieneMásDe_MesesDeEdad(animal, 2) && not enRecuperacion(animal) && ...)
+    }
+
+
+    return (nombresDe_(animalesAptosParaSerAdoptadosAlMomento))
+}
+
+function nombresDe_(animales) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de nombres de la lista de animales dada.
+        PARÁMETROS:
+            * animales: [Animal]
+        TIPO: [String]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    nombresDeLosAnimalesAlMomento := []
+
+    foreach animal in animales {
+        nombresDeLosAnimalesAlMomento := nombresDeLosAnimalesAlMomento ++ [nombre(animal)]
+    }
+
+    return (nombresDeLosAnimalesAlMomento)
+}

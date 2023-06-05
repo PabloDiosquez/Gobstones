@@ -100,7 +100,7 @@ type Vacuna is record {
     /*
     PROPÓSITO: Modela una Vacuna.
     */
-    
+
     field tipo // TipoDeVacuna
     field fechaAplicacion //Fecha
 }
@@ -110,4 +110,52 @@ type Vacuna is record {
 // protectora, describe la protectora con todos los animales que tienen más de 2 meses de edad con la Antirrábica
 // incluida en sus vacunas, esta vacuna se aplica una unica vez, si ya fue aplicada, no debe aplicarse nuevamente.
 // Para solucionar este problema puede hacer uso de la función primitiva contieneLaVacuna_En_, que dado un tipo
-// de vacuna y una lista de vacunas, indica si la vacuna con el tipo dado existe en la lista dada..
+// de vacuna y una lista de vacunas, indica si la vacuna con el tipo dado existe en la lista dada.
+
+function protectoraConAnimalesVacunadosConAntirrabicaSiCorrespondeEn_(protectora) {
+    /*
+        PROPÓSITO:
+            * Describe la protectora con todos los animales que tienen más de 2 meses de edad con la Antirrábica incluída en sus vacunas
+        PARÁMETROS:
+            * protectora: ProtectoraDeAnimales
+        TIPO: ProtectoraDeAnimales
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    animalesDeMásDeDosMesesConLaAntirrábicaAlMomento := []
+
+    foreach animal in animales {
+        animalesDeMásDeDosMesesConLaAntirrábicaAlMomento := animalesDeMásDeDosMesesConLaAntirrábicaAlMomento ++
+        singular_Si_(animal, _tieneMásDe_MesesDeEdad(animal, 2) && contieneLaVacuna_En_(Antirrábica, vacunas(animal)))
+    }
+
+    return (ProtectoraDeAnimales(protectora | animales <- animalesDeMásDeDosMesesConLaAntirrábicaAlMomento))
+}
+
+function _tieneMásDe_MesesDeEdad(animal, meses) {
+    /*
+        PROPÓSITO:
+            * Indica si la edad del animal dado es igual al número de meses dado.
+        PARÁMETROS:
+            * animal: Animal
+            * meses: Número
+        TIPO: Booleano
+        PRECONDICIONES:
+            * **meses** debe ser >= 0.
+    */
+    
+    return (mesesDeEdad(animal) == meses)
+}
+
+// Punto 2)
+// Escriba la función nombreDeAnimalesDisponiblesParaAdopcionEn_ que dada una protectora, describe una lista
+// con los nombres de los animales que están aptos para ser adoptados. Un animal está apto para ser adoptado
+// cuando tiene más de 2 meses de edad, no está en recuperación ,cuando entre sus vacunas tiene :
+// - Para los gatos: La antirrábica, la triple felina y la de moquillo
+// - Para los perros: la antirrábica, la polivalente y la del moquillo
+// - para los conejos: la antirrábica y el moquillo
+// - para los pájaros: ninguna.
+// Como estrategia pensar una subtarea que dado un animal, reconoce la especie del animal y en base a esto evaluar
+// si tiene las vacunas necesarias para ser adoptado
+

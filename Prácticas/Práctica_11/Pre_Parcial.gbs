@@ -174,11 +174,28 @@ function nombreDeAnimalesDisponiblesParaAdopcionEn_(protectora) {
 
     foreach animal in animales(protectora) {
         animalesAptosParaSerAdoptadosAlMomento := animalesAptosParaSerAdoptadosAlMomento ++ 
-        singular_Si_(animal, _tieneMásDe_MesesDeEdad(animal, 2) && not enRecuperacion(animal) && ...)
+        singular_Si_(animal, _tieneMásDe_MesesDeEdad(animal, 2) && not enRecuperacion(animal) && tiene_LasVacunasNecesariasParaSerAdoptado(animal))
     }
 
-
     return (nombresDe_(animalesAptosParaSerAdoptadosAlMomento))
+}
+
+function tiene_LasVacunasNecesariasParaSerAdoptado(animal) {
+    /*
+        PROPÓSITO:
+            * Indica si el animal dado tiene las vacunas necesarias para ser adoptado.
+        PARÁMETROS:
+            * animal: Animal
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose contieneLaVacuna_En_() && contieneLaVacuna_En_() when (es_Gato(animal))
+                   contieneLaVacuna_En_() && contieneLaVacuna_En_() when (es_Perro(animal))
+                   contieneLaVacuna_En_() && contieneLaVacuna_En_() when (es_Conejo(animal))
+                   es_UnPájaro(animal) otherwise 
+    )
 }
 
 function nombresDe_(animales) {

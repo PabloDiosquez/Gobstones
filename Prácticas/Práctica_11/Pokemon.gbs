@@ -3,7 +3,9 @@
 type TipoDePókemon is variant{
     /* 
     PROPÓSITO:
-        * Modelar los tipos de Pókemon posibles */
+        * Modelar los tipos de Pókemon posibles
+     */
+
     case Tierra {}
     case Agua {}
     case Fuego {}
@@ -32,7 +34,7 @@ type Pókemon is record {
 function _esMásFuerteQue_(pókemon1, pókemon2) {
     /*
         PROPÓSITO:
-            * Indica si el primer pókemon dado tiene más fuerza que el segundo dado.
+            * Indica si el primer pókemon dado tiene más fuerza que el segundo pókemon dado.
         PARÁMETROS:
             * pókemon1: Pókemon
             * pókemon2: Pókemon
@@ -69,13 +71,15 @@ function esDeMayorNivel_Que_(pókemon1, pókemon2) {
 function pókemon_PotenciadoEn_(pókemon, número) {
     /*
         PROPÓSITO:
-            * Describe el pókemon resultante de multiplicar la fuerza y el nivel del pókemon dado por el número dado.
+            * Describe el pókemon dado potenciado en **número**.
         PARÁMETROS:
             * pókemon: Pókemon
             * número: Número
         TIPO: Pókemon
         PRECONDICIONES:
             * **número** debe ser >= 0.
+        OBSERVACIONES:
+            * Potenciar un pókemon en el número dado implica multiplicar la fuerza y el nivel del pókemon por ese número.
     */
     
     return (
@@ -104,7 +108,7 @@ function pókemon_ConValoresDuplicados(pókemon) {
 }
 
 // e) pókemon_PotenciadoSiEsDeTipo_En(pokémon , tipo,n), que dado un
-// Pókemon, un tipo de Pókemon y un número, describe el Pokémon resultante de
+// pókemon, un tipo de pókemon y un número, describe el Pokémon resultante de
 // potenciar el dado en el número dado, solamente si es del tipo recibido, y el
 // original si no.
 
@@ -177,13 +181,14 @@ function pókemonDe_Entrenados_(pókemons, número) {
         TIPO: [Pókemon]
         PRECONDICIONES:
             * **número** debe ser >= 0.
+        OBSERVACIONES:
+            * Recorrido de transformación sobre la lista de pókemons dada.
     */
     
     pókemonsPotenciadosAlMomento := []
 
     foreach pókemon in pókemons {
-        pókemonsPotenciadosAlMomento := pókemonsPotenciadosAlMomento ++
-                                        [pókemon_PotenciadoEn_(pókemon, número)]
+        pókemonsPotenciadosAlMomento := pókemonsPotenciadosAlMomento ++ [pókemon_PotenciadoEn_(pókemon, número)]
     }
 
     return (pókemonsPotenciadosAlMomento)
@@ -202,6 +207,8 @@ function pókemonDe_DelTipo_(pókemons, tipoDado) {
         TIPO: [Pókemon]
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de filtrado sobre la lista de pókemons dada, en busca de los pókemons del tipo dado.
     */
     
     pókemonsDelTipoDadoAlMomento := []
@@ -227,6 +234,8 @@ function elMásFuerteDe_(pókemons) {
         TIPO: Pókemon
         PRECONDICIONES:
             * La lista de pókemons dada no debe ser vacía.
+        OBSERVACIONES:
+            * Recorrido de búsqueda de máximo (pókemon de nivel máximo) sobre la lista de pókemons dada
     */
     
     elMásFuerteAlMomento := primero(pókemons)
@@ -250,7 +259,7 @@ function elMásFuerteEntre_Y_(pókemon1, pókemon2) {
             * No tiene (es una función total).
     */
     
-    return (choose pókemon1 when(nivel(pókemon1) > nivel(pókemon2))
+    return (choose pókemon1 when (esDeMayorNivel_Que_(pókemon1, pókemon2))
                    pókemon2 otherwise
     )
 }
@@ -273,34 +282,14 @@ function pókemonDe_DelTipo_Duplicados(pókemons, tipo) {
             * No tiene (es una función total).
     */
     
-    pókemonsDelTipoDadoAlMomento := []
+    pókemonsDuplicadosDelTipoDadoAlMomento := []
 
     foreach pókemon in pókemons {
-        pókemonsDelTipoDadoAlMomento := pókemonsDelTipoDadoAlMomento ++ 
-                                        singular_Si_(pókemon, es_DelTipo_(pókemon, tipo))
+        pókemonsDuplicadosDelTipoDadoAlMomento := pókemonsDuplicadosDelTipoDadoAlMomento ++ 
+                                        [pókemon_PotenciadoSiEsDeTipo_En_(pókemon, tipo, 2)]
     }
 
-    return (pókemonsDe_Duplicados(pókemonsDelTipoDadoAlMomento))
-}
-
-function pókemonsDe_Duplicados(pókemons) {
-    /*
-        PROPÓSITO:
-            * Describe la lista que resulta de duplicar los valores de fuerza y nivel de cada pókemon de la lista dada.
-        PARÁMETROS:
-            * pókemons: [Pókemon]
-        TIPO: [Pókemon]
-        PRECONDICIONES:
-            * No tiene (es una función total).
-    */
-    
-    pókemonsDuplicadosAlMomento := []
-
-    foreach pókemon in pókemons {
-        pókemonsDuplicadosAlMomento := pókemonsDuplicadosAlMomento ++ [pókemon_ConValoresDuplicados(pókemon)]
-    }
-
-    return (pókemonsDebilitadosAlMomento)
+    return (pókemonsDuplicadosDelTipoDadoAlMomento)
 }
 
 
@@ -317,7 +306,9 @@ function elPókemonMásDébilDe_(pókemons) {
             * pókemons: [Pókemon]
         TIPO: Pókemon
         PRECONDICIONES:
-            * La lista de pókemons dada debe ser no vacía.
+            * La lista de pókemons dada no debe ser vacía.
+        * OBSERVACIONES:
+            Recorrido de búsqueda de mínimo (pókemon de nivel mínimo) sobre la lista de pókemons dada.
     */
     
     pókemonMásDébilAlMomento := primero(pókemons)
@@ -341,7 +332,7 @@ function elMásDébilEntre_Y_(pókemon1, pókemon2) {
             * No tiene (es una función total).
     */
     
-    return (choose pókemon1 when (nivel(pókemon1) < nivel(pókemon2))
+    return (choose pókemon1 when (not esDeMayorNivel_Que_(pokémon1, pókemon2))
                    pókemon2 otherwise
     )
 }
@@ -352,12 +343,15 @@ function elMásDébilEntre_Y_(pókemon1, pókemon2) {
 function pókemonsDebilitadosDe_(pókemons) {
     /*
         PROPÓSITO:
-            * Describe la lista de pókemons debilitados de la lista dada. 
+            * Describe la lista de pókemons debilitados contenidos en la lista dada. 
         PARÁMETROS:
             * pókemons: [Pókemon]
         TIPO: [Pókemon]
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * Un pókemon está debilitado si su fuerza es igual a cero.
+            * Recorrido de filtrado sobre la lista de pókemons dada. Se filtran los pókemons debilitados.
     */
 
     pókemonsDebilitadosAlMomento := []
@@ -397,7 +391,7 @@ function cantidadDePókemonSaludablesEn_(pókemons) {
         PRECONDICIONES:
             * No tiene (es una función total).
         OBSERVACIONES: 
-            * Recorrido de acumulación sobre la lista de pókemons dada.
+            * Recorrido de totalización sobre la lista de pókemons dada.
     */
     
     cantidadDePókemonSaludablesAlMomento := 0
@@ -419,9 +413,11 @@ function estáSaludable_(pókemon) {
         TIPO: Booleano
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * Un pókemon está saludable si no está debilitado.
     */
     
-    return (fuerza(pókemon) > 0)
+    return (not estáDebilitado_(pókemon))
 }
 
 
@@ -449,7 +445,7 @@ function existePókemonEn_ConFuerza_Tipo_YNivel_(pókemons, fuerza, tipo, nivel)
 
     pókemonsPorRecorrer := pókemons 
 
-    while (not esVacía(pókemonsPorRecorrer) && not _esDeTipo_ConFuerza_YNivel_(pókemon, tipo, fuerza, nivel)) {
+    while (not esVacía(pókemonsPorRecorrer) && not _esDeTipo_ConFuerza_YNivel_(primero(pókemons), tipo, fuerza, nivel)) {
         pókemonsPorRecorrer := resto(pókemonsPorRecorrer)
     }
     

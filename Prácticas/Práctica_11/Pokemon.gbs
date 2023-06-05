@@ -643,27 +643,23 @@ function entrenadorGanadorDeDesafíoEntre_Y_(primerEntrenador, segundoEntrenador
             * segundoEntrenador: Entrenador
         TIPO: Entrenador
         PRECONDICIONES:
-            * La lista de pókemons de los entrenadores dados no debe ser vacía.
+            * No tiene (es una función total).
     */
-    
-    cantidadDePeleasPókemonGanadasPorElPrimerEntrenador  := cantidadDePeleasPókemonGanadasPor_Contra_(lista(primerEntrenador), lista(segundoEntrenador))
-    
-    cantidadDePeleasPókemonGanadasPorElSegundoEntrenador := cantidadDePeleasPókemonGanadasPor_Contra_(lista(segundoEntrenador), lista(primerEntrenador))
 
     return (
-             choose primerEntrenador when (cantidadDePeleasPókemonGanadasPorElPrimerEntrenador > cantidadDePeleasPókemonGanadasPorElSegundoEntrenador)
-             segundoEntrenador       when (cantidadDePeleasPókemonGanadasPorElSegundoEntrenador > cantidadDePeleasPókemonGanadasPorElPrimerEntrenador)
+             choose primerEntrenador when (cantidadDePeleasPókemonGanadasPor_Contra_(lista(primerEntrenador), lista(segundoEntrenador)) > cantidadDePeleasPókemonGanadasPor_Contra_(lista(segundoEntrenador), lista(primerEntrenador)))
+             segundoEntrenador       when (cantidadDePeleasPókemonGanadasPor_Contra_(lista(segundoEntrenador), lista(primerEntrenador)) > cantidadDePeleasPókemonGanadasPor_Contra_(lista(primerEntrenador), lista(segundoEntrenador)))
              entrenadorMásAntiguoEntre_Y_(primerEntrenador, segundoEntrenador) otherwise 
     )
 }
 
-function cantidadDePeleasPókemonGanadasPor_Contra_(pókemons1, pókemons2) {
+function cantidadDePeleasPókemonGanadasPor_Contra_(primerListaDePókemons, segundaListaDePókemons) {
     /*
         PROPÓSITO:
-            * Describe la cantidad de combates ganados por la primer lista de pókemons dada vs. la segunda lista de pókemons dada. 
+            * Describe la cantidad de peleas ganadas por la primer lista de pókemons dada vs. la segunda lista de pókemons dada. 
         PARÁMETROS:
-            * pókemons1: [Pókemon]
-            * pókemons2: [Pókemon]
+            * primerListaDePókemons:  [Pókemon]
+            * segundaListaDePókemons: [Pókemon]
         TIPO: Número
         PRECONDICIONES:
             * No tiene (es una función total).
@@ -672,8 +668,8 @@ function cantidadDePeleasPókemonGanadasPor_Contra_(pókemons1, pókemons2) {
             * En cada pelea entre dos Pókemon siempre gana el más fuerte, y si tienen igual fuerza, la pelea no cuenta para ninguno de los dos.
     */
 
-    pókemonsDeLaPrimerListaPorRecorrer  := pókemons1
-    pókemonsDeLaSegundaListaPorRecorrer := pókemons2
+    pókemonsDeLaPrimerListaPorRecorrer  := primerListaDePókemons
+    pókemonsDeLaSegundaListaPorRecorrer := segundaListaDePókemons
 
     cantidadDePeleasGanadasPorLaPrimerListaAlMomento := 0
 
@@ -688,7 +684,6 @@ function cantidadDePeleasPókemonGanadasPor_Contra_(pókemons1, pókemons2) {
     
     return (cantidadDePeleasGanadasPorLaPrimerListaAlMomento)
 }
-
 
 // h) entrenadorGanadorDeDesafioEn_, que dada una lista de entrenadores,
 // describe al entrenador ganador del desafío entre todos los entrenadores.

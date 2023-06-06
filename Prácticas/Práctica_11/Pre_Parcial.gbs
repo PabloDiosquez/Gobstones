@@ -410,6 +410,7 @@ function _EstabaACargoDe_En_(animal, nombreCuidador, protectora) {
     return (not esVacía(cuidadoresPorRecorrer))
 }
 
+
 // Punto 4) (Extra)
 // Escriba la funcion animalesRecuperadosAdoptadosPor_En_ que dado una lista de dnis de adoptadores
 // comprometidos con la protectora y se ofrecieron a cuidar animales animales que aún no se recuperaron; y una

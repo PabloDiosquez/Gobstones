@@ -199,7 +199,7 @@ function _tieneMásDe_MesesDeEdad(animal, meses) {
 // - para los conejos: la antirrábica y el moquillo
 // - para los pájaros: ninguna.
 // Como estrategia pensar una subtarea que dado un animal, reconoce la especie del animal y en base a esto evaluar
-// si tiene las vacunas necesarias para ser adoptado
+// si tiene las vacunas necesarias para ser adoptado.
 
 function nombreDeAnimalesDisponiblesParaAdopcionEn_(protectora) {
     /*
@@ -210,6 +210,8 @@ function nombreDeAnimalesDisponiblesParaAdopcionEn_(protectora) {
         TIPO: [String]
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de filtrado de los nombres de los animales de la protectora aptos para ser adoptados.
     */
     
     animalesAptosParaSerAdoptadosAlMomento := []
@@ -239,25 +241,47 @@ function es_AptoParaSerAdoptado(animal) {
 function tiene_LasVacunasNecesariasParaSerAdoptado(animal) {
     /*
         PROPÓSITO:
-            * Indica de acuerdo al tipo del animal si éste tiene las vacunas necesarias para ser adoptado.
+            * Indica si el animal dado tiene las vacunas para ser adoptado, según los requerimientos de su especie.
         PARÁMETROS:
-            * tipo: TipoDeAnimal
+            * animal: Animal
         TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de búsqueda sobre la lista de tipos de vacunas necesarias para la adopción del animal dado.
+    */
+
+    vacunasNecesariasPorRecorrer := vacunasDe_NecesariasParaSerAdoptado(animal)
+
+    while (not esVacía(vacunasNecesariasPorRecorrer) && contieneLaVacuna_En_(primero(vacunasNecesariasPorRecorrer, vacunas(animal)))) {
+        vacunasNecesariasPorRecorrer := resto(vacunasNecesariasPorRecorrer)
+    }
+
+    return (esVacía(vacunasNecesariasPorRecorrer))
+}
+
+function vacunasDe_NecesariasParaSerAdoptado(animal) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de los tipos de vacunas necesarias para que el animal dado esté apto para ser adoptado, según los requerimientos de su especie.
+        PARÁMETROS:
+            * animal: Animal
+        TIPO: [TipoDeVacuna]
         PRECONDICIONES:
             * No tiene (es una función total).
     */
     
-    return (choose contieneLaVacuna_En_() && contieneLaVacuna_En_() when (tipo(animal) == Gato)
-                   contieneLaVacuna_En_() && contieneLaVacuna_En_() when (tipo(animal) == Perro)
-                   contieneLaVacuna_En_() && contieneLaVacuna_En_() when (tipo(animal) == Conejo)
-                   tipo(animal) == Pájaro otherwise 
+    return (choose [Antirrábica, TripleFelina, Moquillo] when (esGato(animal))
+                   [Antirrábica, Polivalente, Moquillo]  when (esPerro(animal))
+                   [Antirrábica, Moquillo]               when (esConejo(animal))
+                   []                                    otherwise 
     )
 }
 
 function nombresDe_(animales) {
     /*
         PROPÓSITO:
-            * Describe la lista de nombres de la lista de animales dada.
+            * Describe la lista de nombres de los animales dados.
         PARÁMETROS:
             * animales: [Animal]
         TIPO: [String]
@@ -272,4 +296,46 @@ function nombresDe_(animales) {
     }
 
     return (nombresDeLosAnimalesAlMomento)
+}
+
+function esGato(animal) {
+    /*
+        PROPÓSITO:
+            * Indica si el animal dado es un gato.
+        PARÁMETROS:
+            * animal: Animal
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (especie(animal) == Gato)
+}
+
+function esPerro(animal) {
+    /*
+        PROPÓSITO:
+            * Indica si el animal dado es un perro.
+        PARÁMETROS:
+            * animal: Animal
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (especie(animal) == Perro)
+}
+
+function esGato(animal) {
+    /*
+        PROPÓSITO:
+            * Indica si el animal dado es un conejo.
+        PARÁMETROS:
+            * animal: Animal
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (especie(animal) == Conejo)
 }

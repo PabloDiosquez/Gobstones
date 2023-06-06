@@ -354,7 +354,7 @@ function animalesDelCuidador_QueFueronAdoptadosEn_(nombreCuidador, protectora) {
             * protectora: ProtectoraDeAnimales
         TIPO: [Animal]
         PRECONDICIONES:
-            * **nombreCuidador** no debe ser vacío.
+            * Debe existir el cuidador con el nombre dado en la protectora.
     */
     
     animalesAdoptadosCuidadosPorElCuidadorDado := []
@@ -398,10 +398,9 @@ function _EstabaACargoDe_En_(animal, nombreCuidador, protectora) {
             * protectora: ProtectoraDeAnimales
         TIPO: Booleano
         PRECONDICIONES:
-            * **nombreCuidador** no puede ser vacío.
+            * Debe existir el cuidador con el nombre dado en la protectora.
     */
     
-
     cuidadoresPorRecorrer := cuidadores(protectora)
 
     while (not esVacía(cuidadoresPorRecorrer) && not contiene_A_(nombre(animal), animalesACargo(cuidador))) {
@@ -409,4 +408,24 @@ function _EstabaACargoDe_En_(animal, nombreCuidador, protectora) {
     }
 
     return (not esVacía(cuidadoresPorRecorrer))
+}
+
+// Punto 4) (Extra)
+// Escriba la funcion animalesRecuperadosAdoptadosPor_En_ que dado una lista de dnis de adoptadores
+// comprometidos con la protectora y se ofrecieron a cuidar animales animales que aún no se recuperaron; y una
+// protectora, describiendo una lista de esos animales que ahora se encuentran recuperados.
+
+function animalesRecuperadosAdoptadosPor_En_(dnisAdoptantes, protectora) {
+    /*
+        PROPÓSITO:
+            * 
+        PARÁMETROS:
+            * dnisAdoptadores: [Número]
+            * protectora: ProtectoraDeAnimales
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return ()
 }

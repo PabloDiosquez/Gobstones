@@ -115,28 +115,70 @@ type Vacuna is record {
 function protectoraConAnimalesVacunadosConAntirrabicaSiCorrespondeEn_(protectora) {
     /*
         PROPÓSITO:
-            * Describe la protectora con todos los animales que tienen más de 2 meses de edad con la Antirrábica incluída en sus vacunas
+            * Describe la protectora de animales con todos los animales que tienen más de 2 meses de edad con la Antirrábica incluída en sus vacunas.
         PARÁMETROS:
             * protectora: ProtectoraDeAnimales
         TIPO: ProtectoraDeAnimales
         PRECONDICIONES:
             * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de transformación sobre la lista de animales de la protectora.
     */
     
     animalesDeMásDeDosMesesConLaAntirrábicaAlMomento := []
 
     foreach animal in animales(protectora) {
         animalesDeMásDeDosMesesConLaAntirrábicaAlMomento := animalesDeMásDeDosMesesConLaAntirrábicaAlMomento ++
-        singular_Si_(animal, _tieneMásDe_MesesDeEdad(animal, 2) && contieneLaVacuna_En_(Antirrábica, vacunas(animal)))
+        [animal_VacunadoCon_Si_(animal, Antirrábica, _tieneMásDe_MesesDeEdad(animal, 2) && not contieneLaVacuna_En_(Antirrábica, vacunas(animal)))]
     }
 
     return (ProtectoraDeAnimales(protectora | animales <- animalesDeMásDeDosMesesConLaAntirrábicaAlMomento))
 }
 
+function animal_VacunadoCon_Si_(animal, tipoDeVacuna, condición) {
+    /*
+        PROPÓSITO:
+            * Describe el animal que resulta de aplicar la vacuna del tipo dado al animal dado si se cumple la condición dada; en caso contrario, describe al animal original.
+        PARÁMETROS:
+            * animal: Animal
+            * tipoDeVacuna: TipoDeVacuna
+            * condición: Booleano
+        TIPO: Animal
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose Animal(animal | vacunas <- 
+                                        vacunas(animal) ++ [vacunaDeTipo_En_(tipo, fechaActual())]) when (condición)
+                   animal otherwise
+    )
+    
+}
+
+function vacunaDeTipo_En_(tipoDeVacuna, fecha) {
+    /*
+        PROPÓSITO:
+            * Describe la vacuna del tipo dado en la fecha dada.
+        PARÁMETROS:
+            * tipo: TipoDeVacuna
+            * fecha: Fecha
+        TIPO: Vacuna
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (
+            Vacuna(
+                tipo <- tipoDeVacuna
+            ,   fechaAplicacion <- fecha
+         )
+    )
+}
+
 function _tieneMásDe_MesesDeEdad(animal, meses) {
     /*
         PROPÓSITO:
-            * Indica si la edad del animal dado es igual al número de meses dado.
+            * Indica si la edad del animal dado es mayor al número de meses dado.
         PARÁMETROS:
             * animal: Animal
             * meses: Número
@@ -145,7 +187,7 @@ function _tieneMásDe_MesesDeEdad(animal, meses) {
             * **meses** debe ser >= 0.
     */
     
-    return (mesesDeEdad(animal) == meses)
+    return (mesesDeEdad(animal) > meses)
 }
 
 // Punto 2)
@@ -174,16 +216,16 @@ function nombreDeAnimalesDisponiblesParaAdopcionEn_(protectora) {
 
     foreach animal in animales(protectora) {
         animalesAptosParaSerAdoptadosAlMomento := animalesAptosParaSerAdoptadosAlMomento ++ 
-        singular_Si_(animal, _tieneMásDe_MesesDeEdad(animal, 2) && not enRecuperacion(animal) && tiene_LasVacunasNecesariasParaSerAdoptado(animal))
+        singular_Si_(animal, es_AptoParaSerAdoptado(animal))
     }
 
     return (nombresDe_(animalesAptosParaSerAdoptadosAlMomento))
 }
 
-function tiene_LasVacunasNecesariasParaSerAdoptado(animal) {
+function es_AptoParaSerAdoptado(animal) {
     /*
         PROPÓSITO:
-            * Indica si el animal dado tiene las vacunas necesarias para ser adoptado.
+            * Indica si el animal dado es apto para ser adoptado.
         PARÁMETROS:
             * animal: Animal
         TIPO: Booleano
@@ -191,10 +233,24 @@ function tiene_LasVacunasNecesariasParaSerAdoptado(animal) {
             * No tiene (es una función total).
     */
     
-    return (choose contieneLaVacuna_En_() && contieneLaVacuna_En_() when (es_Gato(animal))
-                   contieneLaVacuna_En_() && contieneLaVacuna_En_() when (es_Perro(animal))
-                   contieneLaVacuna_En_() && contieneLaVacuna_En_() when (es_Conejo(animal))
-                   es_UnPájaro(animal) otherwise 
+    return (_tieneMásDe_MesesDeEdad(animal, 2) && not enRecuperacion(animal) && tiene_LasVacunasNecesariasParaSerAdoptado(animal))
+}
+
+function tiene_LasVacunasNecesariasParaSerAdoptado(animal) {
+    /*
+        PROPÓSITO:
+            * Indica de acuerdo al tipo del animal si éste tiene las vacunas necesarias para ser adoptado.
+        PARÁMETROS:
+            * tipo: TipoDeAnimal
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (choose contieneLaVacuna_En_() && contieneLaVacuna_En_() when (tipo(animal) == Gato)
+                   contieneLaVacuna_En_() && contieneLaVacuna_En_() when (tipo(animal) == Perro)
+                   contieneLaVacuna_En_() && contieneLaVacuna_En_() when (tipo(animal) == Conejo)
+                   tipo(animal) == Pájaro otherwise 
     )
 }
 

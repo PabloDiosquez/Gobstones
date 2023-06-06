@@ -339,3 +339,74 @@ function esGato(animal) {
     
     return (especie(animal) == Conejo)
 }
+
+// Punto 3)
+// Escriba la función animalesDelCuidador_QueFueronAdoptadosEn_ que dado el nombre de un cuidador y
+// una protectora, describe la lista de animales que fueron adoptados y estaban a cargo del cuidador dado. Tener en
+// cuenta que podrían existir cuidadores que aun no participaron de ninguna adopción.
+
+function animalesDelCuidador_QueFueronAdoptadosEn_(nombreCuidador, protectora) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de animales que fueron adoptados y que estaban a cargo del cuidador dado.
+        PARÁMETROS:
+            * nombreCuidador: String
+            * protectora: ProtectoraDeAnimales
+        TIPO: [Animal]
+        PRECONDICIONES:
+            * **nombreCuidador** no debe ser vacío.
+    */
+    
+    animalesAdoptadosCuidadosPorElCuidadorDado := []
+
+    foreach animal in animales(protectora) {
+        animalesAdoptadosCuidadosPorElCuidadorDado := animalesAdoptadosCuidadosPorElCuidadorDado ++
+        singular_Si_(animal, _FueAdoptadoEn_(animal, protectora) && _EstabaACargoDe_En_(animal, nombreCuidador, protectora))
+    }
+
+    return (animalesAdoptadosCuidadosPorElCuidadorDado)
+}
+
+function _FueAdoptadoEn_(animal, protectora) {
+    /*
+        PROPÓSITO:
+            * Indica si el animal figura en la lista de adopciones de la protectora.
+        PARÁMETROS:
+            * animal: Animal
+            * protectora: ProtectoraDeAnimales
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    adopcionesPorRecorrer := adopciones(protectora) 
+
+    while (not esVacía(adopcionesPorRecorrer) && nombreAnimal(primero(adopcionesPorRecorrer)) /= nombre(animal)) {
+        adopcionesPorRecorrer := resto(adopcionesPorRecorrer)
+    }
+
+    return (not esVacía(adopcionesPorRecorrer))
+}
+
+function _EstabaACargoDe_En_(animal, nombreCuidador, protectora) {
+    /*
+        PROPÓSITO:
+            * Indica si el animal dado estaba a cargo del cuidador de nombre dado en la protectora de animales dada.
+        PARÁMETROS:
+            * animal: Animal
+            * nombreCuidador: String
+            * protectora: ProtectoraDeAnimales
+        TIPO: Booleano
+        PRECONDICIONES:
+            * **nombreCuidador** no puede ser vacío.
+    */
+    
+
+    cuidadoresPorRecorrer := cuidadores(protectora)
+
+    while (not esVacía(cuidadoresPorRecorrer) && not contiene_A_(nombre(animal), animalesACargo(cuidador))) {
+        cuidadoresPorRecorrer := resto(cuidadores)
+    }
+
+    return (not esVacía(cuidadoresPorRecorrer))
+}

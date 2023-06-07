@@ -7,7 +7,7 @@ type ProtectoraDeAnimales is record {
     * No hay dos cuidadores con el mismo nombre
     */
 
-    field animales // [Animal]
+    field animales   // [Animal]
     field cuidadores // [Cuidador]
     field adopciones // [Adopcion]
     field adoptantes // [Adoptante]
@@ -412,21 +412,49 @@ function _EstabaACargoDe_En_(animal, nombreCuidador, protectora) {
 
 
 // Punto 4) (Extra)
-// Escriba la funcion animalesRecuperadosAdoptadosPor_En_ que dado una lista de dnis de adoptadores
-// comprometidos con la protectora y se ofrecieron a cuidar animales animales que aún no se recuperaron; y una
+// Escriba la funcion animalesRecuperadosAdoptadosPor_En_ que dado una lista de dnis de adoptantes
+// comprometidos con la protectora y que se ofrecieron a cuidar animales animales que aún no se recuperaron y una
 // protectora, describiendo una lista de esos animales que ahora se encuentran recuperados.
 
 function animalesRecuperadosAdoptadosPor_En_(dnisAdoptantes, protectora) {
     /*
         PROPÓSITO:
-            * 
+            * Describe una lista de animales que fueron adoptados por los adoptantes de dnis dados en la protectora dada y ahora se encuentran recuperados.
         PARÁMETROS:
             * dnisAdoptadores: [Número]
             * protectora: ProtectoraDeAnimales
-        TIPO: Tipo
+        TIPO: [Animal]
         PRECONDICIONES:
-            * ....
+            * Los dnis de los adoptantes dados deben figurar en las adopciones de la protectora dada.
     */
     
-    return ()
+    nombresAnimalesAdoptadosYRecuperadosAlMomento := []
+
+    foreach adopción in adopciones(protectora) {
+        nombresAnimalesAdoptadosYRecuperadosAlMomento := nombresAnimalesAdoptadosYRecuperadosAlMomento ++
+        singular_Si_(nombreAnimal(adopción), contiene_A_(dniAdoptante(adopción), dnisAdoptantes) && not estáElAnimalDeNombre_EnLaProtectora_EnRecuperación(nombreAnimal(adopción), protectora))
+    }
+
+    return (animalesDeNombres_EnLaProtectora_(nombresAnimalesAdoptadosYRecuperadosAlMomento, protectora))
+}
+
+function estáElAnimalDeNombre_EnLaProtectora_EnRecuperación(nombreAnimal, protectora) {
+    /*
+        PROPÓSITO:
+            * Indica si el animal de nombre dado está en recuperación en la protectora dada.
+        PARÁMETROS:
+            * nombreAnimal: String
+            * protectora: ProtectoraDeAnimales
+        TIPO: Booleano
+        PRECONDICIONES:
+            * **nombreAnimal** debe existir en la protectora dada.
+    */
+    
+    animalesPorVer := animales(protectora)
+
+    while (nombre(primero(animalesPorVer)) /= nombreAnimal) {
+        animalesPorVer := resto(animalesPorVer)
+    }
+
+    return (enRecuperacion(primero(animalesPorVer)))
 }

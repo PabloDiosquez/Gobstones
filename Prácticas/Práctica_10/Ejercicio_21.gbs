@@ -38,7 +38,7 @@ function subListaDe_Hasta_(lista, posición) {
         TIPO: [Elemento]
         PRECONDICIONES:
             * **posición** debe ser >= 0.
-            * **posición** debe ser menor a la longitud de la lista.
+            * **posición** debe ser menor o igual a la longitud de la lista.
     */
     
     elementosPorRecorrer := lista
@@ -47,7 +47,7 @@ function subListaDe_Hasta_(lista, posición) {
 
     listaDeElementosHasta := [] 
 
-    while(not esVacía(elementosPorRecorrer) && posiciónActual < posición){
+    while(posiciónActual < posición){
         listaDeElementosHasta := listaDeElementosHasta ++ [primero(elementosPorRecorrer)]
 
         elementosPorRecorrer := resto(elementosPorRecorrer)
@@ -67,7 +67,7 @@ function subListaDe_Desde_(lista, posición) {
             * posición: Número
         TIPO: [Elemento]
         PRECONDICIONES:
-            * **posición** debe ser >= 0.
+            * **posición** debe ser > -1.
             * **posición** debe ser menor a la longitud de la lista.
     */
     
@@ -96,7 +96,7 @@ function posiciónDe_enLaQueAparece_(lista, elemento) {
 
     posiciónAlMomento := 0
     
-    while (not esVacía(elementosPorRecorrer) && primero(elementosPorRecorrer) /= elemento) {
+    while (primero(elementosPorRecorrer) /= elemento) {
         posiciónAlMomento := posiciónAlMomento + 1
 
         elementosPorRecorrer := resto(elementosPorRecorrer)
@@ -113,10 +113,8 @@ function contiene_A_(lista, elemento) {
             * lista:   [Elemento]
             * elemento: Elemento
         TIPO: Booleano.
-        PRECONDICIONES:
-            * El elemento dado debe ser del mismo tipo que los elementos de la lista dada.
         OBSERVACIONES:
-            * Recorrido de búsqueda sobre la lista dada.
+            * Recorrido de búsqueda sobre la lista dada, buscando el elemento dado.
     */
     
     elementosPorMirar := lista

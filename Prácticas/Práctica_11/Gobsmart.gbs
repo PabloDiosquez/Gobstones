@@ -42,19 +42,87 @@ type Caja is record {
     * número > 0
     * facturado >= 0
     */
-    
+
     field número // Número
     field clientesEsperando // [Cliente]
     field aceptaPagos // [TipoDePago]
     field esRápida // Bool
     field facturado // Número
 }
+
 // 1. Armar ejemplos para visualizar el modelo y sus datos.
+
+
 // 2. Implementar las siguientes funciones:
 // a) cantidadDeClientesEsperandoEn_, que dada una caja, describe la
 // cantidad de clientes que están esperando en la misma.
+
+function cantidadDeClientesEsperandoEn_(caja) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de clientes que están esperando en la caja dada.
+        PARÁMETROS:
+            * caja: Caja
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de totalización sobre la lista de clientes de la caja dada, para contarlos.
+    */
+    
+    // clientesVistosAlMomento := 0
+
+    // foreach cliente in clientesEsperando(caja) {
+    //     clientesVistosAlMomento := clientesVistosAlMomento + 1
+    // }
+    // return (clientesVistosAlMomento)
+
+    return (longitudDe_(clientesEsperando(caja)))
+}
+
 // b) cajaMenosOcupadaDe_, que dada una lista de cajas describe la caja con
 // menos clientes esperando entre todas las de esa lista.
+
+function cajaMenosOcupadaDe_(cajas) {
+    /*
+        PROPÓSITO:
+            * Describe la caja con menos clientes esperando de la lista de cajas dadas.
+        PARÁMETROS:
+            * cajas: [Caja]
+        TIPO: Caja
+        PRECONDICIONES:
+            * La lista de cajas dada no debe ser vacía.
+        OBSERVACIONES:
+            * Recorrido de mínimos.
+    */
+    
+    cajaConMenosClientesEsperandoAlMomento := primero(cajas)
+
+    foreach caja in resto(cajas) {
+        cajaConMenosClientesEsperandoAlMomento := cajaConMenosClientesEsperandoEntre_Y_(cajaConMenosClientesEsperandoAlMomento, caja)
+    }
+    return (cajaConMenosClientesEsperandoAlMomento)
+}
+
+function cajaConMenosClientesEsperandoEntre_Y_(caja1, caja2) {
+    /*
+        PROPÓSITO:
+            * Describe la caja con menos clientes esperando entre las dos cajas dadas.
+        PARÁMETROS:
+            * caja1: Caja
+            * caja2: Caja
+        TIPO: Caja
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Describe la segunda caja si tienen la misma cantidad de clientes.
+    */
+    
+    return (choose caja1 when (cantidadDeClientesEsperandoEn_(caja1) < cantidadDeClientesEsperandoEn_(caja2))
+                   caja2 otherwise 
+    )
+}
+
 // c) gobsMart_conIngresoDe_aCaja_, que dada una lista de cajas, un cliente y
 // un número de caja, describe la misma lista de cajas pero actualizando la caja del
 // número dado para registrar que el cliente dado ingresó en la misma. Tener en
@@ -75,3 +143,24 @@ type Caja is record {
 // g) fila_ConAumentoDePrecioAMarolio, que dada una lista de clientes,
 // describe la lista de clientes dada donde se aumente en 10 pesos todos los
 // productos de la marca “Marolio” que tengan en su poder.
+
+
+// FUNCIONES AUXILIARES 🐱‍🚀
+
+function longitudDe_(lista) {
+    /*
+        PROPÓSITO:
+            * Describe la longitud de la lista dada.
+        PARÁMETROS:
+            * lista: [Elemento]
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    cantidadDeElementosAlMomento := 0
+    foreach elemento in lista {
+        cantidadDeElementosAlMomento := cantidadDeElementosAlMomento + 1
+    }
+    return (cantidadDeElementosAlMomento)
+}

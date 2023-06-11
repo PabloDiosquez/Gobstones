@@ -1,0 +1,77 @@
+// Los directivos del supermercado GobsMart nos piden modelar el funcionamiento de las cajas
+// de cobro en una sucursal. Para esto usaremos los siguientes tipos:
+
+type TipoDePago is variant {
+    /* PROP: 
+        * Modelar Tipos de pago aceptados.
+    */
+
+    case Tarjeta {}
+    case MartPago {}
+    case Efectivo {}
+}
+
+type Producto is record{
+    /* 
+    PROP: 
+        * Modelar productos.
+    INV.REP.: 
+        * precio > 0 
+    */
+
+    field nombre // String
+    field marca // String
+    field precio // Número
+}
+
+type Cliente is record {
+    /* PROP: 
+        * Modelar clientes.
+    */
+
+    field dni // String
+    field tipoDePago // TipoDePago
+    field productos // [Producto]
+}
+
+type Caja is record {
+    /* 
+    PROP: 
+    * Modelar cajas.
+    INV.REP.: 
+    * número > 0
+    * facturado >= 0
+    */
+    
+    field número // Número
+    field clientesEsperando // [Cliente]
+    field aceptaPagos // [TipoDePago]
+    field esRápida // Bool
+    field facturado // Número
+}
+// 1. Armar ejemplos para visualizar el modelo y sus datos.
+// 2. Implementar las siguientes funciones:
+// a) cantidadDeClientesEsperandoEn_, que dada una caja, describe la
+// cantidad de clientes que están esperando en la misma.
+// b) cajaMenosOcupadaDe_, que dada una lista de cajas describe la caja con
+// menos clientes esperando entre todas las de esa lista.
+// c) gobsMart_conIngresoDe_aCaja_, que dada una lista de cajas, un cliente y
+// un número de caja, describe la misma lista de cajas pero actualizando la caja del
+// número dado para registrar que el cliente dado ingresó en la misma. Tener en
+// cuenta que el cliente se debe agregar al final de la cola de espera.
+// d) gobsMart_conIngresosDe_, que dada una lista de cajas y una lista de
+// clientes, describe una lista de cajas actualizada, donde cada cliente de la lista
+// dada ingresó a una caja que acepta el medio de pago que posee, y que esté
+// menos ocupada en el momento que ingresa.
+// e) caja_conPrimeroFacturado, que dada una caja, describe la caja resultante
+// de facturar al primero de los clientes de la caja dada (o sea, el cliente se retiró y
+// la caja actualizó sus datos). Se puede suponer que el cliente eligió bien la caja
+// de acuerdo a su tipo de pago.
+// f) gobsMart_conCliente_cambiaACaja_, que dada una lista de cajas, el DNI
+// de un cliente y un número de caja, describe la lista de cajas actualizada, donde
+// el cliente con el DNI dado se cambió al número de caja dado. Se puede suponer
+// que existe un cliente con el DNI dado esperando en alguna de las cajas del
+// gobsMart.
+// g) fila_ConAumentoDePrecioAMarolio, que dada una lista de clientes,
+// describe la lista de clientes dada donde se aumente en 10 pesos todos los
+// productos de la marca “Marolio” que tengan en su poder.

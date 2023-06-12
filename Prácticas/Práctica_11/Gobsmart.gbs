@@ -326,6 +326,34 @@ function acepta_ElTipoDePago_(caja, tipoDePago) {
 // de facturar al primero de los clientes de la caja dada (o sea, el cliente se retiró y
 // la caja actualizó sus datos). Se puede suponer que el cliente eligió bien la caja
 // de acuerdo a su tipo de pago.
+
+function caja_conPrimeroFacturado(caja) {
+    /*
+        PROPÓSITO:
+            * Describe la caja resultante de actualizar el total facturado por el primer cliente de la caja dada.
+        PARÁMETROS:
+            * caja: Caja
+        TIPO: Caja
+        PRECONDICIONES:
+            * La lista de clientes esperando de la caja dada no debe ser vacía.
+        OBSERVACIONES:
+            * Se supone que el cliente eligió bien la caja de acuerdo a su tipo de pago.
+    */
+
+    primerCliente := primero(clientesEsperando(caja))
+
+    totalFacturadoPrimerCliente := 0
+
+    foreach producto in productos(primerCliente) {
+        totalFacturadoPrimerCliente := totalFacturadoPrimerCliente + precio(producto)
+    }
+    
+    return (Caja(caja | clientesEsperando <- resto(clientesEsperando)
+            ,           facturado <- facturado(caja) + totalFacturadoPrimerCliente)
+    )
+}
+
+
 // f) gobsMart_conCliente_cambiaACaja_, que dada una lista de cajas, el DNI
 // de un cliente y un número de caja, describe la lista de cajas actualizada, donde
 // el cliente con el DNI dado se cambió al número de caja dado. Se puede suponer

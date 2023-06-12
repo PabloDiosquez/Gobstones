@@ -353,12 +353,80 @@ function caja_conPrimeroFacturado(caja) {
     )
 }
 
-
 // f) gobsMart_conCliente_cambiaACaja_, que dada una lista de cajas, el DNI
 // de un cliente y un número de caja, describe la lista de cajas actualizada, donde
 // el cliente con el DNI dado se cambió al número de caja dado. Se puede suponer
 // que existe un cliente con el DNI dado esperando en alguna de las cajas del
 // gobsMart.
+
+function gobsMart_conCliente_cambiaACaja_(cajas, dni, nroCaja) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de cajas actualizada donde el cliente con el DNI dado, se cambió al número de caja dado de la lista de cajas dadas.
+        PARÁMETROS:
+            * cajas: [Caja]
+            * dni: String
+            * nroCaja: Número
+        TIPO: [Caja]
+        PRECONDICIONES:
+            * Existe un cliente con el DNI dado esperando en alguna de las cajas del gobsMart.
+            * Existe una caja con el número dado en el gobsMart.
+
+    */
+
+    cajasARecorrer := cajas
+
+    while(not clienteConDni_estáEnLaListaDeClientesDe_(primero(cajasARecorrer))) {
+        cajasARecorrer := resto(cajasARecorrer)
+    }
+    
+    return (gobsMart_conIngresoDe_aCaja_(cajas, clienteConDni_En_(dni, primero(cajasARecorrer)), nroCaja))
+}
+
+function clienteConDni_En_(dni, caja) {
+    /*
+        PROPÓSITO:
+            * Describe el cliente de DNI dado presente en la lista de clientes de la caja dada.
+        PARÁMETROS:
+            * dni: String
+            * caja: Caja
+        TIPO: Cliente
+        PRECONDICIONES:
+            * El DNI dado debe ser el de un cliente de la caja dada.
+    */
+    
+    clientesARecorrer := clientesEsperando(caja)
+
+    while (dni(primero(clientesARecorrer)) /= dni) {
+        clientesARecorrer := resto(clientesARecorrer)
+    }
+
+    return (primero(clientesARecorrer))
+}
+
+function clienteConDni_estáEnLaListaDeClientesDe_(dni, caja) {
+    /*
+        PROPÓSITO:
+            * Indica si el cliente de DNI dado está en la lista de clientes de la caja dada.
+        PARÁMETROS:
+            * dni: String
+            * caja: Caja
+        TIPO: Booleano
+        PRECONDICIONES:
+            * El DNI dado no debe ser vacío.
+    */
+    
+    clientesARecorrer := clientesEsperando(caja)
+
+    while (not esVacía(clientesARecorrer) && dni(primero(clientesARecorrer)) /= dni) {
+        clientesARecorrer := resto(clientesARecorrer)
+    }
+
+    return (not esVacía(clientesARecorrer))
+}
+
+
+
 // g) fila_ConAumentoDePrecioAMarolio, que dada una lista de clientes,
 // describe la lista de clientes dada donde se aumente en 10 pesos todos los
 // productos de la marca “Marolio” que tengan en su poder.

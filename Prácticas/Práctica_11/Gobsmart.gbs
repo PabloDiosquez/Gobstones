@@ -52,6 +52,71 @@ type Caja is record {
 
 // 1. Armar ejemplos para visualizar el modelo y sus datos.
 
+// Productos
+function botellaDeAguaVillaDelSur(){
+    /*  Proposito: describe un producto de agua.
+        Precondicion: ninguna.
+        Tipo: Producto*/
+    return(Producto(nombre <- "agua",
+                    marca  <- "Villa del Sur",
+                    precio <- 45))
+}
+
+function quesoFresco() {
+    return (Producto(
+        nombre <- "Queso fresco",
+        marca <- "La Serenísima",
+        precio <- 1000
+    ))
+}
+
+function arvejas() {
+    return (Producto(
+        nombre <- "Arvejas",
+        marca <- "Día",
+        precio <- 150
+    ))
+}
+
+function azucar() {
+    return (Producto(
+        nombre <- "Azucar",
+        marca <- "Marolio",
+        precio <- 500
+    ))
+}
+
+// Clientes
+
+function clienteJubilado() {
+    return (Cliente(
+        dni <- "123456",
+        tipoDePago <- Efectivo,
+        productos <- [quesoFresco(), arvejas()]
+    ))
+}
+
+function cliente1(){
+    /*  Proposito: describe un cliente.
+        Precondicion: ninguna.
+        Tipo: Cliente*/
+        return(Cliente( dni <- 31444,
+                        tipoDePago <- Tarjeta,
+                        productos <- [botellaDeAguaVillaDelSur(), azucar()]))
+}
+
+//Cajas
+
+function caja1(){
+    /*  Proposito: describe la Caja 1.
+        Precondicion: ninguna
+        Tipo: Caja*/
+    return(Caja( número <- 1
+                 clientesEsperando <- [cliente1(), clienteJubilado()]
+                 aceptaPagos <- [Tarjeta, MartPago,Efectivo]
+                 esRápida <- True
+                 facturado <- 2))
+}
 
 // 2. Implementar las siguientes funciones:
 // a) cantidadDeClientesEsperandoEn_, que dada una caja, describe la
@@ -127,10 +192,134 @@ function cajaConMenosClientesEsperandoEntre_Y_(caja1, caja2) {
 // un número de caja, describe la misma lista de cajas pero actualizando la caja del
 // número dado para registrar que el cliente dado ingresó en la misma. Tener en
 // cuenta que el cliente se debe agregar al final de la cola de espera.
+
+function gobsMart_conIngresoDe_aCaja_(cajas, cliente, nroCaja) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de cajas con el cliente dado agregado a la caja de número **nroCaja** de la lista dada.
+        PARÁMETROS:
+            * cajas: [Caja]
+            * cliente: Cliente
+            * nroCaja: Número
+        TIPO: [Caja]
+        PRECONDICIONES:
+            * **nroCaja** debe ser un número de las cajas en listaDeCajas.
+            * **cajas** debe tener al menos un elemento.
+            * Las cajas en **cajas** deben tener un número único.
+    */
+    
+    cajasARecorrer  := cajas
+    cajasObservadas := []
+
+    while (número(primero(cajasARecorrer)) /= nroCaja) {
+        cajasObservadas := cajasObservadas ++ [primero(cajasARecorrer)]
+        cajasARecorrer := resto(cajasARecorrer)
+    }
+    return (cajasObservadas ++ [caja_ConNuevoCliente(primero(cajasARecorrer), cliente)] ++ resto(cajasARecorrer))
+}
+
+function caja_ConNuevoCliente(caja, cliente) {
+    /*
+        PROPÓSITO:
+            * Describe una caja con el cliente dado agregado a su lista de clientes.
+        PARÁMETROS:
+            * caja: Caja
+            * cliente: Cliente
+        TIPO: Caja
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (Caja(caja | clientesEsperando <- clientesEsperando(caja) ++ [cliente]))
+}
+
 // d) gobsMart_conIngresosDe_, que dada una lista de cajas y una lista de
 // clientes, describe una lista de cajas actualizada, donde cada cliente de la lista
 // dada ingresó a una caja que acepta el medio de pago que posee, y que esté
 // menos ocupada en el momento que ingresa.
+
+function gobsMart_conIngresoDe_(cajas, clientes) {
+    /*
+        PROPÓSITO:
+            * Describe una lista de cajas actualizada, donde cada cliente de la lista dada ingresó a una caja de la lista de cajas dada que acepta el medio de pago que posee, y que esté menos ocupada en el momento que ingresa.
+        PARÁMETROS:
+            * cajas: [Caja]
+            * clientes: [Cliente]
+        TIPO: [Caja]
+        PRECONDICIONES:
+            * ....
+    */
+
+    cajasConNuevosClientes := clientes 
+
+    foreach cliente in clientes {
+        cajasConNuevosClientes := cajas_ConNuevoCliente_(cajasConNuevosClientes, cliente)
+    }
+    
+    return (cajasConNuevosClientes)
+}
+
+function cajas_ConNuevoCliente_(cajas, cliente) {
+    /*
+        PROPÓSITO:
+            * Describe una lista de cajas actualizada con el agregado de un nuevo cliente.
+        PARÁMETROS:
+            * cajas: [Caja]
+            * cliente: Cliente
+        TIPO: [Caja]
+        PRECONDICIONES:
+            * Al menos una caja de la lista de cajas debe aceptar el medio de pago del cliente dado.
+            * La lista de cajas debe tener al menos un elemento.
+            * Las cajas en la lista dada deben tener un número único.
+    */
+
+    cajaMenosOcupadaQueAceptaElTipoDePago := cajaMenosOcupadaDe_(cajasDe_ConTipoDePago_(cajas,tipoDePago(cliente)))
+    
+    return (gobsMart_conIngresoDe_aCaja_(cajas, cliente, número(cajaMenosOcupadaQueAceptaElTipoDePago)))
+}
+
+function cajasDe_ConTipoDePago_(cajas, tipoDePago) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de cajas de **cajas** que acepta el tipo de pago dado.
+        PARÁMETROS:
+            * cajas: [Caja]
+            * tipoDePago: TipoDePago
+        TIPO: [Caja]
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de filtrado sobre la lista de cajas dadas de aquellas que aceptan el tipo de pago dado.
+    */
+    
+    cajasConTipoDePagoDadoAlMomento := []
+
+    foreach caja in cajas {
+        cajasConTipoDePagoDadoAlMomento := cajasConTipoDePagoDadoAlMomento ++ singular_Si_(caja, acepta_ElTipoDePago_(caja, tipoDePago))
+    }
+
+    return (cajasConTipoDePagoDadoAlMomento)
+}
+
+function acepta_ElTipoDePago_(caja, tipoDePago) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    tiposDePagoAceptados := aceptaPagos(caja)
+
+    while (not esVacía(tiposDePagoAceptados) && primero(tiposDePagoAceptados) /= tipoDePago) {
+        tiposDePagoAceptados := resto(tiposDePagoAceptados)
+    }
+    return (not esVacía(tiposDePagoAceptados))
+}
+
+
 // e) caja_conPrimeroFacturado, que dada una caja, describe la caja resultante
 // de facturar al primero de los clientes de la caja dada (o sea, el cliente se retiró y
 // la caja actualizó sus datos). Se puede suponer que el cliente eligió bien la caja
@@ -163,4 +352,20 @@ function longitudDe_(lista) {
         cantidadDeElementosAlMomento := cantidadDeElementosAlMomento + 1
     }
     return (cantidadDeElementosAlMomento)
+}
+
+function singular_Si_(elemento, condición) {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (choose [elemento] when(condición)
+                   []         otherwise
+    )
 }

@@ -203,9 +203,9 @@ function gobsMart_conIngresoDe_aCaja_(cajas, cliente, nroCaja) {
             * nroCaja: Número
         TIPO: [Caja]
         PRECONDICIONES:
-            * **nroCaja** debe ser un número de las cajas en listaDeCajas.
-            * **cajas** debe tener al menos un elemento.
-            * Las cajas en **cajas** deben tener un número único.
+            * El número de caja dado debe ser un número de las cajas en listaDeCajas.
+            * La lista de cajas debe tener al menos un elemento.
+            * Las cajas en la lista dada deben tener un número único.
     */
     
     cajasARecorrer  := cajas
@@ -247,7 +247,8 @@ function gobsMart_conIngresoDe_(cajas, clientes) {
             * clientes: [Cliente]
         TIPO: [Caja]
         PRECONDICIONES:
-            * ....
+            * Al menos una caja de la lista de cajas debe aceptar el medio de pago del cliente dado.
+            * Las cajas en la lista dada deben tener un número único.
     */
 
     cajasConNuevosClientes := clientes 
@@ -303,14 +304,16 @@ function cajasDe_ConTipoDePago_(cajas, tipoDePago) {
 
 function acepta_ElTipoDePago_(caja, tipoDePago) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Indica si la caja dada acepta el tipo de pago dado.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
+            * caja: Caja
+            * tipoDePago: TipoDePago
         TIPO: Booleano
         PRECONDICIONES:
             * No tiene (es una función total).
     */
+
     tiposDePagoAceptados := aceptaPagos(caja)
 
     while (not esVacía(tiposDePagoAceptados) && primero(tiposDePagoAceptados) /= tipoDePago) {
@@ -318,7 +321,6 @@ function acepta_ElTipoDePago_(caja, tipoDePago) {
     }
     return (not esVacía(tiposDePagoAceptados))
 }
-
 
 // e) caja_conPrimeroFacturado, que dada una caja, describe la caja resultante
 // de facturar al primero de los clientes de la caja dada (o sea, el cliente se retiró y
@@ -356,13 +358,14 @@ function longitudDe_(lista) {
 
 function singular_Si_(elemento, condición) {
     /*
-        PROPÓSITO:  ....
+        PROPÓSITO:
+            * Describe la lista formada únicamente por el elemento dado si se cumple la condición dada; en caso contrario, describe la lista vacía.
         PARÁMETROS:
-            * parámetro1: tipo - descripción.
-            * parámetro2: tipo - descripción.
-        TIPO: Tipo
+            * elemento: Elemento
+            * condición: Booleano
+        TIPO: [Elemento]
         PRECONDICIONES:
-            * ....
+            * No tiene (es una función total).
     */
     
     return (choose [elemento] when(condición)

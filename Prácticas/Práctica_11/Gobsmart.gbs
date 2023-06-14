@@ -380,7 +380,30 @@ function gobsMart_conCliente_cambiaACaja_(cajas, dni, nroCaja) {
         cajasARecorrer := resto(cajasARecorrer)
     }
     
-    return (gobsMart_conIngresoDe_aCaja_(cajas, clienteConDni_En_(dni, primero(cajasARecorrer)), nroCaja))
+    return (gobsMart_conIngresoDe_aCaja_(gobsMart_SinClienteConDni_(cajas, dni), clienteConDni_En_(dni, primero(cajasARecorrer)), nroCaja))
+}
+
+function gobsMart_SinClienteConDni_(cajas, dni) {
+    /*
+        PROPÓSITO:
+            * Decribe la lista de cajas actualizada sin el cliente de DNI dado.
+        PARÁMETROS:
+            * cajas: [Caja]
+            * dni: String
+        TIPO: [Caja]
+        PRECONDICIONES:
+            * Existe un cliente con el DNI dado esperando en alguna de las cajas del gobsMart.
+            * El DNI dado debe ser el de uno de los clientes de las cajas de la lista de cajas dada.
+    */
+
+    cajasARecorrer  := cajas
+    cajasObservadas := []
+    while (dni(primero(clientesEsperando(primero(cajasARecorrer)))) /= dni) {
+        cajasObservadas := cajasObservadas ++ [primero(cajasARecorrer)]
+        cajasARecorrer  := resto(cajasARecorrer)
+    }
+
+    return (cajasObservadas ++ resto(cajasARecorrer))
 }
 
 function clienteConDni_En_(dni, caja) {
@@ -425,12 +448,69 @@ function clienteConDni_estáEnLaListaDeClientesDe_(dni, caja) {
     return (not esVacía(clientesARecorrer))
 }
 
-
-
 // g) fila_ConAumentoDePrecioAMarolio, que dada una lista de clientes,
 // describe la lista de clientes dada donde se aumente en 10 pesos todos los
 // productos de la marca “Marolio” que tengan en su poder.
 
+function fila_ConAumentoDePrecioAMarolio(clientes) {
+    /*
+        PROPÓSITO:
+            * Describe la lista de clientes dada en la que se aumentó en 10 pesos todos los productos de la marca “Marolio” que tengan en su poder. 
+        PARÁMETROS:
+            * [Cliente]
+        TIPO: [Cliente]
+        PRECONDICIONES:
+            * ....
+    */
+
+    clientesActualizados := []
+
+    foreach cliente in clientes {
+        clientesActualizados := clientesActualizados ++ [cliente_ConPrecioAumentadoEn_PesosEnProductosDeMarca_(cliente, 10, "Marolio")]
+    }
+
+    return (clientesActualizados)
+}
+
+function cliente_ConPrecioAumentadoEn_PesosEnProductosDeMarca_(cliente, pesos, marca) {
+    /*
+        PROPÓSITO:
+            * Describe el cliente con una lista de productos actualizada al aumentar en la cantidad dada los productos de la marca dada.
+        PARÁMETROS:
+            * cliente: Cliente
+            * pesos: Número
+            * marca: String
+        TIPO: Cliente
+        PRECONDICIONES:
+            * **pesos** debe ser mayor o igual a cero.
+    */
+    
+    productosActualizados := []
+
+    foreach producto in productos(cliente){
+        productosActualizados := productosActualizados ++ [precioDe_AumentadoEn_SiEsDeMarca_(producto, pesos, marca)]
+    }
+
+    return (Cliente(cliente | productos <- productosActualizados))
+}
+
+function precioDe_AumentadoEn_SiEsDeMarca_(producto, pesos, marca) {
+    /*
+        PROPÓSITO:
+            * Describe el producto con el precio aumentado en **pesos** pesos si es de marca **marca**; en caso contrario, describe el producto con el precio sin alterar.
+        PARÁMETROS:
+            * producto: Producto
+            * pesos: Número
+            * marca: String
+        TIPO: Producto
+        PRECONDICIONES:
+            * **pesos** debe ser mayor o igual a cero.
+    */
+    
+    return (choose Producto(producto | precio <- precio(producto) + pesos) when (marca(producto) == marca)
+                   producto otherwise
+    )
+}
 
 // FUNCIONES AUXILIARES 🐱‍🚀
 

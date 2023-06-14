@@ -455,62 +455,59 @@ function clienteConDni_estáEnLaListaDeClientesDe_(dni, caja) {
 function fila_ConAumentoDePrecioAMarolio(clientes) {
     /*
         PROPÓSITO:
-            * Describe la lista de clientes dada en la que se aumentó en 10 pesos todos los productos de la marca “Marolio” que tengan en su poder. 
+            * Describe la lista de clientes dada con un aumento en 10 pesos de todos los productos de la marca “Marolio” que tengan en su poder. 
         PARÁMETROS:
-            * [Cliente]
+            * clientes: [Cliente]
         TIPO: [Cliente]
         PRECONDICIONES:
-            * ....
+            * No tiene (es una función total).
     */
 
-    clientesActualizados := []
-
+    clientesConPreciosActualizados := []
     foreach cliente in clientes {
-        clientesActualizados := clientesActualizados ++ [cliente_ConPrecioAumentadoEn_PesosEnProductosDeMarca_(cliente, 10, "Marolio")]
+        clientesConPreciosActualizados := clientesConPreciosActualizados ++ [cliente_ConAumentoEnProductosDeMarca_En_Pesos(cliente, "Marolio", 10)]
     }
-
-    return (clientesActualizados)
+    return (clientesConPreciosActualizados)
 }
 
-function cliente_ConPrecioAumentadoEn_PesosEnProductosDeMarca_(cliente, pesos, marca) {
+function cliente_ConAumentoEnProductosDeMarca_En_Pesos(cliente, marca, pesos) {
     /*
         PROPÓSITO:
-            * Describe el cliente con una lista de productos actualizada al aumentar en la cantidad dada los productos de la marca dada.
+            * Describe el cliente dado con un aumento en **pesos** pesos de todos los productos de la marca dada que tenga en su poder.
         PARÁMETROS:
             * cliente: Cliente
-            * pesos: Número
             * marca: String
+            * pesos: Número
         TIPO: Cliente
         PRECONDICIONES:
-            * **pesos** debe ser mayor o igual a cero.
+            * **pesos** debe ser > 0.
     */
     
-    productosActualizados := []
-
+    productosConPreciosActualizados := []
     foreach producto in productos(cliente){
-        productosActualizados := productosActualizados ++ [precioDe_AumentadoEn_SiEsDeMarca_(producto, pesos, marca)]
+        productosConPreciosActualizados := productosConPreciosActualizados ++ [producto_ConPrecioAumentadoEn_SiEsDeMarca_(producto, pesos, marca)]
     }
 
-    return (Cliente(cliente | productos <- productosActualizados))
+    return (Cliente(cliente | productos <- productosConPreciosActualizados))
 }
 
-function precioDe_AumentadoEn_SiEsDeMarca_(producto, pesos, marca) {
+function producto_ConPrecioAumentadoEn_SiEsDeMarca_(producto, pesos, marca) {
     /*
         PROPÓSITO:
-            * Describe el producto con el precio aumentado en **pesos** pesos si es de marca **marca**; en caso contrario, describe el producto con el precio sin alterar.
+            * Describe el producto con el precio aumentado en **pesos** pesos si es de la marca dada; en caso contrario, describe el producto con el precio sin alterar.
         PARÁMETROS:
             * producto: Producto
             * pesos: Número
             * marca: String
         TIPO: Producto
         PRECONDICIONES:
-            * **pesos** debe ser mayor o igual a cero.
+            * **pesos** debe ser > 0.
     */
     
     return (choose Producto(producto | precio <- precio(producto) + pesos) when (marca(producto) == marca)
-                   producto otherwise
-    )
+                   producto otherwise)
 }
+
 
 // FUNCIONES AUXILIARES 🐱‍🚀
 

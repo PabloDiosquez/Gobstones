@@ -455,7 +455,7 @@ function clienteConDni_estáEnLaListaDeClientesDe_(dni, caja) {
 function fila_ConAumentoDePrecioAMarolio(clientes) {
     /*
         PROPÓSITO:
-            * Describe la lista de clientes dada con un aumento en 10 pesos de todos los productos de la marca “Marolio” que tengan en su poder. 
+            * Describe la lista de clientes dada, actualizada con un aumento en 10 pesos de todos los productos de la marca “Marolio” que tengan en su poder. 
         PARÁMETROS:
             * clientes: [Cliente]
         TIPO: [Cliente]
@@ -470,38 +470,37 @@ function fila_ConAumentoDePrecioAMarolio(clientes) {
     return (clientesConPreciosActualizados)
 }
 
-function cliente_ConAumentoEnProductosDeMarca_En_Pesos(cliente, marca, pesos) {
+function cliente_ConAumentoEnProductosDeMarca_En_Pesos(cliente, marca, cantidadDePesos) {
     /*
         PROPÓSITO:
-            * Describe el cliente dado con un aumento en **pesos** pesos de todos los productos de la marca dada que tenga en su poder.
+            * Describe el cliente dado con un aumento en **cantidadDePesos** pesos de todos los productos de la marca dada que tenga en su poder.
         PARÁMETROS:
             * cliente: Cliente
             * marca: String
-            * pesos: Número
+            * cantidadDePesos: Número
         TIPO: Cliente
         PRECONDICIONES:
-            * **pesos** debe ser > 0.
+            * **cantidadDePesos** debe ser > 0.
     */
     
     productosConPreciosActualizados := []
     foreach producto in productos(cliente){
-        productosConPreciosActualizados := productosConPreciosActualizados ++ [producto_ConPrecioAumentadoEn_SiEsDeMarca_(producto, pesos, marca)]
+        productosConPreciosActualizados := productosConPreciosActualizados ++ [producto_ConPrecioAumentadoEn_SiEsDeMarca_(producto, cantidadDePesos, marca)]
     }
-
     return (Cliente(cliente | productos <- productosConPreciosActualizados))
 }
 
-function producto_ConPrecioAumentadoEn_SiEsDeMarca_(producto, pesos, marca) {
+function producto_ConPrecioAumentadoEn_SiEsDeMarca_(producto, cantidadDePesos, marca) {
     /*
         PROPÓSITO:
-            * Describe el producto con el precio aumentado en **pesos** pesos si es de la marca dada; en caso contrario, describe el producto con el precio sin alterar.
+            * Describe el producto con el precio aumentado en **cantidadDePesos** pesos si es de la marca dada; en caso contrario, describe el producto con el precio sin alterar.
         PARÁMETROS:
             * producto: Producto
-            * pesos: Número
+            * cantidadDePesos: Número
             * marca: String
         TIPO: Producto
         PRECONDICIONES:
-            * **pesos** debe ser > 0.
+            * **cantidadDePesos** debe ser > 0.
     */
     
     return (choose Producto(producto | precio <- precio(producto) + pesos) when (marca(producto) == marca)

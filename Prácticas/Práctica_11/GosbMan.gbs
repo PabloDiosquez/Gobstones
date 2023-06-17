@@ -1,0 +1,21 @@
+// ATENCIÓN: No tiene que implementar las primitivas salvo que así lo indique el enunciado, pero si puede hacer
+// uso de ellas para solucionar todos los problemas planteados.
+
+// Primitivas 🤲🏼
+
+// procedure MoverGobsManAl_(dirección)
+// PROPÓSITO: Mueve a Gobs-Man a la celda vecina en la dirección “dirección”.
+// El cabezal queda sobre Gobs-Man.
+// PRECONDICIÓNES:
+// * Existe una celda vecina en dirección “dirección”.
+// * El cabezal se encuentra sobre Gobs-Man.
+// PARÁMETROS:
+// * dirección: Dirección - Indica hacia dónde se moverá Gobs-Man.
+
+// procedure LlevarGobsManAlBorde_(dirección)
+// PROPÓSITO: Mueve a Gobs-Man a la celda en el borde hacia la dirección
+// “dirección”. El cabezal queda sobre Gobs-Man.
+// PRECONDICIÓNES:
+// * El cabezal se encuentra sobre Gobs-Man.
+// PARÁMETROS:
+// * dirección: Dirección - Indica hacia dónde se moverá Gobs-Man.

@@ -3,7 +3,7 @@
 
 // Primitivas 🤲🏼
 
-// procedure MoverGobsManAl_(dirección)
+procedure MoverGobsManAl_(dirección)
 // PROPÓSITO: Mueve a Gobs-Man a la celda vecina en la dirección “dirección”.
 // El cabezal queda sobre Gobs-Man.
 // PRECONDICIÓNES:
@@ -12,7 +12,7 @@
 // PARÁMETROS:
 // * dirección: Dirección - Indica hacia dónde se moverá Gobs-Man.
 
-// procedure LlevarGobsManAlBorde_(dirección)
+procedure LlevarGobsManAlBorde_(dirección)
 // PROPÓSITO: Mueve a Gobs-Man a la celda en el borde hacia la dirección
 // “dirección”. El cabezal queda sobre Gobs-Man.
 // PRECONDICIÓNES:
@@ -26,7 +26,7 @@
 // todos los cocos del nivel. Para poder hacer esto, contamos con la siguiente primitiva adicional a las
 // anteriores:
 
-// procedure ComerCoco()
+procedure ComerCoco()
 // PROPÓSITO: Come el coco que hay en la celda actual.
 // PRECONDICIONES:
 // * Hay un coco en la celda actual.
@@ -100,5 +100,53 @@ procedure LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(direcciónPrincipal,
     else{
         LlevarGobsManAlBorde_(opuesto(direcciónPrincipal))
         MoverGobsManAl_(direcciónSecundaria)
+    }
+}
+
+// Ejercicio 2)
+// Gobs-Man también gusta de comer cerezas. En este caso queremos que Gobs-Man se coma absolutamente
+// todas las cerezas del nivel. Ojo, a diferencia de los cocos, las cerezas no están en todas las celdas, sino que
+// pueden aparecer en algunas celdas y en otras no, y nunca sabemos al arrancar un nivel en cuáles celdas
+// estarán las cerezas. Para implementar esto necesitaremos unas nuevas primitivas:
+
+procedure ComerCereza()
+// PROPÓSITO: Come la cereza que haya en la celda actual.
+// PRECONDICIONES:
+// * Hay una cereza en la celda actual.
+// * Gobs-Man está en la celda actual.
+
+function hayCereza()
+// PROPÓSITO: Indica cuando hay una cereza en la celda actual.
+// PRECONDICIÓN: Ninguna.
+
+// Ahora si, implementemos el procedimiento ComerTodasLasCerezasDelNivel(), que hace que Gobs-Man
+// se coma todas las cerezas del tablero. Note que los tableros iniciales posibles de este ejercicio no tienen
+// cocos, sino que en cada celda puede haber una cereza, o no haber nada.
+
+procedure ComerTodasLasCerezasDelNivel() {
+    /*
+        PROPÓSITO:
+            * Hace que GobsMan coma todas las cerezas del nivel.
+        PRECONDICIONES:
+            * El cabezal debe estar sobre GobsMan.
+    */
+
+    LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        ComerCerezaSiHay()
+        LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    ComerCerezaSiHay()
+}
+
+procedure ComerCerezaSiHay() {
+    /*
+        PROPÓSITO:
+            * Hace que GobsMan coma la cereza en la celda actual, si hay.
+        PRECONDICIONES:
+            * GobsMan debe estar en la celda actual.
+    */
+    if(hayCereza()){
+        ComerCereza()
     }
 }

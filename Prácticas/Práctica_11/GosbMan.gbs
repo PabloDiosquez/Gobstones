@@ -19,3 +19,86 @@
 // * El cabezal se encuentra sobre Gobs-Man.
 // PARÁMETROS:
 // * dirección: Dirección - Indica hacia dónde se moverá Gobs-Man.
+
+// Ejercicio 1)
+// Al comenzar un nuevo “nivel” del juego, en cada celda del tablero hay un “coco” (pequeños puntos amarillos)
+// que son el alimento natural de los seres como Gobs-Man. El objetivo de Gobs-Man es precisamente comerse
+// todos los cocos del nivel. Para poder hacer esto, contamos con la siguiente primitiva adicional a las
+// anteriores:
+
+// procedure ComerCoco()
+// PROPÓSITO: Come el coco que hay en la celda actual.
+// PRECONDICIONES:
+// * Hay un coco en la celda actual.
+// * Gobs-Man está en la celda actual.
+
+// Se desea implementar el procedimiento ComerTodosLosCocosDelNivel(), que hace que Gobs-Man se
+// coma absolutamente todos los cocos del nivel (tablero). Sabemos, por precondición de dicho procedimiento,
+// que hay un coco en cada celda del tablero (incluida en la que inicia Gobs-Man).
+
+procedure ComerTodosLosCocosDelNivel() {
+    /*
+        PROPÓSITO:
+            * Hace que GosbMan coma absolutamente todos los cocos del nivel. 
+        PRECONDICIONES:
+            * GobsMan está en la celda actual.
+            * Hay un coco en cada celda del tablero.
+    */
+    
+    LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        ComerCoco()
+        LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    ComerCoco()
+}
+
+procedure LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(direcciónPrincipal, direcciónSecundaria) {
+    /*
+        PROPÓSITO:
+            * Lleva a GobsMan a la primera celda en un recorrido de direcciones **direcciónPrincipal** y **direcciónSecundaria**.
+        PARÁMETROS:
+            * direcciónPrincipal: Dirección
+            * direcciónSecundaria: Dirección
+        PRECONDICIONES:
+            * GobsMan debe estar en la celda actual.
+    */
+    LlevarGobsManAlBorde_(opuesto(direcciónPrincipal))
+    LlevarGobsManAlBorde_(opuesto(direcciónSecundaria))
+}
+
+function myFunction(parámetro1, parámetro2) {
+    /*
+        PROPÓSITO:
+            * Indica si existe una celda siguiente en un recorrido de direcciones **direcciónPrincipal** y **direcciónSecundaria**.
+        PARÁMETROS:
+            * direcciónPrincipal: Dirección
+            * direcciónSecundaria: Dirección
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    return (puedeMover(direcciónPrincipal) || puedeMover(direcciónSecundaria))
+}
+
+procedure LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(direcciónPrincipal, direcciónSecundaria) {
+    /*
+        PROPÓSITO:
+            * Lleva a GosbMan a la siguiente celda en un recorrido de direcciones **direcciónPrincipal** y **direcciónSecundaria**.
+        PARÁMETROS:
+            * direcciónPrincipal: Dirección
+            * direcciónSecundaria: Dirección
+        PRECONDICIONES:
+            * GosbMan está en la celda actual.
+            * Debe existir una celda siguiente en el recorrido de direcciones dadas.
+    */
+    
+    if(puedeMover(direcciónPrincipal)){
+        MoverGobsManAl_(direcciónPrincipal)
+    }
+    else{
+        LlevarGobsManAlBorde_(opuesto(direcciónPrincipal))
+        MoverGobsManAl_(direcciónSecundaria)
+    }
+}

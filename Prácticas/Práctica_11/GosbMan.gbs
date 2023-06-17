@@ -305,7 +305,7 @@ procedure JugarNivel() {
 procedure MorirGobsManSiHayFantasmaSinoComerCerezaOComerCoco() {
     /*
         PROPÓSITO: 
-            * ...
+            * GobsMan muere en la celda actual si hay un fantasma. En caso contrario, GobsMan come una cereza o un coco, según sea el caso. 
         PRECONDICIONES:
             * GobsMan está en la celda actual y se encuentra vivo.
             * En la celda actual hay o bien un fantasma o bien una cereza o bien un coco.
@@ -317,3 +317,39 @@ procedure MorirGobsManSiHayFantasmaSinoComerCerezaOComerCoco() {
         ComerCerezaSiHaySinoComerCoco()
     }
 }
+
+// Ejercicio 8)
+// Que pasa si quiero que Gobs-Man ahora recorra en sentido inverso, es decir, partiendo en la esquina Sur y
+// Este, y yendo hacia el Norte y el Oeste. ¿Su solución permite cambiar fácilmente ese detalle? Si la respuesta
+// es negativa, piense alguna forma de lograrlo. Pista, el truco está en pasar información a los procedimientos
+// que realizan el recorrido celda a celda.
+
+procedure JugarNivel() {
+    /*
+        PROPÓSITO: 
+            * Hace que GobsMan recorra el nivel comiendo todos los cocos y las cerezas que pueda, hasta llegar a la última celda, a menos que se encuentre con un fantasma en alguna celda, en cuyo caso, muere en dicha celda y el juego finaliza.
+        PRECONDICIONES:
+            * GobsMan está en la celda actual y se encuentra vivo. 
+            * Debe haber un coco en cada celda del nivel, menos en aquellas en donde hay cerezas.
+    */
+    
+    LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(Oeste, Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Oeste, Norte) && not hayFantasma()) {
+        ComerCerezaSiHaySinoComerCoco()
+        LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(Oeste, Norte)
+    }
+    MorirGobsManSiHayFantasmaSinoComerCerezaOComerCoco()
+}
+
+// Ejercicio 9)
+// Queremos realizar el juego, y probar que funcionen nuestras soluciones, pero el diseñador gráfico ha
+// renunciado y no tenemos vestimentas ni primitivas que nos abstraiga de la representación, debemos
+// contentarnos con ver bolitas. Por suerte, todas nuestras soluciones anteriores asumen la existencia de ciertos
+// procedimientos y funciones primitivas, por lo que bastará implementar las mismas para tener andando
+// nuestro trabajo previo. Asumiremos la siguiente representación:
+// ● Gobs-Man estará representado por una bolita de color Azul si está vivo, y dos, si está muerto.
+// ● Un coco estará representado por una bolita de color Negro.
+// ● Una cereza estará representada por dos bolitas de color Rojo.
+// ● Un fantasma estará representado por cinco bolitas de color Verde.
+// Se pide entonces implemente cada uno de los procedimientos y funciones primitivas mencionados en esta
+// guía utilizando esta representación, y luego pruebe las soluciones que hicimos en papel, en la máquina.

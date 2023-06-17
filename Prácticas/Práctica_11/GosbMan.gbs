@@ -203,3 +203,74 @@ procedure ComerCerezaSiHaySinoComerCoco() {
         ComerCoco
     }
 }
+
+// Ejercicio 5)
+// Gobs-Man puede toparse en algún momento con un fantasma. Si lo hace, Gobs-Man sufre un paro cardíaco
+// que la hace morir en la celda en donde vió el espectro. Sabiendo que existen ahora las siguientes primitivas:
+
+procedure MorirGobsMan()
+// PROPÓSITO: Hace que Gobs-Man muera, dejando su cuerpo en la celda actual.
+// PRECONDICIONES:
+// * El cabezal se encuentra sobre Gobs-Man
+
+function hayFantasma()
+// PROPÓSITO: Indica cuando hay un fantasma en la celda actual.
+// PRECONDICIÓN: Ninguna.
+
+// ATENCIÓN: Note que una vez muerto Gobs-Man no puede moverse. Es decir, los procedimientos que mueven
+// a Gobs-Man tienen ahora una nueva precondición: Gobs-Man está vivo.
+
+// Se pide entonces hagamos una prueba sobre un nivel vacío (Es decir, en las celdas no hay cocos ni cerezas)
+// donde Gobs-Man deberá moverse desde la celda más al Oeste y al Sur, hacia la celda más al Norte y al Este.
+// Se garantiza que en algún lado del tablero habrá un fantasma, y Gob-Man debe morir en la celda en donde
+// encuentre el mismo. Realice entonces el procedimiento RecorrerNivelMuriendoEnElFantasma().
+
+procedure RecorrerNivelMuriendoEnElFantasma() {
+    /*
+        PROPÓSITO:
+            * Hace que GobsMan recorra el nivel, muriendo en la celda donde encuentra a un fantasma.
+        PRECONDICIONES:
+            * GosbMan está en la celda actual y se encuentra vivo.
+            * Debe haber un fantasma en al menos alguna de las celdas del nivel.
+    */
+    
+    LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (not hayFantasma()) {
+        LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    MorirGobsMan()
+}
+
+// Ejercicio 6)
+// Si bien hemos logrado que Gobs-Man muera en el lugar correcto, también se desea contemplar los niveles en
+// donde tal vez no haya un fantasma. Es decir, ahora queremos volver a recorrer el nivel, pero esta vez, no
+// tenemos la certeza de que hay un fantasma en el nivel. Si hay uno, Gobs-Man deberá morir allí, sino, Gobs-Man
+// deberá quedar vivo en la última celda del recorrido. Realice entonces el procedimiento
+// RecorrerNivelMuriendoSiHayFantasma() que solucione dicho problema. 
+
+procedure RecorrerNivelMuriendoSiHayFantasma() {
+    /*
+        PROPÓSITO:
+            * Hace que GobsMan recorra el nivel, muriendo en caso de encontrarse con un fantasma.
+        PRECONDICIONES:
+            * GosbMan está en la celda actual y se encuentra vivo.
+    */
+
+    LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte) && not hayFantasma()) {
+        LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    MorirGobsManSiHayFantasma()
+}
+
+procedure MorirGobsManSiHayFantasma() {
+    /*
+        PROPÓSITO:
+            * Hace que GobsMan muera en la celda actual si hay un fantasma en la misma.
+        PRECONDICIONES:
+            * GobsMan está en la celda actual y se encuentra vivo.
+    */
+    if(hayFantasma()){
+        MorirGobsMan()
+    }
+}

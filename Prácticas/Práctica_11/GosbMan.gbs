@@ -39,9 +39,9 @@ procedure ComerCoco()
 procedure ComerTodosLosCocosDelNivel() {
     /*
         PROPÓSITO:
-            * Hace que GosbMan coma absolutamente todos los cocos del nivel. 
+            * Comer absolutamente todos los cocos del nivel. GobsMan termina en alguna celda indefinida del tablero.
         PRECONDICIONES:
-            * GobsMan está en la celda actual.
+            * El cabezal se encuentra sobre GobsMan.
             * Hay un coco en cada celda del tablero.
     */
     
@@ -272,5 +272,48 @@ procedure MorirGobsManSiHayFantasma() {
     */
     if(hayFantasma()){
         MorirGobsMan()
+    }
+}
+
+// Ejercicio 7)
+// En este ejercicio queremos integrar todas nuestras soluciones al momento. Aunque probablemente no
+// podamos reutilizar el código, si podremos reutilizar las ideas de lo que venimos trabajando.
+// En este caso, el nivel comienza con un coco en cada celda, menos en las que hay cerezas, y tal vez, algún
+// fantasma en alguna celda del tablero. Gobs-Man debe comer todos los cocos y cerezas que pueda, partiendo
+// esta vez de la esquina Norte y Oeste, y yendo hacia el Sur y el Este. Al finalizar el nivel, Gobs-Man debe quedar
+// en dicha esquina, si es que no se cruzó con ningún fantasma. Si por el contrario el nivel tiene un fantasma,
+// Gobs-Man deberá comer todo lo que tenga en el camino, hasta que se tope con el espectro, donde morirá y
+// terminará el juego. Implemente entonces JugarNivel() que realice lo mencionado.
+
+procedure JugarNivel() {
+    /*
+        PROPÓSITO: 
+            * Hace que GobsMan recorra el nivel comiendo todos los cocos y las cerezas que pueda, hasta llegar a la última celda, a menos que se encuentre con un fantasma en alguna celda, en cuyo caso, muere en dicha celda y el juego finaliza.
+        PRECONDICIONES:
+            * GobsMan está en la celda actual y se encuentra vivo. 
+            * Debe haber un coco en cada celda del nivel, menos en aquellas en donde hay cerezas.
+    */
+    
+    LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(Este, Sur)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Sur) && not hayFantasma()) {
+        ComerCerezaSiHaySinoComerCoco()
+        LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(Este, Sur)
+    }
+    MorirGobsManSiHayFantasmaSinoComerCerezaOComerCoco()
+}
+
+procedure MorirGobsManSiHayFantasmaSinoComerCerezaOComerCoco() {
+    /*
+        PROPÓSITO: 
+            * ...
+        PRECONDICIONES:
+            * GobsMan está en la celda actual y se encuentra vivo.
+            * En la celda actual hay o bien un fantasma o bien una cereza o bien un coco.
+    */
+    if(hayFantasma()){
+        MorirGobsMan()
+    }
+    else{
+        ComerCerezaSiHaySinoComerCoco()
     }
 }

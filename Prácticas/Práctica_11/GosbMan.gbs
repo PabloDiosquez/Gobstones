@@ -150,3 +150,56 @@ procedure ComerCerezaSiHay() {
         ComerCereza()
     }
 }
+
+// Ejercicio 3)
+// Para este ejercicio queremos trabajar sobre niveles que tienen tanto cerezas como cocos. En nuestros tableros iniciales habrá cocos en todas las celdas, y en algunas habrá adicionalmente una cereza. Gobs-Man quiere comerse absolutamente todo lo que encuentre en el nivel, y nosotros debemos determinar cómo se realiza entonces el código de ComerTodoLoQueSeEncuentreEnElNivel().
+
+procedure ComerTodoLoQueSeEncuentreEnElNivel() {
+    /*
+        PROPÓSITO:
+            * Hace que GobsMan coma absolutamente todo lo que hay en el nivel (tanto cocos como cerezas).
+        PRECONDICIONES:
+            * GobsMan debe estar en la celda actual.
+            * Hay un coco en cada celda del nivel.
+    */
+    ComerTodosLosCocosDelNivel()
+    ComerTodasLasCerezasDelNivel()
+}
+
+// Ejercicio 4)
+// El programador del juego ha decidido hacer unos pequeños retoques a cómo inician los niveles. Ahora, en todas las celdas hay cocos, menos en aquellas donde hay una cereza. Es decir, en cada celda puede, o bien haber una cereza, o bien haber un coco (solo estará vacía la celda cuando Gobs-Man se haya comido todo lo de la celda, nunca al inicio del nivel). Debemos entonces volver a realizar ComerTodoLoQueSeEncuentreEnElNivel(), y en este caso, la solución no es tan sencilla como en el ejercicio anterior.
+
+// ATENCIÓN: Note que no dispone de una primitiva “hayCoco” para solucionar el problema. Si su estrategia está realizada utilizando dicha primitiva, entonces es incorrecta.
+
+procedure ComerTodoLoQueSeEncuentreEnElNivel() {
+    /*
+        PROPÓSITO:
+            * Hace que GobsMan coma absolutamente todo lo que hay en el nivel (tanto cocos como cerezas).
+        PRECONDICIONES:
+            * GobsMan debe estar en la celda actual.
+            * En cada celda del nivel debe haber o bien un coco o bien una cereza, pero no ambos a la vez.
+    */
+    
+    LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        ComerCerezaSiHaySinoComerCoco()
+        LlevarAGobsManALaSiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    ComerCerezaSiHaySinoComerCoco()
+}
+
+procedure ComerCerezaSiHaySinoComerCoco() {
+    /*
+        PROPÓSITO: 
+            * Hace que GobsMan coma la cereza de la celda actual, si es que hay; en caso contrario, GobsMan come el coco.
+        PRECONDICIONES:
+            * GobsMan debe estar en la celda actual.
+            * En la celda actual debe existir o bien un coco o bien una cereza, pero no ambos a la vez.
+    */
+    if(hayCereza()){
+        ComerCereza()
+    }
+    else{
+        ComerCoco
+    }
+}

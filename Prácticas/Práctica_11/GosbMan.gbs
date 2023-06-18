@@ -211,7 +211,7 @@ procedure ComerCerezaSiHaySinoComerCoco() {
 procedure MorirGobsMan()
 // PROPÓSITO: Hace que Gobs-Man muera, dejando su cuerpo en la celda actual.
 // PRECONDICIONES:
-// * El cabezal se encuentra sobre Gobs-Man
+// * El cabezal se encuentra sobre Gobs-Man.
 
 function hayFantasma()
 // PROPÓSITO: Indica cuando hay un fantasma en la celda actual.
@@ -371,4 +371,26 @@ procedure LlevarGobsManAlBorde_(dirección) {
 procedure ComerCoco() {
     /*...*/
     Sacar(Negro)
+}
+
+procedure ComerCereza() {
+    /*...*/
+    Sacar(Rojo)
+    Sacar(Rojo)
+}
+
+function hayCereza() {
+    /*...*/
+    return (nroBolitas(Rojo) == 2)
+}
+
+procedure MorirGobsMan() {
+    /*...*/
+    Poner(Azul)
+}
+
+function hayFantasma() {
+    /*...*/
+    
+    return (nroBolitas(Verde) == 5)
 }

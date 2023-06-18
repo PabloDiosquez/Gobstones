@@ -111,11 +111,9 @@ procedure ComerLoQueHayEnLaCeldaYMostrarPuntos() {
             * Ms. GobsMan debe estar en la celda actual.
     */
     puntajeAObtenerEnLaCeldaActual := puntajeAObtenerEnCeldaActual()
-
     ComerCocoSiHay()
     ComerCerezaSiHay()
     ComerFrutillaSiHay()
-
     Mostrar_PuntosEnPantalla(puntajeAObtenerEnLaCeldaActual)
 }
 
@@ -152,5 +150,91 @@ procedure ComerFrutillaSiHay() {
     */
     if(hayFrutilla()){
         ComerFrutilla()
+    }
+}
+
+// Ejercicio 13)
+// Se desea saber cuántos puntos es posible obtener en un nivel determinado. Esto dependerá por supuesto de
+// la cantidad de celdas que haya en dicho nivel, así como de que haya en cada celda (cocos, cerezas, frutillas,
+// combinaciones de estas o nada). Se pide entonces realice la función cantidadDePuntosEnElNivel()
+// que indique la cantidad total de puntos que se pueden obtener en el nivel. Por ejemplo, en el siguiente nivel se
+// obtienen 18700 puntos (considerando que en el lugar en donde inicia Ms. Gobs-Man no hay nada). Puede
+// asumir que el cabezal se encuentra sobre Ms. Gobs-Man.
+
+// Atención: Para calcular los puntos no es necesario mover a Ms. Gobs-Man, sino sólo el cabezal. Sin embargo,
+// si movemos a Ms. Gobs-Man tampoco representará un problema, pues las funciones no tienen efecto, sino
+// que describen valores.
+
+function cantidadDePuntosEnElNivel() {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de puntos que se pueden obtener en el nivel dado.
+        TIPO: Número.
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * Recorrido de acumulación sobre las celdas del nivel, acumulando la cantidad de puntos que se pueden obtener en cada celda.
+    */
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    puntajeAlMomento := puntajeAObtenerEnCeldaActual()
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)){
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+        puntajeAlMomento:= puntajeAlMomento + puntajeAObtenerEnCeldaActual()
+    }
+    return (puntajeAlMomento)
+}
+
+
+// FUNCIONES AUXILIARES 🐱‍🏍
+
+// a.
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Ubica el cabezal en el inicio de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+// b.
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Indica si existe una celda siguiente en un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - La primera dirección del recorrido.
+            * dirSecundaria: Dirección - La segunda dirección del recorrido.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */  
+    return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+// c.
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Mueve el cabezal a la siguiente celda de un recorrido de direcciones **dirPrincipal** y **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección - Describe la primera dirección del recorrido.
+            * dirSecundaria: Dirección - Describe la segunda dirección del recorrido.
+        PRECONDICIONES:
+            * Debe existir al menos una celda siguiente en el recorrido.
+            * Las direcciones dadas no deben ser ni iguales ni opuestas.
+    */
+    if (puedeMover(dirPrincipal)){
+        Mover(dirPrincipal)
+    }
+    else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
     }
 }

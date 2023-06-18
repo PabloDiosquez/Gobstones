@@ -35,3 +35,122 @@ function puntajeAObtenerEnCeldaActual() {
                    0    otherwise 
     )
 }
+
+// Ejercicio 11)
+// Se nos plantea ahora que además de cerezas y cocos, las celdas pueden contener frutillas (O fresas, si
+// prefiere). Las frutillas otorgan 500 puntos solamente, pero pueden encontrarse en cualquier celda.
+// Debe replantear la función puntajeAObtenerEnCeldaActual() para tener en cuenta dicha situación. Si su
+// estrategia anterior fue buena, entonces este cambio no debería redundar en demasiado trabajo. Si por el
+// contrario la solución no fue buena, le llevará más esfuerzo (Si fuera este último caso, lo invitamos a repensar
+// si está separando el problema en las subtareas correctas, o ver si puede realizar más). Ah, por cierto, casi se
+// nos olvida, también cuenta con la primitiva siguiente:
+
+function hayFrutilla()
+// PROPÓSITO: Indica cuando hay una frutilla en la celda actual.
+// PRECONDICIÓNES: Ninguna.
+
+// Atención: Piense si su solución escala correctamente si hubieran otras tres posibles frutas (ej. naranjas,
+// bananas y manzanas)
+
+function puntajeAObtenerEnCeldaActual() {
+    /*
+        PROPÓSITO:
+            * Describe el puntaje que obtiene Ms. GobsMan si come todo lo que hay la celda actual.
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * La celda puede tener un coco, una cereza, ambos o estar vacía.
+            * Un coco otorga 100 puntos y una cereza otorga 2000.
+    */
+    
+    return (choose 2600 when  (hayCoco() && hayCereza() && hayFrutilla())
+                   2500 when  (hayCereza() && hayFrutilla())
+                   2100 when  (hayCoco() && hayCereza())
+                   600  when  (hayCoco () && hayFrutilla())
+                   2000 when  (hayCereza())
+                   500  when  (hayFrutilla())
+                   100  when  (hayCoco())
+                   0    otherwise
+    )
+}
+
+// Ejercicio 12)
+// Por cierto, para mostrar esos cuadraditos verdes con los puntos que vimos en los ejemplos anteriores se
+// utilizó una muy útil primitiva que nos proporcionaron:
+
+procedure Mostrar_PuntosEnPantalla(cantidadDePuntosAMostrar)
+// PROPÓSITO: Muestra en la pantalla la cantidad de puntos dados como
+// argumento.
+// OBSERVACIÓN: Los puntos se muestran como un número en un recuadro verde
+// en la esquina de la celda.
+// PRECONDICIÓNES:
+// * No debe haber elementos para comer en la celda actual.
+// * El cabezal se encuentra sobre Ms. Gobs-Man.
+// PARÁMETROS:
+// * cantidadDePuntosAMostrar: Número - Los puntos a mostrar en la pantalla.
+
+// Ahora queremos asegurarnos de poder mostrar los puntos correspondientes a lo que Ms. Gobs-Man
+// efectivamente vaya a comer en la celda actual.
+// Se espera que usted cree el procedimiento ComerLoQueHayEnLaCeldaYMostrarPuntos() que haga que
+// Ms. Gobs-Man coma todo lo que hay en la celda en donde está parada, y que se muestre en dicha celda los
+// puntos que se obtienen tras comer lo que allí había.
+// Probablemente necesite también del procedimiento siguiente como primitiva:
+
+procedure ComerFrutilla()
+// PROPÓSITO: Come la frutilla de la celda actual.
+// PRECONDICIÓNES:
+// * Hay una frutilla en la celda actual.
+// * El cabezal se encuentra sobre Ms. Gobs-Man
+
+procedure ComerLoQueHayEnLaCeldaYMostrarPuntos() {
+    /*
+        PROPÓSITO:
+            * Ms. GobsMan come todo lo que hay en la celda actual y se muestra en dicha celda los puntos obtenidos tras comer todo lo que hay ahí.
+        PRECONDICIONES:
+            * Ms. GobsMan debe estar en la celda actual.
+    */
+    puntajeAObtenerEnLaCeldaActual := puntajeAObtenerEnCeldaActual()
+
+    ComerCocoSiHay()
+    ComerCerezaSiHay()
+    ComerFrutillaSiHay()
+
+    Mostrar_PuntosEnPantalla(puntajeAObtenerEnLaCeldaActual)
+}
+
+procedure ComerCocoSiHay() {
+    /*
+        PROPÓSITO:
+            * Ms. GobsMan come un coco si hay en la celda actual.
+        PRECONDICIONES:
+            * Ms. GobsMan está en la celda actual.
+    */
+    if(hayCoco()){
+        ComerCoco()
+    }
+}
+
+procedure ComerCerezaSiHay() {
+    /*
+        PROPÓSITO:
+            * Ms. GobsMan come una cereza si hay en la celda actual.
+        PRECONDICIONES:
+            * Ms. GobsMan está en la celda actual.
+    */
+    if(hayCereza()){
+        ComerCereza()
+    }
+}
+
+procedure ComerFrutillaSiHay() {
+    /*
+        PROPÓSITO:
+            * Ms. GobsMan come una cereza si hay en la celda actual..
+        PRECONDICIONES:
+            * Ms. GobsMan está en la celda actual.
+    */
+    if(hayFrutilla()){
+        ComerFrutilla()
+    }
+}

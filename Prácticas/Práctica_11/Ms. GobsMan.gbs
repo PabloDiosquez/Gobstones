@@ -185,6 +185,30 @@ function cantidadDePuntosEnElNivel() {
     return (puntajeAlMomento)
 }
 
+// Ejercicio 14)
+// Es interesante poder determinar si Ms. Gobs-Man va a morir a causa de cruzarse con un fantasma o no
+// (Recordemos que en un nivel puede o no haber fantasmas). Se desea entonces la función
+// hayAlgúnFantasmaEnElNivel() que indica si hay un fantasma en el nivel. Por cierto, puede asumir que el
+// cabezal se encuentra sobre Ms. Gobs-Man.
+// Pista: Esta función es muy parecida a buscar un fantasma y luego morir, pero en lugar de morir debo indicar si
+// encontré o no el fantasma. Note que no necesita variables para resolver el problema.
+
+function hayAlgúnFantasmaEnElNivel() {
+    /*
+        PROPÓSITO:
+            * Indica si hay algún fantasma en el nivel.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte) && not hayFantasma()){
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    return (hayFantasma())
+}
+
 
 // FUNCIONES AUXILIARES 🐱‍🏍
 

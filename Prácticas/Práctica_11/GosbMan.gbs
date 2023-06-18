@@ -67,7 +67,7 @@ procedure LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(direcciónPrincipal, d
     LlevarGobsManAlBorde_(opuesto(direcciónSecundaria))
 }
 
-function myFunction(parámetro1, parámetro2) {
+function haySiguienteCeldaEnUnRecorridoAl_Y_(direcciónPrincipal, direcciónSecundaria) {
     /*
         PROPÓSITO:
             * Indica si existe una celda siguiente en un recorrido de direcciones **direcciónPrincipal** y **direcciónSecundaria**.
@@ -353,3 +353,22 @@ procedure JugarNivel() {
 // ● Un fantasma estará representado por cinco bolitas de color Verde.
 // Se pide entonces implemente cada uno de los procedimientos y funciones primitivas mencionados en esta
 // guía utilizando esta representación, y luego pruebe las soluciones que hicimos en papel, en la máquina.
+
+procedure MoverGobsManAl_(dirección) {
+    /*...*/
+    Sacar(Azul)
+    Mover(dirección)
+    Poner(Azul)
+}
+
+procedure LlevarGobsManAlBorde_(dirección) {
+    /*...*/
+    Sacar(Azul)
+    IrAlBorde(dirección)
+    Poner(Azul)
+}
+
+procedure ComerCoco() {
+    /*...*/
+    Sacar(Negro)
+}

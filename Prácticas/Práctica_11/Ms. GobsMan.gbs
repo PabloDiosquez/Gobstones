@@ -199,7 +199,7 @@ function hayAlgúnFantasmaEnElNivel() {
             * Indica si hay algún fantasma en el nivel.
         TIPO: Booleano
         PRECONDICIONES:
-            * No tiene (es una función total).
+            * El cabezal se encuentra sobre Ms. GobsMan.
     */
     
     IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
@@ -207,6 +207,76 @@ function hayAlgúnFantasmaEnElNivel() {
         IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
     }
     return (hayFantasma())
+}
+
+// Ejercicio 15)
+// Como Ms. Gobs-Man puede cruzarse con un fantasma en el camino, y en ese caso, el juego termina en ese
+// momento. Es decir, los puntos totales que acumula Ms. Gobs-Man en un nivel no siempre son el total de las
+// cosas que hay en el tablero, sino solamente aquellas que “come” hasta que encuentra el fantasma, si es que
+// hubiera uno. En ese sentido, las direcciones hacia las cuales Ms. Gobs-Man realiza un recorrido comiendo lo
+// que encuentra es importante. Si parte de la celda Sur-Oeste y se mueve primero al Este y luego al Norte, podría
+// conseguir menos puntos (o más) que si parte de la celda Norte-Este y se mueve al Sur y al Oeste, por poner un
+// ejemplo.
+// Por eso es interesante poder calcular cuántos puntos obtendrá Ms. Gobs-Man hasta toparse con un fantasma
+// (si hubiera uno), si realiza un recorrido en dos direcciones determinadas, dadas por parámetro.
+// Se pide escriba cantidadDePuntosEnNivelHacia_Y_(direcciónPrincipal,
+// direcciónSecundaria), una función que dadas dos direcciones indica cuántos puntos acumularía
+// Ms.Gobs-Man en un recorrido en dicha dirección. Nuevamente, el cabezal arranca sobre Ms. Gobs-Man.
+// En el ejemplo siguiente, si el recorrido se realiza hacia el Este y el Sur (partiendo de la esquina Norte-Oeste)
+// solo se obtendrán 2900 puntos, mientras que si se realiza hacia el Oeste y el Sur (partiendo de la esquina
+// Norte-Este) se obtendrán 5000. Otras direcciones darán otros puntajes.
+
+function cantidadDePuntosEnNivelHacia_Y_(direcciónPrincipal, direcciónSecundaria) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de puntos que obtendría Ms. GobsMan en un recorrido de direcciones **direcciónPrincipal** y **direcciónSecundaria**.
+        PARÁMETROS:
+            * direcciónPrincipal: Dirección
+            * direcciónSecundaria: Dirección
+        TIPO: Número.
+        PRECONDICIONES:
+            * El cabezal se encuentra sobre Ms. GobsMan.
+        OBSERVACIONES:
+            * Recorrido de acumulación sobre las celdas del tablero, calculando el puntaje total obtenido por Ms. GobsMan al recorrer el nivel de una manera determinada.
+    */
+
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(direcciónPrincipal, direcciónSecundaria)
+    puntajeAlMomento := puntajeAObtenerEnCeldaActual()
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(direcciónPrincipal, direcciónSecundaria) && not hayFantasma()) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(direcciónPrincipal, direcciónSecundaria)
+        puntajeAlMomento := puntajeAlMomento + puntajeAObtenerEnCeldaActual()
+    }
+    return (puntajeAlMomento)
+}
+
+// Ejercicio 16)
+// Se desea saber cuál de dos opciones de recorridos es más conveniente realizar. Por ejemplo, es mejor
+// recorrer hacia el Norte y el Este, que hacia el Sur y el Este (siempre considerando mejor aquel recorrido en
+// donde se obtienen más puntos). Para determinarlo, se pide que escriba la función
+// esMejorRecorridoHacia_Y_QueHacia_Y_(dirPrincipal1, dirSecundaria1, dirPrincipal2,
+// dirSecundaria2) que indica si un recorrido en dirPrincipal1 y dirSecundaria1 acumula efectivamente más
+// puntos que un recorrido en dirPrincipal2 y dirSecundaria2.
+// Si consideramos el ejemplo anterior, la función llamada como
+// esMejorRecorridoHacia_Y_QueHacia_Y_(Este, Sur, Oeste, Sur) describe Falso, pues en el
+// recorrido Este Sur se acumulaban solo 2900 puntos, mientras que en el Oeste-Sur eran 5000.
+// esMejorRecorridoHacia_Y_QueHacia_Y_(Oeste, Sur, Este, Sur) describe Verdadero por la
+// misma razón.
+
+function esMejorRecorridoHacia_Y_QueHacia_Y_(dirPrincipal1, dirSecundaria1, dirPrincipal2, dirSecundaria2) {
+    /*
+        PROPÓSITO:
+            * Indica si el recorrido de direcciones **dirPrincipal1** y **dirSecundaria1** acumula más puntos que un recorrido de direcciones **dirPrincipal2** y **dirSecundaria2**.
+        PARÁMETROS:
+            * dirPrincipal1: Dirección
+            * dirSecundaria1: Dirección
+            * dirPrincipal2: Dirección
+            * dirSecundaria2: Dirección
+        TIPO: Booleano
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (cantidadDePuntosEnNivelHacia_Y_(dirPrincipal1, dirSecundaria1) > cantidadDePuntosEnNivelHacia_Y_(dirPrincipal2, dirSecundaria2))
 }
 
 

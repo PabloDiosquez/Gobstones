@@ -232,6 +232,8 @@ procedure RecorrerNivelMuriendoEnElFantasma() {
         PRECONDICIONES:
             * GosbMan está en la celda actual y se encuentra vivo.
             * Debe haber un fantasma en al menos alguna de las celdas del nivel.
+        OBSERVACIONES:
+            * Recorrido de búsqueda sobre el tablero, buscando un fantasma en el nivel.
     */
     
     LlevarAGobsManALaPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)

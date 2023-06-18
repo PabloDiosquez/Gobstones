@@ -1,0 +1,37 @@
+// Ms. Gobs-Man es la secuela del popular juego de video argentino desarrollado en Gobstones, Gobs-Man. Ms.
+// Gobs-Man incorpora una serie de características que se esperan transformen al juego en un éxito inmediato.
+// Esta vez el jugador se pondrá en la piel de Ms.Gobs-Man, la versión femenina de nuestro aclamado héroe
+// comecocos. Como en la primera versión del juego, el objetivo será lograr que Ms. Gobs-Man se coma todos
+// los cocos y las cerezas. Para ello contaremos con todas las primitivas que se presentaron en el primer juego,
+// que ahora actúan sobre Ms.Gobs-Man, así como también la siguiente, que se agrega a las anteriores:
+
+function hayCoco()
+// PROPÓSITO: Indica cuando hay un coco en la celda actual.
+// PRECONDICIÓNES: Ninguna.
+
+// Esta vez, sin embargo, tanto los cocos como las cerezas otorgarán puntaje al jugador.
+
+// Ejercicio 10)
+// Dado que el cabezal se encuentra en alguna celda, se espera poder determinar cuántos puntos obtendrá Ms.
+// Gobs-Man si come todo lo que hay en dicha celda. Note que la celda puede tener un coco, una cereza, ambos
+// o estar vacía. Un coco otorga a Ms. Gobs-Man 100 puntos, y una cereza otorga 2000 puntos. Escriba la
+// función: puntajeAObtenerEnCeldaActual() que describe los puntos a obtener en la celda actual.
+
+function puntajeAObtenerEnCeldaActual() {
+    /*
+        PROPÓSITO:
+            * Describe el puntaje que obtiene Ms. GobsMan si come todo lo que hay la celda actual.
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+        OBSERVACIONES:
+            * La celda puede tener un coco, una cereza, ambos o estar vacía.
+            * Un coco otorga 100 puntos y una cereza otorga 2000.
+    */
+    
+    return (choose 2100 when (hayCoco() && hayCereza())
+                   2000 when (hayCereza())
+                   100  when (hayCoco())
+                   0    otherwise 
+    )
+}

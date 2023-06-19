@@ -353,6 +353,47 @@ procedure MoverFantasmaAl_(dirección)
 // ● Si Ms.Gobs-Man se encuentra en la misma columna que el fantasma, solo lo mueve una celda sobre la
 // columna actual, en dirección a Ms.Gobs-Man.
 
+procedure MoverFantasmaHaciaMsGobsMan() {
+    /*
+        PROPÓSITO: 
+            * Mueve el fantasma una celda hacia Ms. GobsMan.
+        PRECONDICIONES:
+            * El cabezal debe estar sobre el fantasma.
+            * Ms. GobsMan está viva en alguna celda del nivel.
+    */
+
+    MoverFantasmaHaciaMsGobsManEnDirecciónHorizontalSiCorresponde()
+    MoverFantasmaHaciaMsGobsManEnDirecciónVerticalSiCorresponde()
+}
+
+procedure MoverFantasmaHaciaMsGobsManEnDirecciónHorizontalSiCorresponde() {
+    /*
+        PROPÓSITO: 
+            * Mueve el fantasma hacia Ms. GobsMan en dirección horizontal si éste no se encuentra en la misma columna que Ms. GobsMan.
+        PRECONDICIONES:
+            * El cabezal está sobre el fantasma.
+            * Ms. GobsMan está viva en alguna celda del nivel
+    */
+    
+    if(elFantasmaDebeMoverseHorizontalmente()){
+        MoverFantasmaAl_(direcciónHorizontalAMoverElFantasma())
+    }
+}
+
+procedure MoverFantasmaHaciaMsGobsManEnDirecciónVerticalSiCorresponde() {
+    /*
+        PROPÓSITO: 
+            * Mueve el fantasma hacia Ms. GobsMan en dirección vertical si éste no se encuentra en la misma fila que Ms. GobsMan.
+        PRECONDICIONES:
+            * El cabezal está sobre el fantasma.
+            * Ms. GobsMan está viva en alguna celda del nivel
+    */
+    
+    if(elFantasmaDebeMoverseVerticalmente()){
+        MoverFantasmaAl_(direcciónVerticalAMoverElFantasma())
+    }
+}
+
 // Realizar ese procedimiento no es fácil, y es conveniente descomponer el problema en tareas mucho más
 // pequeñas y simples. Es por eso que nuestro equipo de analistas ya ha planteado una serie de funciones que
 // pueden serle útiles para solucionar el problema usando una estrategia top-down. A saber, se espera utilice

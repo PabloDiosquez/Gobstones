@@ -327,6 +327,90 @@ function cantidadDeCeldasRecorridasAlMomentoEnUnRecorridoAl_Y_(dirPrincipal, dir
     return (cantidadDeCeldasRecorridasAlMomento + 1)
 }
 
+// Ejercicio 19)
+// No todo es diversión al programar a Ms.Gobs-Man, porque también tenemos que programar a los malos. En
+// este caso el cabezal se encuentra sobre un fantasma, y queremos mover al fantasma hacia donde está Ms.
+// Gobs-Man. Para ello, debemos calcular dónde está Ms.Gobs-Man y determinar hacia dónde mover el
+// fantasma. Para ello contamos con las siguientes primitivas:
+
+procedure PararCabezalEnMsGobsMan()
+// PROPÓSITO: Posiciona el cabezal sobre Ms. Gobs-Man.
+// PRECONDICIÓN: Ms. Gobs-Man está viva en el tablero.
+
+procedure MoverFantasmaAl_(dirección)
+// PROPÓSITO: Mueve al fantasma de la celda actual una celda hacia la
+// dirección dada.
+// PRECONDICIÓN: El cabezal se encuentra sobre un fantasma.
+// PARÁMETRO:
+// * dirección: Dirección - La dirección a la cual mover el fantasma.
+
+// Se pide entonces que realice el procedimiento MoverFantasmaHaciaMsGobsMan() que mueve el fantasma
+// hacia Ms.Gobs-Man una celda, utilizando el siguiente criterio.
+// ● Si Ms. Gobs-Man se encuentra en una fila y columna distinta a la del fantasma, mueve el fantasma
+// en diagonal hacia las direcciones en las que se encuentre Ms.Gobs-Man.
+// ● Si Ms.Gobs-Man se encuentra en la misma fila que el fantasma, solo lo mueve una celda sobre la
+// columna actual, en dirección a Ms.Gobs-Man.
+// ● Si Ms.Gobs-Man se encuentra en la misma columna que el fantasma, solo lo mueve una celda sobre la
+// columna actual, en dirección a Ms.Gobs-Man.
+
+// Realizar ese procedimiento no es fácil, y es conveniente descomponer el problema en tareas mucho más
+// pequeñas y simples. Es por eso que nuestro equipo de analistas ya ha planteado una serie de funciones que
+// pueden serle útiles para solucionar el problema usando una estrategia top-down. A saber, se espera utilice
+// estas funciones (y las implemente) para solucionar el procedimiento anteriormente mencionado:
+
+// ● elFantasmaDebeMoverseHorizontalmente() que indica si el fantasma no se encuentra en la
+// misma columna que Ms. Gobs-Man.
+// ● elFantasmaDebeMoverseVerticalmente() que indica si el fantasma no se encuentra en la misma
+// fila que Ms. Gobs-Man.
+// ● direcciónHorizontalAMoverElFantasma() que dado que el fantasma no está en la misma
+// columna que Ms. Gobs-Man, describe la dirección a la cual el fantasma se debería mover para quedar
+// más cerca que Ms. Gobs-Man en términos de columnas (Este u Oeste).
+// ● direcciónVerticalAMoverElFantasma() que dado que el fantasma no está en la misma fila que
+// Ms. Gobs-Man, describe la dirección a la cual el fantasma se debería mover para quedar más cerca
+// que Ms. Gobs-Man en términos de filas (Norte o Sur).
+// A su vez, se recomienda realizar las siguientes funciones para solucionar las anteriores:
+// ● filaDondeEstáElFantasma() que describe el número de fila donde se encuentra el fantasma.
+// ● columnaDondeEstáElFantasma() que describe el número de columna donde se encuentra el
+// fantasma.
+// ● filaDondeEstáMsGobsMan() que describe el número de fila donde se encuentra Ms.Gobs-Man.
+// ● columnaDondeEstáMsGobsMan() que describe el número de columna donde se encuentra Ms.
+// Gobs-Man.
+
+
+function filaDondeEstáElFantasma() {
+    /*
+        PROPÓSITO:
+            * Describe el número de fila en donde se encuentra el fantasma.
+        TIPO: Número
+        PRECONDICIONES:
+            * El cabezal está sobre el fantasma.
+    */
+
+    númeroDeFilaAlMomento := 0
+    while(puedeMover(Sur)){
+        númeroDeFilaAlMomento := númeroDeFilaAlMomento + 1
+        Mover(Sur)
+    }
+    return (númeroDeFilaAlMomento)
+}
+
+function columnaDondeEstáElFantasma() {
+    /*
+        PROPÓSITO:
+            * Describe el número de columna en donde se encuentra el fantasma.
+        TIPO: Número
+        PRECONDICIONES:
+            * El cabezal está sobre el fantasma.
+    */
+    
+    númeroDeColumnaAlMomento := 0
+    while(puedeMover(Oeste)){
+        númeroDeColumnaAlMomento := númeroDeColumnaAlMomento + 1
+        Mover(Oeste)
+    }
+    return (númeroDeColumnaAlMomento)
+}
+
 
 // FUNCIONES AUXILIARES 🐱‍🏍
 

@@ -542,6 +542,34 @@ function columnaDondeEstáMsGobsMan() {
     return (númeroDeColumnaAlMomento)
 }
 
+// Ejercicio 20)
+// Se desea saber con la función elFantasmaSeComeráAMsGobsManAContinuación() que indica si, tras
+// mover el fantasma una única vez más, éste alcanzará a Ms. Gobs-Man. Puede asumir que el cabezal está
+// sobre el fantasma.
+
+function elFantasmaSeComeráAMsGobsManAContinuación() {
+    /*
+        PROPÓSITO:
+            * Indica si luego de mover al fantasma una única vez más, éste alcanza a Ms. GobsMan.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * El cabezal está sobre el fantasma.
+    */
+    MoverFantasmaHaciaMsGobsMan()
+    return (elFantasmaEstáEnLaMismaCeldaQueMsGobsMan())
+}
+
+function elFantasmaEstáEnLaMismaCeldaQueMsGobsMan() {
+    /*
+        PROPÓSITO:
+            * Indica si el fantasma está en la misma celda que Ms. GobsMan.
+        TIPO: Booleano.
+        PRECONDICIONES:
+            * El cabezal está sobre el fantasma.
+    */
+    
+    return (filaDondeEstáElFantasma() == filaDondeEstáMsGobsMan() && columnaDondeEstáElFantasma() == columnaDondeEstáMsGobsMan())
+}
 
 // FUNCIONES AUXILIARES 🐱‍🏍
 

@@ -368,6 +368,61 @@ procedure MoverFantasmaAl_(dirección)
 // ● direcciónVerticalAMoverElFantasma() que dado que el fantasma no está en la misma fila que
 // Ms. Gobs-Man, describe la dirección a la cual el fantasma se debería mover para quedar más cerca
 // que Ms. Gobs-Man en términos de filas (Norte o Sur).
+
+function elFantasmaDebeMoverseHorizontalmente() {
+    /*
+        PROPÓSITO:
+            * Indica si el fantasma no se encuentra en la misma columna que Ms. GobsMan.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * El cabezal debe estar sobre el fantasma.
+    */
+    
+    return (columnaDondeEstáElFantasma() /= columnaDondeEstáMsGobsMan())
+}
+
+function elFantasmaDebeMoverseVerticalmente() {
+    /*
+        PROPÓSITO:
+            * Indica si el fantasma no se encuentra en la misma fila que Ms. GobsMan.
+        TIPO: Booleano
+        PRECONDICIONES:
+            * El cabezal debe estar sobre el fantasma.
+    */
+    
+    return (filaDondeEstáElFantasma() /= filaDondeEstáMsGobsMan())
+}
+
+function direcciónHorizontalAMoverElFantasma() {
+    /*
+        PROPÓSITO:
+            * Describe la dirección a la cual el fantasma debe moverse para quedar más cerca de Ms. GobsMan en términos de columnas (Este u Oeste). 
+        TIPO: Dirección
+        PRECONDICIONES:
+            * El cabezal debe estar sobre el fantasma.
+            * El fantasma no está en la misma columna que Ms. GobsMan.
+    */
+    
+    return (choose Este  when (columnaDondeEstáElFantasma() < columnaDondeEstáMsGobsMan())
+                   Oeste otherwise
+    )
+}
+
+function direcciónVerticalAMoverElFantasma() {
+    /*
+        PROPÓSITO:
+            * Describe la dirección a la cual el fantasma debe moverse para quedar más cerca de Ms. GobsMan en términos de filas (Norte o Sur). 
+        TIPO: Dirección
+        PRECONDICIONES:
+            * El cabezal debe estar sobre el fantasma.
+            * El fantasma no está en la misma fila que Ms. GobsMan.
+    */
+    
+    return (choose Norte when (filaDondeEstáElFantasma() < filaDondeEstáMsGobsMan())
+                   Sur   otherwise
+    )
+}
+
 // A su vez, se recomienda realizar las siguientes funciones para solucionar las anteriores:
 // ● filaDondeEstáElFantasma() que describe el número de fila donde se encuentra el fantasma.
 // ● columnaDondeEstáElFantasma() que describe el número de columna donde se encuentra el
@@ -375,7 +430,6 @@ procedure MoverFantasmaAl_(dirección)
 // ● filaDondeEstáMsGobsMan() que describe el número de fila donde se encuentra Ms.Gobs-Man.
 // ● columnaDondeEstáMsGobsMan() que describe el número de columna donde se encuentra Ms.
 // Gobs-Man.
-
 
 function filaDondeEstáElFantasma() {
     /*
@@ -403,6 +457,42 @@ function columnaDondeEstáElFantasma() {
             * El cabezal está sobre el fantasma.
     */
     
+    númeroDeColumnaAlMomento := 0
+    while(puedeMover(Oeste)){
+        númeroDeColumnaAlMomento := númeroDeColumnaAlMomento + 1
+        Mover(Oeste)
+    }
+    return (númeroDeColumnaAlMomento)
+}
+
+function filaDondeEstáMsGobsMan() {
+    /*
+        PROPÓSITO: 
+            * Describe el número de fila donde se encuentra Ms. GobsMan.
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    PararCabezalEnMsGobsMan()
+    númeroDeFilaAlMomento := 0
+    while(puedeMover(Sur)){
+        númeroDeFilaAlMomento := númeroDeFilaAlMomento + 1
+        Mover(Sur)
+    }
+    return (númeroDeFilaAlMomento)
+}
+
+function columnaDondeEstáMsGobsMan() {
+    /*
+        PROPÓSITO: 
+            * Describe el número de columna donde se encuentra Ms. GobsMan.
+        TIPO: Número
+        PRECONDICIONES:
+            * No tiene (es una función total).
+    */
+
+    PararCabezalEnMsGobsMan()
     númeroDeColumnaAlMomento := 0
     while(puedeMover(Oeste)){
         númeroDeColumnaAlMomento := númeroDeColumnaAlMomento + 1

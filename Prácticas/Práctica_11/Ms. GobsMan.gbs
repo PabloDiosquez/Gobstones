@@ -279,6 +279,54 @@ function esMejorRecorridoHacia_Y_QueHacia_Y_(dirPrincipal1, dirSecundaria1, dirP
     return (cantidadDePuntosEnNivelHacia_Y_(dirPrincipal1, dirSecundaria1) > cantidadDePuntosEnNivelHacia_Y_(dirPrincipal2, dirSecundaria2))
 }
 
+// Ejercicio 17)
+// Queremos también poder determinar si Ms. Gobs-Man ha logrado llegar a un punto en donde está cerca de
+// finalizar el nivel, en particular, si completó más de la mitad del mismo.
+// Para esto, se le pide implementar la función másDeLaMitadDelNivelSiVaHacia_Y_(dirPrincipal,
+// dirSecundaria) que indica si Ms. Gobs-Man pasó más de la mitad del nivel recorriendo hacia dirPrincipal y
+// dirSecundaria. Note que sabemos nuevamente que el cabezal está sobre Ms. Gobs-Man, y también contamos
+// con esta útil primitiva:
+
+function tamañoDelTablero()
+// PROPÓSITO: Denota el número total de celdas del tablero (nxm)
+// PRECONDICIÓN: Ninguna
+
+// Ayuda: Tené en cuenta que Ms.Gobs-Man viene de las direcciones opuestas a aquellas hacia las cuales está
+// recorriendo, y queremos saber cuántas celdas ya visitó.
+
+function másDeLaMitadDelNivelSiVaHacia_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:
+            * Indica si Ms. GobsMan páso más de la mitad del nivel recorriendo hacia el **dirPrincipal** y el **dirSecundaria**.
+        PARÁMETROS:
+            * dirPrincipal: Dirección
+            * dirSecundaria: Dirección
+        TIPO: Booleano
+        PRECONDICIONES:
+            * El cabezal está sobre Ms. GobsMan.
+            * Las direcciones dadas no debe ser ni iguales ni opuestas.
+    */
+    
+    return (cantidadDeCeldasRecorridasAlMomentoEnUnRecorridoAl_Y_(dirPrincipal, direcciónSecundaria) > (tamañoDelTablero() div 2))
+}
+
+function cantidadDeCeldasRecorridasAlMomentoEnUnRecorridoAl_Y_(dirPrincipal, direcciónSecundaria) {
+    /*
+        PROPÓSITO:
+            * Describe la cantidad de celdas recorridas por Ms. GobsMan desde el inicio del recorrido hasta llegar a la celda actual.
+        TIPO: Número
+        PRECONDICIONES:
+            * El cabezal está sobre Ms. GobsMan.
+    */
+
+    cantidadDeCeldasRecorridasAlMomento := 0
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(opuesto(dirPrincipal), opuesto(dirSecundaria))) {
+        cantidadDeCeldasRecorridasAlMomento := cantidadDeCeldasRecorridasAlMomento + 1
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(opuesto(dirPrincipal), opuesto(direcciónSecundaria))
+    }
+    return (cantidadDeCeldasRecorridasAlMomento + 1)
+}
+
 
 // FUNCIONES AUXILIARES 🐱‍🏍
 

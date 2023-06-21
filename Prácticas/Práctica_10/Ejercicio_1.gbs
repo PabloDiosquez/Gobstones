@@ -21,3 +21,21 @@ procedure PonerColores_EnLaCeldaActual(colores) {
         coloresPorPoner := resto(coloresPorPoner)
     }    
 }
+
+procedure PonerColores_EnLaCeldaActual(colores){
+    /*
+        Propósito:
+            * Pone una bolita del color correspondiente por cada uno de los colores de la
+            lista dada en la celda actual.
+        Parámetros:
+            * colores: [Color]
+        Precondiciones:
+            * No tiene (es una función total).
+        Observaciones:
+            * Recorrido de transformación del tablero, sobre los colores de la lista dada.
+    */
+    
+    foreach color in colores {
+        Poner(color)
+    }
+}

@@ -22,3 +22,21 @@ procedure RecorrerCamino_(direcciones) {
         direccionesPorMirar := resto(direccionesPorMirar)
     }
 }
+
+procedure RecorrerCamino_(direcciones){
+    /*
+        Propósito:
+            * Mueve el cabezal por cada dirección de la lista de direcciones dada, en orden.
+        Parámetros:
+            * direcciones: [Dirección]
+        Precondiciones:
+            * Las direcciones de la lista dada deben conformar un camino existente en el tablero actual.
+        Observaciones:
+            * Recorrido de transformación del tablero, recorriendo la lista de direcciones
+            para mover el cabezal.
+    */
+    
+    foreach dirección in direcciones{
+        Mover(dirección)
+    }
+}
